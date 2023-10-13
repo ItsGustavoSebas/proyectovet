@@ -11,5 +11,5 @@
         </div>
     </div>
 
-    
-</x-app-layout>
+    hola
+</x-app-layout> 
