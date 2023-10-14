@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,5 +24,11 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
         return view('dashboard');
     })->name('dashboard');
 
+    Route::get('/usuarios', [UserController::class, 'inicio'])->name('usuarios.inicio');
+    Route::get('/usuarios/editar/{id}', [UserController::class, 'editar'])->name('usuarios.editar');
+    Route::post('/usuarios/actualizar/{id}', [UserController::class, 'actualizar'])->name('usuarios.actualizar');
+    Route::post('/usuarios/eliminar/{id}', [UserController::class, 'eliminar'])->name('usuarios.eliminar');
+    Route::get('/usuarios/crear', [UserController::class, 'crear'])->name('usuarios.crear');
+    Route::post('/usuarios/guardar', [UserController::class, 'guardar'])->name('usuarios.guardar');
     Route::get('/productos', [ProductoController::class, 'inicio'])->name('producto.inicio');
 });
