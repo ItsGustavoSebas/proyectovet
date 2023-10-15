@@ -1,7 +1,11 @@
 <?php
 
 use App\Http\Controllers\ProductoController;
+
+use App\Http\Controllers\ServiciosController;
+
 use App\Http\Controllers\UserController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,4 +35,6 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
     Route::get('/usuarios/crear', [UserController::class, 'crear'])->name('usuarios.crear');
     Route::post('/usuarios/guardar', [UserController::class, 'guardar'])->name('usuarios.guardar');
     Route::get('/productos', [ProductoController::class, 'inicio'])->name('producto.inicio');
+
+    Route::get('/servicios', [ServiciosController::class, 'inicio'])->name('servicios.inicio');
 });
