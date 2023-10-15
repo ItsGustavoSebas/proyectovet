@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\ServiciosController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,4 +25,6 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
     })->name('dashboard');
 
     Route::get('/productos', [ProductoController::class, 'inicio'])->name('producto.inicio');
+
+    Route::get('/servicios', [ServiciosController::class, 'inicio'])->name('servicios.inicio');
 });
