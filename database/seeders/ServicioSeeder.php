@@ -26,7 +26,7 @@ class ServicioSeeder extends Seeder
             'descripcion' => 'Un baño para todo tipo de mascotas',
             'precio' => '100',
             'reservable' => 'Si',
-            'ruta_imagen' => '/storage/imagenes/utilitarios/1697388399_Grooming2.jpg'
+            'ruta_imagen' => '/build/imagenes/utilitarios/Grooming2.jpg'
            
         ]);
 
@@ -35,7 +35,7 @@ class ServicioSeeder extends Seeder
             'descripcion' => 'Revisión dental para las mascotas',
             'precio' => '150',
             'reservable' => 'Si',
-            'ruta_imagen' => '/storage/imagenes/utilitarios/1697352426_Dental.jpg'
+            'ruta_imagen' => '/build/imagenes/utilitarios/Dental.jpg'
         ]);
 
     }
