@@ -191,8 +191,9 @@
 
       <div class="mb-3">
         <label class="font-bold">Imagen:</label>
-        <img src="{{ asset($servicioActual->ruta_imagen) }}" alt="{{ $servicioActual->nombre }}"
-          style="max-width: 100%;">
+        <img src="{{ asset($servicioActual->ruta_imagen) }}" alt="{{ $servicioActual->nombre }} "
+          style="max-width: 100%;"
+          class="rounded-3xl" >
       </div>
 
       @else
@@ -230,7 +231,7 @@
 
        <x-secondary-button wire:click="$set('modalServicio', false)" class="mr-2"
         onclick="console.log('Botón Cancelar presionado');">
-        cancelar
+         Cerrar
        </x-secondary-button>
 
        <button wire:click="confirmarEliminar" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
