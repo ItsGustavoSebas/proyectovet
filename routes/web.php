@@ -36,5 +36,12 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
     Route::post('/usuarios/guardar', [UserController::class, 'guardar'])->name('usuarios.guardar');
     Route::get('/productos', [ProductoController::class, 'inicio'])->name('producto.inicio');
 
+    Route::get('/usuarios/crearv2', [UserController::class, 'rcrear'])->name('usuarios.crearv2');
+    Route::post('/usuarios/rguardar', [UserController::class, 'rguardar'])->name('usuarios.rguardar');
+    Route::get('/usuarios/rinicio', [UserController::class, 'rinicio'])->name('usuarios.rinicio');
+    Route::get('/usuarios/reditar/{id}', [UserController::class, 'reditar'])->name('usuarios.reditar');
+    Route::post('/usuarios/ractualizar/{id}', [UserController::class, 'ractualizar'])->name('usuarios.ractualizar');
+    Route::post('/usuarios/reliminar/{id}', [UserController::class, 'reliminar'])->name('usuarios.reliminar');
+
     Route::get('/servicios', [ServiciosController::class, 'inicio'])->name('servicios.inicio');
 });
