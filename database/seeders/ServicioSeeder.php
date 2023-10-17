@@ -19,9 +19,6 @@ class ServicioSeeder extends Seeder
     {
 
         Servicio::create([         
-            
-
-
             'nombre' => 'Grooming',
             'descripcion' => 'Un baño para todo tipo de mascotas',
             'precio' => '100',
