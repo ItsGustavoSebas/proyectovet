@@ -1,50 +1,40 @@
 <div>
 
 
-
-  <div class="bg-black h-screen flex flex-col items-center justify-center">
-
+  <div class="bg-black h-screen flex flex-col items-center justify-center p-4">
     <!-- Title -->
-    <h1 class="text-gray-200 text-5xl mb-8">
+    <h1 class="text-5xl text-gray-200 mb-8 text-center">
       Servicios disponibles
-
     </h1>
 
-    <!-- Profiles -->descrip
-
-    <div class="flex flex-wrap -mx-2">
+    <!-- Profiles -->
+    <div class="flex flex-wrap justify-center -mx-4">
       @for ($i = 0; $i < $cantidadFilas; $i++) @php $servicio=App\Models\Servicio::skip($i)->first();
         @endphp
-        <div class="w-3/3 px-4">
-          <!-- Reducimos el ancho y el espacio horizontal -->
-          <a href="#" wire:click="cargarDetallesServicio({{ (int)$servicio->id }})"
-            class="flex flex-col items-center group gap-2">
-            <img src="{{ asset($servicio->ruta_imagen) }}" style="object-fit: cover; width: 200px; height: 200px;"
-              class="rounded-3xl" />
-            <p class="text-gray-500 group-hover:text-gray-300">{{ $servicio->nombre }}</p>
-            <p>ID del Servicio: {{ $servicio->id }}</p>
+        <div class="w-full md:w-1/2 lg:w-1/3 px-4 mb-8">
+          <a href="#" wire:click="cargarDetallesServicio({{ (int)$servicio->id }})" class="block">
+            <img src="{{ asset($servicio->ruta_imagen) }}" class="rounded-3xl mx-auto w-[330px] h-[200px]"
+              style="object-fit: cover;">
+            <p class="text-gray-500 group-hover:text-gray-300 text-center">{{ $servicio->nombre }}</p>         
           </a>
         </div>
         @endfor
     </div>
 
-
-
-
-
     <!-- Add Profile -->
-    <a href="#" class="flex flex-col items-center group gap-3 ">
+    <a href="#" class="flex flex-col items-center group gap-3 mt-1">
       <svg wire:click="$set('modalCrear', true)" xmlns="http://www.w3.org/2000/svg"
-        class="h-[150px] w-[150px] group-hover:bg-gray-300 border-2 border-transparent" viewBox="0 0 20 20"
+        class="w-[150px] h-[150px] group-hover:bg-gray-300 border-2 border-transparent" viewBox="0 0 20 20"
         fill="#6b7280">
         <path fill-rule="evenodd"
           d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z"
           clip-rule="evenodd" />
       </svg>
-      <p class="text-gray-500 group-hover:text-gray-300"> Add Profile </p>
+      <p class="text-gray-500 group-hover:text-gray-300 text-center"> Add Profile </p>
     </a>
 
   </div>
+
 
 
 
@@ -192,8 +182,7 @@
       <div class="mb-3">
         <label class="font-bold">Imagen:</label>
         <img src="{{ asset($servicioActual->ruta_imagen) }}" alt="{{ $servicioActual->nombre }} "
-          style="max-width: 100%;"
-          class="rounded-3xl" >
+          style="max-width: 100%;" class="rounded-3xl">
       </div>
 
       @else
@@ -206,11 +195,11 @@
 
     <x-slot name='footer'>
 
-    
+
       @if ($modoEdicion)
-      <button wire:click="guardarEdicion"   class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" >
+      <button wire:click="guardarEdicion" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
         Guardar Cambios
-        
+
       </button>
 
       <button wire:click="cancelarEdicion" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
@@ -222,39 +211,43 @@
         <div class="modal-content">
           <p>¿Estás seguro de que deseas eliminar este servicio?</p>
           <div class="button-container">
-            <button wire:click="eliminarServicio" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Sí</button>
-            <button wire:click="cancelarEliminar" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">No</button>
+            <button wire:click="eliminarServicio"
+              class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Sí</button>
+            <button wire:click="cancelarEliminar"
+              class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">No</button>
           </div>
         </div>
       </div>
-    @else
+      @else
 
-       <x-secondary-button wire:click="$set('modalServicio', false)" class="mr-2"
+      <x-secondary-button wire:click="$set('modalServicio', false)" class="mr-2"
         onclick="console.log('Botón Cancelar presionado');">
-         Cerrar
-       </x-secondary-button>
+        Cerrar
+      </x-secondary-button>
 
-       <button wire:click="confirmarEliminar" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+      <button wire:click="confirmarEliminar" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
         Eliminar Servicio
       </button>
-      
+
       @if($confirmacionEliminar)
       <div class="modal">
         <div class="modal-content">
           <p>¿Estás seguro de que deseas eliminar este servicio?</p>
           <div class="button-container">
-            <button wire:click="eliminarServicio" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Sí</button>
-            <button wire:click="cancelarEliminar" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">No</button>
+            <button wire:click="eliminarServicio"
+              class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Sí</button>
+            <button wire:click="cancelarEliminar"
+              class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">No</button>
           </div>
         </div>
       </div>
-    @endif
-       
+      @endif
 
 
-       <button wire:click="editarServicio" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-         Editar Servicio
-       </button>
+
+      <button wire:click="editarServicio" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        Editar Servicio
+      </button>
       @endif
 
 
