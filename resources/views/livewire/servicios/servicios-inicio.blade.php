@@ -34,16 +34,6 @@
         <p class="text-gray-500 group-hover:text-gray-300 text-center"> Add Profile </p>
     </a>
   </div>
-
-
-
-
-
-
-
-
-
-
   <x-dialog-modal wire:model="modalCrear">
     <x-slot name='title'>
       Añadir servicio
