@@ -12,7 +12,8 @@
             @php
                 $servicio = App\Models\Servicio::skip($i)->first();
             @endphp
-            <div class="w-full md:w-1/1 lg:w-1/5 px-4 mb-5">
+            <div class="w-1/2 md:w-1/1 lg:w-1/5 px-4 mb-5">
+
                 <a href="#" wire:click="cargarDetallesServicio({{ (int)$servicio->id }})" class="block">
                     <img src="{{ asset($servicio->ruta_imagen) }}" class="rounded-3xl mx-auto w-full md:w-[200px] h-[200px]"
                         style="object-fit: cover;">
@@ -34,23 +35,11 @@
         <p class="text-gray-500 group-hover:text-gray-300 text-center"> Add Profile </p>
     </a>
   </div>
-
-
-
-
-
-
-
-
-
-
-
   <x-dialog-modal wire:model="modalCrear">
     <x-slot name='title'>
       Añadir servicio
 
     </x-slot>
-
 
     <x-slot name='content'>
       <label class"font-bold mb-3" for="">Nombre:</label>
@@ -80,11 +69,7 @@
       <label class"font-bold mb-3" for="">imagen:</label>
       <input autocomplete="off" type="file" name="ruta_imagen" wire:model="ruta_imagen">
 
-
-
     </x-slot>
-
-
 
     <x-slot name='footer'>
 
