@@ -21,7 +21,6 @@
                 </a>
             </div>
         @endfor
-    </div>
 
     <!-- Add Profile -->
     <a href="#" class="flex flex-col items-center group gap-3 mt-4">
@@ -35,6 +34,7 @@
         <p class="text-gray-500 group-hover:text-gray-300 text-center"> Add Profile </p>
     </a>
   </div>
+</div>
   <x-dialog-modal wire:model="modalCrear">
     <x-slot name='title'>
       Añadir servicio
