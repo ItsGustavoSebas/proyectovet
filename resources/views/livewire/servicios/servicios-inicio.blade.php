@@ -40,7 +40,6 @@
 
     </x-slot>
 
-
     <x-slot name='content'>
       <label class"font-bold mb-3" for="">Nombre:</label>
       <br>
@@ -69,11 +68,7 @@
       <label class"font-bold mb-3" for="">imagen:</label>
       <input autocomplete="off" type="file" name="ruta_imagen" wire:model="ruta_imagen">
 
-
-
     </x-slot>
-
-
 
     <x-slot name='footer'>
 
