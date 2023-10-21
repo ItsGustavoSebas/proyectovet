@@ -23,16 +23,18 @@
         @endfor
 
     <!-- Add Profile -->
-    <a href="#" class="flex flex-col items-center group gap-3 mt-4">
+    <div class="w-1/2 md:w-1/1 lg:w-1/5 px-4 mb-5">
+    <a href="#" class="block">
         <svg wire:click="$set('modalCrear', true)"
-            class="w-[150px] h-[150px] group-hover:bg-gray-300 border-2 border-transparent" viewBox="0 0 20 20"
+            class="rounded-3xl mx-auto w-full md:w-[200px] h-[200px]" viewBox="0 0 20 20"
             fill="#6b7280">
             <path fill-rule="evenodd"
                 d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z"
                 clip-rule="evenodd" />
         </svg>
-        <p class="text-gray-500 group-hover:text-gray-300 text-center"> Add Profile </p>
+        <p class="text-gray-500 group-hover:text-gray-300 text-center"> Añadir Servicio </p>
     </a>
+  </div>
   </div>
 </div>
   <x-dialog-modal wire:model="modalCrear">
