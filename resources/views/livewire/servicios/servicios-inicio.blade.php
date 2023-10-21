@@ -13,6 +13,7 @@
                 $servicio = App\Models\Servicio::skip($i)->first();
             @endphp
             <div class="w-1/2 md:w-1/1 lg:w-1/5 px-4 mb-5">
+
                 <a href="#" wire:click="cargarDetallesServicio({{ (int)$servicio->id }})" class="block">
                     <img src="{{ asset($servicio->ruta_imagen) }}" class="rounded-3xl mx-auto w-full md:w-[200px] h-[200px]"
                         style="object-fit: cover;">
