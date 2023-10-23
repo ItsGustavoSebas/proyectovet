@@ -10,7 +10,7 @@
     <div class="flex flex-wrap justify-center -mx-2">
       @for ($i = 0; $i < $cantidadFilas; $i++) @php $servicio=App\Models\Servicio::skip($i)->first();
         @endphp
-        <div class="w-full md:w-1/1 lg:w-1/5 px-4 mb-5">
+        <div class="w-1/2 md:w-1/1 lg:w-1/5 px-4 mb-5">
           <a href="#" wire:click="cargarDetallesServicio({{ (int)$servicio->id }})" class="block">
             <img src="{{ asset($servicio->ruta_imagen) }}" class="rounded-3xl mx-auto w-full md:w-[700px] h-[200px]"
               style="object-fit: cover;">
@@ -18,7 +18,6 @@
           </a>
         </div>
       @endfor
-    </div>
 
     <!-- Add Profile -->
     <a href="#" class="flex flex-col items-center group gap-3 mt-4">
@@ -32,7 +31,7 @@
       <p class="text-gray-500 group-hover:text-gray-300 text-center"> Add Profile </p>
     </a>
   </div>
-
+</div>
 
 
 
