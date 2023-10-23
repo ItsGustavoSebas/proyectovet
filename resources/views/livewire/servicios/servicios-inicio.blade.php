@@ -17,7 +17,7 @@
             <p class="text-gray-500 group-hover:text-gray-300 text-center">{{ $servicio->nombre }}</p>
           </a>
         </div>
-        @endfor
+      @endfor
     </div>
 
     <!-- Add Profile -->
