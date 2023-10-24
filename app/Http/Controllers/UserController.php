@@ -11,7 +11,7 @@ class UserController extends Controller
 
     public function rinicio()
     {
-        $usuarios = User::all();
+        $usuarios = User::where('rol', 'empleado')->get();
         return (view('usuarios.iniciov2', compact('usuarios')));
     }
 
@@ -43,10 +43,11 @@ class UserController extends Controller
             'telefono' => $request->telefono,
             'ci' => $request->ci,
             'direccion' => $request->direccion,
+            'rol' => 'empleado',
             'password' => bcrypt($request->password),
             'profile_photo_path' => $url
         ]);
-        return redirect(route('usuarios.rinicio'))->with('creado', 'Usuario creado exitosamente');
+        return redirect(route('usuarios.rinicio'))->with('creado', 'Empleado creado exitosamente');
     }
 
     public function reliminar($id)
@@ -103,7 +104,7 @@ class UserController extends Controller
 
     public function inicio()
     {
-        $usuarios = User::all();
+        $usuarios = User::where('rol', 'cliente')->get();
         return (view('usuarios.inicio', compact('usuarios')));
     }
 

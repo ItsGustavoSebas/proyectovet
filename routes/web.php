@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ProductoController;
 
 use App\Http\Controllers\ServiciosController;
@@ -36,12 +37,19 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
     Route::post('/usuarios/guardar', [UserController::class, 'guardar'])->name('usuarios.guardar');
     Route::get('/productos', [ProductoController::class, 'inicio'])->name('producto.inicio');
 
-    Route::get('/usuarios/crearv2', [UserController::class, 'rcrear'])->name('usuarios.rcrear');
-    Route::post('/usuarios/rguardar', [UserController::class, 'rguardar'])->name('usuarios.rguardar');
-    Route::get('/usuarios/rinicio', [UserController::class, 'rinicio'])->name('usuarios.rinicio');
-    Route::get('/usuarios/reditar/{id}', [UserController::class, 'reditar'])->name('usuarios.reditar');
-    Route::post('/usuarios/ractualizar/{id}', [UserController::class, 'ractualizar'])->name('usuarios.ractualizar');
-    Route::post('/usuarios/reliminar/{id}', [UserController::class, 'reliminar'])->name('usuarios.reliminar');
+    Route::get('/clientes', [ClienteController::class, 'inicio'])->name('clientes.inicio');
+    Route::get('/clientes/editar/{id}', [ClienteController::class, 'editar'])->name('clientes.editar');
+    Route::post('/clientes/actualizar/{id}', [ClienteController::class, 'actualizar'])->name('clientes.actualizar');
+    Route::post('/clientes/eliminar/{id}', [ClienteController::class, 'eliminar'])->name('clientes.eliminar');
+    Route::get('/clientes/crear', [ClienteController::class, 'crear'])->name('clientes.crear');
+    Route::post('/clientes/guardar', [ClienteController::class, 'guardar'])->name('clientes.guardar');
+
+    Route::get('/empleados/crear', [UserController::class, 'rcrear'])->name('usuarios.rcrear');
+    Route::post('/empleados/guardar', [UserController::class, 'rguardar'])->name('usuarios.rguardar');
+    Route::get('/empleados/inicio', [UserController::class, 'rinicio'])->name('usuarios.rinicio');
+    Route::get('/empleados/editar/{id}', [UserController::class, 'reditar'])->name('usuarios.reditar');
+    Route::post('/empleados/actualizar/{id}', [UserController::class, 'ractualizar'])->name('usuarios.ractualizar');
+    Route::post('/empleados/eliminar/{id}', [UserController::class, 'reliminar'])->name('usuarios.reliminar');
 
     Route::get('/servicios', [ServiciosController::class, 'inicio'])->name('servicios.inicio');
 });
