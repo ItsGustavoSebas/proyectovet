@@ -5,9 +5,9 @@
                 {{ __('Lista de Empleados') }}
             </h2>
             <a class = "px-3 py-2 bg-indigo-600 font-bold text-white rounded-lg"
-                href="{{ route('usuarios.rcrear') }}">REGISTRAR EMPLEADO</a>
+                href="{{ route('usuarios.crearv2') }}">REGISTRAR EMPLEADO</a>
         </div>
-    </x-slot>
+    </x-slot>   
 
     <table class="min-w-full border-collapse block md:table">
         <thead class="block md:table-header-group">
