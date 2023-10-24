@@ -2,12 +2,12 @@
     <x-slot name="header">
         <div class = "flex flex-wrap justify-between">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('Lista de Empleados') }}
+                {{ __('lista de mascotas de ' . $usuario->name) }}
             </h2>
             <a class = "px-3 py-2 bg-indigo-600 font-bold text-white rounded-lg"
-                href="{{ route('usuarios.rcrear') }}">REGISTRAR EMPLEADO</a>
+                href="{{ route('mascotas.crear', $usuario->id) }}">AÑADIR MASCOTA</a>
         </div>
-    </x-slot>   
+    </x-slot>
 
     <table class="min-w-full border-collapse block md:table">
         <thead class="block md:table-header-group">
@@ -21,65 +21,68 @@
                     Nombre</th>
                 <th
                     class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
-                    Correo Electronico</th>
+                    Sexo</th>
                 <th
                     class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
-                    Direccion</th>
+                    Color</th>
                 <th
                     class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
-                    Telefono</th>
+                    Fecha de Nacimiento</th>
                 <th
                     class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
-                    C.I.</th>
-
+                    Edad</th>
                 <th
                     class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
-                    Imagen</th>
-
+                    Esterilizado</th>
+                <th
+                    class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
+                    Especie</th>
+                <th
+                    class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
+                    Raza</th>
                 <th
                     class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
                     Acciones</th>
             </tr>
         </thead>
         <tbody class="block md:table-row-group">
-            @foreach ($usuarios as $usuario)
+            @foreach ($mascotas as $mascota)
                 <tr class="bg-white border border-grey-500 md:border-none block md:table-row">
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
-                            class="inline-block w-1/3 md:hidden font-bold">ID</span>{{ $usuario->id }}</td>
+                            class="inline-block w-1/3 md:hidden font-bold">ID</span>{{ $mascota->id }}</td>
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
-                            class="inline-block w-1/3 md:hidden font-bold">Nombre</span>{{ $usuario->name }}</td>
+                            class="inline-block w-1/3 md:hidden font-bold">Nombre</span>{{ $mascota->nombre }}</td>
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
-                            class="inline-block w-1/3 md:hidden font-bold">Correo
-                            Electronico</span>{{ $usuario->email }}
+                            class="inline-block w-1/3 md:hidden font-bold">Sexo</span>{{ $mascota->sexo }}</td>
+                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
+                            class="inline-block w-1/3 md:hidden font-bold">Color</span>{{ $mascota->color }}</td>
+                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
+                            class="inline-block w-1/3 md:hidden font-bold">Fecha de
+                            Nacimiento</span>{{ $mascota->fechaNacimiento }}</td>
+                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
+                            class="inline-block w-1/3 md:hidden font-bold">Edad</span>{{ $mascota->edad }}</td>
+                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
+                            class="inline-block w-1/3 md:hidden font-bold">Esterilizado</span>
+                        @if ($mascota->esterilizado)
+                            Verdadero
+                        @else
+                            Falso
+                        @endif
                     </td>
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
-                            class="inline-block w-1/3 md:hidden font-bold">Direccion</span>{{ $usuario->direccion }}
+                            class="inline-block w-1/3 md:hidden font-bold">Especie</span>{{ $mascota->especie->nombre }}
                     </td>
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
-                            class="inline-block w-1/3 md:hidden font-bold">Telefono</span>{{ $usuario->telefono }}</td>
-                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
-                            class="inline-block w-1/3 md:hidden font-bold">C.I</span>{{ $usuario->ci }}</td>
-
-                    <td class="p-2 md:border md:border-grey-500 text-center block md:table-cell">
-                        <div class="flex items-center justify-center">
-                            @if ($usuario->profile_photo_path)
-                                <img id="imagen" src="{{ asset($usuario->profile_photo_path) }}"
-                                    class="w-16 h-16 object-cover rounded-full" alt="placeholder"> {{-- style="width:100px; height:100px;"  --}}
-                            @else
-                                <span>Err0r</span>
-                            @endif
-                        </div>
-                    </td>
-
+                            class="inline-block w-1/3 md:hidden font-bold">Raza</span>{{ $mascota->raza->nombre }}</td>
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
                         <div class="flex flex-wrap">
-                            <a href="{{ route('usuarios.reditar', $usuario->id) }}"
+                            <a href="{{ route('mascotas.editar', $mascota->id) }}"
                                 class = "bg-green-400 px-2 py-2 rounded-lg">
                                 <i class="fa-regular fa-pen-to-square"></i>
                             </a>
 
                             <div>
-                                <form action="{{ route('usuarios.reliminar', $usuario->id) }}" method="POST"
+                                <form action="{{ route('mascotas.eliminar', $mascota->id) }}" method="POST"
                                     onsubmit="return confirm('¿Estas seguro de eliminar?')">
                                     @csrf
                                     <button type = "submit"class="bg-red-500 px-2 py-2 rounded-lg">
@@ -87,13 +90,11 @@
                                     </button>
                                 </form>
                             </div>
-                        </div>
                     </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
-
     <script>
         @if (Session::has('eliminado'))
             toastr.options = {
