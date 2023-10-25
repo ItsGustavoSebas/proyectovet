@@ -527,10 +527,10 @@
                         <li>
                         <div class="red-box rounded-2xl">
                             <button
-                                class="btn btn-danger @if($hora === str_pad($hour, 2, '0', STR_PAD_LEFT) . ':00 AM') red-outline rounded-2xl @endif">
+                                class="btn btn-danger @if($hora === str_pad($hour, 2, '0', STR_PAD_LEFT) . ':00 PM') red-outline rounded-2xl @endif">
                                 <span
                                     style="font-size: 18px; color: white; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;">
-                                    {{ str_pad($hour, 2, '0', STR_PAD_LEFT) }}:00 AM
+                                    {{ str_pad($hour, 2, '0', STR_PAD_LEFT) }}:00 PM
                                 </span>
                             </button>
                         </div>
