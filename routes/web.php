@@ -4,6 +4,7 @@ use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ProductoController;
 
 use App\Http\Controllers\ServiciosController;
+use App\Http\Controllers\ReservarController;
 
 use App\Http\Controllers\UserController;
 
@@ -55,4 +56,5 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
 
 
     Route::get('/servicios', [ServiciosController::class, 'inicio'])->name('servicios.inicio');
+    Route::get('/reservar', [ReservarController::class, 'inicio'])->name('reservar.inicio');
 });

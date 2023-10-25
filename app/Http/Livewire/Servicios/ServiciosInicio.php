@@ -155,7 +155,7 @@ public function cancelarEliminar()
         $this->cantidadFilas = Servicio::count(); // Consulta para obtener la cantidad de filas
         $servicioActual = Servicio::all();
         
-   
+        
         
       
         return view('livewire.servicios.servicios-inicio', ['servicio' => $servicioActual]);
