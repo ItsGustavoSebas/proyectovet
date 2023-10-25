@@ -56,6 +56,11 @@
                             class="inline-block w-1/3 md:hidden font-bold">C.I</span>{{ $usuario->ci }}</td>
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
                         <div class="flex flex-wrap">
+                            
+                            <a href="{{ route('mascotas.inicio', $usuario->id) }}" class = "bg-white px-2 py-2 rounded-lg">
+                                <i class="fa-solid fa-paw"></i>
+                            </a>
+                            
                             <a href="{{ route('usuarios.editar', $usuario->id) }}" class = "bg-green-400 px-2 py-2 rounded-lg">
                                 <i class="fa-regular fa-pen-to-square"></i>
                             </a>
