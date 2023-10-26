@@ -2,13 +2,32 @@
     <x-slot name="header">
         <div class = "flex flex-wrap justify-between">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('lista de clientes') }}
+                {{ __('Historial Médico de ' . $mascota->nombre) }}
             </h2>
-            <a class = "px-3 py-2 bg-indigo-600 font-bold text-white rounded-lg"
-                href="{{ route('usuarios.crear') }}">CREAR CLIENTE</a>
         </div>
     </x-slot>
-
+    <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg m-2">
+        <div class="grid lg:grid-cols-3 grid-cols-1 gap-4 p-2">
+            <div class="relative z-0">
+                <div class="block text-sm text-gray-900">
+                    <p class="font-bold">Peso:</p>
+                    <p>{{ $historial->peso }}</p>
+                </div>
+            </div>
+            <div class="relative z-0">
+                <div class="block text-sm text-gray-900">
+                    <p class="font-bold">Altura:</p>
+                    <p>{{ $historial->altura }}</p>
+                </div>
+            </div>
+            <div class="relative z-0">
+                <div class="block text-sm text-gray-900">
+                    <p class="font-bold">Observación:</p>
+                    <p>{{ $historial->observacion }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
     <table class="min-w-full border-collapse block md:table">
         <thead class="block md:table-header-group">
             <tr
@@ -18,65 +37,55 @@
                     ID</th>
                 <th
                     class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
-                    Nombre</th>
+                    Duración</th>
                 <th
                     class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
-                    Correo Electronico</th>
+                    Fecha de Inico</th>
                 <th
                     class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
-                    Direccion</th>
+                    Fecha de Fin</th>
                 <th
                     class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
-                    Telefono</th>
+                    Siguiente Visita</th>
                 <th
                     class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
-                    C.I.</th>
+                    Descripción</th>
+                <th
+                    class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
+                    Precio</th>
                 <th
                     class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
                     Acciones</th>
             </tr>
         </thead>
         <tbody class="block md:table-row-group">
-            @foreach ($usuarios as $usuario)
+            @foreach ($tratamientos as $tratamiento)
                 <tr class="bg-white border border-grey-500 md:border-none block md:table-row">
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
-                            class="inline-block w-1/3 md:hidden font-bold">ID</span>{{ $usuario->id }}</td>
+                            class="inline-block w-1/3 md:hidden font-bold">ID</span>{{ $tratamiento->id }}</td>
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
-                            class="inline-block w-1/3 md:hidden font-bold">Nombre</span>{{ $usuario->name }}</td>
-                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
-                            class="inline-block w-1/3 md:hidden font-bold">Correo
-                            Electronico</span>{{ $usuario->email }}
+                            class="inline-block w-1/3 md:hidden font-bold">Duración</span>{{ $tratamiento->duracion }}
                     </td>
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
-                            class="inline-block w-1/3 md:hidden font-bold">Direccion</span>{{ $usuario->direccion }}
+                            class="inline-block w-1/3 md:hidden font-bold">Fecha de
+                            Inico</span>{{ $tratamiento->fechaInicio }}</td>
+                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
+                            class="inline-block w-1/3 md:hidden font-bold">Fecha de
+                            Fin</span>{{ $tratamiento->fechaFin }}</td>
+                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
+                            class="inline-block w-1/3 md:hidden font-bold">Siguiente
+                            Visita</span>{{ $tratamiento->siguienteVisita }}</td>
+                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
+                            class="inline-block w-1/3 md:hidden font-bold">ID</span>{{ $tratamiento->tratamiento->id }}
                     </td>
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
-                            class="inline-block w-1/3 md:hidden font-bold">Telefono</span>{{ $usuario->telefono }}</td>
+                            class="inline-block w-1/3 md:hidden font-bold">Diagnostico</span>{{ $tratamiento->tratamiento->diagnostico }}
+                    </td>
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
-                            class="inline-block w-1/3 md:hidden font-bold">C.I</span>{{ $usuario->ci }}</td>
-                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
-                        <div class="flex flex-wrap">
-
-                            <a href="{{ route('mascotas.inicio', $usuario->id) }}"
-                                class = "bg-white px-2 py-2 rounded-lg">
-                                <i class="fa-solid fa-paw"></i>
-                            </a>
-
-                            <a href="{{ route('usuarios.editar', $usuario->id) }}"
-                                class = "bg-green-400 px-2 py-2 rounded-lg">
-                                <i class="fa-regular fa-pen-to-square"></i>
-                            </a>
-
-                            <div>
-                                <form action="{{ route('usuarios.eliminar', $usuario->id) }}" method="POST"
-                                    onsubmit="return confirm('¿Estas seguro de eliminar?')">
-                                    @csrf
-                                    <button type = "submit"class="bg-red-500 px-2 py-2 rounded-lg">
-                                        <i class="fa-solid fa-trash"></i>
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
+                            class="inline-block w-1/3 md:hidden font-bold">Descripción</span>{{ $tratamiento->tratamiento->descripcion }}
+                    </td>
+                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
+                            class="inline-block w-1/3 md:hidden font-bold">Precio</span>{{ $tratamiento->tratamiento->precio }}
                     </td>
                 </tr>
             @endforeach

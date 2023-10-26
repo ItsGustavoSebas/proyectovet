@@ -2,10 +2,10 @@
     <x-slot name="header">
         <div class = "flex flex-wrap justify-between">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('lista de mascotas de ' . $usuario->name) }}
+                {{ __('lista de tratamientos') }}
             </h2>
             <a class = "px-3 py-2 bg-indigo-600 font-bold text-white rounded-lg"
-                href="{{ route('mascotas.crear', $usuario->id) }}">AÑADIR MASCOTA</a>
+                href="{{ route('tratamientos.crear') }}">CREAR TRATAMIENTO</a>
         </div>
     </x-slot>
 
@@ -18,76 +18,38 @@
                     ID</th>
                 <th
                     class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
-                    Nombre</th>
+                    Diagnostico</th>
                 <th
                     class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
-                    Sexo</th>
+                    Descripción</th>
                 <th
                     class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
-                    Color</th>
-                <th
-                    class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
-                    Fecha de Nacimiento</th>
-                <th
-                    class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
-                    Edad</th>
-                <th
-                    class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
-                    Esterilizado</th>
-                <th
-                    class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
-                    Especie</th>
-                <th
-                    class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
-                    Raza</th>
+                    Precio</th>
                 <th
                     class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
                     Acciones</th>
             </tr>
         </thead>
         <tbody class="block md:table-row-group">
-            @foreach ($mascotas as $mascota)
+            @foreach ($tratamientos as $tratamiento)
                 <tr class="bg-white border border-grey-500 md:border-none block md:table-row">
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
-                            class="inline-block w-1/3 md:hidden font-bold">ID</span>{{ $mascota->id }}</td>
+                            class="inline-block w-1/3 md:hidden font-bold">ID</span>{{ $tratamiento->id }}</td>
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
-                            class="inline-block w-1/3 md:hidden font-bold">Nombre</span>{{ $mascota->nombre }}</td>
+                            class="inline-block w-1/3 md:hidden font-bold">Diagnostico</span>{{ $tratamiento->diagnostico }}</td>
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
-                            class="inline-block w-1/3 md:hidden font-bold">Sexo</span>{{ $mascota->sexo }}</td>
-                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
-                            class="inline-block w-1/3 md:hidden font-bold">Color</span>{{ $mascota->color }}</td>
-                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
-                            class="inline-block w-1/3 md:hidden font-bold">Fecha de
-                            Nacimiento</span>{{ $mascota->fechaNacimiento }}</td>
-                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
-                            class="inline-block w-1/3 md:hidden font-bold">Edad</span>{{ $mascota->edad }}</td>
-                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
-                            class="inline-block w-1/3 md:hidden font-bold">Esterilizado</span>
-                        @if ($mascota->esterilizado)
-                            Verdadero
-                        @else
-                            Falso
-                        @endif
+                            class="inline-block w-1/3 md:hidden font-bold">Descripción</span>{{ $tratamiento->descripcion }}
                     </td>
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
-                            class="inline-block w-1/3 md:hidden font-bold">Especie</span>{{ $mascota->especie->nombre }}
+                            class="inline-block w-1/3 md:hidden font-bold">Precio</span>{{ $tratamiento->precio }}
                     </td>
-                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
-                            class="inline-block w-1/3 md:hidden font-bold">Raza</span>{{ $mascota->raza->nombre }}</td>
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
                         <div class="flex flex-wrap">
-                            <a href="{{ route('historial.inicio', $mascota->id) }}"
-                                class = "bg-indigo-600 px-2 py-2 rounded-lg">
-                                <i class="fa-solid fa-kit-medical"></i>
-                            </a>
-
-                            <a href="{{ route('mascotas.editar', $mascota->id) }}"
-                                class = "bg-green-400 px-2 py-2 rounded-lg">
+                            <a href="{{ route('tratamientos.editar', $tratamiento->id) }}" class = "bg-green-400 px-2 py-2 rounded-lg">
                                 <i class="fa-regular fa-pen-to-square"></i>
                             </a>
-
                             <div>
-                                <form action="{{ route('mascotas.eliminar', $mascota->id) }}" method="POST"
+                                <form action="{{  route('tratamientos.eliminar', $tratamiento->id) }}" method="POST"
                                     onsubmit="return confirm('¿Estas seguro de eliminar?')">
                                     @csrf
                                     <button type = "submit"class="bg-red-500 px-2 py-2 rounded-lg">
@@ -95,7 +57,8 @@
                                     </button>
                                 </form>
                             </div>
-                    </td>
+                        </div>
+                            </td>
                 </tr>
             @endforeach
         </tbody>
