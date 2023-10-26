@@ -1,6 +1,6 @@
 
 <div>
-    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
         let seleccionActual = null; // Valor predeterminado, puede ser 'consulta' o 'servicio'.
@@ -531,6 +531,7 @@
                 });
            
             </script>
+            
 
       
             
@@ -737,14 +738,28 @@
             </x-secondary-button>
 
             <x-danger-button wire:click="crearReserva(seleccionActual)" onclick="console.log(seleccionActual);">
-                {{-- <script>
-                    function recargarPagina() {
-                        setTimeout(function() {
-                            location.reload();
-                        }, 1000); // 3000 milisegundos (3 segundos)
-                    }
-                </scrip>--}}
+
                 Realizar la reserva
+
+                @if ($reservaExitosa)
+                <script>
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Reservación exitosa',
+                        showConfirmButton: false,
+                        timer: 1500
+                    }).then(() => {
+                        // Restablece la variable después de mostrar el mensaje
+                        @this.reservaExitosa = false;
+                    });
+                </script>
+                 @endif       
+
+                
+   
+ 
+                
             </x-danger-button>
 
 

@@ -8,6 +8,7 @@ use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Servicio;
 use Illuminate\Support\Facades\Log;
+use RealRashid\SweetAlert\Facades\Alert;
 
 
 class ServiciosInicio extends Component
@@ -22,7 +23,7 @@ class ServiciosInicio extends Component
     public $editarServicio = false;
     public $modoEdicion = false; 
     public $confirmacionEliminar = false;
-
+    public $reservaExitosa = false;
 
     protected $rules=[
         'nombre' => 'required',
@@ -66,6 +67,8 @@ class ServiciosInicio extends Component
        'ruta_imagen' => $url
      
        ]);
+
+       $this->reservaExitosa = true;
     
        $this->reset (['nombre','descripcion','precio','ruta_imagen', 'reservable', 'modalCrear']);
       

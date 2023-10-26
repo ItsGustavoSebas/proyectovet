@@ -7,6 +7,7 @@ use Livewire\Component;
 use Carbon\Carbon; // Asegúrate de importar la clase Carbon para trabajar con fechas
 use Livewire\WithFileUploads;
 use App\Models\Cita;
+use RealRashid\SweetAlert\Facades\Alert;
 
 
 class ReservarInicio extends Component
@@ -18,6 +19,8 @@ class ReservarInicio extends Component
     public $tipo;
     public $fechaDevuelta="";
     public $horaActual;
+    public $reservaExitosa = false;
+
     
 
     protected $listeners = ['obtenerHorasReservadas', 'getFechaSeleccionada', 'mount', 'getHoraActual'];
@@ -100,15 +103,21 @@ class ReservarInicio extends Component
 
       
 
-      
-      
+  
+
+      $this->reservaExitosa = true;
+
       $this->reset (['fecha','descripcion','fechaProgramada','hora', 'tipo', 'modalFecha', 'horasReservadas', 'fechaDevuelta', 'horaActual']);
+
+ 
 
      
 
   
  
     }
+
+
 
 
 
