@@ -24,7 +24,11 @@ class Mascota extends Model
         'ID_Cliente',
         'ID_Especie',
         'ID_Raza',
+        'ID_Historial',
     ];
+    public function historial() {
+        return $this->belongsTo(Historial::class, 'ID_Historial', 'id');
+    }
     public function especie() {
         return $this->belongsTo(Especie::class, 'ID_Especie', 'id');
     }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\HistorialController;
 use App\Http\Controllers\MascotaController;
 use App\Http\Controllers\ProductoController;
 
@@ -68,6 +69,8 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
     Route::get('/mascotas/editar/{id}', [MascotaController::class, 'editar'])->name('mascotas.editar');
     Route::post('/mascotas/actualizar/{id}', [MascotaController::class, 'actualizar'])->name('mascotas.actualizar');
     Route::post('/mascotas/eliminar/{id}', [MascotaController::class, 'eliminar'])->name('mascotas.eliminar');
+
+    Route::get('/mascotas/historial/{id}', [HistorialController::class, 'inicio'])->name('historial.inicio');
 
     Route::get('/tratamientos/inicio', [TratamientoController::class, 'inicio'])->name('tratamientos.inicio');
     Route::get('/tratamientos/crear', [TratamientoController::class, 'crear'])->name('tratamientos.crear');

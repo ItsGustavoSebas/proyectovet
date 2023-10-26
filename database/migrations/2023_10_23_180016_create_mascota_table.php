@@ -24,6 +24,7 @@ return new class extends Migration
             $table->integer('ID_Cliente')->foreign('ID_Cliente')->references('id')->on('users');
             $table->integer('ID_Especie')->foreign('ID_Especie')->references('id')->on('especie');
             $table->integer('ID_Raza')->foreign('ID_Raza')->references('id')->on('raza');
+            $table->integer('ID_Historial')->foreign('ID_Historial')->references('id')->on('historial_medico');
             $table->timestamps();
         });
     }
