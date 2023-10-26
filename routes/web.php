@@ -6,7 +6,7 @@ use App\Http\Controllers\ProductoController;
 
 use App\Http\Controllers\ServiciosController;
 use App\Http\Controllers\ReservarController;
-
+use App\Http\Controllers\TratamientoController;
 use App\Http\Controllers\UserController;
 
 use Illuminate\Support\Facades\Route;
@@ -69,4 +69,10 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
     Route::post('/mascotas/actualizar/{id}', [MascotaController::class, 'actualizar'])->name('mascotas.actualizar');
     Route::post('/mascotas/eliminar/{id}', [MascotaController::class, 'eliminar'])->name('mascotas.eliminar');
 
+    Route::get('/tratamientos/inicio', [TratamientoController::class, 'inicio'])->name('tratamientos.inicio');
+    Route::get('/tratamientos/crear', [TratamientoController::class, 'crear'])->name('tratamientos.crear');
+    Route::get('/tratamientos/editar/{id}', [TratamientoController::class, 'editar'])->name('tratamientos.editar');
+    Route::post('/tratamientos/actualizar/{id}', [TratamientoController::class, 'actualizar'])->name('tratamientos.actualizar');
+    Route::post('/tratamientos/eliminar/{id}', [TratamientoController::class, 'eliminar'])->name('tratamientos.eliminar');
+    Route::post('/tratamientos/guardar', [TratamientoController::class, 'guardar'])->name('tratamientos.guardar');
 });

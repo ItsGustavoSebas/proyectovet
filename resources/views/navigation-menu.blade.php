@@ -53,6 +53,12 @@
                     </x-nav-link>
                 </div>
 
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link href="{{ route('tratamientos.inicio') }}" :active="request()->routeIs('tratamientos.inicio')">
+                        {{ __('Tratamientos') }}
+                    </x-nav-link>
+                </div>
+
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">
@@ -213,6 +219,12 @@
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link href="{{ route('reservar.inicio') }}" :active="request()->routeIs('reservar.inicio')">
                 {{ __('Reservar') }}
+            </x-responsive-nav-link>
+        </div>
+
+        <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link href="{{ route('tratamientos.inicio') }}" :active="request()->routeIs('tratamientos.inicio')">
+                {{ __('Tratamientos') }}
             </x-responsive-nav-link>
         </div>
 
