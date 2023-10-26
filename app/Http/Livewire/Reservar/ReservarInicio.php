@@ -102,7 +102,7 @@ class ReservarInicio extends Component
 
       
       
-      $this->reset (['fecha','descripcion','fechaProgramada','hora', 'tipo', 'modalFecha', 'horasReservadas', 'fechaDevuelta', 'fechaActual', 'horaActual']);
+      $this->reset (['fecha','descripcion','fechaProgramada','hora', 'tipo', 'modalFecha', 'horasReservadas', 'fechaDevuelta', 'horaActual']);
 
      
 
