@@ -1,4 +1,6 @@
+
 <div>
+    
 
     <script>
         let seleccionActual = null; // Valor predeterminado, puede ser 'consulta' o 'servicio'.
@@ -414,7 +416,7 @@
                     fechaInput.addEventListener('change', function (event) {
                         const fechaSeleccionada = event.target.value;
                         seleccionConfir = fechaSeleccionada;                       
-                        console.log(fechaSeleccionada); // Imprime la fecha en la consola}
+                      //  console.log(fechaSeleccionada); // Imprime la fecha en la consola}
                     
                        
             
@@ -482,17 +484,77 @@
                 function toggleRedOutline(button) {
                 button.classList.toggle('red-outline');
                  }
+                
             </script>
 
+            <script>
+                document.addEventListener('livewire:load', function () { 
+                    // Livewire.on('mostrar',(data)=>{
+                    // console.log(data)
+                    // })
+                    const fechaInput = document.getElementById('fechaProgramada');
+            
+                    // Escucha el evento "change" en el input para detectar cambios en la fecha seleccionada
+                    fechaInput.addEventListener('change', function (event) {
+                        Livewire.on('mostrar',(data)=>{
+                          console.log(data)
+                        })
 
+                        Livewire.on('mostrar2',(data)=>{
+                          console.log("fecha actual es:")
+                          console.log(data)
+                        })
 
+                        
+                        Livewire.on('mostrar3',(data)=>{
+                          console.log("hora actual es:")
+                          console.log(data)
+                        })
 
+   
+                        const fechaSeleccionada1 = event.target.value.toString();
+                        const fechaSeleccionada = fechaSeleccionada1.slice(0, -1).toString();
+              
+                        
+                                   
+                       // console.log("Corregido: "+fechaSeleccionada); // Imprime la fecha en la consola}
+                        Livewire.emit('getFechaSeleccionada', [fechaSeleccionada]);
+                        Livewire.emit('mount'); 
+                        livewire.emit('getHoraActual')
+                        
 
+                        
+                        
+
+ 
+                    });
+                });
+           
+            </script>
+
+      
+            
             <div>
                 <h3>Horarios disponibles</h3>
                 <ul class="time-matrix mb-2">
+                    {{-- if (fechaProgramada=hoy)
+                    {
+                        @for ($hour = 8; $hour <= 11; $hour++) @if (in_array($hour,$horasReservadas) or $hour<date('H'));
+                    }else 
+                    {
+                        @for ($hour = 8; $hour <= 11; $hour++) @if (in_array($hour,$horasReservadas));                       
+                    } --}}
 
-                    @for ($hour = 8; $hour <= 11; $hour++) @if (in_array($hour,$horasReservadas) or $hour<date('H')-3)
+
+
+
+
+               
+
+                    @if ($fecha==$fechaDevuelta)
+                    
+                    @for ($hour = 8; $hour <= 11; $hour++) @if (in_array($hour,$horasReservadas) or $hour<=date('H'))
+                        
                         <li>
                         <div class="red-box rounded-2xl">
                             <button
@@ -523,7 +585,7 @@
                 </ul>
 
                 <ul class="time-matrix mb-2">
-                    @for ($hour = 12; $hour <= 23; $hour++) @if (in_array($hour,$horasReservadas) or $hour<date('H')-3)
+                    @for ($hour = 12; $hour <= 23; $hour++) @if (in_array($hour,$horasReservadas) or $hour<=date('H'))
                         <li>
                         <div class="red-box rounded-2xl">
                             <button
@@ -551,6 +613,74 @@
                         @endif
 
                         @endfor
+                       
+                    @else
+                     
+                    @for ($hour = 8; $hour <= 11; $hour++) @if (in_array($hour,$horasReservadas) )
+                        
+                    <li>
+                    <div class="red-box rounded-2xl">
+                        <button
+                            class="btn btn-danger @if($hora === str_pad($hour, 2, '0', STR_PAD_LEFT) . ':00 AM') red-outline rounded-2xl @endif">
+                            <span
+                                style="font-size: 18px; color: white; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;">
+                                {{ str_pad($hour, 2, '0', STR_PAD_LEFT) }}:00 AM
+                            </span>
+                        </button>
+                    </div>
+                    </li>
+                    @else
+                    <li>
+                        <div class="green-box rounded-2xl">
+                            <button
+                                class="btn btn-danger @if($hora === str_pad($hour, 2, '0', STR_PAD_LEFT) . ':00 AM') red-outline rounded-2xl @endif"
+                                wire:click="setHora('{{ str_pad($hour, 2, '0', STR_PAD_LEFT) }}:00 AM')">
+                                <span
+                                    style="font-size: 18px; color: white; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;">
+                                    {{ str_pad($hour, 2, '0', STR_PAD_LEFT) }}:00 AM
+                                </span>
+                            </button>
+                        </div>
+                    </li>
+                    @endif
+
+                    @endfor
+            </ul>
+
+            <ul class="time-matrix mb-2">
+                @for ($hour = 12; $hour <= 23; $hour++) @if (in_array($hour,$horasReservadas))
+                    <li>
+                    <div class="red-box rounded-2xl">
+                        <button
+                            class="btn btn-danger @if($hora === str_pad($hour, 2, '0', STR_PAD_LEFT) . ':00 PM') red-outline rounded-2xl @endif">
+                            <span
+                                style="font-size: 18px; color: white; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;">
+                                {{ str_pad($hour, 2, '0', STR_PAD_LEFT) }}:00 PM
+                            </span>
+                        </button>
+                    </div>
+                    </li>
+                    @else
+                    <li>
+                        <div class="green-box rounded-2xl">
+                            <button
+                                class="btn btn-danger @if($hora === str_pad($hour, 2, '0', STR_PAD_LEFT) . ':00 PM') red-outline rounded-2xl @endif"
+                                wire:click="setHora('{{ str_pad($hour, 2, '0', STR_PAD_LEFT) }}:00 PM')">
+                                <span
+                                    style="font-size: 18px; color: white; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;">
+                                    {{ str_pad($hour, 2, '0', STR_PAD_LEFT) }}:00 PM
+                                </span>
+                            </button>
+                        </div>
+                    </li>
+                    @endif
+
+                    @endfor
+                        
+                    @endif
+
+
+
                 </ul>
                 @error('descripcion')
                 <h1 style="font-weight: bold; font-size: 20px; margin-bottom: 10px;">
@@ -661,7 +791,7 @@
 
     // Imprime el vector en la consola
  
-                </script>
+     </script>
 
 
 

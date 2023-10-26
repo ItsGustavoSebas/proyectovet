@@ -16,8 +16,14 @@ class ReservarInicio extends Component
     public $fechaProgramada, $fecha, $descripcion, $hora;
     public $horasReservadas = [];
     public $tipo;
+    public $fechaDevuelta="";
+    public $horaActual;
+    
 
-    protected $listeners = ['obtenerHorasReservadas'];
+    protected $listeners = ['obtenerHorasReservadas', 'getFechaSeleccionada', 'mount', 'getHoraActual'];
+   
+
+
     
     
 
@@ -40,7 +46,7 @@ class ReservarInicio extends Component
     public function confirmarFecha($fechaSelect)
     {
         $this->horasReservadas = $this->obtenerHorasReservadas($fechaSelect);
-        dump($fechaSelect);
+        
     }
     
 
@@ -56,6 +62,15 @@ class ReservarInicio extends Component
     public function mount()
     {
         $this->fecha = Carbon::now()->format('Y-m-d');
+        $this->emit('mostrar2',$this->fecha);
+        return $this->fecha;
+    }
+
+    public function getHoraActual()
+    {
+        $this->horaActual = Carbon::now('UTC');
+        $this->emit('mostrar3',$this->horaActual);
+        return $this->horaActual;
     }
 
     public function crearReserva($nuevoTipo)
@@ -87,13 +102,14 @@ class ReservarInicio extends Component
 
       
       
-      $this->reset (['fecha','descripcion','fechaProgramada','hora', 'tipo', 'modalFecha', 'horasReservadas']);
+      $this->reset (['fecha','descripcion','fechaProgramada','hora', 'tipo', 'modalFecha', 'horasReservadas', 'fechaDevuelta', 'fechaActual', 'horaActual']);
 
      
 
   
  
     }
+
 
 
     public function obtenerHorasReservadas($fechaProgramada)
@@ -114,11 +130,34 @@ class ReservarInicio extends Component
             }
           
         }
-    //    $this->emit('mostrar',$this->horasReservadas);
+     //   $this->emit('mostrar',$this->horasReservadas);
     
         return $this->horasReservadas;
     }
+
+    public function getFechaSeleccionada($fechaElegida)
+    {
+         $this->fechaDevuelta="";
+    //     $fechaElegida="2023-10-30";
+        // $this->fechaDevuelta[0]=$fechaElegida;
+
+        // $this->emit('mostrar',$this->fechaDevuelta);
+        // return $this->fechaDevuelta;
+     
+         
+        $this->fechaDevuelta = implode($fechaElegida);
     
+
+    
+        $this->emit('mostrar', $this->fechaDevuelta);
+    
+        return $this->fechaDevuelta;
+        
+
+
+    }
+
+
     
 
     
