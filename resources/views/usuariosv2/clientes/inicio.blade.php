@@ -57,7 +57,7 @@
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
                         <div class="flex flex-wrap">
 
-                            <a href="{{ route('clientes2.inicio', $cliente->usuario->id) }}"
+                            <a href="{{ route('mascotas.inicio', $cliente->usuario->id) }}"
                                 class = "bg-white px-2 py-2 rounded-lg">
                                 <i class="fa-solid fa-paw"></i>
                             </a>
