@@ -13,9 +13,9 @@
         <style>
             @import url('https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.min.css');
         </style>
-        <title>EditarEmpleado</title>
+        <title>RegistrarEmpleado</title>
     </head>
-    <form action="{{ route('usuarios.ractualizar', $usuario->id) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('clientes2.actualizar', $cliente->ID_Usuario) }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="bg-gradient-to-r from-cyan-600 to-blue-800 p-8">
             <!-- Cuadro exterior con fondo azul marino y relleno de 8 unidades -->
@@ -34,7 +34,7 @@
                                 </div>
                                 <input id= "name" type="text" name="name"
                                     class="w-full -ml-10 pl-10 pr-3 py-2 rounded-2xl border-2 border-gray-200 outline-none focus:border-indigo-500"
-                                    placeholder="Ingresar nombre" value="{{ $usuario->name }}">
+                                    placeholder="Ingresar nombre" value="{{ $cliente->usuario->name }}">
                                 @error('name')
                                     <strong class = "text-red-500">Debes ingresar tu nombre</strong>
                                 @enderror
@@ -51,7 +51,7 @@
                                 </div>
                                 <input id= "email" type="email" name="email"
                                     class="w-full -ml-10 pl-10 pr-3 py-2 rounded-2xl border-2 border-gray-200 outline-none focus:border-indigo-500"
-                                    placeholder="ingresar correo electrónico" value="{{ $usuario->email }}">
+                                    placeholder="ingresar correo electrónico" value="{{ $cliente->usuario->email }}"v>
                                 @error('email')
                                     <strong class = "text-red-500">Debes ingresar tu email</strong>
                                 @enderror
@@ -68,7 +68,7 @@
                                 </div>
                                 <input id= "direccion" type="text" name="direccion"
                                     class="w-full -ml-10 pl-10 pr-3 py-2 rounded-2xl border-2 border-gray-200 outline-none focus:border-indigo-500"
-                                    placeholder="ingresar dirección" value="{{ $usuario->direccion }}">
+                                    placeholder="ingresar dirección" value="{{ $cliente->usuario->direccion }}">
                             </div>
                         </div>
                     </div>
@@ -82,7 +82,7 @@
                                 </div>
                                 <input id= "telefono" type="integer" name="telefono"
                                     class="w-full -ml-10 pl-10 pr-3 py-2 rounded-2xl border-2 border-gray-200 outline-none focus:border-indigo-500"
-                                    placeholder="Ingresar teléfono" value="{{ $usuario->telefono }}">
+                                    placeholder="Ingresar teléfono" value="{{ $cliente->usuario->telefono }}">
                                 @error('telefono')
                                     <strong class = "text-red-500">Debes ingresar tu telefono</strong>
                                 @enderror
@@ -96,7 +96,7 @@
                                 </div>
                                 <input id= "ci" type="integer" name="ci"
                                     class="w-full -ml-10 pl-10 pr-3 py-2 rounded-2xl border-2 border-gray-200 outline-none focus:border-indigo-500"
-                                    placeholder="Ingresar C.I." value="{{ $usuario->ci }}">
+                                    placeholder="Ingresar C.I." value="{{ $cliente->usuario->ci }}">
                                 @error('ci')
                                     <strong class = "text-red-500">Debes ingresar tu ci</strong>
                                 @enderror
@@ -113,77 +113,19 @@
                                 </div>
                                 <input id= "password" type="password" name="password"
                                     class="w-full -ml-10 pl-10 pr-3 py-2 rounded-2xl border-2 border-gray-200 outline-none focus:border-indigo-500"
-                                    placeholder="ingresar Contraseña">
+                                    placeholder="Ingresar Contraseña" value="{{ old('password') }}">
                                 @error('password')
-                                    <strong class="text-danger">Debes ingresar una contraseña</strong>
+                                    <strong class = "text-red-500">Debes ingresar tu contraseña</strong>
                                 @enderror
                             </div>
                         </div>
                     </div>
 
-                    <div class="flex justify-center items-center space-x-6 py-9 pb-10">
-                        <div class="shrink-0">
-                            <img id="imagen" src="{{ asset($usuario->profile_photo_path) }}"
-                                style="width: 100px; height: 100px;" class="object-cover rounded-full" alt="Imagen del empleado">
-                        </div>
-                        <label class="block">
-                            <span class="sr-only">Choose profile photo</span>
-                            <input type="file" id="profile_photo_url" name="profile_photo_url"
-                                onchange="loadFile(event)"
-                                class="block w-full text-sm text-slate-500
-                              file:mr-4 file:py-2 file:px-4
-                              file:rounded-full file:border-0
-                              file:text-sm file:font-semibold
-                              file:bg-violet-50 file:text-violet-700
-                              hover:file:bg-violet-100
-                            " />
-                        </label>
-                        @error('profile_photo_url')
-                            <strong class="text-danger">Debes ingresar una imagen</strong>
-                        @enderror
-                    </div>
-
-                    <script>
-                        var loadFile = function(event) {
-                            var input = event.target;
-                            var file = input.files[0];
-                            var type = file ? file.type : null;
-                    
-                            var output = document.getElementById('imagen');
-                            if (file) {
-                                // Si se selecciona un archivo, muestra la vista previa
-                                output.src = URL.createObjectURL(event.target.files[0]);
-                                output.onload = function() {
-                                    URL.revokeObjectURL(output.src); // libera memoria
-                                }
-                
-                            }
-                        };
-                    </script>
-
-                    {{-- <script>
-                        var loadFile = function(event) {
-
-                            var input = event.target;
-                            var file = input.files[0];
-                            var type = file.type;
-
-                            var output = document.getElementById('imagen');
-
-                            output.src = URL.createObjectURL(event.target.files[0]);
-                            output.onload = function() {
-                                URL.revokeObjectURL(output.src) // free memory
-                            }
-
-                        };
-                    </script> --}}
-
-
                     <div class="flex -mx-3 pt-9">
                         <div class="w-full px-3 mb-5">
-                            <button type ="submit" id="actualizar"
+                            <button type ="submit" id="registrar"
                                 class="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold"
-                                >GUARDAR
+                                enable>GUARDAR
                             </button>
                         </div>
                     </div>

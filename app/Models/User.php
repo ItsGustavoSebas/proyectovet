@@ -25,6 +25,9 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+
+    public $incrementing = true;
+
     protected $fillable = [
         'name',
         'email',
@@ -65,4 +68,14 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    // Relación con Cliente
+    public function cliente() {
+        return $this->hasOne(Cliente::class, 'ID_Usuario');
+    }
+
+    // Relación con Empleado
+    public function empleado() {
+        return $this->hasOne(Empleado::class, 'ID_Usuario');
+    }
 }
