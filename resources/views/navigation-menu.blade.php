@@ -18,7 +18,7 @@
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link href="{{ route('usuarios.inicio') }}" :active="request()->routeIs('usuarios.inicio')">
+                    <x-nav-link href="{{ route('clientes2.inicio') }}" :active="request()->routeIs('clientes2.inicio')">
                         {{ __('Clientes') }}
                     </x-nav-link>
                 </div>
@@ -30,10 +30,10 @@
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link href="{{ route('usuarios.rinicio') }}" :active="request()->routeIs('usuarios.rinicio')">
+                    <x-nav-link href="{{ route('empleados.inicio') }}" :active="request()->routeIs('empleados.inicio')">
                         {{ __('Empleados') }}
                     </x-nav-link>
-                </div>
+                </div> 
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link href="{{ route('producto.inicio') }}" :active="request()->routeIs('producto.inicio')">
@@ -186,7 +186,7 @@
         </div>
 
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link href="{{ route('usuarios.inicio') }}" :active="request()->routeIs('usuarios.inicio')">
+            <x-responsive-nav-link href="{{ route('clientes2.inicio') }}" :active="request()->routeIs('clientes2.inicio')">
                 {{ __('Clientes') }}
             </x-responsive-nav-link>
         </div>
@@ -198,7 +198,7 @@
         </div>
 
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link href="{{ route('usuarios.rinicio') }}" :active="request()->routeIs('usuarios.rinicio')">
+            <x-responsive-nav-link href="{{ route('empleados.inicio') }}" :active="request()->routeIs('usuarios.inicio')">
                 {{ __('Empleados') }}
             </x-responsive-nav-link>
         </div>
