@@ -28,7 +28,11 @@
 
     <style>
         .imagen-con-fondo {
-            background-image: url('build/imagenes/utilitarios/ReservarImage.jpg');
+            
+    
+        
+            background-image: url('{{ asset('build/imagenes/utilitarios/ReservarImage.jpg') }}');
+
             background-size: cover;
             background-position: center 70%;
             height: 49vh;
@@ -335,7 +339,7 @@
 
             <div class="image-container w-1/2 md:w-1/1 lg:w-1/5 px-4 mb-5" onclick="flipImage(this)">
                 <div class="image">
-                    <img src="build/imagenes/utilitarios/personal1.jpg" alt="Imagen"
+                    <img src="{{ asset('build/imagenes/utilitarios/personal1.jpg') }}" alt="Imagen"
                         class="rounded-3xl mx-auto w-full md:w-[500px] h-[300px]" style="object-fit: cover;">
                 </div>
                 <div class="back">
@@ -347,7 +351,8 @@
 
             <div class="image-container w-1/2 md:w-1/1 lg:w-1/5 px-4 mb-5 " onclick="flipImage(this)">
                 <div class="image">
-                    <img src="build/imagenes/utilitarios/personal2.jpg" alt="Imagen"
+                
+                    <img src="{{ asset('build/imagenes/utilitarios/personal2.jpg') }}" alt="Imagen"
                         class="rounded-3xl mx-auto w-full md:w-[500px] h-[300px]" style="object-fit: cover;">
 
                 </div>
@@ -363,7 +368,7 @@
 
             <div class="image-container" onclick="flipImage(this)">
                 <div class="image">
-                    <img src="build/imagenes/utilitarios/personal3.jpg" alt="Imagen"
+                    <img src="{{ asset('build/imagenes/utilitarios/personal3.jpg') }}" alt="Imagen"
                         class="rounded-3xl mx-auto w-full md:w-[500px] h-[300px]" style="object-fit: cover;">
                 </div>
                 <div class="back">
