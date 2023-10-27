@@ -21,5 +21,7 @@ class DatabaseSeeder extends Seeder
         $this->call(RazaSeeder::class);
         $this->call(MascotaSeeder::class);
         $this->call(TratamientoSeeder::class);
+        $this->call(EmpleadoSeeder::class);
+        $this->call(ClienteSeeder::class);
     }
 }

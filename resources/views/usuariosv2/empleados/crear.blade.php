@@ -13,15 +13,15 @@
         <style>
             @import url('https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.min.css');
         </style>
-        <title>EditarEmpleado</title>
+        <title>RegistrarEmpleado</title>
     </head>
-    <form action="{{ route('usuarios.ractualizar', $usuario->id) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('empleados.guardar') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="bg-gradient-to-r from-cyan-600 to-blue-800 p-8">
             <!-- Cuadro exterior con fondo azul marino y relleno de 8 unidades -->
             <div class="bg-gray-100 p-4 overflow-hidden shadow-xl sm:rounded-lg m-5 ">
                 <div class= "text-center font-sans text-black font-bold text-3xl antialiased pb-10 mt-10">
-                    EDITAR EMPLEADO
+                    REGISTRAR EMPLEADO
                 </div>
                 <div>
                     <label class="font-bold text-lg" for=""> Nombre</label>
@@ -34,7 +34,7 @@
                                 </div>
                                 <input id= "name" type="text" name="name"
                                     class="w-full -ml-10 pl-10 pr-3 py-2 rounded-2xl border-2 border-gray-200 outline-none focus:border-indigo-500"
-                                    placeholder="Ingresar nombre" value="{{ $usuario->name }}">
+                                    placeholder="Ingresar nombre" value="{{ old('name') }}">
                                 @error('name')
                                     <strong class = "text-red-500">Debes ingresar tu nombre</strong>
                                 @enderror
@@ -51,7 +51,7 @@
                                 </div>
                                 <input id= "email" type="email" name="email"
                                     class="w-full -ml-10 pl-10 pr-3 py-2 rounded-2xl border-2 border-gray-200 outline-none focus:border-indigo-500"
-                                    placeholder="ingresar correo electrónico" value="{{ $usuario->email }}">
+                                    placeholder="ingresar correo electrónico" value="{{ old('email') }}"v>
                                 @error('email')
                                     <strong class = "text-red-500">Debes ingresar tu email</strong>
                                 @enderror
@@ -68,7 +68,7 @@
                                 </div>
                                 <input id= "direccion" type="text" name="direccion"
                                     class="w-full -ml-10 pl-10 pr-3 py-2 rounded-2xl border-2 border-gray-200 outline-none focus:border-indigo-500"
-                                    placeholder="ingresar dirección" value="{{ $usuario->direccion }}">
+                                    placeholder="ingresar dirección" value="{{ old('direccion') }}">
                             </div>
                         </div>
                     </div>
@@ -82,7 +82,7 @@
                                 </div>
                                 <input id= "telefono" type="integer" name="telefono"
                                     class="w-full -ml-10 pl-10 pr-3 py-2 rounded-2xl border-2 border-gray-200 outline-none focus:border-indigo-500"
-                                    placeholder="Ingresar teléfono" value="{{ $usuario->telefono }}">
+                                    placeholder="Ingresar teléfono" value="{{ old('telefono') }}">
                                 @error('telefono')
                                     <strong class = "text-red-500">Debes ingresar tu telefono</strong>
                                 @enderror
@@ -96,7 +96,7 @@
                                 </div>
                                 <input id= "ci" type="integer" name="ci"
                                     class="w-full -ml-10 pl-10 pr-3 py-2 rounded-2xl border-2 border-gray-200 outline-none focus:border-indigo-500"
-                                    placeholder="Ingresar C.I." value="{{ $usuario->ci }}">
+                                    placeholder="Ingresar C.I." value="{{ old('ci') }}">
                                 @error('ci')
                                     <strong class = "text-red-500">Debes ingresar tu ci</strong>
                                 @enderror
@@ -105,7 +105,7 @@
                     </div>
                     <label class="font-bold text-lg" for=""> Contraseña</label>
                     <div class="flex -mx-3">
-                        <div class="w-full px-3 mb-5">
+                        <div class="w-1/2 px-3 mb-5">
                             <div class="flex">
                                 <div
                                     class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
@@ -113,9 +113,23 @@
                                 </div>
                                 <input id= "password" type="password" name="password"
                                     class="w-full -ml-10 pl-10 pr-3 py-2 rounded-2xl border-2 border-gray-200 outline-none focus:border-indigo-500"
-                                    placeholder="ingresar Contraseña">
+                                    placeholder="Ingresar Contraseña" value="{{ old('password') }}">
                                 @error('password')
-                                    <strong class="text-danger">Debes ingresar una contraseña</strong>
+                                    <strong class = "text-red-500">Debes ingresar tu contraseña</strong>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="w-1/2 px-3 mb-5">
+                            <div class="flex">
+                                <div
+                                    class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
+                                    <i class="fa-solid fa-user text-gray-400 text-lg"></i>
+                                </div>
+                                <input id= "salario" type="integer" name="salario"
+                                    class="w-full -ml-10 pl-10 pr-3 py-2 rounded-2xl border-2 border-gray-200 outline-none focus:border-indigo-500"
+                                    placeholder="Ingresar salario" value="{{ old('salario') }}">
+                                @error('salario')
+                                    <strong class = "text-red-500">Debes ingresar Salario</strong>
                                 @enderror
                             </div>
                         </div>
@@ -123,12 +137,13 @@
 
                     <div class="flex justify-center items-center space-x-6 py-9 pb-10">
                         <div class="shrink-0">
-                            <img id="imagen" src="{{ asset($usuario->profile_photo_path) }}"
-                                style="width: 100px; height: 100px;" class="object-cover rounded-full" alt="Imagen del empleado">
+                            <img id='imagen' class="object-cover rounded-full" style="width: 100px; height: 100px;"
+                                src="https://lh3.googleusercontent.com/a-/AFdZucpC_6WFBIfaAbPHBwGM9z8SxyM1oV4wB4Ngwp_UyQ=s96-c"
+                                alt="Imagen del empleado" />
                         </div>
                         <label class="block">
                             <span class="sr-only">Choose profile photo</span>
-                            <input type="file" id="profile_photo_url" name="profile_photo_url"
+                            <input type="file" id="ruta_imagen_e" name="ruta_imagen_e"
                                 onchange="loadFile(event)"
                                 class="block w-full text-sm text-slate-500
                               file:mr-4 file:py-2 file:px-4
@@ -138,7 +153,7 @@
                               hover:file:bg-violet-100
                             " />
                         </label>
-                        @error('profile_photo_url')
+                        @error('ruta_imagen_e')
                             <strong class="text-danger">Debes ingresar una imagen</strong>
                         @enderror
                     </div>
@@ -148,42 +163,29 @@
                             var input = event.target;
                             var file = input.files[0];
                             var type = file ? file.type : null;
-                    
+
                             var output = document.getElementById('imagen');
                             if (file) {
-                                // Si se selecciona un archivo, muestra la vista previa
                                 output.src = URL.createObjectURL(event.target.files[0]);
                                 output.onload = function() {
-                                    URL.revokeObjectURL(output.src); // libera memoria
+                                    URL.revokeObjectURL(output.src) // free memory
                                 }
-                
+
+                                // Habilitar el botón de enviar cuando se selecciona un archivo
+                                document.getElementById('registrar').removeAttribute('disabled');
+                            } else {
+                                // Deshabilitar el botón de enviar si no se selecciona ningún archivo
+                                document.getElementById('registrar').setAttribute('disabled', 'true');
                             }
                         };
                     </script>
 
-                    {{-- <script>
-                        var loadFile = function(event) {
-
-                            var input = event.target;
-                            var file = input.files[0];
-                            var type = file.type;
-
-                            var output = document.getElementById('imagen');
-
-                            output.src = URL.createObjectURL(event.target.files[0]);
-                            output.onload = function() {
-                                URL.revokeObjectURL(output.src) // free memory
-                            }
-
-                        };
-                    </script> --}}
-
 
                     <div class="flex -mx-3 pt-9">
                         <div class="w-full px-3 mb-5">
-                            <button type ="submit" id="actualizar"
+                            <button type ="submit" id="registrar"
                                 class="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold"
-                                >GUARDAR
+                                disabled>REGISTRAR
                             </button>
                         </div>
                     </div>
