@@ -21,8 +21,7 @@ return new class extends Migration
             $table->integer('hora');
             $table->text('tipo');
             $table->timestamps();
-
-
+            $table->integer('ID_Cliente')->foreign('ID_Cliente')->references('id')->on('users');
         });
     }
 

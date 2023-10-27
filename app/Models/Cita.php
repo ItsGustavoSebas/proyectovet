@@ -27,33 +27,11 @@ class Cita extends Authenticatable
         'descripcion',
         'fechaProgramada' ,
         'hora' ,
-        'tipo'
+        'tipo',
+        'ID_Cliente',
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
-    protected $hidden = [
-
-    ];
-
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-      
-    ];
-
-    /**
-     * The accessors to append to the model's array form.
-     *
-     * @var array<int, string>
-     */
-    protected $appends = [
-        'profile_photo_url',
-    ];
+    public function cliente() {
+        return $this->belongsTo(User::class, 'ID_Cliente', 'id');
+    }
 }

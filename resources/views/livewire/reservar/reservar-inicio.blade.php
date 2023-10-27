@@ -72,9 +72,9 @@
                     </div>
                 </div>
             </div>
-
-
-
+            <input id="ID_Cliente" type="hidden" name="ID_Cliente"
+                        class="peer block w-full appearance-none border-0 border-b border-gray-500 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
+                        value="{{ $ID_Cliente }}" placeholder=" " />
 
 
             <!-- Agregar espacio aquí -->
