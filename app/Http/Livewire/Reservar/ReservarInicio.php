@@ -20,7 +20,6 @@ class ReservarInicio extends Component
     public $fechaDevuelta="";
     public $horaActual;
     public $reservaExitosa = false;
-
     
 
     protected $listeners = ['obtenerHorasReservadas', 'getFechaSeleccionada', 'mount', 'getHoraActual'];
@@ -36,7 +35,7 @@ class ReservarInicio extends Component
         'descripcion' => 'required',
         'hora' => 'required',
         'tipo' => 'required',
-    
+        'ID_Cliente' => 'required',
     ];
 
 
@@ -97,7 +96,8 @@ class ReservarInicio extends Component
        'descripcion' =>$this->descripcion,
        'fechaProgramada' =>$this->fechaProgramada,
        'hora' =>$this->hora,
-       'tipo'=>$this->tipo
+       'tipo'=>$this->tipo,
+       'ID_Cliente' => $this->ID_Cliente
       ]);
 
 
@@ -107,7 +107,7 @@ class ReservarInicio extends Component
 
       $this->reservaExitosa = true;
 
-      $this->reset (['fecha','descripcion','fechaProgramada','hora', 'tipo', 'modalFecha', 'horasReservadas', 'fechaDevuelta', 'horaActual']);
+      $this->reset (['fecha','descripcion','fechaProgramada','hora', 'tipo', 'modalFecha', 'horasReservadas', 'fechaDevuelta', 'horaActual', 'ID_Cliente']);
 
  
 
@@ -175,7 +175,7 @@ class ReservarInicio extends Component
 
 
     
-
+    public $ID_Cliente;
     public function render()
     {
         // $horasReservadas = $this->obtenerHorasReservadas($this->fechaProgramada);

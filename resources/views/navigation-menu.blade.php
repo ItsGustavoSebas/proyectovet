@@ -48,11 +48,20 @@
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link href="{{ route('reservar.inicio') }}" :active="request()->routeIs('reservar.inicio')">
+                    <x-nav-link href="{{ route('reservar.inicio', Auth::id()) }}" :active="request()->routeIs('reservar.inicio')">
                         {{ __('Reservar') }}
                     </x-nav-link>
                 </div>
-
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link href="{{ route('reservar.consultar') }}" :active="request()->routeIs('reservar.consultar')">
+                        {{ __('Reservas') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link href="{{ route('reservar.consultar_cliente', Auth::id()) }}" :active="request()->routeIs('reservar.consultar_cliente')">
+                        {{ __('Mis Reservas') }}
+                    </x-nav-link>
+                </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link href="{{ route('tratamientos.inicio') }}" :active="request()->routeIs('tratamientos.inicio')">
                         {{ __('Tratamientos') }}
@@ -217,8 +226,20 @@
 
 
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link href="{{ route('reservar.inicio') }}" :active="request()->routeIs('reservar.inicio')">
+            <x-responsive-nav-link href="{{ route('reservar.inicio', Auth::id()) }}" :active="request()->routeIs('reservar.inicio')">
                 {{ __('Reservar') }}
+            </x-responsive-nav-link>
+        </div>       
+        
+        <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link href="{{ route('reservar.consultar') }}" :active="request()->routeIs('reservar.consultar')">
+                {{ __('Reservas') }}
+            </x-responsive-nav-link>
+        </div> 
+        
+        <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link href="{{ route('reservar.consultar_cliente', Auth::id()) }}" :active="request()->routeIs('reservar.consultar_cliente')">
+                {{ __('Mis Reservas') }}
             </x-responsive-nav-link>
         </div>
 

@@ -2,13 +2,21 @@
     <x-slot name="header">
         <div class = "flex flex-wrap justify-between">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('lista de clientes') }}
+                {{ __('Citas') }}
             </h2>
-            <a class = "px-3 py-2 bg-indigo-600 font-bold text-white rounded-lg"
-                href="{{ route('clientes2.crear') }}">REGISTRAR CLIENTE</a>
         </div>
-    </x-slot>
 
+        <form method="GET">
+            <select name="tipo" id="tipo">
+                <option value="" disabled selected>Tipo de Cita</option>
+                <option value="Servicio" @if (request('tipo') == 'Servicio') selected @endif>Servicio</option>
+                <option value="Consulta" @if (request('tipo') == 'Consulta') selected @endif>Consulta</option>
+            </select>
+            <button type="submit"
+                class="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600">Filtrar</button>
+        </form>
+
+    </x-slot>
     <table class="min-w-full border-collapse block md:table">
         <thead class="block md:table-header-group">
             <tr
@@ -18,62 +26,47 @@
                     ID</th>
                 <th
                     class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
-                    Nombre</th>
+                    Descripción</th>
                 <th
                     class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
-                    Correo Electronico</th>
+                    Fecha Programada</th>
                 <th
                     class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
-                    Direccion</th>
+                    Hora</th>
                 <th
                     class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
-                    Telefono</th>
+                    ID del dueño</th>
                 <th
                     class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
-                    C.I.</th>
+                    Nombre del dueño</th>
                 <th
                     class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
                     Acciones</th>
             </tr>
         </thead>
         <tbody class="block md:table-row-group">
-            @foreach ($clientesUsuarios as $cliente)
+            @foreach ($citas as $cita)
                 <tr class="bg-white border border-grey-500 md:border-none block md:table-row">
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
-                            class="inline-block w-1/3 md:hidden font-bold">ID</span>{{ $cliente->usuario->id }}</td>
+                            class="inline-block w-1/3 md:hidden font-bold">ID</span>{{ $cita->id }}</td>
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
-                            class="inline-block w-1/3 md:hidden font-bold">Nombre</span>{{ $cliente->usuario->name }}</td>
-                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
-                            class="inline-block w-1/3 md:hidden font-bold">Correo
-                            Electronico</span>{{ $cliente->usuario->email }}
+                            class="inline-block w-1/3 md:hidden font-bold">Descripción</span>{{ $cita->descripcion }}
                     </td>
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
-                            class="inline-block w-1/3 md:hidden font-bold">Direccion</span>{{ $cliente->usuario->direccion }}
+                            class="inline-block w-1/3 md:hidden font-bold">Fecha
+                            Programada</span>{{ $cita->fechaProgramada }}</td>
+                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
+                            class="inline-block w-1/3 md:hidden font-bold">Hora</span>{{ $cita->hora }}</td>
+                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
+                            class="inline-block w-1/3 md:hidden font-bold">ID del Dueño</span>{{ $cita->ID_Cliente }}
                     </td>
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
-                            class="inline-block w-1/3 md:hidden font-bold">Telefono</span>{{ $cliente->usuario->telefono }}</td>
-                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
-                            class="inline-block w-1/3 md:hidden font-bold">C.I</span>{{ $cliente->usuario->ci }}</td>
+                            class="inline-block w-1/3 md:hidden font-bold">Nombre del
+                            Dueño</span>{{ $cita->cliente->name }}</td>
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
                         <div class="flex flex-wrap">
-
-                            <a href="{{ route('mascotas.inicio', $cliente->usuario->id) }}"
-                                class = "bg-white px-2 py-2 rounded-lg">
-                                <i class="fa-solid fa-paw"></i>
-                            </a>
-
-                            <a href="{{ route('reservar.inicio', $cliente->usuario->id) }}"
-                                class = "bg-white px-2 py-2 rounded-lg">
-                                <i class="fas fa-plus"></i>
-                            </a>
-
-                            <a href="{{ route('clientes2.editar', $cliente->usuario->id) }}"
-                                class = "bg-green-400 px-2 py-2 rounded-lg">
-                                <i class="fa-regular fa-pen-to-square"></i>
-                            </a>
-
                             <div>
-                                <form action="{{ route('clientes2.eliminar', $cliente->usuario->id) }}" method="POST"
+                                <form action="{{ route('reservar.eliminar', $cita->id) }}" method="POST"
                                     onsubmit="return confirm('¿Estas seguro de eliminar?')">
                                     @csrf
                                     <button type = "submit"class="bg-red-500 px-2 py-2 rounded-lg">
@@ -81,7 +74,6 @@
                                     </button>
                                 </form>
                             </div>
-                        </div>
                     </td>
                 </tr>
             @endforeach

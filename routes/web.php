@@ -74,8 +74,10 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
 
     Route::get('/servicios', [ServiciosController::class, 'inicio'])->name('servicios.inicio');
 
-    Route::get('/reservar', [ReservarController::class, 'inicio'])->name('reservar.inicio');
-
+    Route::get('/reservas/consultar', [ReservarController::class, 'consultar'])->name('reservar.consultar');
+    Route::get('/reservar/{id}', [ReservarController::class, 'inicio'])->name('reservar.inicio');
+    Route::get('/reservar/consulta/{id}', [ReservarController::class, 'consultar_cliente'])->name('reservar.consultar_cliente');
+    Route::post('/reservar/eliminar/{id}', [ReservarController::class, 'eliminar'])->name('reservar.eliminar');
 
     Route::get('/mascotas/rinicio', [MascotaController::class, 'rinicio'])->name('mascotas.rinicio');
     Route::get('/mascotas/inicio/{id}', [MascotaController::class, 'inicio'])->name('mascotas.inicio');
