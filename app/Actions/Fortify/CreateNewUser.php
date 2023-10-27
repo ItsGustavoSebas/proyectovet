@@ -2,6 +2,7 @@
 
 namespace App\Actions\Fortify;
 
+use App\Models\Cliente;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -29,14 +30,19 @@ class CreateNewUser implements CreatesNewUsers
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
         ])->validate();
 
-        return User::create([
+        $user = User::create([
             'name' => $input['name'],
             'email' => $input['email'],
             'ci' => $input['ci'],
             'telefono' => $input['telefono'],
             'direccion' => $input['direccion'],
-            'rol' => 'cliente',
             'password' => Hash::make($input['password']),
+            'cliente' => true,
+            'empleado' => false,
         ]);
+
+        $cliente = new Cliente();
+        $user->cliente()->save($cliente);
+        return $user;
     }
 }
