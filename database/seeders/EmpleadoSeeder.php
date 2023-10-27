@@ -33,7 +33,7 @@ class EmpleadoSeeder extends Seeder
 
         $empleado = new Empleado([
             'salario' => 3000,
-            'ruta_imagen_e' => null,
+            'ruta_imagen_e' => '/build/imagenes/utilitarios/veterinario2.jpg',
         ]);
 
         $user->empleado()->save($empleado);
@@ -54,7 +54,7 @@ class EmpleadoSeeder extends Seeder
 
         $empleado = new Empleado([
             'salario' => 4000,
-            'ruta_imagen_e' => null,
+            'ruta_imagen_e' => '/build/imagenes/utilitarios/veterinario.jpg',
         ]);
 
         $user->empleado()->save($empleado);
@@ -75,7 +75,7 @@ class EmpleadoSeeder extends Seeder
 
         $empleado = new Empleado([
             'salario' => 5000,
-            'ruta_imagen_e' => null,
+            'ruta_imagen_e' => '/build/imagenes/utilitarios/veterinario1.jpg',
         ]);
 
         $user->empleado()->save($empleado);
