@@ -38,11 +38,10 @@ class ReservarController extends Controller
     public function consultar_cliente($id)
     {
         $usuario = User::where('id', '=', $id)->first();
-        $citas = Cita::where('ID_Cliente', '=', $id)->get();
         $now = now();
-        $citas = Cita::where('fechaProgramada', '>', $now->toDateString()) // Filtrar por fecha mayor a la actual
-        ->orWhere(function ($query) use ($now) {
-            $query->where('fechaProgramada', $now->toDateString())
+        $citas = Cita::where('ID_Cliente', '=', $id)->where('fechaProgramada', '>', $now->toDateString()) // Filtrar por fecha mayor a la actual
+        ->orWhere(function ($query) use ($now, $id) {
+            $query->where('ID_Cliente', '=', $id)->where('fechaProgramada', $now->toDateString())
                 ->where('hora', '>', $now->hour);
         })
         ->get();
