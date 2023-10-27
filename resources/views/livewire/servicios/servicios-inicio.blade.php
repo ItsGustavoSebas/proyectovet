@@ -1,5 +1,5 @@
 <div>
-
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <div class="bg-black min-h-screen flex flex-col items-center justify-center p-4">
     <!-- Title -->
     <h1 class="text-5xl text-gray-200 mb-8 text-center">
@@ -93,6 +93,20 @@
 
       <x-danger-button wire:click="crearServicio" onclick="console.log('Botón crear presionado');">
         crear
+        @if ($reservaExitosa)
+        <script>
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Servicio creado exitosamente',
+                showConfirmButton: false,
+                timer: 1500
+            }).then(() => {
+                // Restablece la variable después de mostrar el mensaje
+                @this.reservaExitosa = false;
+            });
+        </script>
+         @endif   
       </x-danger-button>
 
 

@@ -92,7 +92,27 @@
                     <label
                         class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 peer-focus:dark:text-blue-500">ID del dueño</label>
                 </div>
-
+                <div class="relative z-0">
+                    <input id="peso" type="text" name="peso"
+                        class="peer block w-full appearance-none border-0 border-b border-gray-500 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
+                        value="{{ $mascota->historial->peso }}" placeholder=" " />
+                    <label
+                        class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 peer-focus:dark:text-blue-500">Peso</label>
+                </div>
+                <div class="relative z-0">
+                    <input id="altura" type="text" name="altura"
+                        class="peer block w-full appearance-none border-0 border-b border-gray-500 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
+                        value="{{ $mascota->historial->altura }}" placeholder=" " />
+                    <label
+                        class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 peer-focus:dark:text-blue-500">Altura</label>
+                </div>
+                <div class="relative z-0">
+                    <input id="observacion" type="text" name="observacion"
+                        class="peer block w-full appearance-none border-0 border-b border-gray-500 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
+                        value="{{ $mascota->historial->observacion }}" placeholder=" " />
+                    <label
+                        class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 peer-focus:dark:text-blue-500">Observacion</label>
+                </div>
                 <div class = "p-5">
                     <button type ="submit" class="bg-blue-600 text-white fond-bold px-6 py-3 rounded-lg">
                         <i class= "fa-solid fa-floppy-disk">Guardar</i>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Especie;
+use App\Models\Historial;
 use App\Models\Raza;
 use App\Models\Mascota;
 use App\Models\User;
@@ -40,6 +41,9 @@ class MascotaController extends Controller
             'color' => 'required',
             'fechaNacimiento' => 'required',
             'edad' => 'required',
+            'peso' => 'required',
+            'altura' => 'required',
+            'observacion' => 'required',
         ]);
         $esterilizado = $request->has('esterilizado') ? true : false;
         if ($request->has('ID_Especie') && $request->input('ID_Especie') !== 'nueva') {
@@ -59,6 +63,11 @@ class MascotaController extends Controller
             $raza->save();
             $idRaza = $raza->id;
         }
+        $historial = new Historial();
+        $historial->peso = $request->peso;
+        $historial->altura = $request->altura;
+        $historial->observacion = $request->observacion;
+        $historial->save();
         $mascota = new Mascota();
         $mascota->nombre = $request->nombre;
         $mascota->sexo = $request->sexo;
@@ -69,6 +78,7 @@ class MascotaController extends Controller
         $mascota->ID_Cliente = $request->ID_Cliente;
         $mascota->ID_Especie = $idEspecie;
         $mascota->ID_Raza = $idRaza;
+        $mascota->ID_Historial = $historial->id;
         $mascota->save();
 
         return redirect(route('mascotas.inicio', $request->ID_Cliente))->with('creado', 'Mascota añadida exitosamente');
@@ -91,6 +101,9 @@ class MascotaController extends Controller
             'color' => 'required',
             'fechaNacimiento' => 'required',
             'edad' => 'required',
+            'peso' => 'required',
+            'altura' => 'required',
+            'observacion' => 'required',
         ]);
         $esterilizado = $request->has('esterilizado') ? true : false;
         if ($request->has('ID_Especie') && $request->input('ID_Especie') !== 'nueva') {
@@ -110,6 +123,11 @@ class MascotaController extends Controller
             $raza->save();
             $idRaza = $raza->id;
         }
+        $historial = Historial::where('id', '=', $mascota->ID_Historial)->first();
+        $historial->peso = $request->peso;
+        $historial->altura = $request->altura;
+        $historial->observacion = $request->observacion;
+        $historial->save();
         $mascota->nombre = $request->nombre;
         $mascota->sexo = $request->sexo;
         $mascota->color = $request->color;
