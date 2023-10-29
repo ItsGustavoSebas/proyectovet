@@ -6,6 +6,8 @@ use App\Models\User;
 use App\Models\Empleado;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class EmpleadoSeeder extends Seeder
 {
@@ -29,7 +31,7 @@ class EmpleadoSeeder extends Seeder
             'salario' => '2500',
             //'profile_photo_path' => '/build/imagenes/utilitarios/veterinario2.jpg',
             'password' => bcrypt('12345678')
-        ]);
+        ])->assignRole('Administrador');
 
         $empleado = new Empleado([
             'salario' => 3000,
@@ -50,7 +52,7 @@ class EmpleadoSeeder extends Seeder
             'salario' => '500',
             //'profile_photo_path' => '/build/imagenes/utilitarios/veterinario.jpg',
             'password' => bcrypt('12345678')
-        ]);
+        ])->assignRole('Empleado');
 
         $empleado = new Empleado([
             'salario' => 4000,
@@ -71,7 +73,7 @@ class EmpleadoSeeder extends Seeder
             'salario' => '3000',
             //'profile_photo_path' => '/build/imagenes/utilitarios/veterinario1.jpg',
             'password' => bcrypt('12345678')
-        ]);
+        ])->assignRole('Empleado');
 
         $empleado = new Empleado([
             'salario' => 5000,
