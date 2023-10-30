@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('Observacion');
             $table->integer('ID_Cita')->foreign('ID_Cita')->references('id')->on('citas');
             $table->integer('ID_Empleado')->foreign('ID_Empleado')->references('id')->on('users');
+            $table->integer('ID_Mascota')->foreign('ID_Mascota')->references('id')->on('mascota');
             $table->timestamps();
         });
     }

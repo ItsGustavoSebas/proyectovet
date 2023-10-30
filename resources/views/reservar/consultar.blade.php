@@ -65,7 +65,11 @@
                             Dueño</span>{{ $cita->cliente->name }}</td>
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
                         <div class="flex flex-wrap">
-                            <div>
+                            <a href="{{ route('consulta.inicio', $cita->id) }}"
+                                class = "bg-green-400 px-2 py-2 rounded-lg">
+                                <i class="fa-solid fa-check"></i>
+                            </a>
+                            <div></div>
                                 <form action="{{ route('reservar.eliminar', $cita->id) }}" method="POST"
                                     onsubmit="return confirm('¿Estas seguro de eliminar?')">
                                     @csrf

@@ -1,34 +1,39 @@
 <x-app-layout>
-    <x-slot name="header">
-        <div class = "flex flex-wrap justify-between">
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('Historial Médico de ' . $mascota->nombre) }}
-            </h2>
-        </div>
-    </x-slot>
     <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg m-2">
         <div class="grid lg:grid-cols-3 grid-cols-1 gap-4 p-2">
             <div class="relative z-0">
                 <div class="block text-sm text-gray-900">
-                    <p class="font-bold">Peso:</p>
-                    <p>{{ $historial->peso }}</p>
+                    <p class="font-bold">Motivo:</p>
+                    <p>{{ $consulta->Motivo }}</p>
                 </div>
             </div>
             <div class="relative z-0">
                 <div class="block text-sm text-gray-900">
-                    <p class="font-bold">Altura:</p>
-                    <p>{{ $historial->altura }}</p>
+                    <p class="font-bold">Monto Total:</p>
+                    <p>{{ $consulta->MontoTotal }}</p>
                 </div>
             </div>
             <div class="relative z-0">
                 <div class="block text-sm text-gray-900">
                     <p class="font-bold">Observación:</p>
-                    <p>{{ $historial->observacion }}</p>
+                    <p>{{ $consulta->Observacion }}</p>
                 </div>
             </div>
+            <a class = "px-3 py-2 bg-red-600 font-bold text-white rounded-lg"
+            href="{{ route('reservar.consultar') }}">FINALIZAR</a>
         </div>
+        
     </div>
+    <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg m-2">
     <table class="min-w-full border-collapse block md:table">
+        <div class = "flex flex-wrap justify-between p-2">
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight px-3 py-2">
+                {{ __('Tratamientos de la consulta') }}
+            </h2>
+            <a class = "px-3 py-2 bg-indigo-600 font-bold text-white rounded-lg"
+                href="{{ route('traconsulta.crear', $consulta->id) }}">AÑADIR TRATAMIENTO</a>
+        </div>
+
         <thead class="block md:table-header-group">
             <tr
                 class="border border-grey-500 md:border-none block md:table-row absolute -top-full md:top-auto -left-full md:left-auto  md:relative ">
@@ -63,7 +68,7 @@
                     </td>
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
                             class="inline-block w-1/3 md:hidden font-bold">Fecha de
-                            Inico</span>{{ $tratamiento->FechaInicio }}</td>
+                            Inicio</span>{{ $tratamiento->FechaInicio }}</td>
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
                             class="inline-block w-1/3 md:hidden font-bold">Fecha de
                             Fin</span>{{ $tratamiento->FechaFin }}</td>
@@ -83,6 +88,14 @@
             @endforeach
         </tbody>
     </table>
+</div>
+<div class="bg-white overflow-hidden shadow-xl sm:rounded-lg m-2">
+    <div class = "flex flex-wrap justify-between p-2">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Recetas de la consulta') }}
+        </h2>
+    </div>
+</div>
     <script>
         @if (Session::has('eliminado'))
             toastr.options = {

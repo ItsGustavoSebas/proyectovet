@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\ConsultaController;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\HistorialController;
 use App\Http\Controllers\MascotaController;
@@ -10,8 +11,9 @@ use App\Http\Controllers\ServiciosController;
 use App\Http\Controllers\ReservarController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TratamientoController;
+use App\Http\Controllers\TratamientoDeLaConsultaController;
 use App\Http\Controllers\UserController;
-
+use App\Models\TratamientoDeLaConsulta;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -103,7 +105,14 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
     Route::post('/roles/actualizar/{id}', [RoleController::class, 'actualizar'])->name('roles.actualizar');
     Route::post('/roles/eliminar/{id}', [RoleController::class, 'eliminar'])->name('roles.eliminar');
 
+    Route::get('/consulta/inicio/{id}', [ConsultaController::class, 'inicio'])->name('consulta.inicio');
+    Route::post('/consulta/guardar', [ConsultaController::class, 'guardar'])->name('consulta.guardar');
+    Route::get('/consulta/acciones/{id}', [ConsultaController::class, 'acciones'])->name('consulta.acciones');
 
-
+    Route::get('/traconsulta/crear/{id}', [TratamientoDeLaConsultaController::class, 'crear'])->name('traconsulta.crear');
+    Route::post('/traconsulta/guardar/', [TratamientoDeLaConsultaController::class, 'guardar'])->name('traconsulta.guardar');
+    Route::get('/traconsulta/editar/{ID_Consulta}/{ID_Tratamiento}', [TratamientoDeLaConsultaController::class, 'editar'])->name('traconsulta.editar');
+    Route::post('/traconsulta/actualizar/{ID_Consulta}/{ID_Tratamiento}', [TratamientoDeLaConsultaController::class, 'actualizar'])->name('traconsulta.actualizar');
+    Route::post('/traconsulta/eliminar/{ID_Consulta}/{ID_Tratamiento}', [TratamientoDeLaConsultaController::class, 'eliminar'])->name('traconsulta.eliminar');
 
 });
