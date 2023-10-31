@@ -18,6 +18,12 @@
         <!-- Scripts -->
         <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <!-- Sidebar -->
+        <!-- Agregar el enlace al archivo de estilos de Tailwind CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+        <!-- Agregar el enlace al archivo de la biblioteca FontAwesome -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
 
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
