@@ -77,12 +77,12 @@
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
                         <div class="flex flex-wrap">
                             <a href="{{ route('historial.inicio', $mascota->id) }}"
-                                class = "bg-indigo-600 px-2 py-2 rounded-lg">
+                                class = "bg-indigo-600 px-2 py-2 rounded-lg" title="Historial">
                                 <i class="fa-solid fa-kit-medical"></i>
                             </a>
 
                             <a href="{{ route('mascotas.editar', $mascota->id) }}"
-                                class = "bg-green-400 px-2 py-2 rounded-lg">
+                                class = "bg-green-400 px-2 py-2 rounded-lg" title="Editar">
                                 <i class="fa-regular fa-pen-to-square"></i>
                             </a>
 
@@ -90,7 +90,7 @@
                                 <form action="{{ route('mascotas.eliminar', $mascota->id) }}" method="POST"
                                     onsubmit="return confirm('¿Estas seguro de eliminar?')">
                                     @csrf
-                                    <button type = "submit"class="bg-red-500 px-2 py-2 rounded-lg">
+                                    <button type = "submit"class="bg-red-500 px-2 py-2 rounded-lg" title="Eliminar">
                                         <i class="fa-solid fa-trash"></i>
                                     </button>
                                 </form>

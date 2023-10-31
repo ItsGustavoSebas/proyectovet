@@ -64,28 +64,41 @@
                      <i class="fas fa-chevron-down text-xs"></i>
                  </div>
                  <ul class="desplegable ml-4 hidden">
-                     <li>
-                         <a href="{{ route('mascotas.rinicio') }}" class=" p-2 hover:bg-gray-700 flex items-center">
-                             <i class="fas fa-chevron-right mr-2 text-xs"></i>
-                             Gestionar Mascota
-                         </a>
-                     </li>
-                     <li>
+                    <li>
+                        <a href="{{ route('mascotas.rinicio') }}" class="p-2 hover:bg-gray-700 flex items-center">
+                            <i class="fas fa-chevron-right mr-2 text-xs"></i>
+                            Gestionar Mascota
+                        </a>
+                    </li>
+                    <li class="ml-4">
+                        <a href="#" class="p-2 hover:bg-gray-700 flex items-center">
+                            <i class="fas fa-chevron-right mr-2 text-xs"></i>
+                            Generar Historial Médico
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('reservar.consultar', Auth::id()) }}"
+                            class=" p-2 hover:bg-gray-700 flex items-center">
+                            <i class="fas fa-chevron-right mr-2 text-xs"></i>
+                            Consultar Reservas
+                        </a>
+                    </li>
+                     <li class="ml-4">
                          <a href="#" class=" p-2 hover:bg-gray-700 flex items-center">
                              <i class="fas fa-chevron-right mr-2 text-xs"></i>
-                             Generar Historial Medico
+                             Gestionar Consulta
                          </a>
                      </li>
-                     <li>
+                     <li class="ml-8">
                          <a href="#" class=" p-2 hover:bg-gray-700 flex items-center">
                              <i class="fas fa-chevron-right mr-2 text-xs"></i>
                              Gestionar Tratamiento de la Consulta
                          </a>
                      </li>
-                     <li>
+                     <li class="ml-8">
                          <a href="#" class=" p-2 hover:bg-gray-700 flex items-center">
                              <i class="fas fa-chevron-right mr-2 text-xs"></i>
-                             Gestionar Consulta
+                             Gestionar Receta Medica
                          </a>
                      </li>
                      <li>
@@ -94,12 +107,7 @@
                              Gestionar Tratamiento
                          </a>
                      </li>
-                     <li>
-                         <a href="#" class=" p-2 hover:bg-gray-700 flex items-center">
-                             <i class="fas fa-chevron-right mr-2 text-xs"></i>
-                             Gestionar Receta Medica
-                         </a>
-                     </li>
+
                      <li>
                          <a href="{{ route('servicios.inicio') }}" class=" p-2 hover:bg-gray-700 flex items-center">
                              <i class="fas fa-chevron-right mr-2 text-xs"></i>
@@ -113,6 +121,7 @@
                              Gestionar Reserva
                          </a>
                      </li>
+                     
                  </ul>
              </li>
              <li class="opcion-con-desplegable">

@@ -58,12 +58,12 @@
                         <div class="flex flex-wrap">
 
                             <a href="{{ route('mascotas.inicio', $usuario->id) }}"
-                                class = "bg-white px-2 py-2 rounded-lg">
+                                class = "bg-white px-2 py-2 rounded-lg" title="Mascotas">
                                 <i class="fa-solid fa-paw"></i>
                             </a>
 
                             <a href="{{ route('usuarios.editar', $usuario->id) }}"
-                                class = "bg-green-400 px-2 py-2 rounded-lg">
+                                class = "bg-green-400 px-2 py-2 rounded-lg" title="Editar">
                                 <i class="fa-regular fa-pen-to-square"></i>
                             </a>
 
@@ -71,7 +71,7 @@
                                 <form action="{{ route('usuarios.eliminar', $usuario->id) }}" method="POST"
                                     onsubmit="return confirm('¿Estas seguro de eliminar?')">
                                     @csrf
-                                    <button type = "submit"class="bg-red-500 px-2 py-2 rounded-lg">
+                                    <button type = "submit"class="bg-red-500 px-2 py-2 rounded-lg" title="Eliminar">
                                         <i class="fa-solid fa-trash"></i>
                                     </button>
                                 </form>

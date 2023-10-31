@@ -66,14 +66,14 @@
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
                         <div class="flex flex-wrap">
                             <a href="{{ route('consulta.inicio', $cita->id) }}"
-                                class = "bg-green-400 px-2 py-2 rounded-lg">
+                                class = "bg-green-400 px-2 py-2 rounded-lg" title="Atender">
                                 <i class="fa-solid fa-check"></i>
                             </a>
                             <div></div>
                                 <form action="{{ route('reservar.eliminar', $cita->id) }}" method="POST"
                                     onsubmit="return confirm('¿Estas seguro de eliminar?')">
                                     @csrf
-                                    <button type = "submit"class="bg-red-500 px-2 py-2 rounded-lg">
+                                    <button type = "submit"class="bg-red-500 px-2 py-2 rounded-lg" title="Eliminar">
                                         <i class="fa-solid fa-trash"></i>
                                     </button>
                                 </form>
