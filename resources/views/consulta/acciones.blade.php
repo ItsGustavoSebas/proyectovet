@@ -58,6 +58,9 @@
                 <th
                     class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
                     Precio</th>
+                <th
+                    class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
+                    Acciones</th>
             </tr>
         </thead>
         <tbody class="block md:table-row-group">
@@ -83,6 +86,22 @@
                     </td>
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
                             class="inline-block w-1/3 md:hidden font-bold">Precio</span>{{ $tratamiento->tratamiento->precio }}
+                    </td>
+                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
+                        <div class="flex flex-wrap">
+                            <a href="{{ route('traconsulta.editar', $tratamiento->id) }}"
+                                class = "bg-green-400 px-2 py-2 rounded-lg">
+                                <i class="fa-regular fa-pen-to-square"></i>
+                            </a>
+                            <div>
+                                <form action="{{ route('traconsulta.eliminar', $tratamiento->id) }}" method="POST"
+                                    onsubmit="return confirm('¿Estas seguro de eliminar?')">
+                                    @csrf
+                                    <button type = "submit"class="bg-red-500 px-2 py-2 rounded-lg">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
+                                </form>
+                            </div>
                     </td>
                 </tr>
             @endforeach

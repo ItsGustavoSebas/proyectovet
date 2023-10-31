@@ -14,6 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('tratamiento_de_la_consulta', function (Blueprint $table) {
+            $table->id();
             $table->unsignedBigInteger('ID_Tratamiento');
             $table->unsignedBigInteger('ID_Consulta');
             $table->string('duracion');

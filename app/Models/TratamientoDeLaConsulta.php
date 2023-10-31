@@ -11,9 +11,10 @@ class TratamientoDeLaConsulta extends Model
 
     protected $table = 'tratamiento_de_la_consulta';
 
-    public $incrementing = false;
+    protected $primaryKey = 'id';
 
     protected $fillable = [
+        'id',
         'duracion',
         'FechaInicio',
         'FechaFin',
@@ -22,12 +23,22 @@ class TratamientoDeLaConsulta extends Model
         'ID_Consulta',
         'ID_Historial',
     ];
-    public function tratamiento() {
+    public function tratamientos() {
         return $this->belongsTo(Tratamiento::class, 'ID_Tratamiento', 'id');
     }
 
-    public function consulta() {
+    public function consultas() {
         return $this->belongsTo(Consulta::class, 'ID_Consulta', 'id');
+    }
+
+    public function tratamiento()
+    {
+        return $this->belongsTo(Tratamiento::class, 'ID_Tratamiento');
+    }
+
+    public function consulta()
+    {
+        return $this->belongsTo(Consulta::class, 'ID_Consulta');
     }
     
 }

@@ -19,4 +19,9 @@ class Tratamiento extends Model
         'descripcion',
         'precio',
     ];
+
+    public function consultas()
+    {
+        return $this->belongsToMany(Consulta::class, 'tratamiento_de_la_consulta');
+    }
 }

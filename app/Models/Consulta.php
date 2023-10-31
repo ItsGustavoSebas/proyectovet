@@ -24,8 +24,13 @@ class Consulta extends Model
         'ID_Mascota',
     ];
 
-    public function mascota() {
+    public function mascota()
+    {
         return $this->belongsTo(Mascota::class, 'ID_Mascota', 'id');
     }
-    
+
+    public function tratamientos()
+    {
+        return $this->belongsToMany(Tratamiento::class, 'tratamiento_de_la_consulta');
+    }
 }

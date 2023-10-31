@@ -91,6 +91,9 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
     Route::post('/mascotas/eliminar/{id}', [MascotaController::class, 'eliminar'])->name('mascotas.eliminar');
 
     Route::get('/mascotas/historial/{id}', [HistorialController::class, 'inicio'])->name('historial.inicio');
+    Route::get('/historial/editar/{id}', [HistorialController::class, 'editar'])->name('historial.editar');
+    Route::post('/historial/actualizar/{id}', [HistorialController::class, 'actualizar'])->name('historial.actualizar');
+    Route::post('/historial/eliminar/{id}', [HistorialController::class, 'eliminar'])->name('historial.eliminar');
 
     Route::get('/tratamientos/inicio', [TratamientoController::class, 'inicio'])->name('tratamientos.inicio');
     Route::get('/tratamientos/crear', [TratamientoController::class, 'crear'])->name('tratamientos.crear');
@@ -111,8 +114,8 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
 
     Route::get('/traconsulta/crear/{id}', [TratamientoDeLaConsultaController::class, 'crear'])->name('traconsulta.crear');
     Route::post('/traconsulta/guardar/', [TratamientoDeLaConsultaController::class, 'guardar'])->name('traconsulta.guardar');
-    Route::get('/traconsulta/editar/{ID_Consulta}/{ID_Tratamiento}', [TratamientoDeLaConsultaController::class, 'editar'])->name('traconsulta.editar');
-    Route::post('/traconsulta/actualizar/{ID_Consulta}/{ID_Tratamiento}', [TratamientoDeLaConsultaController::class, 'actualizar'])->name('traconsulta.actualizar');
-    Route::post('/traconsulta/eliminar/{ID_Consulta}/{ID_Tratamiento}', [TratamientoDeLaConsultaController::class, 'eliminar'])->name('traconsulta.eliminar');
+    Route::get('/traconsulta/editar/{id}', [TratamientoDeLaConsultaController::class, 'editar'])->name('traconsulta.editar');
+    Route::post('/traconsulta/actualizar/{id}', [TratamientoDeLaConsultaController::class, 'actualizar'])->name('traconsulta.actualizar');
+    Route::post('/traconsulta/eliminar/{id}', [TratamientoDeLaConsultaController::class, 'eliminar'])->name('traconsulta.eliminar');
 
 });

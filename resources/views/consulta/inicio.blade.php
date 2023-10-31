@@ -32,7 +32,7 @@
                                     class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
                                     <i class="fa-solid fa-user text-gray-400 text-lg"></i>
                                 </div>
-                                <input id= "Fecha" type="text" name="Fecha"
+                                <input id= "Fecha" type="date" name="Fecha"
                                     class="w-full -ml-10 pl-10 pr-3 py-2 rounded-2xl border-2 border-gray-200 outline-none focus:border-indigo-500"
                                     placeholder="Ingresar Fecha" value="{{ old('Fecha') }}">
                                 @error('Fecha')
