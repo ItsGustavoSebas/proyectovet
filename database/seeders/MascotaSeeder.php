@@ -17,7 +17,7 @@ class MascotaSeeder extends Seeder
     public function run()
     {
         $historial1 = Historial::create([
-            'peso' => 12.5,
+            'peso' => 12,
             'altura' => 25,
             'observacion' => 'Mascota saludable.',
         ]);
@@ -36,7 +36,7 @@ class MascotaSeeder extends Seeder
         ]);
         
         $historial2 = Historial::create([
-            'peso' => 11.2,
+            'peso' => 11,
             'altura' => 22,
             'observacion' => 'Mascota en buen estado de salud.',
         ]);
@@ -55,7 +55,7 @@ class MascotaSeeder extends Seeder
         ]);
         
         $historial3 = Historial::create([
-            'peso' => 9.8,
+            'peso' => 9,
             'altura' => 18,
             'observacion' => 'Mascota con buena salud general.',
         ]);
