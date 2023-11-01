@@ -6,7 +6,7 @@ use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\HistorialController;
 use App\Http\Controllers\MascotaController;
 use App\Http\Controllers\ProductoController;
-
+use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\ServiciosController;
 use App\Http\Controllers\ReservarController;
 use App\Http\Controllers\RoleController;
@@ -118,4 +118,10 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
     Route::post('/traconsulta/actualizar/{id}', [TratamientoDeLaConsultaController::class, 'actualizar'])->name('traconsulta.actualizar');
     Route::post('/traconsulta/eliminar/{id}', [TratamientoDeLaConsultaController::class, 'eliminar'])->name('traconsulta.eliminar');
 
+    Route::get('/proveedor', [ProveedorController::class, 'inicio'])->name('proveedor.inicio');
+    Route::get('/proveedor/editar/{id}', [ProveedorController::class, 'editar'])->name('proveedor.editar');
+    Route::post('/proveedor/actualizar/{id}', [ProveedorController::class, 'actualizar'])->name('proveedor.actualizar');
+    Route::post('/proveedor/eliminar/{id}', [ProveedorController::class, 'eliminar'])->name('proveedor.eliminar');
+    Route::get('/proveedor/crear', [ProveedorController::class, 'crear'])->name('proveedor.crear');
+    Route::post('/proveedor/guardar', [ProveedorController::class, 'guardar'])->name('proveedor.guardar');
 });
