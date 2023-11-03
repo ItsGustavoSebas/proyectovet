@@ -59,7 +59,7 @@ class ReservarController extends Controller
         ->orWhere(function ($query) use ($now, $tipo) {
         $query->where('tipo', '=', $tipo)
             ->where('fechaProgramada', $now->toDateString())
-            ->where('hora', '>', $now->hour);
+            ->where('hora', '>=', $now->hour);
     })->get();
 
 

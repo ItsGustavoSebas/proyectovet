@@ -9,8 +9,8 @@
         <form method="GET">
             <select name="tipo" id="tipo">
                 <option value="" disabled selected>Tipo de Cita</option>
-                <option value="Servicio" @if (request('tipo') == 'Servicio') selected @endif>Servicio</option>
-                <option value="Consulta" @if (request('tipo') == 'Consulta') selected @endif>Consulta</option>
+                <option value="servicio" @if (request('tipo') == 'servicio') selected @endif>Servicio</option>
+                <option value="consulta" @if (request('tipo') == 'consulta') selected @endif>Consulta</option>
             </select>
             <button type="submit"
                 class="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600">Filtrar</button>
