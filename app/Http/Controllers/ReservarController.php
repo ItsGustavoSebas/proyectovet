@@ -54,13 +54,16 @@ class ReservarController extends Controller
         $now = now(); // Obtener la fecha y hora actual
 
         // Realizar la consulta para obtener las citas que coincidan con los criterios de filtrado
-        $citas = Cita::where('tipo', '=', $tipo)->where('fechaProgramada', '>', $now->toDateString()) // Filtrar por fecha mayor a la actual
+        $citas = Cita::where('tipo', '=', $tipo)
+        ->where('fechaProgramada', '>', $now->toDateString()) // Filtrar por fecha mayor a la actual
         ->orWhere(function ($query) use ($now, $tipo) {
-            $query->where('tipo', '=', $tipo)->where('fechaProgramada', $now->toDateString())
-                ->where('hora', '>', $now->hour);
-        })->get();
+        $query->where('tipo', '=', $tipo)
+            ->where('fechaProgramada', $now->toDateString())
+            ->where('hora', '>', $now->hour);
+    })->get();
 
-        return view('reservar.consultar', 'citas');
+
+        return view('reservar.consultar', compact('citas'));
     }
 
     public function eliminar($id)

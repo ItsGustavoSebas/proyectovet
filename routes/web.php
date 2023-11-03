@@ -110,8 +110,12 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
     Route::post('/roles/eliminar/{id}', [RoleController::class, 'eliminar'])->name('roles.eliminar');
 
     Route::get('/consulta/inicio/{id}', [ConsultaController::class, 'inicio'])->name('consulta.inicio');
+    Route::get('/consulta/consultas/', [ConsultaController::class, 'consultas'])->name('consulta.consultas');
     Route::post('/consulta/guardar', [ConsultaController::class, 'guardar'])->name('consulta.guardar');
     Route::get('/consulta/acciones/{id}', [ConsultaController::class, 'acciones'])->name('consulta.acciones');
+    Route::get('/consulta/editar/{id}', [ConsultaController::class, 'editar'])->name('consulta.editar');
+    Route::post('/consulta/actualizar/{id}', [ConsultaController::class, 'actualizar'])->name('consulta.actualizar');
+    Route::post('/consulta/eliminar/{id}', [ConsultaController::class, 'eliminar'])->name('consulta.eliminar');
 
     Route::get('/traconsulta/crear/{id}', [TratamientoDeLaConsultaController::class, 'crear'])->name('traconsulta.crear');
     Route::post('/traconsulta/guardar/', [TratamientoDeLaConsultaController::class, 'guardar'])->name('traconsulta.guardar');
