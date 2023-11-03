@@ -84,7 +84,7 @@
                         </a>
                     </li>
                      <li class="ml-4">
-                         <a href="#" class=" p-2 hover:bg-gray-700 flex items-center">
+                         <a href="{{ route('consulta.consultas')}}" class=" p-2 hover:bg-gray-700 flex items-center">
                              <i class="fas fa-chevron-right mr-2 text-xs"></i>
                              Gestionar Consulta
                          </a>
