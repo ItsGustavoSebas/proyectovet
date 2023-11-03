@@ -4,6 +4,7 @@ use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ConsultaController;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\HistorialController;
+use App\Http\Controllers\LoteController;
 use App\Http\Controllers\MascotaController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ProveedorController;
@@ -124,4 +125,11 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
     Route::post('/proveedor/eliminar/{id}', [ProveedorController::class, 'eliminar'])->name('proveedor.eliminar');
     Route::get('/proveedor/crear', [ProveedorController::class, 'crear'])->name('proveedor.crear');
     Route::post('/proveedor/guardar', [ProveedorController::class, 'guardar'])->name('proveedor.guardar');
+
+    Route::get('/lotes/inicio', [LoteController::class, 'inicio'])->name('lotes.inicio');
+    Route::get('/lotes/crear', [LoteController::class, 'crear'])->name('lotes.crear');
+    Route::get('/lotes/editar/{id}', [LoteController::class, 'editar'])->name('lotes.editar');
+    Route::post('/lotes/actualizar/{id}', [LoteController::class, 'actualizar'])->name('lotes.actualizar');
+    Route::post('/lotes/eliminar/{id}', [LoteController::class, 'eliminar'])->name('lotes.eliminar');
+    Route::post('/lotes/guardar', [LoteController::class, 'guardar'])->name('lotes.guardar');
 });

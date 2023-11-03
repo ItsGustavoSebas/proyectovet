@@ -140,7 +140,7 @@
                          </a>
                      </li>
                      <li>
-                         <a href="#" class=" p-2 hover:bg-gray-700 flex items-center">
+                         <a href="{{ route('proveedor.inicio') }}" class=" p-2 hover:bg-gray-700 flex items-center">
                              <i class="fas fa-chevron-right mr-2 text-xs"></i>
                              Gestionar Proveedor
                          </a>
@@ -152,7 +152,7 @@
                          </a>
                      </li>
                      <li>
-                         <a href="#" class=" p-2 hover:bg-gray-700 flex items-center">
+                         <a href="{{ route('lotes.inicio') }}" class=" p-2 hover:bg-gray-700 flex items-center">
                              <i class="fas fa-chevron-right mr-2 text-xs"></i>
                              Gestionar Lote
                          </a>
