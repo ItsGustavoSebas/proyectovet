@@ -15,16 +15,72 @@ class MarcaSeeder extends Seeder
      */
     public function run()
     {
+        //
         Marca::create([
-            'nombre' => 'Hill\'s Science Diet',
+            'nombre' => 'Primogato'
         ]);
-
         Marca::create([
-            'nombre' => 'Royal Canin',
+            'nombre' => 'Átila'
         ]);
-
         Marca::create([
-            'nombre' => 'Purina Pro Plan',
+            'nombre' => '9Lives'
         ]);
+        Marca::create([
+            'nombre' => 'Apolo'
+        ]);
+        Marca::create([
+            'nombre' => 'SuperCat'
+        ]);
+        Marca::create([
+            'nombre' => 'Primocao'
+        ]);
+        Marca::create([
+            'nombre' => 'Eco cane'
+        ]);
+        Marca::create([
+            'nombre' => 'Purina'
+        ]);
+        Marca::create([
+            'nombre' => 'Podium'
+        ]);
+        Marca::create([
+            'nombre' => 'Whiskas'
+        ]);
+        Marca::create([
+            'nombre' => 'Mican'
+        ]);
+        Marca::create([
+            'nombre' => 'Eukanuba'
+        ]);
+        Marca::create([
+            'nombre' => 'Royal Canin'
+        ]);
+        Marca::create([
+            'nombre' => 'Cute Cat'
+        ]);
+        Marca::create([
+            'nombre' => 'Bento Pet'
+        ]);
+        Marca::create([
+            'nombre' => 'Canada Litter'
+        ]);
+        Marca::create([
+            'nombre' => 'Acana'
+        ]);
+        Marca::create([
+            'nombre' => 'Grature'
+        ]);
+        Marca::create([
+            'nombre' => 'Hantu'
+        ]);
+        Marca::create([
+            'nombre' => 'Orijen'
+        ]);
+        Marca::create([
+            'nombre' => 'Taste of the Wild'
+        ]);
+        Marca::create([
+            'nombre' => 'Traveness'
+        ]);       
     }
 }
