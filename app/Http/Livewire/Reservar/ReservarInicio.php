@@ -97,7 +97,8 @@ class ReservarInicio extends Component
        'fechaProgramada' =>$this->fechaProgramada,
        'hora' =>$this->hora,
        'tipo'=>$this->tipo,
-       'ID_Cliente' => $this->ID_Cliente
+       'ID_Cliente' => $this->ID_Cliente,
+       'activo' => true
       ]);
 
 

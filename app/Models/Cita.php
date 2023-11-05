@@ -29,6 +29,7 @@ class Cita extends Authenticatable
         'hora' ,
         'tipo',
         'ID_Cliente',
+        'activo',
     ];
 
     public function cliente() {

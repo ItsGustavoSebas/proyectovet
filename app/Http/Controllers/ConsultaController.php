@@ -47,6 +47,8 @@ class ConsultaController extends Controller
         $consulta->ID_Empleado = $request->ID_Empleado;
         $consulta->ID_Mascota = $request->ID_Mascota;
         $consulta->save();
+        $cita = Cita::find($request->ID_Cita);
+        $cita->update(['activo' => false]);
         return redirect(route('consulta.acciones', $consulta->id))->with('creada', 'Consulta añadida exitosamente');
     }
 
