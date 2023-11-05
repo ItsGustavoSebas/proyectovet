@@ -39,31 +39,15 @@ class ReservarController extends Controller
     public function consultar_cliente($id)
     {
         $usuario = User::where('id', '=', $id)->first();
-        $now = now();
-        $citas = Cita::where('ID_Cliente', '=', $id)->where('fechaProgramada', '>', $now->toDateString()) // Filtrar por fecha mayor a la actual
-        ->orWhere(function ($query) use ($now, $id) {
-            $query->where('ID_Cliente', '=', $id)->where('fechaProgramada', $now->toDateString())
-                ->where('hora', '>', $now->hour);
-        })
-        ->get();
+        $citas = Cita::where('ID_Cliente', '=', $id)->where('activo', true)->get();
         return view('reservar.consultar_cliente', compact('citas', 'usuario'));
     }
 
     public function consultar(Request $request)
     {
-        $tipo = $request->input('tipo'); // Obtener el valor del campo "tipo" del formulario
-        $now = now(); // Obtener la fecha y hora actual
-
-        // Realizar la consulta para obtener las citas que coincidan con los criterios de filtrado
+        $tipo = $request->input('tipo'); 
         $citas = Cita::where('tipo', '=', $tipo)
-        ->where('fechaProgramada', '>', $now->toDateString()) // Filtrar por fecha mayor a la actual
-        ->orWhere(function ($query) use ($now, $tipo) {
-        $query->where('tipo', '=', $tipo)
-            ->where('fechaProgramada', $now->toDateString())
-            ->where('hora', '>=', $now->hour);
-    })->get();
-
-
+        ->where('activo', true)->get();
         return view('reservar.consultar', compact('citas', 'tipo'));
     }
 
