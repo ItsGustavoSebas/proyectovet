@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Cita;
 use App\Models\User;
 use Carbon\Carbon;
+use App\Models\Servicio;
 
 class ReservarController extends Controller
 
@@ -63,8 +64,11 @@ class ReservarController extends Controller
     })->get();
 
 
-        return view('reservar.consultar', compact('citas'));
+        return view('reservar.consultar', compact('citas', 'tipo'));
     }
+
+
+
 
     public function eliminar($id)
     {

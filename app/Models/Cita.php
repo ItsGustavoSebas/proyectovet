@@ -34,4 +34,9 @@ class Cita extends Authenticatable
     public function cliente() {
         return $this->belongsTo(User::class, 'ID_Cliente', 'id');
     }
+
+    public function Servicio()
+    {
+        return $this->belongsToMany(Servicio::class, 'detalleservicio');
+    }
 }
