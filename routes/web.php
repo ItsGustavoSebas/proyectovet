@@ -13,6 +13,7 @@ use App\Http\Controllers\ReservarController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TratamientoController;
 use App\Http\Controllers\TratamientoDeLaConsultaController;
+use App\Http\Controllers\detalleservicioController;
 use App\Http\Controllers\UserController;
 use App\Models\TratamientoDeLaConsulta;
 use Illuminate\Support\Facades\Route;
@@ -136,4 +137,13 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
     Route::post('/lotes/actualizar/{id}', [LoteController::class, 'actualizar'])->name('lotes.actualizar');
     Route::post('/lotes/eliminar/{id}', [LoteController::class, 'eliminar'])->name('lotes.eliminar');
     Route::post('/lotes/guardar', [LoteController::class, 'guardar'])->name('lotes.guardar');
+
+
+    Route::get('/dservicios/inicio/{id}', [detalleservicioController::class, 'inicio'])->name('detalleservicio.inicio');
+    Route::get('/dservicios/servicios/', [detalleservicioController::class, 'servicios'])->name('detalleservicio.servicios');
+    Route::post('/dservicios/guardar', [detalleservicioController::class, 'guardar'])->name('detalleservicio.guardar');
+    Route::get('/dservicios/acciones/{id}', [detalleservicioController::class, 'acciones'])->name('detalleservicio.acciones');
+    Route::get('/dservicios/editar/{id}', [detalleservicioController::class, 'editar'])->name('detalleservicio.editar');
+    Route::post('/dservicios/actualizar/{id}', [detalleservicioController::class, 'actualizar'])->name('detalleservicio.actualizar');
+    Route::post('/dservicios/eliminar/{id}', [detalleservicioController::class, 'eliminar'])->name('detalleservicio.eliminar');
 });

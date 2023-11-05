@@ -67,6 +67,11 @@
                         {{ __('Tratamientos') }}
                     </x-nav-link>
                 </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link href="{{ route('detalleservicio.servicios')}}" :active="request()->routeIs('detalleservicio.servicios')">
+                        {{ __('Detalles servicios') }}
+                    </x-nav-link>
+                </div>
 
             </div>
 
@@ -246,6 +251,12 @@
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link href="{{ route('tratamientos.inicio') }}" :active="request()->routeIs('tratamientos.inicio')">
                 {{ __('Tratamientos') }}
+            </x-responsive-nav-link>
+        </div>
+
+        <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link href="{{ route('detalleservicio.servicios') }}" :active="request()->routeIs('detalleservicio.servicios')">
+                {{ __('Detalle servicios') }}
             </x-responsive-nav-link>
         </div>
 
