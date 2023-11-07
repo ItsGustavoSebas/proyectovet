@@ -14,6 +14,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TratamientoController;
 use App\Http\Controllers\TratamientoDeLaConsultaController;
 use App\Http\Controllers\detalleservicioController;
+use App\Http\Controllers\MarcaController;
 use App\Http\Controllers\UserController;
 use App\Models\TratamientoDeLaConsulta;
 use Illuminate\Support\Facades\Route;
@@ -146,4 +147,12 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
     Route::get('/dservicios/editar/{id}', [detalleservicioController::class, 'editar'])->name('detalleservicio.editar');
     Route::post('/dservicios/actualizar/{id}', [detalleservicioController::class, 'actualizar'])->name('detalleservicio.actualizar');
     Route::post('/dservicios/eliminar/{id}', [detalleservicioController::class, 'eliminar'])->name('detalleservicio.eliminar');
+
+    Route::get('/marcas/inicio', [MarcaController::class, 'inicio'])->name('marcas.inicio');
+    Route::get('/marcas/crear', [MarcaController::class, 'crear'])->name('marcas.crear');
+    Route::post('/marcas/guardar', [MarcaController::class, 'guardar'])->name('marcas.guardar');
+    Route::get('/marcas/editar/{id}', [MarcaController::class, 'editar'])->name('marcas.editar');
+    Route::post('/marcas/actualizar/{id}', [MarcaController::class, 'actualizar'])->name('marcas.actualizar');
+    Route::post('/marcas/eliminar/{id}', [MarcaController::class, 'eliminar'])->name('marcas.eliminar');
+    
 });
