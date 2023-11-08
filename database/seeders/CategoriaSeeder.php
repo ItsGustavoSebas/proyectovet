@@ -16,19 +16,22 @@ class CategoriaSeeder extends Seeder
     public function run()
     {
         Categoria::create([
-            'nombre' => 'Alimentación',
-            'descripcion' => 'Productos relacionados con la alimentación de mascotas.',
+            'Nombre' => 'Alimentación',
+            'Descripcion' => 'Productos relacionados con la alimentación de mascotas.'
         ]);
 
         Categoria::create([
-            'nombre' => 'Medicamentos',
-            'descripcion' => 'Medicamentos y tratamientos para mascotas.',
+            'Nombre' => 'Medicamentos',
+            'Descripcion' => 'Medicamentos y tratamientos para mascotas.'
         ]);
 
         Categoria::create([
-            'nombre' => 'Higiene',
-            'descripcion' => 'Productos de higiene para mascotas.',
+            'Nombre' => 'Higiene',
+            'Descripcion' => 'Productos de higiene para mascotas.'
         ]);
-
+        Categoria::create([
+            'Nombre' => 'Aseo',
+            'Descripcion' => 'Productos de aseo para mascotas.'
+        ]);
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ConsultaController;
 use App\Http\Controllers\EmpleadoController;
@@ -146,4 +147,12 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
     Route::get('/dservicios/editar/{id}', [detalleservicioController::class, 'editar'])->name('detalleservicio.editar');
     Route::post('/dservicios/actualizar/{id}', [detalleservicioController::class, 'actualizar'])->name('detalleservicio.actualizar');
     Route::post('/dservicios/eliminar/{id}', [detalleservicioController::class, 'eliminar'])->name('detalleservicio.eliminar');
+
+    Route::get('/categoria/inicio', [CategoriaController::class, 'inicio'])->name('categorias.inicio');
+    Route::get('/categoria/crear/', [CategoriaController::class, 'crear'])->name('categorias.crear');
+    Route::post('/categoria/guardar/', [CategoriaController::class, 'guardar'])->name('categorias.guardar');
+    Route::get('/categoria/editar/{id}', [CategoriaController::class, 'editar'])->name('categorias.editar');
+    Route::post('/categoria/actualizar/{id}', [CategoriaController::class, 'actualizar'])->name('categorias.actualizar');
+    Route::post('/categoria/eliminar/{id}', [CategoriaController::class, 'eliminar'])->name('categorias.eliminar');
+
 });

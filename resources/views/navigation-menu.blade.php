@@ -46,7 +46,11 @@
                         {{ __('Servicios') }}
                     </x-nav-link>
                 </div>
-
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link href="{{ route('categorias.inicio') }}" :active="request()->routeIs('categorias.inicio')">
+                        {{ __('Categorias') }}
+                    </x-nav-link>
+                </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link href="{{ route('reservar.inicio', Auth::id()) }}" :active="request()->routeIs('reservar.inicio')">
                         {{ __('Reservar') }}
@@ -72,7 +76,6 @@
                         {{ __('Detalles servicios') }}
                     </x-nav-link>
                 </div>
-
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">
@@ -259,7 +262,11 @@
                 {{ __('Detalle servicios') }}
             </x-responsive-nav-link>
         </div>
-
+        <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link href="{{ route('categorias.inicio') }}" :active="request()->routeIs('categorias.inicio')">
+                {{ __('Categorias') }}
+            </x-responsive-nav-link>
+        </div>
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
             <div class="flex items-center px-4">
