@@ -26,8 +26,7 @@ class detalleservicioController extends Controller
 
     public function servicios()
     {
-        $ID_Empleado = auth()->id();
-        $servicios = detalleservicio::where('ID_Empleado', '=', $ID_Empleado)->get();
+        $servicios = detalleservicio::all();
         return view('detalleservicio.servicios', compact('servicios'));
     }
 
@@ -45,6 +44,8 @@ class detalleservicioController extends Controller
         $detalleservicio->ID_Empleado = $request->ID_Empleado;
         $detalleservicio->ID_Servicio = $request->ID_Servicio;
         $detalleservicio->save();
+        $cita = Cita::find($request->ID_Cita);
+        $cita->update(['activo' => false]);
         return redirect(route('detalleservicio.servicios'))->with('creado', 'Detalle servicio añadido exitosamente');
     }
 
@@ -78,7 +79,6 @@ class detalleservicioController extends Controller
     public function eliminar($id)
     {
         $detalleservicio = detalleservicio::where('id', '=', $id)->first();
-        $nombre = $detalleservicio->nombre;
         $detalleservicio->delete();
         return redirect(route('detalleservicio.servicios'))->with('eliminado', 'Detalle servicio eliminado exitosamente');
     }

@@ -13,7 +13,7 @@
         <style>
             @import url('https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.min.css');
         </style>
-        <title>Crear detalle servicio</title>
+        <title>Editar detalle servicio</title>
     </head>
     <form action="{{ route('detalleservicio.actualizar', $detalleservicio->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
@@ -21,7 +21,7 @@
             <!-- Cuadro exterior con fondo azul marino y relleno de 8 unidades -->
             <div class="bg-gray-100 p-4 overflow-hidden shadow-xl sm:rounded-lg m-5 ">
                 <div class= "text-center font-sans text-black font-bold text-3xl antialiased pb-10 mt-10">
-                    CREAR DETALLE SERVICIO
+                    EDITAR DETALLE SERVICIO
                 </div>
                 <div>
                     <label class="font-bold text-lg" for=""> Tiempo</label>

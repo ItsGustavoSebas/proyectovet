@@ -164,7 +164,7 @@
                          </a>
                      </li>
                      <li>
-                         <a href="#" class=" p-2 hover:bg-gray-700 flex items-center">
+                         <a href="{{ route('marcas.inicio') }}" class=" p-2 hover:bg-gray-700 flex items-center">
                              <i class="fas fa-chevron-right mr-2 text-xs"></i>
                              Gestionar Marca
                          </a>
