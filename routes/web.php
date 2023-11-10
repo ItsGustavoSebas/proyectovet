@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ConsultaController;
+use App\Http\Controllers\CorreoController;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\HistorialController;
 use App\Http\Controllers\LoteController;
@@ -14,6 +16,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TratamientoController;
 use App\Http\Controllers\TratamientoDeLaConsultaController;
 use App\Http\Controllers\detalleservicioController;
+use App\Http\Controllers\MarcaController;
 use App\Http\Controllers\UserController;
 use App\Models\TratamientoDeLaConsulta;
 use Illuminate\Support\Facades\Route;
@@ -155,4 +158,20 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
     Route::get('/dservicios/editar/{id}', [detalleservicioController::class, 'editar'])->name('detalleservicio.editar');
     Route::post('/dservicios/actualizar/{id}', [detalleservicioController::class, 'actualizar'])->name('detalleservicio.actualizar');
     Route::post('/dservicios/eliminar/{id}', [detalleservicioController::class, 'eliminar'])->name('detalleservicio.eliminar');
+
+    Route::get('/categoria/inicio', [CategoriaController::class, 'inicio'])->name('categorias.inicio');
+    Route::get('/categoria/crear/', [CategoriaController::class, 'crear'])->name('categorias.crear');
+    Route::post('/categoria/guardar/', [CategoriaController::class, 'guardar'])->name('categorias.guardar');
+    Route::get('/categoria/editar/{id}', [CategoriaController::class, 'editar'])->name('categorias.editar');
+    Route::post('/categoria/actualizar/{id}', [CategoriaController::class, 'actualizar'])->name('categorias.actualizar');
+    Route::post('/categoria/eliminar/{id}', [CategoriaController::class, 'eliminar'])->name('categorias.eliminar');
+
+    Route::get('/marcas/inicio', [MarcaController::class, 'inicio'])->name('marcas.inicio');
+    Route::get('/marcas/crear', [MarcaController::class, 'crear'])->name('marcas.crear');
+    Route::post('/marcas/guardar', [MarcaController::class, 'guardar'])->name('marcas.guardar');
+    Route::get('/marcas/editar/{id}', [MarcaController::class, 'editar'])->name('marcas.editar');
+    Route::post('/marcas/actualizar/{id}', [MarcaController::class, 'actualizar'])->name('marcas.actualizar');
+    Route::post('/marcas/eliminar/{id}', [MarcaController::class, 'eliminar'])->name('marcas.eliminar');
+    
+    Route::get('/correo/enviar', [CorreoController::class, 'enviar'])->name('correo.enviar');
 });

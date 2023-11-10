@@ -46,7 +46,11 @@
                         {{ __('Servicios') }}
                     </x-nav-link>
                 </div>
-
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link href="{{ route('categorias.inicio') }}" :active="request()->routeIs('categorias.inicio')">
+                        {{ __('Categorias') }}
+                    </x-nav-link>
+                </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link href="{{ route('reservar.inicio', Auth::id()) }}" :active="request()->routeIs('reservar.inicio')">
                         {{ __('Reservar') }}
@@ -73,9 +77,17 @@
                     </x-nav-link>
                 </div>
 
+
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link href="{{ route('lotes.reembolsarInicio')}}" :active="request()->routeIs('lotes.reembolsarInicio')">
                         {{ __('Casos de reembolso') }}
+                    </x-nav-link>
+                </div>
+
+
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link href="{{ route('correo.enviar')}}" :active="request()->routeIs('correo.enviar')">
+                        {{ __('Enviar Correo') }}
                     </x-nav-link>
                 </div>
 
@@ -266,9 +278,17 @@
             </x-responsive-nav-link>
         </div>
 
+
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link href="{{ route('lotes.reembolsarInicio') }}" :active="request()->routeIs('lotes.reembolsarInicio')">
                 {{ __('Casos de reembolso') }}
+            </x-responsive-nav-link>
+        </div>
+
+
+        <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link href="{{ route('categorias.inicio') }}" :active="request()->routeIs('categorias.inicio')">
+                {{ __('Categorias') }}
             </x-responsive-nav-link>
         </div>
 

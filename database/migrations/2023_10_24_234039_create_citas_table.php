@@ -22,6 +22,7 @@ return new class extends Migration
             $table->text('tipo');
             $table->timestamps();
             $table->integer('ID_Cliente')->foreign('ID_Cliente')->references('id')->on('users');
+            $table->boolean('activo');
         });
     }
 
