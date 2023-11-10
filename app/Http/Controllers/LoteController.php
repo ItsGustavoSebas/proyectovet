@@ -108,6 +108,7 @@ class LoteController extends Controller
     public function eliminar($id)
     {
         $lote = Lote::find($id);
+        $lote->loteprod()->delete();
         $numeroLote = $lote->numeroLote;
         $lote->delete();
         return redirect(route('lotes.inicio'))->with('eliminado', 'Lote ' . $numeroLote . ' eliminado exitosamente');

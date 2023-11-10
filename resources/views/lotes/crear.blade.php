@@ -19,14 +19,16 @@
             <div class="grid lg:grid-cols-3 grid-cols-1 gap-4 p-5">
                 <div class="col-span-1">
                     <label class="font-bold text-lg" for="fechaCompra">Fecha de Compra</label>
-                    <input id="fechaCompra" name="fechaCompra" type="date" class="px-3 py-2 w-full rounded-xl bg-blue-100">
+                    <input id="fechaCompra" name="fechaCompra" type="date"
+                        class="px-3 py-2 w-full rounded-xl bg-blue-100">
                     @error('fechaCompra')
                         <strong class="text-red-500">Debes ingresar la fecha de compra</strong>
                     @enderror
                 </div>
                 <div class="col-span-1">
                     <label class="font-bold text-lg" for="fechaVencimiento">Fecha de Vencimiento</label>
-                    <input id="fechaVencimiento" name="fechaVencimiento" type="date" class="px-3 py-2 w-full rounded-xl bg-blue-100">
+                    <input id="fechaVencimiento" name="fechaVencimiento" type="date"
+                        class="px-3 py-2 w-full rounded-xl bg-blue-100">
                     @error('fechaVencimiento')
                         <strong class="text-red-500">Debes ingresar la fecha de vencimiento</strong>
                     @enderror
@@ -47,7 +49,8 @@
                     <div class="grid lg:grid-cols-4 grid-cols-1 gap-4 p-2">
                         <div class="col-span-1">
                             <label for="producto">Producto</label>
-                            <select id="producto" name="productos[0][producto_id]" class="px-3 py-2 w-full rounded-xl bg-blue-100">
+                            <select id="producto" name="productos[0][producto_id]"
+                                class="px-3 py-2 w-full rounded-xl bg-blue-100">
                                 <option value="">Selecciona un producto</option>
                                 @foreach ($productos as $producto)
                                     <option value="{{ $producto->id }}">{{ $producto->nombre }}</option>
@@ -56,11 +59,13 @@
                         </div>
                         <div class="col-span-1">
                             <label for="cantidad">Cantidad</label>
-                            <input id="cantidad" name="productos[0][cantidad]" type="number" min="1" class="px-3 py-2 w-full rounded-xl bg-blue-100" placeholder="Cantidad">
+                            <input id="cantidad" name="productos[0][cantidad]" type="number" min="1"
+                                class="px-3 py-2 w-full rounded-xl bg-blue-100" placeholder="Cantidad">
                         </div>
                         <div class="col-span-1">
                             <label for="medida">Medida</label>
-                            <select id="medida" name="productos[0][medida_id]" class="px-3 py-2 w-full rounded-xl bg-blue-100">
+                            <select id="medida" name="productos[0][medida_id]"
+                                class="px-3 py-2 w-full rounded-xl bg-blue-100">
                                 <option value="">Selecciona la medida</option>
                                 @foreach ($medidas as $medida)
                                     <option value="{{ $medida->id }}">{{ $medida->nombre }}</option>
@@ -69,11 +74,13 @@
                         </div>
                         <div class="col-span-1">
                             <label for="precioCompra">Precio de Compra</label>
-                            <input id="precioCompra" name="productos[0][precioCompra]" type="number" min="1" class="px-3 py-2 w-full rounded-xl bg-blue-100" placeholder="Precio de Compra">
+                            <input id="precioCompra" name="productos[0][precioCompra]" type="number" min="1"
+                                class="px-3 py-2 w-full rounded-xl bg-blue-100" placeholder="Precio de Compra">
                         </div>
                     </div>
                 </div>
-                <button type="button" id="agregarProducto" class="bg-blue-600 text-white font-bold px-4 py-2 rounded-lg">Agregar Producto</button>
+                <button type="button" id="agregarProducto"
+                    class="bg-blue-600 text-white font-bold px-4 py-2 rounded-lg">Agregar Producto</button>
             </div>
             <div class="p-5">
                 <button type="submit" class="bg-blue-600 text-white font-bold px-6 py-3 rounded-lg">
@@ -86,7 +93,7 @@
     <script>
         let productoIndex = 0;
 
-        document.getElementById('agregarProducto').addEventListener('click', function () {
+        document.getElementById('agregarProducto').addEventListener('click', function() {
             productoIndex++;
 
             const productosDiv = document.getElementById('productos');
@@ -119,6 +126,10 @@
                         @endforeach
                     </select>
                 </div>
+                <div class="col-span-1">
+                            <label for="precioCompra">Precio de Compra</label>
+                            <input id="precioCompra" name="productos[${productoIndex}][precioCompra]" type="number" min="1" class="px-3 py-2 w-full rounded-xl bg-blue-100" placeholder="Precio de Compra">
+                        </div>
             `;
 
             productosDiv.appendChild(productoInput);
