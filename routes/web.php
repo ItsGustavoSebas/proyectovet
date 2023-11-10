@@ -133,9 +133,18 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
 
     Route::get('/lotes/inicio', [LoteController::class, 'inicio'])->name('lotes.inicio');
     Route::get('/lotes/crear', [LoteController::class, 'crear'])->name('lotes.crear');
+    Route::get('/lotes/reembolsar/{id}', [LoteController::class, 'reembolsar'])->name('lotes.reembolsar');
+    Route::get('/lotes/reembolsarAceptado/{id}', [LoteController::class, 'reembolsarAceptado'])->name('lotes.reembolsarAceptado');
+    Route::get('/lotes/reembolsarInicio', [LoteController::class, 'reembolsarInicio'])->name('lotes.reembolsarInicio');
+
     Route::get('/lotes/editar/{id}', [LoteController::class, 'editar'])->name('lotes.editar');
     Route::post('/lotes/actualizar/{id}', [LoteController::class, 'actualizar'])->name('lotes.actualizar');
+    Route::post('/lotes/reembolsaractualizar/{id}', [LoteController::class, 'reembolsaractualizar'])->name('lotes.reembolsaractualizar');
+    Route::post('/lotes/reembolsaractualizar1/{id}', [LoteController::class, 'reembolsaractualizar1'])->name('lotes.reembolsaractualizar1');
+    Route::post('/lotes/actualizarReembolso/{id}', [LoteController::class, 'actualizarReembolso'])->name('lotes.actualizarReembolso');
     Route::post('/lotes/eliminar/{id}', [LoteController::class, 'eliminar'])->name('lotes.eliminar');
+
+    Route::post('/lotes/eliminarProdR/{id}', [LoteController::class, 'eliminarProdR'])->name('lotes.eliminarProdR');
     Route::post('/lotes/guardar', [LoteController::class, 'guardar'])->name('lotes.guardar');
 
 

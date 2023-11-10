@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Lote extends Model
-{
+class reembolsolote extends Model
+{  
     use HasFactory;
 
-    protected $table = 'lote';
+    protected $table = 'reembolsolote';
 
     protected $primaryKey = 'id';
 
@@ -18,7 +18,6 @@ class Lote extends Model
         'numeroLote', 
         'fechaCompra', 
         'fechaVencimiento',
-        'estado',
         'ID_Proveedor'
     ];
 
