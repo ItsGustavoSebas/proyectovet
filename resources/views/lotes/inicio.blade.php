@@ -55,8 +55,12 @@
             </tr>
         </thead>
         <tbody class="block md:table-row-group">
+
+
+
             @php $prevLoteId = null; @endphp
             @foreach ($lotes as $lote)
+              @if ($lote->estado == 1)
                 @php $loteprodCount = count($lote->loteprod); @endphp
                 <tr class="bg-white border border-grey-500 md:border-none block md:table-row">
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"
@@ -129,9 +133,11 @@
             @endforeach
             </tr>
             @php $prevLoteId = $lote->id; @endphp
+            @endif
             @endforeach
         </tbody>
     </table>
+
     <script>
         @if (Session::has('eliminado'))
             toastr.options = {
