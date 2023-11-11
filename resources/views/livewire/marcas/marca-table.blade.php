@@ -47,9 +47,6 @@
                         Nombre</th>
                     <th
                         class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
-                        Descripcion</th>
-                    <th
-                        class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
                         Acciones</th>
                 </tr>
             </thead>
@@ -60,10 +57,8 @@
                                 class="inline-block w-1/3 md:hidden font-bold">ID</span>{{ $marca->id }}</td>
                         <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
                                 class="inline-block w-1/3 md:hidden font-bold">Nombre</span>{{ $marca->nombre }}</td>
-                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
-                                class="inline-block w-1/3 md:hidden font-bold">Descripcion</span>{{ $marca->descripcion }}</td>
                         <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
-
+                            <div class="flex flex-wrap">
                             <a href="{{ route('marcas.editar', $marca->id) }}" class = "bg-green-400 px-2 py-2 rounded-lg"
                                 title="Editar">
                                 <i class="fa-regular fa-pen-to-square"></i>
@@ -79,6 +74,7 @@
                                     </form>
                                 </div>
                             </div>
+                        </div>
                         </td>
                     </tr>
                 @endforeach

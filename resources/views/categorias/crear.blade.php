@@ -11,7 +11,7 @@
             <div class="grid lg:grid-cols-3 grid-cols-1 gap-4 p-5">
                 <div class="col-span-1">
                     <label class="font-bold text-lg" for=""> Nombre</label>
-                    <input id="Nombre" name = "Nombre" type="text" class="px3 py2 w-full rounded-x1 bg-blue-100" 
+                    <input id="Nombre" name = "Nombre" type="text" class="px3 py2 w-full rounded-xl bg-blue-100" 
                     placeholder="Ingresa el Nombre">
                     @error('Nombre')
                         <strong class = "text-red-500">Debes ingresar el Nombre</strong>
@@ -19,7 +19,7 @@
                 </div>
                 <div class="col-span-1">
                     <label class="font-bold text-lg" for=""> Descripcion</label>
-                    <input id="Descripcion" name = "Descripcion" type="text" class="px3 py2 w-full rounded-x1 bg-blue-100" 
+                    <input id="Descripcion" name = "Descripcion" type="text" class="px3 py2 w-full rounded-xl bg-blue-100" 
                     placeholder="Ingresa tu Descripcion">
                     @error('Descripcion')
                         <strong class = "text-red-500">Debes ingresar la Descripcion</strong>
