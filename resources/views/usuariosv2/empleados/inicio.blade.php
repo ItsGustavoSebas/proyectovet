@@ -68,8 +68,11 @@
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
                             class="inline-block w-1/3 md:hidden font-bold">Salario</span>{{ $empleado->salario }}</td>
 
-                    <td class="p-2 md:border md:border-grey-500 text-center block md:table-cell">
-                        <div class="flex items-center justify-center">
+                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
+                        
+                        <div class="flex">
+                            <span
+                            class="inline-block w-1/3 md:hidden font-bold">Foto</span>
                             @if ($empleado->ruta_imagen_e)
                                 <img id="imagen" src="{{ asset($empleado->ruta_imagen_e) }}"
                                     class="w-16 h-16 object-cover rounded-full" alt="placeholder"> {{-- style="width:100px; height:100px;"  --}}
@@ -81,6 +84,7 @@
 
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
                         <div class="flex flex-wrap">
+                            <span class="inline-block w-1/3 md:hidden font-bold">Acciones</span>
                             <a href="{{ route('empleados.editar', $empleado->usuario->id ) }}"
                                 class = "bg-green-400 px-2 py-2 rounded-lg" title="Editar">
                                 <i class="fa-regular fa-pen-to-square"></i>

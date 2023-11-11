@@ -76,6 +76,7 @@
                             class="inline-block w-1/3 md:hidden font-bold">Raza</span>{{ $mascota->raza->nombre }}</td>
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
                         <div class="flex flex-wrap">
+                            <span class="inline-block w-1/3 md:hidden font-bold">Acciones</span>
                             <a href="{{ route('historial.inicio', $mascota->id) }}"
                                 class = "bg-indigo-600 px-2 py-2 rounded-lg" title="Historial">
                                 <i class="fa-solid fa-kit-medical"></i>

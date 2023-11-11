@@ -57,11 +57,11 @@
                             <p class="font-bold text-sm text-gray-800 md:text-base">Horario de Atención:</p>
                             <table class="mt-2">
                                 <tr>
-                                    <td class="pr-4 text-sm text-gray-800 md:text-base w-1/2">Lunes a Sábado:</td>
+                                    <td class="pr-4  text-gray-800 w-1/2 text-sm  md:text-base">Lunes a Sábado:</td>
                                     <td class="text-sm text-gray-800 md:text-base w-1/2">8:00 a. m. – 7:30 p. m.</td>
                                 </tr>
                                 <tr class="pt-4">
-                                    <td rowspan="2" class="pr-4 pt-4 text-sm text-gray-800 md:text-base w-1/2">Domingo:</td>
+                                    <td rowspan="2" class="pr-4 text-gray-800 w-1/2 text-sm  md:text-base">Domingo:</td>
                                     <td class="text-sm pt-4 text-gray-800 md:text-base w-1/2">8:00 a. m. –
                                         9:30 a. m.</td>
                                     <tr>

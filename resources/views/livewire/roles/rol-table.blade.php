@@ -59,9 +59,11 @@
                             class="inline-block w-1/3 md:hidden font-bold">ID</span>{{ $rol->id }}</td>
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
                             class="inline-block w-1/3 md:hidden font-bold">Nombre</span>{{ $rol->name }}</td>
-                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
-                            class="inline-block w-1/3 md:hidden font-bold">Permisos</span>
-                        
+                            @php $permissionsCount = count($rol->permissions); @endphp
+                            <td class="p-2 md:border md:border-grey-500 text-left block md:hidden">
+                                <span class="inline-block w-1/2 font-bold text-left">Permisos</span>
+                            </td>
+                            <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
                             <?php
                                 $permisos = $rol->permissions;
                             ?>
@@ -71,13 +73,14 @@
                             @endforeach
                     
                         </td>
-                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
                         
+                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
+                            <div class="flex flex-wrap">
+                        <span class="inline-block w-1/3 md:hidden font-bold">Acciones</span>
                         <a href="{{ route('roles.editar', $rol->id) }}"
                             class = "bg-green-400 px-2 py-2 rounded-lg" title="Editar">
                             <i class="fa-regular fa-pen-to-square"></i>
                         </a>
-                        <div class="flex flex-wrap">
                             <div>
                                 <form action="{{ route('roles.eliminar', $rol->id) }}" method="POST"
                                     onsubmit="return confirm('¿Estas seguro de eliminar?')">
