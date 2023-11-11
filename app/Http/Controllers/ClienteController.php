@@ -34,66 +34,83 @@ class ClienteController extends Controller
         return redirect(route('clientes2.inicio'))->with('eliminado', 'Usuario ' . $nombre . 'eliminado exitosamente');
     }
 
-    public function guardar(REQUEST $request)
-    {
+    public function guardar(Request $request)
+{
+    $request->validate([
+        'name' => 'required',
+        'email' => 'required|unique:users,email',
+        'telefono' => 'required|unique:users,telefono',
+        'ci' => 'required|unique:users,ci',
+        'direccion' => 'required',
+        'password' => 'required',
+    ], [
+        'name.required' => 'Debes ingresar el nombre.',
+        'email.required' => 'Debes ingresar el correo electrónico.',
+        'email.unique' => 'El correo electrónico ya está en uso.',
+        'ci.unique' => 'La Cédula de Identidad ya está registrada.',
+        'telefono.unique' => 'El número de teléfono ya está en uso.',
+        'telefono.required' => 'Debes ingresar el teléfono.',
+        'ci.required' => 'Debes ingresar el C.I.',
+        'direccion.required' => 'Debes ingresar la dirección.',
+        'password.required' => 'Debes ingresar la contraseña.',
+    ]);
 
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|unique:users,email',
-            'telefono' => 'required',
-            'ci' => 'required',
-            //'cliente' => 'required',
-            //'empleado' => 'required',
-            'direccion' => 'required',
-            'password' => 'required',
-        ]);
+    $user = User::create([
+        'name' => $request->name,
+        'email' => $request->email,
+        'telefono' => $request->telefono,
+        'ci' => $request->ci,
+        'cliente' => true,
+        'empleado' => false,
+        'rol' => 'empleado',
+        'direccion' => $request->direccion,
+        'password' => bcrypt($request->password),
+    ]); 
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'telefono' => $request->telefono,
-            'ci' => $request->ci,
-            'cliente' => true,
-            'empleado' => false,
-            'rol' => 'empleado',
-            'direccion' => $request->direccion,
-            'password' => bcrypt($request->password),
-        ]); 
+    $cliente = new Cliente();
+    $user->cliente()->save($cliente);
 
-        $cliente = new Cliente();
-        $user->cliente()->save($cliente);
+    return redirect(route('clientes2.inicio'))->with('creado', 'Cliente registrado exitosamente');
+}
 
-        return redirect(route('clientes2.inicio'))->with('creado', 'Cliente registrado exitosamente');
-    }
+public function actualizar(Request $request, $id)
+{
+    $request->validate([
+        'name' => 'required',
+        'email' => 'required|unique:users,email,' . $id,
+        'telefono' => 'required|unique:users,telefono,' . $id,
+        'ci' => 'required|unique:users,ci,' . $id,
+        'direccion' => 'required',
+    ], [
+        'name.required' => 'Debes ingresar el nombre.',
+        'email.required' => 'Debes ingresar el correo electrónico.',
+        'email.unique' => 'El correo electrónico ya está en uso.',
+        'telefono.required' => 'Debes ingresar el teléfono.',
+        'ci.required' => 'Debes ingresar el C.I.',
+        'direccion.required' => 'Debes ingresar la dirección.',
+        'ci.unique' => 'La Cédula de Identidad ya está registrada.',
+        'telefono.unique' => 'El número de teléfono ya está en uso.',
+    ]);
 
-    public function actualizar(REQUEST $request, $id)
-    {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required',
-            'telefono' => 'required',
-            'ci' => 'required',
-            'direccion' => 'required',
-        ]);
+    $usuario = User::where('id', '=', $id)->first();  
 
-        $usuario = User::where('id', '=', $id)->first();  
+    $usuario->update([
+        'name' => $request->name,
+        'email' => $request->email,
+        'telefono' => $request->telefono,
+        'ci' => $request->ci,
+        'direccion' => $request->direccion,
+    ]);
 
+    if ($request->password) {
         $usuario->update([
-            'name' => $request->name,
-            'email' => $request->email,
-            'telefono' => $request->telefono,
-            'ci' => $request->ci,
-            'direccion' => $request->direccion,
+            'password' => bcrypt($request->password),
         ]);
-
-        if ($request->password) {
-            $usuario->update([
-                'password' => bcrypt($request->password),
-            ]);
-        }
-
-        $usuario->save();
-
-        return redirect(route('clientes2.inicio'))->with('actualizado', 'Usuario actualizado exitosamente');
     }
+
+    $usuario->save();
+
+    return redirect(route('clientes2.inicio'))->with('actualizado', 'Usuario actualizado exitosamente');
+}
+
 }
