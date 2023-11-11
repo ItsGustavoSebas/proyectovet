@@ -19,6 +19,7 @@ class LoteSeeder extends Seeder
             'numeroLote' => 'Lote001',
             'fechaCompra' => '2023-05-10',
             'fechaVencimiento' => '2024-05-10',
+            'estado' => true,
             'ID_Proveedor' => '1',
         ]);
         
@@ -26,6 +27,7 @@ class LoteSeeder extends Seeder
             'numeroLote' => 'Lote002',
             'fechaCompra' => '2023-05-10',
             'fechaVencimiento' => '2024-05-10',
+            'estado' => true,
             'ID_Proveedor' => '2',
         ]);
         

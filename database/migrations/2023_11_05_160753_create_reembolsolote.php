@@ -13,12 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('lote', function (Blueprint $table) {
+        Schema::create('reembolsolote', function (Blueprint $table) {
             $table->id();
             $table->string('numeroLote');
             $table->date('fechaCompra');
             $table->string('fechaVencimiento')->nullable();
-            $table->boolean('estado');
+            $table->string('motivo');
             $table->integer('ID_Proveedor')->foreign('ID_Proveedor')->references('id')->on('proveedor');
             $table->timestamps();
         });
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lote');
+        Schema::dropIfExists('reembolsolote');
     }
 };

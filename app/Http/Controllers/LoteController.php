@@ -17,13 +17,93 @@ class LoteController extends Controller
         return (view('lotes.inicio', compact('lotes')));
     }
 
+    public function reembolsarInicio()
+    {
+        $lotes = Lote::all();
+        return (view('lotes.reembolsarInicio', compact('lotes')));
+    }
+
     public function crear()
     {
         $productos = Producto::all();
         $medidas = Medida::all();
         $proveedores = Proveedor::all();
         return view('lotes.crear', compact('productos', 'medidas', 'proveedores'));
+
+        
     }
+
+    public function reembolsar($id)
+    {
+        $lote = Lote::find($id);
+        $productos = Producto::all();
+        $medidas = Medida::all();
+        $proveedores = Proveedor::all();
+        return view('lotes.reembolsar', compact('lote', 'productos', 'medidas', 'proveedores'));
+    }
+
+
+    public function reembolsaractualizar($id)
+    {
+        $lote = Lote::find($id);
+        $lote->estado=false;
+        $lote->save();
+        return redirect(route('lotes.inicio'))->with('actualizado', 'Lote mandado al proceso de reembolso exitosamente');
+    }
+
+    public function reembolsarAceptado($id)
+    {
+        $lote = Lote::find($id);
+        $productos = Producto::all();
+        $medidas = Medida::all();
+        $proveedores = Proveedor::all();
+        return view('lotes.reembolsarAceptado', compact('lote', 'productos', 'medidas', 'proveedores'));
+    }
+
+
+
+    public function reembolsaractualizar1(Request $request, $id)
+    {
+        $lote = Lote::find($id);
+
+        $request->validate([
+            'numeroLote' => 'required',
+            'fechaCompra' => 'required',
+            
+            'productos' => 'required|array',
+        ]);
+
+        $lote->numeroLote = $request->numeroLote;
+        $lote->fechaCompra = $request->fechaCompra;
+        $lote->fechaVencimiento = $request->fechaVencimiento;
+        $lote->estado=true;
+        $lote->ID_Proveedor = $request->proveedor_id;
+        $lote->save();
+
+        LoteProd::where('ID_Lote', $lote->id)->delete();
+
+        foreach ($request->productos as $productoData) {
+            $producto_id = $productoData['producto_id'];
+            $cantidad = $productoData['cantidad'];
+            $medida_id = $productoData['medida_id'];
+            $precioCompra = $productoData['precioCompra'];
+
+            $loteprod = new LoteProd();
+            $loteprod->ID_Lote = $lote->id;
+            $loteprod->ID_Producto = $producto_id;
+            $loteprod->cantidadComprada = $cantidad;
+            $loteprod->cantidadActual = $cantidad;
+            $loteprod->ID_Medida = $medida_id;
+            $loteprod->precioCompra = $precioCompra;
+            $loteprod->save();
+        }
+
+        return redirect(route('lotes.reembolsarInicio'))->with('actualizado', 'Lote actualizado exitosamente');
+    }
+
+
+
+
 
     public function guardar(Request $request)
     {
@@ -37,6 +117,7 @@ class LoteController extends Controller
         $lote->numeroLote = $request->numeroLote;
         $lote->fechaCompra = $request->fechaCompra;
         $lote->fechaVencimiento = $request->fechaVencimiento;
+        $lote->estado=true;
         $lote->ID_Proveedor = $request->proveedor_id;
         $lote->save();
 
@@ -81,6 +162,7 @@ class LoteController extends Controller
         $lote->numeroLote = $request->numeroLote;
         $lote->fechaCompra = $request->fechaCompra;
         $lote->fechaVencimiento = $request->fechaVencimiento;
+        $lote->estado=true;
         $lote->ID_Proveedor = $request->proveedor_id;
         $lote->save();
 
@@ -105,12 +187,33 @@ class LoteController extends Controller
         return redirect(route('lotes.inicio'))->with('actualizado', 'Lote actualizado exitosamente');
     }
 
-    public function eliminar($id)
+
+
+    public function actualizarReembolso($id)
     {
         $lote = Lote::find($id);
+        $lote->estado=true;
+        $lote->save();
+        return redirect(route('lotes.reembolsarInicio'))->with('actualizado', 'Lote reembolsado exitosamente');
+    }
+
+
+
+    public function eliminar($id)
+    {
+        $lote = Lote::where('id', '=', $id)->first();
         $lote->loteprod()->delete();
         $numeroLote = $lote->numeroLote;
         $lote->delete();
         return redirect(route('lotes.inicio'))->with('eliminado', 'Lote ' . $numeroLote . ' eliminado exitosamente');
+    }
+
+    public function eliminarProdR($id)
+    {
+        $lote = Lote::where('id', '=', $id)->first();
+        $lote->loteprod()->delete();
+        $numeroLote = $lote->numeroLote;
+        $lote->delete();
+        return redirect(route('lotes.reembolsarInicio'))->with('eliminado', 'Lote ' . $numeroLote . ' eliminado exitosamente');
     }
 }
