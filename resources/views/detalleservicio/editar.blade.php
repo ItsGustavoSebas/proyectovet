@@ -30,7 +30,7 @@
                             <div class="flex">
                                 <div
                                     class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                                    <i class="fa-solid fa-user text-gray-400 text-lg"></i>
+                                    <i class="fa-regular fa-hourglass text-gray-400 text-lg"></i>
                                 </div>
                                 <input id= "Tiempo" type="string" name="Tiempo"
                                     class="w-full -ml-10 pl-10 pr-3 py-2 rounded-2xl border-2 border-gray-200 outline-none focus:border-indigo-500"

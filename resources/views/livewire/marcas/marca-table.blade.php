@@ -59,22 +59,24 @@
                                 class="inline-block w-1/3 md:hidden font-bold">Nombre</span>{{ $marca->nombre }}</td>
                         <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
                             <div class="flex flex-wrap">
-                            <a href="{{ route('marcas.editar', $marca->id) }}" class = "bg-green-400 px-2 py-2 rounded-lg"
-                                title="Editar">
-                                <i class="fa-regular fa-pen-to-square"></i>
-                            </a>
-                            <div class="flex flex-wrap">
-                                <div>
-                                    <form action="{{ route('marcas.eliminar', $marca->id) }}" method="POST"
-                                        onsubmit="return confirm('¿Estas seguro de eliminar?')">
-                                        @csrf
-                                        <button type = "submit"class="bg-red-500 px-2 py-2 rounded-lg" title="Eliminar">
-                                            <i class="fa-solid fa-trash"></i>
-                                        </button>
-                                    </form>
+                                <span class="inline-block w-1/3 md:hidden font-bold">Acciones</span>
+                                <a href="{{ route('marcas.editar', $marca->id) }}"
+                                    class = "bg-green-400 px-2 py-2 rounded-lg" title="Editar">
+                                    <i class="fa-regular fa-pen-to-square"></i>
+                                </a>
+                                <div class="flex flex-wrap">
+                                    <div>
+                                        <form action="{{ route('marcas.eliminar', $marca->id) }}" method="POST"
+                                            onsubmit="return confirm('¿Estas seguro de eliminar?')">
+                                            @csrf
+                                            <button type = "submit"class="bg-red-500 px-2 py-2 rounded-lg"
+                                                title="Eliminar">
+                                                <i class="fa-solid fa-trash"></i>
+                                            </button>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         </td>
                     </tr>
                 @endforeach

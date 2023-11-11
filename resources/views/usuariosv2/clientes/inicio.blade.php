@@ -56,7 +56,7 @@
                             class="inline-block w-1/3 md:hidden font-bold">C.I</span>{{ $cliente->usuario->ci }}</td>
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
                         <div class="flex flex-wrap">
-
+                            <span class="inline-block w-1/3 md:hidden font-bold">Acciones</span>
                             <a href="{{ route('mascotas.inicio', $cliente->usuario->id) }}"
                                 class = "bg-white px-2 py-2 rounded-lg" title="Mascotas">
                                 <i class="fa-solid fa-paw"></i>

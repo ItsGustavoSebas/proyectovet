@@ -66,7 +66,7 @@
                 <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
                     <div class="flex flex-wrap">
 
-                    
+                        <span class="inline-block w-1/3 md:hidden font-bold">Acciones</span>
 
                         @if ($tipo=='servicio')
                          <a href="{{ route('detalleservicio.inicio', $cita->id) }}" class="bg-green-400 px-2 py-2 rounded-lg"

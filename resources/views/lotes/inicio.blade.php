@@ -69,8 +69,9 @@
                     </td>
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"
                         rowspan="{{ $loteprodCount }}">
-                        <span class="inline-block w-1/3 md:hidden font-bold">Acciones</span>
+                        
                         <div class="flex flex-wrap">
+                            <span class="inline-block w-1/3 md:hidden font-bold">Acciones</span>
                             <a href="{{ route('lotes.editar', $lote->id) }}" class="bg-green-400 px-2 py-2 rounded-lg"
                                 title="Editar">
                                 <i class="fa-regular fa-pen-to-square"></i>
@@ -84,6 +85,10 @@
                                     </button>
                                 </form>
                             </div>
+                            <a href="{{ route('lotes.reembolsar', $lote->id) }}" class="bg-red-400 px-2 py-2 rounded-lg"
+                                title="Reembolsar">
+                                <i class="fa-solid fa-circle-exclamation"></i>
+                            </a>
                         </div>
                     </td>
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"
