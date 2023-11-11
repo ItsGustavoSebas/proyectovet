@@ -21,7 +21,7 @@
             <!-- Cuadro exterior con fondo azul marino y relleno de 8 unidades -->
             <div class="bg-gray-100 p-4 overflow-hidden shadow-xl sm:rounded-lg m-5 ">
                 <div class= "text-center font-sans text-black font-bold text-3xl antialiased pb-10 mt-10">
-                    EDITAR EMPLEADO
+                    EDITAR CLIENTE
                 </div>
                 <div>
                     <label class="font-bold text-lg" for=""> Nombre</label>
@@ -36,7 +36,7 @@
                                     class="w-full -ml-10 pl-10 pr-3 py-2 rounded-2xl border-2 border-gray-200 outline-none focus:border-indigo-500"
                                     placeholder="Ingresar nombre" value="{{ $cliente->usuario->name }}">
                                 @error('name')
-                                    <strong class = "text-red-500">Debes ingresar tu nombre</strong>
+                                    <strong class = "text-red-500">{{ $message }}</strong>
                                 @enderror
                             </div>
                         </div>
@@ -53,7 +53,7 @@
                                     class="w-full -ml-10 pl-10 pr-3 py-2 rounded-2xl border-2 border-gray-200 outline-none focus:border-indigo-500"
                                     placeholder="ingresar correo electrónico" value="{{ $cliente->usuario->email }}"v>
                                 @error('email')
-                                    <strong class = "text-red-500">Debes ingresar tu email</strong>
+                                    <strong class = "text-red-500">{{ $message }}</strong>
                                 @enderror
                             </div>
                         </div>
@@ -84,7 +84,7 @@
                                     class="w-full -ml-10 pl-10 pr-3 py-2 rounded-2xl border-2 border-gray-200 outline-none focus:border-indigo-500"
                                     placeholder="Ingresar teléfono" value="{{ $cliente->usuario->telefono }}">
                                 @error('telefono')
-                                    <strong class = "text-red-500">Debes ingresar tu telefono</strong>
+                                    <strong class = "text-red-500">{{ $message }}</strong>
                                 @enderror
                             </div>
                         </div>
@@ -98,7 +98,7 @@
                                     class="w-full -ml-10 pl-10 pr-3 py-2 rounded-2xl border-2 border-gray-200 outline-none focus:border-indigo-500"
                                     placeholder="Ingresar C.I." value="{{ $cliente->usuario->ci }}">
                                 @error('ci')
-                                    <strong class = "text-red-500">Debes ingresar tu ci</strong>
+                                    <strong class = "text-red-500">{{ $message }}</strong>
                                 @enderror
                             </div>
                         </div>
@@ -115,7 +115,7 @@
                                     class="w-full -ml-10 pl-10 pr-3 py-2 rounded-2xl border-2 border-gray-200 outline-none focus:border-indigo-500"
                                     placeholder="Ingresar Contraseña" value="{{ old('password') }}">
                                 @error('password')
-                                    <strong class = "text-red-500">Debes ingresar tu contraseña</strong>
+                                    <strong class = "text-red-500">{{ $message }}</strong>
                                 @enderror
                             </div>
                         </div>

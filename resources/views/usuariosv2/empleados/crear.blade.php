@@ -36,7 +36,7 @@
                                     class="w-full -ml-10 pl-10 pr-3 py-2 rounded-2xl border-2 border-gray-200 outline-none focus:border-indigo-500"
                                     placeholder="Ingresar nombre" value="{{ old('name') }}">
                                 @error('name')
-                                    <strong class = "text-red-500">Debes ingresar tu nombre</strong>
+                                    <strong class = "text-red-500">{{ $message }}</strong>
                                 @enderror
                             </div>
                         </div>
@@ -53,7 +53,7 @@
                                     class="w-full -ml-10 pl-10 pr-3 py-2 rounded-2xl border-2 border-gray-200 outline-none focus:border-indigo-500"
                                     placeholder="ingresar correo electrónico" value="{{ old('email') }}"v>
                                 @error('email')
-                                    <strong class = "text-red-500">Debes ingresar tu email</strong>
+                                    <strong class = "text-red-500">{{ $message }}</strong>
                                 @enderror
                             </div>
                         </div>
@@ -84,7 +84,7 @@
                                     class="w-full -ml-10 pl-10 pr-3 py-2 rounded-2xl border-2 border-gray-200 outline-none focus:border-indigo-500"
                                     placeholder="Ingresar teléfono" value="{{ old('telefono') }}">
                                 @error('telefono')
-                                    <strong class = "text-red-500">Debes ingresar tu telefono</strong>
+                                    <strong class = "text-red-500">{{ $message }}</strong>
                                 @enderror
                             </div>
                         </div>
@@ -98,7 +98,7 @@
                                     class="w-full -ml-10 pl-10 pr-3 py-2 rounded-2xl border-2 border-gray-200 outline-none focus:border-indigo-500"
                                     placeholder="Ingresar C.I." value="{{ old('ci') }}">
                                 @error('ci')
-                                    <strong class = "text-red-500">Debes ingresar tu ci</strong>
+                                    <strong class = "text-red-500">{{ $message }}</strong>
                                 @enderror
                             </div>
                         </div>
@@ -115,7 +115,7 @@
                                     class="w-full -ml-10 pl-10 pr-3 py-2 rounded-2xl border-2 border-gray-200 outline-none focus:border-indigo-500"
                                     placeholder="Ingresar Contraseña" value="{{ old('password') }}">
                                 @error('password')
-                                    <strong class = "text-red-500">Debes ingresar tu contraseña</strong>
+                                    <strong class = "text-red-500">{{ $message }}</strong>
                                 @enderror
                             </div>
                         </div>
@@ -129,7 +129,7 @@
                                     class="w-full -ml-10 pl-10 pr-3 py-2 rounded-2xl border-2 border-gray-200 outline-none focus:border-indigo-500"
                                     placeholder="Ingresar salario" value="{{ old('salario') }}">
                                 @error('salario')
-                                    <strong class = "text-red-500">Debes ingresar Salario</strong>
+                                    <strong class = "text-red-500">{{ $message }}</strong>
                                 @enderror
                             </div>
                         </div>
