@@ -108,7 +108,7 @@ class ReservarInicio extends Component
 
       $this->reservaExitosa = true;
 
-      $this->reset (['fecha','descripcion','fechaProgramada','hora', 'tipo', 'modalFecha', 'horasReservadas', 'fechaDevuelta', 'horaActual', 'ID_Cliente']);
+      $this->reset (['fecha','descripcion','fechaProgramada','hora', 'tipo', 'modalFecha', 'horasReservadas', 'fechaDevuelta', 'horaActual']);
 
  
 
@@ -122,11 +122,14 @@ class ReservarInicio extends Component
 
 
 
-    public function obtenerHorasReservadas($fechaProgramada)
+    public function obtenerHorasReservadas($fechaProgramada, $nuevoTipo)
     {
       //  dump($fechaProgramada);
         // Filtra todas las citas de la base de datos por la fechaProgramada proporcionada
-        $citas = Cita::whereDate('fechaProgramada', $fechaProgramada)->get();
+        $citas = Cita::whereDate('fechaProgramada', $fechaProgramada)
+        ->where('tipo', $nuevoTipo)
+        ->get();
+
     
         // Inicializa un array para almacenar las horas reservadas
         $this->horasReservadas = [];
