@@ -53,6 +53,7 @@
   <div class="imagen-con-fondo">
 
     <div class="relative top-[25px] left-[0%] right-[0%] md:left-[40px] w-full md:w-1/5 h-[420px] bg-[#5E5959] ">
+        
         <h1 class="text-5xl font-bold text-white mb-1 text-center md:mb-4">
             Reservar cita
         </h1>
@@ -200,7 +201,7 @@
 
         </div>
     </div>
-  </div>
+ 
 
 
 <div class="contenedor-general">
@@ -807,6 +808,7 @@
  
      </script>
 
+</div>
 
 
 
