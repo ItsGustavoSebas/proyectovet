@@ -4,24 +4,6 @@
             <h2 class="text-2xl font-semibold leading-tight">MARCAS</h2>
         </div>
         <div class="my-2 flex sm:flex-row flex-col">
-            {{-- <div class="flex flex-row mb-1 sm:mb-0">
-                <div class="relative">
-                    <select
-                        class="appearance: none h-full rounded-l border block appearance: none w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
-                        <option>5</option>
-                        <option>10</option>
-                        <option>20</option>
-                    </select>
-                </div>
-                <div class="relative">
-                    <select
-                        class="appearance: none h-full rounded-r border-t sm:rounded-r-none sm:border-r-0 border-r border-b block appearance: none w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:border-l focus:border-r focus:bg-white focus:border-gray-500">
-                        <option>All</option>
-                        <option>Active</option>
-                        <option>Inactive</option>
-                    </select>
-                </div>
-            </div> --}}
             <div class="block relative">
                 <span class="h-full absolute inset-y-0 left-0 flex items-center pl-2">
                     <svg viewBox="0 0 24 24" class="h-4 w-4 fill-current text-gray-500">
@@ -60,10 +42,13 @@
                         <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
                             <div class="flex flex-wrap">
                                 <span class="inline-block w-1/3 md:hidden font-bold">Acciones</span>
+                                @can('Editar Marca')
                                 <a href="{{ route('marcas.editar', $marca->id) }}"
                                     class = "bg-green-400 px-2 py-2 rounded-lg" title="Editar">
                                     <i class="fa-regular fa-pen-to-square"></i>
                                 </a>
+                                @endcan
+                                @can('Eliminar Marca')
                                 <div class="flex flex-wrap">
                                     <div>
                                         <form action="{{ route('marcas.eliminar', $marca->id) }}" method="POST"
@@ -76,6 +61,7 @@
                                         </form>
                                     </div>
                                 </div>
+                                @endcan
                             </div>
                         </td>
                     </tr>

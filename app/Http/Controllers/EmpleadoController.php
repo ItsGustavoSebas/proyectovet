@@ -7,10 +7,10 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\User;
 use App\Models\Empleado;
 use PhpParser\Node\Stmt\Else_;
+use Spatie\Permission\Models\Role;
 
 class EmpleadoController extends Controller
 {
-    //
 
     public function inicio()
     {
@@ -25,8 +25,9 @@ class EmpleadoController extends Controller
 
     public function editar($id)
     {
+        $user = User::where('id', '=', $id)->first();
         $empleado = Empleado::where('ID_Usuario', '=', $id)->with('usuario')->first();
-        return view('usuariosv2.empleados.editar', compact('empleado'));
+        return view('usuariosv2.empleados.editar', compact('empleado','user'));
     }
 
     public function eliminar($id)
@@ -47,12 +48,11 @@ class EmpleadoController extends Controller
             'email' => 'required|unique:users,email',
             'telefono' => 'required|unique:users,telefono',
             'ci' => 'required|unique:users,ci',
-            // 'cliente' => 'required',
-            // 'empleado' => 'required',
             'direccion' => 'required',
             'password' => 'required',
             'ruta_imagen_e' => 'nullable|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
             'salario' => 'required',
+            'roles' => 'required|array',
         ], [
             'name.required' => 'Debes ingresar el nombre.',
             'email.required' => 'Debes ingresar el correo electrónico.',
@@ -63,6 +63,7 @@ class EmpleadoController extends Controller
             'ci.unique' => 'La Cédula de Identidad ya está registrada.',
             'telefono.unique' => 'El número de teléfono ya está en uso.',
             'salario.required' => 'Debes ingresar el salario.',
+            'roles.required' => 'Debes ingresar al menos un rol',
         ]);
 
         $user = User::create([
@@ -72,10 +73,9 @@ class EmpleadoController extends Controller
             'ci' => $request->ci,
             'cliente' => false,
             'empleado' => true,
-            'rol' => 'empleado',
             'direccion' => $request->direccion,
             'password' => bcrypt($request->password),
-        ]);
+        ])->syncRoles($request->roles);
 
         if ($request->ruta_imagen_e) {
             $nombreImagen = time() . '_' . $request->ruta_imagen_e->getClientOriginalName();
@@ -93,9 +93,6 @@ class EmpleadoController extends Controller
         $user->empleado()->save($empleado);
 
 
-        // $cliente = new Cliente();
-        // $user->cliente()->save($cliente);
-
         return redirect(route('empleados.inicio'))->with('creado', 'Empleado registrado exitosamente');
     }
 
@@ -109,6 +106,7 @@ class EmpleadoController extends Controller
             'ci' => 'required|unique:users,ci,' . $id,
             'direccion' => 'required',
             'salario' => 'required',
+            'roles' => 'required|array',
         ], [
             'name.required' => 'Debes ingresar el nombre.',
             'email.required' => 'Debes ingresar el correo electrónico.',
@@ -119,6 +117,7 @@ class EmpleadoController extends Controller
             'ci.unique' => 'La Cédula de Identidad ya está registrada.',
             'telefono.unique' => 'El número de teléfono ya está en uso.',
             'salario.required' => 'Debes ingresar el salario.',
+            'roles.required' => 'Debes ingresar al menos un rol',
         ]);
 
         $usuario = User::where('id', '=', $id)->first();  /* User::findOrFail($id) esto es para regresar un valor null en un error de base de datos */
@@ -138,6 +137,8 @@ class EmpleadoController extends Controller
         }
 
         $usuario->save();
+        $roleNames = Role::whereIn('id', $request->roles)->pluck('name')->toArray();
+        $usuario->syncRoles($roleNames);
 
         $empleado = empleado::where('ID_Usuario', '=', $usuario->id)->first();
 

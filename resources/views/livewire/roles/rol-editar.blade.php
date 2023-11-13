@@ -54,9 +54,9 @@
                         @endforeach
                     </div>
 
-                    {{-- @error('permisos')
+                    @error('permisos')
                         <strong class="text-red-500 font-bold">Ingresar al menos un Permiso</strong>
-                    @enderror --}}
+                    @enderror
                 </div>
 
                 <div class="flex -mx-3 pt-9">

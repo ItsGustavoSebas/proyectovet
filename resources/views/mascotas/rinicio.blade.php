@@ -86,16 +86,19 @@
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
                         <div class="flex flex-wrap">
                             <span class="inline-block w-1/3 md:hidden font-bold">Acciones</span>
+                            @can('Visualizar Historial')
                             <a href="{{ route('historial.inicio', $mascota->id) }}"
                                 class = "bg-indigo-600 px-2 py-2 rounded-lg" title="Historial">
                                 <i class="fa-solid fa-kit-medical"></i>
                             </a>
-                            
+                            @endcan
+                            @can('Editar Mascota')
                             <a href="{{ route('mascotas.editar', $mascota->id) }}"
                                 class = "bg-green-400 px-2 py-2 rounded-lg" title="Editar">
                                 <i class="fa-regular fa-pen-to-square"></i>
                             </a>
-
+                            @endcan
+                            @can('Eliminar Mascota')
                             <div>
                                 <form action="{{ route('mascotas.eliminar', $mascota->id) }}" method="POST"
                                     onsubmit="return confirm('¿Estas seguro de eliminar?')">
@@ -105,6 +108,7 @@
                                     </button>
                                 </form>
                             </div>
+                            @endcan
                     </td>
                 </tr>
             @endforeach
