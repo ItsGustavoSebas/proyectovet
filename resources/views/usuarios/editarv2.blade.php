@@ -51,7 +51,7 @@
                                 </div>
                                 <input id= "email" type="email" name="email"
                                     class="w-full -ml-10 pl-10 pr-3 py-2 rounded-2xl border-2 border-gray-200 outline-none focus:border-indigo-500"
-                                    placeholder="ingresar correo electrónico" value="{{ $usuario->email }}"v>
+                                    placeholder="ingresar correo electrónico" value="{{ $usuario->email }}">
                                 @error('email')
                                     <strong class = "text-red-500">Debes ingresar tu email</strong>
                                 @enderror

@@ -57,4 +57,10 @@ class Servicio extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+
+    public function Cita()
+    {
+        return $this->belongsToMany(Cita::class, 'detalleservicio');
+    }
 }

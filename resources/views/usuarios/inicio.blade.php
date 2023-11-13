@@ -56,21 +56,28 @@
                             class="inline-block w-1/3 md:hidden font-bold">C.I</span>{{ $usuario->ci }}</td>
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
                         <div class="flex flex-wrap">
-                            <a href="{{ route('usuarios.editar', $usuario->id) }}" class = "bg-green-400 px-2 py-2 rounded-lg">
+
+                            <a href="{{ route('mascotas.inicio', $usuario->id) }}"
+                                class = "bg-white px-2 py-2 rounded-lg" title="Mascotas">
+                                <i class="fa-solid fa-paw"></i>
+                            </a>
+
+                            <a href="{{ route('usuarios.editar', $usuario->id) }}"
+                                class = "bg-green-400 px-2 py-2 rounded-lg" title="Editar">
                                 <i class="fa-regular fa-pen-to-square"></i>
                             </a>
 
                             <div>
-                                <form action="{{  route('usuarios.eliminar', $usuario->id) }}" method="POST"
+                                <form action="{{ route('usuarios.eliminar', $usuario->id) }}" method="POST"
                                     onsubmit="return confirm('¿Estas seguro de eliminar?')">
                                     @csrf
-                                    <button type = "submit"class="bg-red-500 px-2 py-2 rounded-lg">
+                                    <button type = "submit"class="bg-red-500 px-2 py-2 rounded-lg" title="Eliminar">
                                         <i class="fa-solid fa-trash"></i>
                                     </button>
                                 </form>
                             </div>
                         </div>
-                            </td>
+                    </td>
                 </tr>
             @endforeach
         </tbody>
@@ -81,21 +88,21 @@
                 "closeButton": true,
                 "progressBar": true,
             }
-            toastr.success("{{session('eliminado')}}")
+            toastr.success("{{ session('eliminado') }}")
         @endif
         @if (Session::has('actualizado'))
             toastr.options = {
                 "closeButton": true,
                 "progressBar": true,
             }
-            toastr.success("{{session('actualizado')}}")
+            toastr.success("{{ session('actualizado') }}")
         @endif
         @if (Session::has('creado'))
             toastr.options = {
                 "closeButton": true,
                 "progressBar": true,
             }
-            toastr.success("{{session('creado')}}")
+            toastr.success("{{ session('creado') }}")
         @endif
     </script>
 </x-app-layout>
