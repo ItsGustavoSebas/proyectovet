@@ -5,7 +5,7 @@
     
     <div id="main">
         <div class="w3-teal">
-            <button id="openNav" class="w3-button w3-teal w3-xlarge" onclick="toggleMenu1()">&#9776; Menú</button>
+            <button id="openNav" class="w3-button w3-xlarge" onclick="toggleMenu1()">&#9776; Menú</button>
         </div>
     </div>
 
@@ -29,6 +29,10 @@
         .rounded {
             border-radius: 0rem;
         }
+        #main .w3-teal {
+        background: linear-gradient(to right, #4338ca, #1e1b4b) !important;
+        color: #fff !important;
+    }
     </style>
 
     <body class="h-screen" style="background- color: rgb(31 41 55 / var(--tw-bg-opacity))">

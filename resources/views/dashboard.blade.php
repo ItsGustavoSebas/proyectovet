@@ -20,13 +20,13 @@
 
 <body class="h-screen" style="background: #f9fafa">
     <div class="flex flex-col h-full">
-        <div class="flex items-center justify-between " style="background-color:#019688;">
-            <div style="width: 70%;">
+        <div class="flex items-center justify-between " style="background: linear-gradient(to right, #4338ca, #1e1b4b); height: 80px;">
+            <div style="width: 100%;">
                 <!-- Contenido del primer div -->
                 @include('navigation-menu')
             </div>
 
-            <div style="width: 35%;">
+            <div style="width: 35%; position: absolute; top: 0; right: 0;">
                 <ul class="flex items-center text-base text-white show-on-small-screen">
                     <li>
                         <a class="lg:p-4 py-3 px-2 block border-b-2 border-transparent hover:border-white text-center sm:text-base"
