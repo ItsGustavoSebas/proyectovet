@@ -429,7 +429,7 @@
                         // @this.call('obtenerHorasReservadas', fechaSeleccionada, function(response) {
                           //  console.log(hora);
                         // });
-                        Livewire.emit('obtenerHorasReservadas' , [fechaSeleccionada]);
+                        Livewire.emit('obtenerHorasReservadas' , [fechaSeleccionada], [seleccionActual]);
                       
 
 
