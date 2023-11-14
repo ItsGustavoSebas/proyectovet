@@ -19,6 +19,10 @@ use App\Http\Controllers\detalleservicioController;
 use App\Http\Controllers\MarcaController;
 use App\Http\Controllers\UserController;
 use App\Models\TratamientoDeLaConsulta;
+use App\Models\RecetaMedica;
+use App\Models\DetalleReceta;
+use App\Http\Controllers\RecetaMedicaController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -173,5 +177,11 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
     Route::post('/marcas/actualizar/{id}', [MarcaController::class, 'actualizar'])->name('marcas.actualizar');
     Route::post('/marcas/eliminar/{id}', [MarcaController::class, 'eliminar'])->name('marcas.eliminar');
     
+    Route::get('/RecetaMedica/crear/{id}', [RecetaMedicaController::class, 'crear'])->name('RecetaMedica.crear');
+    Route::post('/RecetaMedica/guardar/', [RecetaMedicaController::class, 'guardar'])->name('RecetaMedica.guardar');
+    Route::get('/RecetaMedica/editar/{id}', [RecetaMedicaController::class, 'editar'])->name('RecetaMedica.editar');
+    Route::post('/RecetaMedica/actualizar/{id}', [RecetaMedicaController::class, 'actualizar'])->name('RecetaMedica.actualizar');
+    Route::post('/RecetaMedica/eliminar/{id}', [RecetaMedicaController::class, 'eliminar'])->name('RecetaMedica.eliminar');
+
     Route::get('/correo/enviar', [CorreoController::class, 'enviar'])->name('correo.enviar');
 });

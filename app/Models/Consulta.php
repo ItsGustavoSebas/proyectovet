@@ -38,4 +38,6 @@ class Consulta extends Model
     {
         return $this->belongsToMany(Tratamiento::class, 'tratamiento_de_la_consulta');
     }
+
+    
 }
