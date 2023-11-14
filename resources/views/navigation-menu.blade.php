@@ -1,8 +1,8 @@
-<nav x-data="{ open: false }"> 
+<nav x-data="{ open: false }">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
-    
+
     <div id="main">
         <div class="w3-teal">
             <button id="openNav" class="w3-button w3-xlarge" onclick="toggleMenu1()">&#9776; Menú</button>
@@ -36,9 +36,11 @@
     </style>
 
     <body class="h-screen" style="background- color: rgb(31 41 55 / var(--tw-bg-opacity))">
-        
+
         <div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="display:none" id="mySidebar">
             <div class="bg-gray-800 text-white px-3" style="height:inherit">
+                
+                @can('Vizualizar Menu')
                 <nav>
                     <div class="w-100 rounded px-1" style="display: flex; align-items:center; justify-content:center; text-align:center">
                         <img src="{{ asset('build/imagenes/utilitarios/logotransp.png') }}" alt="Logo" style="float:none;" width="70" height="65" >
@@ -61,13 +63,15 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('register') }}" id="logout-and-register" class="p-2 hover:bg-gray-700 flex items-center">
+                                    <a href="{{ route('register') }}" id="logout-and-register"
+                                        class="p-2 hover:bg-gray-700 flex items-center">
                                         <i class="fas fa-chevron-right mr-2 text-xs"></i>
                                         Registrar Usuario
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('login') }}" id="logout-and-login" class="p-2 hover:bg-gray-700 flex items-center">
+                                    <a href="{{ route('login') }}" id="logout-and-login"
+                                        class="p-2 hover:bg-gray-700 flex items-center">
                                         <i class="fas fa-chevron-right mr-2 text-xs"></i>
                                         Iniciar Sesión
                                     </a>
@@ -81,24 +85,33 @@
                                         </button>
                                     </form>
                                 </li>
-                                <li>
-                                    <a href="{{ route('roles.inicio') }}" class=" p-2 hover:bg-gray-700 flex items-center">
+                                @can('Listar Roles')
+                                    <li>
+                                    <a href="{{ route('roles.inicio') }}"
+                                        class=" p-2 hover:bg-gray-700 flex items-center">
                                         <i class="fas fa-chevron-right mr-2 text-xs"></i>
                                         Gestionar Permisos
                                     </a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('empleados.inicio') }}" class=" p-2 hover:bg-gray-700 flex items-center">
+                                    </li>
+                                @endcan
+                                @can('Listar Empleados')
+                                   <li>
+                                    <a href="{{ route('empleados.inicio') }}"
+                                        class=" p-2 hover:bg-gray-700 flex items-center">
                                         <i class="fas fa-chevron-right mr-2 text-xs"></i>
                                         Gestionar Empleado
                                     </a>
-                                </li>
+                                    </li> 
+                                @endcan
+                                @can('Listar Clientes')
                                 <li>
-                                    <a href="{{ route('clientes2.inicio') }}" class=" p-2 hover:bg-gray-700 flex items-center">
+                                    <a href="{{ route('clientes2.inicio') }}"
+                                        class=" p-2 hover:bg-gray-700 flex items-center">
                                         <i class="fas fa-chevron-right mr-2 text-xs"></i>
                                         Gestionar Cliente
                                     </a>
                                 </li>
+                                @endcan
                             </ul>
                         </li>
                         <li class="opcion-con-desplegable">
@@ -110,56 +123,73 @@
                                 <i class="fas fa-chevron-down text-xs"></i>
                             </div>
                             <ul class="desplegable ml-4 hidden">
-                            <li>
-                                <a href="{{ route('mascotas.rinicio') }}" class="p-2 hover:bg-gray-700 flex items-center">
-                                    <i class="fas fa-chevron-right mr-2 text-xs"></i>
-                                    Gestionar Mascota
-                                </a>
-                            </li>
-                            <li class="ml-4">
-                                <a href="{{ route('mascotas.rinicio') }}" class="p-2 hover:bg-gray-700 flex items-center">
-                                    <i class="fas fa-chevron-right mr-2 text-xs"></i>
-                                    Generar Historial Médico
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('reservar.consultar', Auth::id()) }}"
-                                    class=" p-2 hover:bg-gray-700 flex items-center">
-                                    <i class="fas fa-chevron-right mr-2 text-xs"></i>
-                                    Consultar Reservas
-                                </a>
-                            </li>
-                                <li class="ml-4">
-                                    <a href="{{ route('consulta.consultas')}}" class=" p-2 hover:bg-gray-700 flex items-center">
+                                @can('Listar Mascotas')
+                                <li>
+                                    <a href="{{ route('mascotas.rinicio') }}"
+                                        class="p-2 hover:bg-gray-700 flex items-center">
+                                        <i class="fas fa-chevron-right mr-2 text-xs"></i>
+                                        Gestionar Mascota
+                                    </a>
+                                </li>
+                                @endcan
+                                @can('Listar Mascotas')
+                                <li>
+                                    <a href="{{ route('mascotas.rinicio') }}"
+                                        class="p-2 hover:bg-gray-700 flex items-center">
+                                        <i class="fas fa-chevron-right mr-2 text-xs"></i>
+                                        Generar Historial Médico
+                                    </a>
+                                </li>
+                                @endcan
+                                @can('Listar Reservas')
+                                <li>
+                                    <a href="{{ route('reservar.consultar', Auth::id()) }}"
+                                        class=" p-2 hover:bg-gray-700 flex items-center">
+                                        <i class="fas fa-chevron-right mr-2 text-xs"></i>
+                                        Consultar Reservas
+                                    </a>
+                                </li>
+                                @endcan
+                                @can('Listar Consultas')
+                                <li>
+                                    <a href="{{ route('consulta.consultas') }}"
+                                        class=" p-2 hover:bg-gray-700 flex items-center">
                                         <i class="fas fa-chevron-right mr-2 text-xs"></i>
                                         Gestionar Consulta
                                     </a>
                                 </li>
-                                <li class="ml-8">
+                                @endcan
+                                <li>
                                     <a href="consulta.consultas" class=" p-2 hover:bg-gray-700 flex items-center">
                                         <i class="fas fa-chevron-right mr-2 text-xs"></i>
                                         Gestionar Tratamiento de la Consulta
                                     </a>
                                 </li>
-                                <li class="ml-8">
+                                <li>
                                     <a href="#" class=" p-2 hover:bg-gray-700 flex items-center">
                                         <i class="fas fa-chevron-right mr-2 text-xs"></i>
                                         Gestionar Receta Medica
                                     </a>
                                 </li>
+                                @can('Listar Tratamientos')
                                 <li>
-                                    <a href="{{ route('tratamientos.inicio') }}" class=" p-2 hover:bg-gray-700 flex items-center">
+                                    <a href="{{ route('tratamientos.inicio') }}"
+                                        class=" p-2 hover:bg-gray-700 flex items-center">
                                         <i class="fas fa-chevron-right mr-2 text-xs"></i>
                                         Gestionar Tratamiento
                                     </a>
                                 </li>
-        
+                                @endcan
+                                @can('Visualizar Servicios')
                                 <li>
-                                    <a href="{{ route('servicios.inicio') }}" class=" p-2 hover:bg-gray-700 flex items-center">
+                                    <a href="{{ route('servicios.inicio') }}"
+                                        class=" p-2 hover:bg-gray-700 flex items-center">
                                         <i class="fas fa-chevron-right mr-2 text-xs"></i>
                                         Gestionar Servicio
                                     </a>
                                 </li>
+                                @endcan
+                                @can('Crear Reserva')
                                 <li>
                                     <a href="{{ route('reservar.inicio', Auth::id()) }}"
                                         class=" p-2 hover:bg-gray-700 flex items-center">
@@ -167,7 +197,7 @@
                                         Gestionar Reserva
                                     </a>
                                 </li>
-                                
+                                @endcan
                             </ul>
                         </li>
                         <li class="opcion-con-desplegable">
@@ -185,36 +215,50 @@
                                         Gestionar Devolucion al Proveedor
                                     </a>
                                 </li>
+                                @can('Listar Proveedores')
                                 <li>
-                                    <a href="{{ route('proveedor.inicio') }}" class=" p-2 hover:bg-gray-700 flex items-center">
+                                    <a href="{{ route('proveedor.inicio') }}"
+                                        class=" p-2 hover:bg-gray-700 flex items-center">
                                         <i class="fas fa-chevron-right mr-2 text-xs"></i>
                                         Gestionar Proveedor
                                     </a>
                                 </li>
+                                @endcan
+                                @can('Listar Productos')
                                 <li>
                                     <a href="#" class=" p-2 hover:bg-gray-700 flex items-center">
                                         <i class="fas fa-chevron-right mr-2 text-xs"></i>
                                         Gestionar Producto
                                     </a>
                                 </li>
+                                @endcan
+                                @can('Listar Lotes')
                                 <li>
-                                    <a href="{{ route('lotes.inicio') }}" class=" p-2 hover:bg-gray-700 flex items-center">
+                                    <a href="{{ route('lotes.inicio') }}"
+                                        class=" p-2 hover:bg-gray-700 flex items-center">
                                         <i class="fas fa-chevron-right mr-2 text-xs"></i>
                                         Gestionar Lote
                                     </a>
                                 </li>
+                                @endcan
+                                @can('Listar Categorias')
                                 <li>
-                                    <a href="{{ route('categorias.inicio') }}" class=" p-2 hover:bg-gray-700 flex items-center">
+                                    <a href="{{ route('categorias.inicio') }}"
+                                        class=" p-2 hover:bg-gray-700 flex items-center">
                                         <i class="fas fa-chevron-right mr-2 text-xs"></i>
                                         Gestionar Categoria
                                     </a>
                                 </li>
+                                @endcan
+                                @can('Listar Marcas')
                                 <li>
-                                    <a href="{{ route('marcas.inicio') }}" class=" p-2 hover:bg-gray-700 flex items-center">
+                                    <a href="{{ route('marcas.inicio') }}"
+                                        class=" p-2 hover:bg-gray-700 flex items-center">
                                         <i class="fas fa-chevron-right mr-2 text-xs"></i>
                                         Gestionar Marca
                                     </a>
                                 </li>
+                                @endcan
                             </ul>
                         </li>
                         <li class="opcion-con-desplegable">
@@ -262,7 +306,8 @@
                             <h4></h4>
                         </div>
                         <!-- Agrega más enlaces para la navegación lateral -->
-                        <a href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')" class=" p-1 py-2 hover:bg-gray-700 flex items-center">
+                        <a href="{{ route('dashboard') }}" :active="request() - > routeIs('dashboard')"
+                            class=" p-1 py-2 hover:bg-gray-700 flex items-center">
                             <i class="fas fa-home mr-2"></i>
                             Inicio
                         </a>
@@ -276,7 +321,8 @@
                             </div>
                             <ul class="desplegable ml-4 hidden">
                                 <li>
-                                    <a href="{{ route('profile.show') }}" class=" p-2 hover:bg-gray-700 flex items-center">
+                                    <a href="{{ route('profile.show') }}"
+                                        class=" p-2 hover:bg-gray-700 flex items-center">
                                         <i class="fas fa-chevron-right mr-2 text-xs"></i>
                                         Perfil
                                     </a>
@@ -294,12 +340,116 @@
                         </li>
                     </ul>
                 </nav>
+                @endcan
+
+                {{-- MENU PARA EL CLIENTE --}}
+                @can('Menu Cliente')
+                <nav>
+                    <div class="w-100 rounded px-3">
+                        <h4>La Hacienda</h4>
+                    </div>
+                    <ul class="space-y-2">
+                        <li class="opcion-con-desplegable">
+                            <div class="flex items-center justify-between p-2 hover:bg-gray-700">
+                                <div class="flex items-center">
+                                    <i class="fas fa-calendar-alt mr-2"></i>
+                                    <span>Reservas</span>
+                                </div>
+                                <i class="fas fa-chevron-down text-xs"></i>
+                            </div>
+                            <ul class="desplegable ml-4 hidden">
+                                <li>
+                                    <a href="{{ route('reservar.consultar', Auth::id()) }}"
+                                        class=" p-2 hover:bg-gray-700 flex items-center">
+                                        <i class="fas fa-chevron-right mr-2 text-xs"></i>
+                                        Consulta tus Reservas
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('reservar.inicio', Auth::id()) }}"
+                                        class=" p-2 hover:bg-gray-700 flex items-center">
+                                        <i class="fas fa-chevron-right mr-2 text-xs"></i>
+                                        Crea Tu Reserva
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="opcion-con-desplegable">
+                            <div class="flex items-center justify-between p-2 hover:bg-gray-700">
+                                <div class="flex items-center">
+                                    <i class="fas fa-chart-bar mr-2"></i>
+                                    <span>Productos</span>
+                                </div>
+                                <i class="fas fa-chevron-down text-xs"></i>
+                            </div>
+                            <ul class="desplegable ml-4 hidden">
+                                <li>
+                                    <a href="#" class=" p-2 hover:bg-gray-700 flex items-center">
+                                        <i class="fas fa-chevron-right mr-2 text-xs"></i>
+                                        Comida
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#"
+                                        class=" p-2 hover:bg-gray-700 flex items-center">
+                                        <i class="fas fa-chevron-right mr-2 text-xs"></i>
+                                        Accesorios
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class=" p-2 hover:bg-gray-700 flex items-center">
+                                        <i class="fas fa-chevron-right mr-2 text-xs"></i>
+                                        Medicinas
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <div class="w-100 rounded px-3">
+                            <h4></h4>
+                        </div>
+                        <!-- Agrega más enlaces para la navegación lateral -->
+                        <a href="{{ route('dashboard') }}" :active="request() - > routeIs('dashboard')"
+                            class=" p-1 py-2 hover:bg-gray-700 flex items-center">
+                            <i class="fas fa-home mr-2"></i>
+                            Inicio
+                        </a>
+                        <li class="opcion-con-desplegable">
+                            <div class="flex items-center justify-between p-2 py-2 hover:bg-gray-700">
+                                <div class="flex items-center">
+                                    <i class="fas fa-user mr-2"></i>
+                                    <span>{{ Auth::user()->name }}</span>
+                                </div>
+                                <i class="fas fa-chevron-down text-xs"></i>
+                            </div>
+                            <ul class="desplegable ml-4 hidden">
+                                <li>
+                                    <a href="{{ route('profile.show') }}"
+                                        class=" p-2 hover:bg-gray-700 flex items-center">
+                                        <i class="fas fa-chevron-right mr-2 text-xs"></i>
+                                        Perfil
+                                    </a>
+                                </li>
+                                <li>
+                                    <form method="POST" action="{{ route('logout') }}" x-data>
+                                        @csrf
+                                        <button type="submit" class="p-2 hover:bg-gray-700 flex items-center">
+                                            <i class="fas fa-chevron-right mr-2 text-xs"></i>
+                                            Cerrar Sesión
+                                        </button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+                @endcan
+
             </div>
         </div>
     </body>
 
-    
-    
+
+
     <script>
         function toggleMenu1() {
             var mainElement = document.getElementById("main");
@@ -334,26 +484,27 @@
         }
 
         // Cierra la barra lateral cuando se hace clic en algún enlace
-        document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function() {
             var opcionesDesplegables = document.querySelectorAll('.opcion-con-desplegable');
 
-            opcionesDesplegables.forEach(function (opcion) {
-                opcion.addEventListener('click', function () {
+            opcionesDesplegables.forEach(function(opcion) {
+                opcion.addEventListener('click', function() {
                     var desplegable = this.querySelector('.desplegable');
-                    
+
                     // Cierra todas las listas desplegables excepto la actual
                     cerrarTodasLasListasDesplegables(opcion);
 
                     if (desplegable) {
                         // Abre o cierra la lista desplegable actual
-                        desplegable.style.display = (desplegable.style.display === 'block') ? 'none' : 'block';
+                        desplegable.style.display = (desplegable.style.display === 'block') ?
+                            'none' : 'block';
                     }
                 });
             });
 
             // Cierra todas las listas desplegables excepto la actual
             function cerrarTodasLasListasDesplegables(opcionActual) {
-                opcionesDesplegables.forEach(function (opcion) {
+                opcionesDesplegables.forEach(function(opcion) {
                     var desplegable = opcion.querySelector('.desplegable');
                     if (opcion !== opcionActual && desplegable && desplegable.style.display === 'block') {
                         desplegable.style.display = 'none';
@@ -367,7 +518,7 @@
         $(document).ready(function() {
             $('#logout-and-register').click(function(e) {
                 e.preventDefault(); // Evita el comportamiento predeterminado del enlace
-    
+
                 // Realiza la solicitud de cierre de sesión
                 $.ajax({
                     url: "{{ route('logout') }}",
@@ -391,7 +542,7 @@
         $(document).ready(function() {
             $('#logout-and-login').click(function(e) {
                 e.preventDefault(); // Evita el comportamiento predeterminado del enlace
-    
+
                 // Realiza la solicitud de cierre de sesión
                 $.ajax({
                     url: "{{ route('logout') }}",
@@ -410,5 +561,5 @@
             });
         });
     </script>
-    
+
 </nav>

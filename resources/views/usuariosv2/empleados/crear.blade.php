@@ -135,6 +135,10 @@
                         </div>
                     </div>
 
+                    <div>
+                        @livewire('roles.user-roles-create')
+                    </div>
+
                     <div class="flex justify-center items-center space-x-6 py-9 pb-10">
                         <div class="shrink-0">
                             <img id='imagen' class="object-cover rounded-full" style="width: 100px; height: 100px;"

@@ -15,7 +15,7 @@
         </style>
         <title>RegistrarEmpleado</title>
     </head>
-    <form action="{{ route('empleados.actualizar', $empleado->ID_Usuario) }}" method="POST" enctype="multipart/form-data">
+    {!! Form::model($user, ['route' => ['empleados.actualizar', $user->id], 'method' => 'POST','enctype' => 'multipart/form-data' , 'autocomplete' => 'off']) !!}
         @csrf
         <div class="bg-gradient-to-r from-cyan-600 to-blue-800 p-8">
             <!-- Cuadro exterior con fondo azul marino y relleno de 8 unidades -->
@@ -135,6 +135,10 @@
                         </div>
                     </div>
 
+                    <div>
+                        @livewire('roles.user-roles-edit', [$empleado->ID_Usuario])
+                    </div>
+
                     <div class="flex justify-center items-center space-x-6 py-9 pb-10">
                         <div class="shrink-0">
                             <img id="imagen" src="{{ asset($empleado->ruta_imagen_e) }}"
@@ -192,5 +196,5 @@
                 </div>
             </div>
         </div>
-    </form>
+    {!! Form::close() !!}
 </x-app-layout>

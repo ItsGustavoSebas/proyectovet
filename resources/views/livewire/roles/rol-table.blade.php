@@ -3,24 +3,6 @@
         <h2 class="text-2xl font-semibold leading-tight">ROLES</h2>
     </div>
     <div class="my-2 flex sm:flex-row flex-col">
-        {{-- <div class="flex flex-row mb-1 sm:mb-0">
-            <div class="relative">
-                <select
-                    class="appearance: none h-full rounded-l border block appearance: none w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
-                    <option>5</option>
-                    <option>10</option>
-                    <option>20</option>
-                </select>
-            </div>
-            <div class="relative">
-                <select
-                    class="appearance: none h-full rounded-r border-t sm:rounded-r-none sm:border-r-0 border-r border-b block appearance: none w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:border-l focus:border-r focus:bg-white focus:border-gray-500">
-                    <option>All</option>
-                    <option>Active</option>
-                    <option>Inactive</option>
-                </select>
-            </div>
-        </div> --}}
         <div class="block relative">
             <span class="h-full absolute inset-y-0 left-0 flex items-center pl-2">
                 <svg viewBox="0 0 24 24" class="h-4 w-4 fill-current text-gray-500">
@@ -59,28 +41,31 @@
                             class="inline-block w-1/3 md:hidden font-bold">ID</span>{{ $rol->id }}</td>
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
                             class="inline-block w-1/3 md:hidden font-bold">Nombre</span>{{ $rol->name }}</td>
-                            @php $permissionsCount = count($rol->permissions); @endphp
-                            <td class="p-2 md:border md:border-grey-500 text-left block md:hidden">
-                                <span class="inline-block w-1/2 font-bold text-left">Permisos</span>
-                            </td>
-                            <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
-                            <?php
-                                $permisos = $rol->permissions;
-                            ?>
-                            @foreach ($permisos as $permiso)
-                                {{ $permiso->name }}
-                                <br>
-                            @endforeach
-                    
-                        </td>
-                        
-                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
-                            <div class="flex flex-wrap">
-                        <span class="inline-block w-1/3 md:hidden font-bold">Acciones</span>
-                        <a href="{{ route('roles.editar', $rol->id) }}"
-                            class = "bg-green-400 px-2 py-2 rounded-lg" title="Editar">
-                            <i class="fa-regular fa-pen-to-square"></i>
-                        </a>
+                    @php $permissionsCount = count($rol->permissions); @endphp
+                    <td class="p-2 md:border md:border-grey-500 text-left block md:hidden">
+                        <span class="inline-block w-1/2 font-bold text-left">Permisos</span>
+                    </td>
+                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
+                        <?php
+                        $permisos = $rol->permissions;
+                        ?>
+                        @foreach ($permisos as $permiso)
+                            {{ $permiso->name }}
+                            <br>
+                        @endforeach
+
+                    </td>
+
+                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
+                        <div class="flex flex-wrap">
+                            <span class="inline-block w-1/3 md:hidden font-bold">Acciones</span>
+                            @can('Editar Rol')
+                            <a href="{{ route('roles.editar', $rol->id) }}" class = "bg-green-400 px-2 py-2 rounded-lg"
+                                title="Editar">
+                                <i class="fa-regular fa-pen-to-square"></i>
+                            </a>
+                            @endcan
+                            @can('Eliminar Rol')
                             <div>
                                 <form action="{{ route('roles.eliminar', $rol->id) }}" method="POST"
                                     onsubmit="return confirm('¿Estas seguro de eliminar?')">
@@ -90,6 +75,7 @@
                                     </button>
                                 </form>
                             </div>
+                            @endcan
                         </div>
                     </td>
                 </tr>

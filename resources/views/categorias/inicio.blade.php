@@ -4,8 +4,10 @@
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 {{ __('Categorias') }}
             </h2>
+            @can('Crear Categoria')
             <a class = "px-3 py-2 bg-indigo-600 font-bold text-white rounded-lg"
                 href="{{ route('categorias.crear') }}">CREAR CATEGORIA</a>
+            @endcan
         </div>
     </x-slot>
 
@@ -40,9 +42,12 @@
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
                         <div class="flex flex-wrap">
                             <span class="inline-block w-1/3 md:hidden font-bold">Acciones</span>
+                            @can('Editar Categoria')
                             <a href="{{ route('categorias.editar', $categoria->id) }}" class = "bg-green-400 px-2 py-2 rounded-lg" title="Editar">
                                 <i class="fa-regular fa-pen-to-square"></i>
                             </a>
+                            @endcan
+                            @can('Eliminar Categoria')
                             <div>
                                 <form action="{{  route('categorias.eliminar', $categoria->id) }}" method="POST"
                                     onsubmit="return confirm('¿Estas seguro que deseas eliminar esta categoria?')">
@@ -52,6 +57,7 @@
                                     </button>
                                 </form>
                             </div>
+                            @endcan
                         </div>
                             </td>
                 </tr>

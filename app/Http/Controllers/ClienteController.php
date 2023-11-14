@@ -65,7 +65,7 @@ class ClienteController extends Controller
         'rol' => 'empleado',
         'direccion' => $request->direccion,
         'password' => bcrypt($request->password),
-    ]); 
+    ])->assignRole('Cliente'); 
 
     $cliente = new Cliente();
     $user->cliente()->save($cliente);

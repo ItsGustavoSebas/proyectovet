@@ -29,7 +29,7 @@ class ClienteSeeder extends Seeder
             'cliente' => true,
             'empleado' => false,
             'password' => bcrypt('12345678')
-        ]);
+        ])->assignRole('Cliente');
 
         $cliente = new Cliente();
         $user->cliente()->save($cliente);
@@ -44,7 +44,7 @@ class ClienteSeeder extends Seeder
             'cliente' => true,
             'empleado' => false,
             'password' => bcrypt('12345678')
-        ]);
+        ])->assignRole('Cliente');
 
         $cliente = new Cliente();
         $user->cliente()->save($cliente);
@@ -59,7 +59,7 @@ class ClienteSeeder extends Seeder
             'cliente' => true,
             'empleado' => false,
             'password' => bcrypt('12345678')
-        ]);
+        ])->assignRole('Cliente');
 
         $cliente = new Cliente();
         $user->cliente()->save($cliente);
@@ -74,7 +74,7 @@ class ClienteSeeder extends Seeder
             'cliente' => true,
             'empleado' => false,
             'password' => bcrypt('12345678')
-        ]);
+        ])->assignRole('Cliente');
 
         $cliente = new Cliente();
         $user->cliente()->save($cliente);

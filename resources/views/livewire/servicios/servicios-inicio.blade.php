@@ -20,6 +20,7 @@
       @endfor
 
     <!-- Add Profile -->
+    @can('Crear Servicio')
     <a href="#" class="flex flex-col items-center group gap-3 mt-4">
       <svg wire:click="$set('modalCrear', true)"
         class="w-[150px] h-[150px] group-hover:bg-gray-300 border-2 border-transparent" viewBox="0 0 20 20"
@@ -30,6 +31,7 @@
       </svg>
       <p class="text-gray-500 group-hover:text-gray-300 text-center"> Add Profile </p>
     </a>
+    @endcan
   </div>
 </div>
 
@@ -234,11 +236,11 @@
         onclick="console.log('Botón Cancelar presionado');">
         Cerrar
       </x-secondary-button>
-
+      @can('Eliminar Servicio')
       <button wire:click="confirmarEliminar" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
         Eliminar Servicio
       </button>
-
+      @endcan
       @if($confirmacionEliminar)
       <div class="modal">
         <div class="modal-content">
@@ -254,10 +256,11 @@
       @endif
 
 
-
+      @can('Editar Servicio')
       <button wire:click="editarServicio" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
         Editar Servicio
       </button>
+      @endcan
       @endif
 
 

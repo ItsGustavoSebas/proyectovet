@@ -4,8 +4,10 @@
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 {{ __('LISTA MARCAS') }}
             </h2>
+            @can('Crear Marca')
             <a class = "px-3 py-2 bg-indigo-600 font-bold text-white rounded-lg"
                 href="{{ route('marcas.crear') }}">CREAR MARCA</a>
+            @endcan
         </div>
     </x-slot>
     <div class="p-5">
