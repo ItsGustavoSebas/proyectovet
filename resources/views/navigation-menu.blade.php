@@ -14,7 +14,7 @@
             background-color: rgb(31 41 55 / var(--tw-bg-opacity));
             color: #fff;
             padding: 1rem;
-            text-align: center;
+            text-align: right;
             border-bottom: 2px solid white;
         }
 
@@ -40,14 +40,15 @@
         <div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="display:none" id="mySidebar">
             <div class="bg-gray-800 text-white px-3" style="height:inherit">
                 <nav>
-                    <div class="w-100 rounded px-3">
+                    <div class="w-100 rounded px-1" style="display: flex; align-items:center; justify-content:center; text-align:center">
+                        <img src="{{ asset('build/imagenes/utilitarios/logotransp.png') }}" alt="Logo" style="float:none;" width="70" height="65" >
                         <h4>Paquetes Identificados</h4>
                     </div>
                     <ul class="space-y-2">
                         <li class="opcion-con-desplegable">
                             <div class="flex items-center justify-between p-2 hover:bg-gray-700">
                                 <div class="flex items-center">
-                                    <i class="fas fa-calendar-alt mr-2"></i>
+                                    <i class="fa-solid fa-address-card mr-2" style="color: #ffffff;"></i>
                                     <span>Usuarios y Autentificacion</span>
                                 </div>
                                 <i class="fas fa-chevron-down text-xs"></i>
@@ -103,7 +104,7 @@
                         <li class="opcion-con-desplegable">
                             <div class="flex items-center justify-between p-2 hover:bg-gray-700">
                                 <div class="flex items-center">
-                                    <i class="fas fa-money-bill-wave mr-2"></i>
+                                    <i class="fa-solid fa-briefcase-medical mr-2" style="color: #fafcff;"></i>
                                     <span>Mascotas y Atencion Veterinaria</span>
                                 </div>
                                 <i class="fas fa-chevron-down text-xs"></i>
@@ -219,7 +220,7 @@
                         <li class="opcion-con-desplegable">
                             <div class="flex items-center justify-between p-2 hover:bg-gray-700">
                                 <div class="flex items-center">
-                                    <i class="fas fa-file-alt mr-2"></i>
+                                    <i class="fas fa-file-alt mr-3"></i>
                                     <span>Ventas y Finanzas</span>
                                 </div>
                                 <i class="fas fa-chevron-down text-xs"></i>
@@ -325,7 +326,7 @@
                     openNavElement.innerHTML = "&#9776; Menú";
                 } else {
                     mainElement.style.marginLeft = "0%";
-                    sidebarElement.style.width = "50%";
+                    sidebarElement.style.width = "100%";
                     sidebarElement.style.display = "block";
                     openNavElement.innerHTML = "&times; Cerrar";
                 }
