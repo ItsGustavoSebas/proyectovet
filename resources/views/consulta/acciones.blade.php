@@ -114,6 +114,8 @@
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Recetas de la consulta') }}
         </h2>
+        <a class = "px-3 py-2 bg-indigo-600 font-bold text-white rounded-lg"
+                href="{{ route('RecetaMedica.crear', $consulta->id) }}">AÑADIR RECETA MÉDICA</a>
     </div>
 </div>
     <script>

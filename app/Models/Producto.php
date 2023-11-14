@@ -35,4 +35,9 @@ class Producto extends Model
     {
         return $this->hasMany(LoteProd::class, 'ID_Producto');
     }
+
+    public function detalle_receta()
+    {
+        return $this->hasMany(Detalle_Receta::class, 'ID_Producto');
+    }
 }
