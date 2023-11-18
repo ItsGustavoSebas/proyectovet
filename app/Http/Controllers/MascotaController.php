@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bitacora;
 use App\Models\Especie;
 use App\Models\Historial;
 use App\Models\Raza;
@@ -53,6 +54,26 @@ class MascotaController extends Controller
             $especie->nombre = $request->input('nuevaEspecie');
             $especie->save();
             $idEspecie = $especie->id;
+
+            //Crear DetalleBitacora
+
+            $bitacora_id = session('bitacora_id');
+
+            if ($bitacora_id) {
+                $bitacora = Bitacora::find($bitacora_id);
+
+                $horaActual = now()->format('H:i:s');
+
+                $bitacora->detalleBitacoras()->create([
+                    'accion' => 'Crear Especie',
+                    'metodo' => $request->method(),
+                    'hora' => $horaActual,
+                    'tabla' => 'especie',
+                    'registroId' => $especie->id,
+                    'ruta'=> request()->fullurl(),
+                ]);
+            }
+          
         }
         if ($request->has('ID_Raza') && $request->input('ID_Raza') !== 'nueva') {
             $idRaza = $request->input('ID_Raza');
@@ -62,12 +83,51 @@ class MascotaController extends Controller
             $raza->descripcion = $request->input('descripcionRaza');
             $raza->save();
             $idRaza = $raza->id;
+
+            //Crear DetalleBitacora
+
+            $bitacora_id = session('bitacora_id');
+
+            if ($bitacora_id) {
+                $bitacora = Bitacora::find($bitacora_id);
+
+                $horaActual = now()->format('H:i:s');
+
+                $bitacora->detalleBitacoras()->create([
+                    'accion' => 'Crear Raza',
+                    'metodo' => $request->method(),
+                    'hora' => $horaActual,
+                    'tabla' => 'raza',
+                    'registroId' => $raza->id,
+                    'ruta'=> request()->fullurl(),
+                ]);
+            }
+
         }
         $historial = new Historial();
         $historial->peso = $request->peso;
         $historial->altura = $request->altura;
         $historial->observacion = $request->observacion;
         $historial->save();
+        //Crear DetalleBitacora
+
+        $bitacora_id = session('bitacora_id');
+
+        if ($bitacora_id) {
+            $bitacora = Bitacora::find($bitacora_id);
+
+            $horaActual = now()->format('H:i:s');
+
+            $bitacora->detalleBitacoras()->create([
+                'accion' => 'Crear Historial',
+                'metodo' => $request->method(),
+                'hora' => $horaActual,
+                'tabla' => 'historial_medico',
+                'registroId' => $historial->id,
+                'ruta'=> request()->fullurl(),
+            ]);
+        }
+
         $mascota = new Mascota();
         $mascota->nombre = $request->nombre;
         $mascota->sexo = $request->sexo;
@@ -80,6 +140,25 @@ class MascotaController extends Controller
         $mascota->ID_Raza = $idRaza;
         $mascota->ID_Historial = $historial->id;
         $mascota->save();
+
+        //Crear DetalleBitacora
+
+        $bitacora_id = session('bitacora_id');
+
+        if ($bitacora_id) {
+            $bitacora = Bitacora::find($bitacora_id);
+
+            $horaActual = now()->format('H:i:s');
+
+            $bitacora->detalleBitacoras()->create([
+                'accion' => 'Crear Mascota',
+                'metodo' => $request->method(),
+                'hora' => $horaActual,
+                'tabla' => 'mascota',
+                'registroId' => $mascota->id,
+                'ruta'=> request()->fullurl(),
+            ]);
+        }
 
         return redirect(route('mascotas.inicio', $request->ID_Cliente))->with('creado', 'Mascota añadida exitosamente');
     }
@@ -113,6 +192,26 @@ class MascotaController extends Controller
             $especie->nombre = $request->input('nuevaEspecie');
             $especie->save();
             $idEspecie = $especie->id;
+
+            //Crear DetalleBitacora
+
+            $bitacora_id = session('bitacora_id');
+
+            if ($bitacora_id) {
+                $bitacora = Bitacora::find($bitacora_id);
+
+                $horaActual = now()->format('H:i:s');
+
+                $bitacora->detalleBitacoras()->create([
+                    'accion' => 'Crear Especie',
+                    'metodo' => $request->method(),
+                    'hora' => $horaActual,
+                    'tabla' => 'especie',
+                    'registroId' => $especie->id,
+                    'ruta'=> request()->fullurl(),
+                ]);
+            }
+            
         }
         if ($request->has('ID_Raza') && $request->input('ID_Raza') !== 'nueva') {
             $idRaza = $request->input('ID_Raza');
@@ -122,12 +221,51 @@ class MascotaController extends Controller
             $raza->descripcion = $request->input('descripcionRaza');
             $raza->save();
             $idRaza = $raza->id;
+
+            //Crear DetalleBitacora
+
+            $bitacora_id = session('bitacora_id');
+
+            if ($bitacora_id) {
+                $bitacora = Bitacora::find($bitacora_id);
+
+                $horaActual = now()->format('H:i:s');
+
+                $bitacora->detalleBitacoras()->create([
+                    'accion' => 'Crear Raza',
+                    'metodo' => $request->method(),
+                    'hora' => $horaActual,
+                    'tabla' => 'raza',
+                    'registroId' => $raza->id,
+                    'ruta'=> request()->fullurl(),
+                ]);
+            }
         }
         $historial = Historial::where('id', '=', $mascota->ID_Historial)->first();
         $historial->peso = $request->peso;
         $historial->altura = $request->altura;
         $historial->observacion = $request->observacion;
         $historial->save();
+
+        //Crear DetalleBitacora
+
+        $bitacora_id = session('bitacora_id');
+
+        if ($bitacora_id) {
+            $bitacora = Bitacora::find($bitacora_id);
+
+            $horaActual = now()->format('H:i:s');
+
+            $bitacora->detalleBitacoras()->create([
+                'accion' => 'Editar Historial',
+                'metodo' => $request->method(),
+                'hora' => $horaActual,
+                'tabla' => 'historial_medico',
+                'registroId' => $historial->id,
+                'ruta'=> request()->fullurl(),
+            ]);
+        }
+
         $mascota->nombre = $request->nombre;
         $mascota->sexo = $request->sexo;
         $mascota->color = $request->color;
@@ -138,6 +276,25 @@ class MascotaController extends Controller
         $mascota->ID_Especie = $idEspecie;
         $mascota->ID_Raza = $idRaza;
         $mascota->save();
+
+        //Crear DetalleBitacora
+
+        $bitacora_id = session('bitacora_id');
+
+        if ($bitacora_id) {
+            $bitacora = Bitacora::find($bitacora_id);
+
+            $horaActual = now()->format('H:i:s');
+
+            $bitacora->detalleBitacoras()->create([
+                'accion' => 'Editar Mascota',
+                'metodo' => $request->method(),
+                'hora' => $horaActual,
+                'tabla' => 'mascota',
+                'registroId' => $mascota->id,
+                'ruta'=> request()->fullurl(),
+            ]);
+        }
         
         return redirect(route('mascotas.inicio', $request->ID_Cliente))->with('actualizado', 'Mascota actualizada exitosamente');
     }
@@ -148,6 +305,26 @@ class MascotaController extends Controller
         $nombre = $mascota->nombre;
         $ID_Cliente = $mascota->ID_Cliente;
         $mascota->delete();
+
+        //Crear DetalleBitacora
+
+        $bitacora_id = session('bitacora_id');
+
+        if ($bitacora_id) {
+            $bitacora = Bitacora::find($bitacora_id);
+
+            $horaActual = now()->format('H:i:s');
+
+            $bitacora->detalleBitacoras()->create([
+                'accion' => 'Eliminar Mascota',
+                'metodo' => request()->method(),
+                'hora' => $horaActual,
+                'tabla' => 'mascota',
+                'registroId' => $id,
+                'ruta'=> request()->fullurl(),
+            ]);
+        }
+
         return redirect(route('mascotas.inicio', $ID_Cliente))->with('eliminado', 'Mascota ' . $nombre . ' eliminada exitosamente');
     }
 }

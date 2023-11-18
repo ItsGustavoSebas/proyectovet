@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bitacora;
 use Illuminate\Http\Request;
 use App\Models\Cita;
 use App\Models\User;
@@ -58,6 +59,26 @@ class ReservarController extends Controller
     {
         $cita = Cita::where('id', '=', $id)->first();
         $cita->delete();
+
+        //Crear DetalleBitacora
+
+       $bitacora_id = session('bitacora_id');
+
+       if ($bitacora_id) {
+           $bitacora = Bitacora::find($bitacora_id);
+
+           $horaActual = now()->format('H:i:s');
+
+           $bitacora->detalleBitacoras()->create([
+               'accion' => 'Eliminar Reserva',
+               'metodo' => request()->method(),
+               'hora' => $horaActual,
+               'tabla' => 'citas',
+               'registroId' => $id,
+               'ruta'=> request()->fullurl(),
+           ]);
+       }
+
         return redirect(route('reservar.consultar'))->with('eliminado', 'Reserva eliminada exitosamente');
     }
 }

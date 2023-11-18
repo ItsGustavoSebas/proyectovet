@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\Servicios;
 
-
+use App\Models\Bitacora;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
@@ -59,7 +59,7 @@ class ServiciosInicio extends Component
 
 
       //crear servicio
-       Servicio::create([
+       $servicio = Servicio::create([
        'nombre' => $this->nombre,
        'descripcion' => $this->descripcion,
        'precio' => $this->precio,
@@ -69,6 +69,25 @@ class ServiciosInicio extends Component
        ]);
 
        $this->reservaExitosa = true;
+
+       //Crear DetalleBitacora
+
+       $bitacora_id = session('bitacora_id');
+
+       if ($bitacora_id) {
+           $bitacora = Bitacora::find($bitacora_id);
+
+           $horaActual = now()->format('H:i:s');
+
+           $bitacora->detalleBitacoras()->create([
+               'accion' => 'Crear Servicio',
+               'metodo' => request()->method(),
+               'hora' => $horaActual,
+               'tabla' => 'servicios',
+               'registroId' => $servicio->id,
+               'ruta'=> request()->fullurl(),
+           ]);
+       }
     
        $this->reset (['nombre','descripcion','precio','ruta_imagen', 'reservable', 'modalCrear']);
       
@@ -96,9 +115,28 @@ public function cancelarEliminar()
 
         if ($this->confirmacionEliminar) {
             if ($this->servicioActual) {
+
+                //Crear DetalleBitacora
+
+                $bitacora_id = session('bitacora_id');
+
+                if ($bitacora_id) {
+                    $bitacora = Bitacora::find($bitacora_id);
+
+                    $horaActual = now()->format('H:i:s');
+
+                    $bitacora->detalleBitacoras()->create([
+                    'accion' => 'Eliminar Servicio',
+                    'metodo' => request()->method(),
+                    'hora' => $horaActual,
+                    'tabla' => 'servicios',
+                    'registroId' => $this->servicioActual->id,
+                    'ruta'=> request()->fullurl(),
+                ]);
+
                 // Elimina el servicio de la base de datos
                 $this->servicioActual->delete();
-       
+       }
                 // Limpia la variable de detalles y cierra el modal
                 $this->servicioActual = null;
                 $this->modalServicio = false;
@@ -108,7 +146,7 @@ public function cancelarEliminar()
         }
         // Restablece la variable de confirmación
         $this->confirmacionEliminar = false;
- 
+   
    
  
     }
@@ -128,6 +166,25 @@ public function cancelarEliminar()
     $this->servicioActual->save(); // Guarda los cambios en la base de datos
     $this->editarServicio = false; // Sal del modo de edición
     $this->modoEdicion = false;
+
+    //Crear DetalleBitacora
+
+    $bitacora_id = session('bitacora_id');
+
+    if ($bitacora_id) {
+        $bitacora = Bitacora::find($bitacora_id);
+
+        $horaActual = now()->format('H:i:s');
+
+        $bitacora->detalleBitacoras()->create([
+            'accion' => 'Editar Servicio',
+            'metodo' => request()->method(),
+            'hora' => $horaActual,
+            'tabla' => 'servicios',
+            'registroId' => $this->servicioActual->id,
+            'ruta'=> request()->fullurl(),
+        ]);
+    }
     }
 
 

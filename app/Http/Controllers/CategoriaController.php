@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bitacora;
 use App\Models\Categoria;
 use Illuminate\Http\Request;
 
@@ -32,6 +33,26 @@ class CategoriaController extends Controller
         $categoria->Nombre = $request->Nombre;
         $categoria->Descripcion = $request->Descripcion;
         $categoria->save();
+
+        //Crear DetalleBitacora
+
+        $bitacora_id = session('bitacora_id');
+
+        if ($bitacora_id) {
+            $bitacora = Bitacora::find($bitacora_id);
+
+            $horaActual = now()->format('H:i:s');
+
+            $bitacora->detalleBitacoras()->create([
+                'accion' => 'Crear Categoria',
+                'metodo' => $request->method(),
+                'hora' => $horaActual,
+                'tabla' => 'categoria',
+                'registroId' => $categoria->id,
+                'ruta'=> request()->fullurl(),
+            ]);
+        }
+
         return redirect(route('categorias.inicio'))->with('Creado', 'Categoria añadida exitosamente');
     }
     public function actualizar(REQUEST $request, $id)
@@ -44,6 +65,25 @@ class CategoriaController extends Controller
         $categoria->Nombre = $request->Nombre;
         $categoria->Descripcion = $request->Descripcion;
         $categoria->save();
+
+        //Crear DetalleBitacora
+
+        $bitacora_id = session('bitacora_id');
+
+        if ($bitacora_id) {
+            $bitacora = Bitacora::find($bitacora_id);
+
+            $horaActual = now()->format('H:i:s');
+
+            $bitacora->detalleBitacoras()->create([
+                'accion' => 'Editar Categoria',
+                'metodo' => $request->method(),
+                'hora' => $horaActual,
+                'tabla' => 'categoria',
+                'registroId' => $categoria->id,
+                'ruta'=> request()->fullurl(),
+            ]);
+        }
         
         return redirect(route('categorias.inicio'))->with('actualizado', 'Categoria actualizada exitosamente');
     }
@@ -53,6 +93,25 @@ class CategoriaController extends Controller
         $categoria = Categoria::where('id', '=', $id)->first();
         $Nombre = $categoria->Nombre;
         $categoria->delete();
+
+        //Crear DetalleBitacora
+
+        $bitacora_id = session('bitacora_id');
+
+        if ($bitacora_id) {
+            $bitacora = Bitacora::find($bitacora_id);
+
+            $horaActual = now()->format('H:i:s');
+
+            $bitacora->detalleBitacoras()->create([
+                'accion' => 'Eliminar Categoria',
+                'metodo' => request()->method(),
+                'hora' => $horaActual,
+                'tabla' => 'categoria',
+                'registroId' => $id,
+                'ruta'=> request()->fullurl(),
+            ]);
+        }
         return redirect(route('categorias.inicio'))->with('Eliminado', 'Categoria ' . $Nombre . ' eliminada exitosamente');
     }
 }

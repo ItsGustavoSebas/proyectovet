@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bitacora;
 use App\Models\Tratamiento;
 use Illuminate\Http\Request;
 
@@ -29,6 +30,26 @@ class TratamientoController extends Controller
         $tratamiento->descripcion = $request->descripcion;
         $tratamiento->precio = $request->precio;
         $tratamiento->save();
+
+        //Crear DetalleBitacora
+
+        $bitacora_id = session('bitacora_id');
+
+        if ($bitacora_id) {
+            $bitacora = Bitacora::find($bitacora_id);
+
+            $horaActual = now()->format('H:i:s');
+
+            $bitacora->detalleBitacoras()->create([
+                'accion' => 'Crear Tratamiento',
+                'metodo' => $request->method(),
+                'hora' => $horaActual,
+                'tabla' => 'tratamiento',
+                'registroId' => $tratamiento->id,
+                'ruta'=> request()->fullurl(),
+            ]);
+        }
+
         return redirect(route('tratamientos.inicio'))->with('creado', 'Tratamiento añadido exitosamente');
     }
 
@@ -50,6 +71,25 @@ class TratamientoController extends Controller
         $tratamiento->descripcion = $request->descripcion;
         $tratamiento->precio = $request->precio;
         $tratamiento->save();
+
+        //Crear DetalleBitacora
+
+        $bitacora_id = session('bitacora_id');
+
+        if ($bitacora_id) {
+            $bitacora = Bitacora::find($bitacora_id);
+
+            $horaActual = now()->format('H:i:s');
+
+            $bitacora->detalleBitacoras()->create([
+                'accion' => 'Editar Tratamiento',
+                'metodo' => $request->method(),
+                'hora' => $horaActual,
+                'tabla' => 'tratamiento',
+                'registroId' => $tratamiento->id,
+                'ruta'=> request()->fullurl(),
+            ]);
+        }
         
         return redirect(route('tratamientos.inicio'))->with('actualizado', 'Tratamiento actualizado exitosamente');
     }
@@ -59,6 +99,26 @@ class TratamientoController extends Controller
         $tratamiento = Tratamiento::where('id', '=', $id)->first();
         $nombre = $tratamiento->nombre;
         $tratamiento->delete();
+
+        //Crear DetalleBitacora
+
+        $bitacora_id = session('bitacora_id');
+
+        if ($bitacora_id) {
+            $bitacora = Bitacora::find($bitacora_id);
+
+            $horaActual = now()->format('H:i:s');
+
+            $bitacora->detalleBitacoras()->create([
+                'accion' => 'Eliminar Tratamiento',
+                'metodo' => request()->method(),
+                'hora' => $horaActual,
+                'tabla' => 'tratamiento',
+                'registroId' => $id,
+                'ruta'=> request()->fullurl(),
+            ]);
+        }
+
         return redirect(route('tratamientos.inicio'))->with('eliminado', 'Tratamiento ' . $nombre . ' eliminado exitosamente');
     }
 }

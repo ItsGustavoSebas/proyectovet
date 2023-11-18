@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bitacora;
 use App\Models\Lote;
 use App\Models\LoteProd;
 use App\Models\Medida;
@@ -40,6 +41,25 @@ class LoteController extends Controller
         $lote->estado=true;
         $lote->ID_Proveedor = $request->proveedor_id;
         $lote->save();
+
+        //Crear DetalleBitacora
+
+        $bitacora_id = session('bitacora_id');
+
+        if ($bitacora_id) {
+            $bitacora = Bitacora::find($bitacora_id);
+
+            $horaActual = now()->format('H:i:s');
+
+            $bitacora->detalleBitacoras()->create([
+                'accion' => 'Crear Lote',
+                'metodo' => $request->method(),
+                'hora' => $horaActual,
+                'tabla' => 'lote',
+                'registroId' => $lote->id,
+                'ruta'=> request()->fullurl(),
+            ]);
+        }
 
         foreach ($request->productos as $productoData) {
             $producto_id = $productoData['producto_id'];
@@ -86,6 +106,25 @@ class LoteController extends Controller
         $lote->ID_Proveedor = $request->proveedor_id;
         $lote->save();
 
+        //Crear DetalleBitacora
+
+        $bitacora_id = session('bitacora_id');
+
+        if ($bitacora_id) {
+            $bitacora = Bitacora::find($bitacora_id);
+
+            $horaActual = now()->format('H:i:s');
+
+            $bitacora->detalleBitacoras()->create([
+                'accion' => 'Editar Lote',
+                'metodo' => $request->method(),
+                'hora' => $horaActual,
+                'tabla' => 'lote',
+                'registroId' => $lote->id,
+                'ruta'=> request()->fullurl(),
+            ]);
+        }
+
         LoteProd::where('ID_Lote', $lote->id)->delete();
 
         foreach ($request->productos as $productoData) {
@@ -113,6 +152,26 @@ class LoteController extends Controller
         $lote->loteprod()->delete();
         $numeroLote = $lote->numeroLote;
         $lote->delete();
+
+        //Crear DetalleBitacora
+
+        $bitacora_id = session('bitacora_id');
+
+        if ($bitacora_id) {
+            $bitacora = Bitacora::find($bitacora_id);
+
+            $horaActual = now()->format('H:i:s');
+
+            $bitacora->detalleBitacoras()->create([
+                'accion' => 'Eliminar Lote',
+                'metodo' => request()->method(),
+                'hora' => $horaActual,
+                'tabla' => 'lote',
+                'registroId' => $id,
+                'ruta'=> request()->fullurl(),
+            ]);
+        }
+
         return redirect(route('lotes.inicio'))->with('eliminado', 'Lote ' . $numeroLote . ' eliminado exitosamente');
     }
 
