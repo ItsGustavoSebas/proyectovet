@@ -71,6 +71,10 @@
                                 <i class="fas fa-plus"></i>
                             </a>
                             @endcan
+                            <a href="{{ route('bitacoras.inicio', $cliente->usuario->id) }}"
+                                class = "bg-white px-2 py-2 rounded-lg" title="Reservar Cita">
+                                <i class="fas fa-file-alt"></i>
+                            </a>
                             @can('Editar Cliente')
                             <a href="{{ route('clientes2.editar', $cliente->usuario->id) }}"
                                 class = "bg-green-400 px-2 py-2 rounded-lg" title="Editar">

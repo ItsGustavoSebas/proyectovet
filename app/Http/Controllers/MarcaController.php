@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bitacora;
 use App\Models\Marca;
 use Illuminate\Http\Request;
 
@@ -24,6 +25,26 @@ class MarcaController extends Controller
         $marca = new Marca();
         $marca->nombre = $request->nombre;
         $marca->save();
+
+        //Crear DetalleBitacora
+
+        $bitacora_id = session('bitacora_id');
+
+        if ($bitacora_id) {
+            $bitacora = Bitacora::find($bitacora_id);
+
+            $horaActual = now()->format('H:i:s');
+
+            $bitacora->detalleBitacoras()->create([
+                'accion' => 'Crear Marca',
+                'metodo' => $request->method(),
+                'hora' => $horaActual,
+                'tabla' => 'marcas',
+                'registroId' => $marca->id,
+                'ruta'=> request()->fullurl(),
+            ]);
+        }
+
         return redirect(route('marcas.inicio'))->with('creado', 'Marca creada exitosamente');
     }
 
@@ -41,6 +62,25 @@ class MarcaController extends Controller
         ]);
         $marca->nombre = $request->nombre;
         $marca->save();
+
+        //Crear DetalleBitacora
+
+        $bitacora_id = session('bitacora_id');
+
+        if ($bitacora_id) {
+            $bitacora = Bitacora::find($bitacora_id);
+
+            $horaActual = now()->format('H:i:s');
+
+            $bitacora->detalleBitacoras()->create([
+                'accion' => 'Editar Marca',
+                'metodo' => $request->method(),
+                'hora' => $horaActual,
+                'tabla' => 'marcas',
+                'registroId' => $marca->id,
+                'ruta'=> request()->fullurl(),
+            ]);
+        }
         
         return redirect(route('marcas.inicio'))->with('actualizado', 'Marca actualizada exitosamente');
     }
@@ -50,6 +90,26 @@ class MarcaController extends Controller
         $marca = Marca::where('id', '=', $id)->first();
         $nombre = $marca->nombre;
         $marca->delete();
+
+        //Crear DetalleBitacora
+
+        $bitacora_id = session('bitacora_id');
+
+        if ($bitacora_id) {
+            $bitacora = Bitacora::find($bitacora_id);
+
+            $horaActual = now()->format('H:i:s');
+
+            $bitacora->detalleBitacoras()->create([
+                'accion' => 'Eliminar Marca',
+                'metodo' => request()->method(),
+                'hora' => $horaActual,
+                'tabla' => 'marcas',
+                'registroId' => $id,
+                'ruta'=> request()->fullurl(),
+            ]);
+        }
+
         return redirect(route('marcas.inicio'))->with('eliminado', 'Marca ' . $nombre . ' eliminada exitosamente');
     }
 }

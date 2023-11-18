@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bitacora;
 use App\Models\Proveedor;
 use Illuminate\Http\Request;
 
@@ -32,6 +33,25 @@ class ProveedorController extends Controller
         $proveedor->direccion = $request->direccion;
         $proveedor->save();
 
+        //Crear DetalleBitacora
+
+        $bitacora_id = session('bitacora_id');
+
+        if ($bitacora_id) {
+            $bitacora = Bitacora::find($bitacora_id);
+
+            $horaActual = now()->format('H:i:s');
+
+            $bitacora->detalleBitacoras()->create([
+                'accion' => 'Crear Proveedor',
+                'metodo' => $request->method(),
+                'hora' => $horaActual,
+                'tabla' => 'proveedor',
+                'registroId' => $proveedor->id,
+                'ruta'=> request()->fullurl(),
+            ]);
+        }
+
         return redirect(route('proveedor.inicio'))->with('creado', 'Proveedor creado exitosamente');
     }
 
@@ -54,6 +74,26 @@ class ProveedorController extends Controller
         $proveedor->telefono = $request->telefono;
         $proveedor->direccion = $request->direccion;
         $proveedor->save();
+
+        //Crear DetalleBitacora
+
+        $bitacora_id = session('bitacora_id');
+
+        if ($bitacora_id) {
+            $bitacora = Bitacora::find($bitacora_id);
+
+            $horaActual = now()->format('H:i:s');
+
+            $bitacora->detalleBitacoras()->create([
+                'accion' => 'Editar Proveedor',
+                'metodo' => $request->method(),
+                'hora' => $horaActual,
+                'tabla' => 'proveedor',
+                'registroId' => $proveedor->id,
+                'ruta'=> request()->fullurl(),
+            ]);
+        }
+
         return redirect(route('proveedor.inicio'))->with('actualizado', 'Proveedor actualizado exitosamente');
     }
 
@@ -62,6 +102,26 @@ class ProveedorController extends Controller
         $proveedor = Proveedor::where('id', '=', $id)->first();
         $nombre = $proveedor->nombre;
         $proveedor->delete();
+
+        //Crear DetalleBitacora
+
+        $bitacora_id = session('bitacora_id');
+
+        if ($bitacora_id) {
+            $bitacora = Bitacora::find($bitacora_id);
+
+            $horaActual = now()->format('H:i:s');
+
+            $bitacora->detalleBitacoras()->create([
+                'accion' => 'Eliminar Proveedor',
+                'metodo' => request()->method(),
+                'hora' => $horaActual,
+                'tabla' => 'proveedor',
+                'registroId' => $id,
+                'ruta'=> request()->fullurl(),
+            ]);
+        }
+
         return redirect(route('proveedor.inicio'))->with('eliminado', 'Proveedor ' . $nombre . 'eliminado exitosamente');
     }
 }

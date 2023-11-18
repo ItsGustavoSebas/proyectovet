@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bitacora;
 use App\Models\Consulta;
 use App\Models\Mascota;
 use App\Models\Tratamiento;
@@ -35,6 +36,26 @@ class TratamientoDeLaConsultaController extends Controller
         $traConsulta->ID_Consulta = $request->ID_Consulta;
         $traConsulta->ID_Historial = $request->ID_Historial;
         $traConsulta->save();
+        
+        //Crear DetalleBitacora
+
+        $bitacora_id = session('bitacora_id');
+
+        if ($bitacora_id) {
+            $bitacora = Bitacora::find($bitacora_id);
+
+            $horaActual = now()->format('H:i:s');
+
+            $bitacora->detalleBitacoras()->create([
+                'accion' => 'Crear Tratamiento De Consulta',
+                'metodo' => $request->method(),
+                'hora' => $horaActual,
+                'tabla' => 'tratamiento_de_la_consulta',
+                'registroId' => $traConsulta->id,
+                'ruta'=> request()->fullurl(),
+            ]);
+        }
+
         return redirect(route('consulta.acciones', $traConsulta->ID_Consulta))->with('creado', 'Tratamiento añadido exitosamente');
     }
 
@@ -50,6 +71,26 @@ class TratamientoDeLaConsultaController extends Controller
         $traconsulta = TratamientoDeLaConsulta::where('id', $id)->first();
         $ID_Consulta = $traconsulta->ID_Consulta;
         $traconsulta->delete();
+
+        //Crear DetalleBitacora
+
+        $bitacora_id = session('bitacora_id');
+
+        if ($bitacora_id) {
+            $bitacora = Bitacora::find($bitacora_id);
+
+            $horaActual = now()->format('H:i:s');
+
+            $bitacora->detalleBitacoras()->create([
+                'accion' => 'Eliminar Tratamiento De Consulta',
+                'metodo' => request()->method(),
+                'hora' => $horaActual,
+                'tabla' => 'tratamiento_de_la_consulta',
+                'registroId' => $id,
+                'ruta'=> request()->fullurl(),
+            ]);
+        }
+
         return redirect(route('consulta.acciones', $ID_Consulta))->with('eliminado', 'Tratamiento eliminado exitosamente');
     }
 
@@ -71,6 +112,26 @@ class TratamientoDeLaConsultaController extends Controller
         $tratamientoDeLaConsulta->ID_Consulta = $request->ID_Consulta;
         $tratamientoDeLaConsulta->ID_Historial = $request->ID_Historial;
         $tratamientoDeLaConsulta->save();
+
+        //Crear DetalleBitacora
+
+        $bitacora_id = session('bitacora_id');
+
+        if ($bitacora_id) {
+            $bitacora = Bitacora::find($bitacora_id);
+
+            $horaActual = now()->format('H:i:s');
+
+            $bitacora->detalleBitacoras()->create([
+                'accion' => 'Editar Tratamiento De Consulta',
+                'metodo' => $request->method(),
+                'hora' => $horaActual,
+                'tabla' => 'tratamiento_de_la_consulta',
+                'registroId' => $tratamientoDeLaConsulta->id,
+                'ruta'=> request()->fullurl(),
+            ]);
+        }
+
         return redirect(route('consulta.acciones', $tratamientoDeLaConsulta->ID_Consulta))->with('actualizado', 'Tratamiento añadido exitosamente');
     }
 

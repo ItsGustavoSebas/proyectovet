@@ -2,12 +2,8 @@
     <x-slot name="header">
         <div class = "flex flex-wrap justify-between">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('Lista de Empleados') }}
+                {{ __('lista de bitacoras') }}
             </h2>
-            @can('Crear Empleado')
-            <a class = "px-3 py-2 bg-indigo-600 font-bold text-white rounded-lg"
-                href="{{ route('empleados.crear') }}">REGISTRAR EMPLEADO</a>
-            @endcan
         </div>
     </x-slot>
 
@@ -20,102 +16,68 @@
                     ID</th>
                 <th
                     class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
-                    Nombre</th>
+                    ID_Usuario</th>
                 <th
                     class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
-                    Correo Electronico</th>
+                    Entrada</th>
                 <th
                     class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
-                    Direccion</th>
+                    Salida</th>
                 <th
                     class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
-                    Telefono</th>
+                    Usuario</th>
                 <th
                     class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
-                    C.I.</th>
-
+                    Tipo</th>
                 <th
                     class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
-                    Salario.</th>
-
+                    DireccionIp</th>
                 <th
                     class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
-                    Imagen</th>
-
+                    Navegador</th>
                 <th
                     class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
                     Acciones</th>
             </tr>
         </thead>
         <tbody class="block md:table-row-group">
-            @foreach ($empleadosUsuarios as $empleado)
+            @foreach ($bitacoras as $bitacora)
                 <tr class="bg-white border border-grey-500 md:border-none block md:table-row">
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
-                            class="inline-block w-1/3 md:hidden font-bold">ID</span>{{ $empleado->usuario->id }}</td>
+                            class="inline-block w-1/3 md:hidden font-bold">ID</span>{{ $bitacora->id }}</td>
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
-                            class="inline-block w-1/3 md:hidden font-bold">Nombre</span>{{ $empleado->usuario->name }}
+                            class="inline-block w-1/3 md:hidden font-bold">ID_Usuario</span>{{ $bitacora->ID_Usuario }}
                     </td>
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
-                            class="inline-block w-1/3 md:hidden font-bold">Correo
-                            Electronico</span>{{ $empleado->usuario->email }}
+                            class="inline-block w-1/3 md:hidden font-bold">Entrada</span>{{ $bitacora->entrada }}
                     </td>
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
-                            class="inline-block w-1/3 md:hidden font-bold">Direccion</span>{{ $empleado->usuario->direccion }}
+                            class="inline-block w-1/3 md:hidden font-bold">Salida</span>{{ $bitacora->salida }}
                     </td>
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
-                            class="inline-block w-1/3 md:hidden font-bold">Telefono</span>{{ $empleado->usuario->telefono }}
+                            class="inline-block w-1/3 md:hidden font-bold">Usuario</span>{{ $bitacora->usuario }}
                     </td>
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
-                            class="inline-block w-1/3 md:hidden font-bold">C.I</span>{{ $empleado->usuario->ci }}</td>
-                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
-                            class="inline-block w-1/3 md:hidden font-bold">Salario</span>{{ $empleado->salario }}</td>
-
-                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
-                        
-                        <div class="flex">
-                            <span
-                            class="inline-block w-1/3 md:hidden font-bold">Foto</span>
-                            @if ($empleado->ruta_imagen_e)
-                                <img id="imagen" src="{{ asset($empleado->ruta_imagen_e) }}"
-                                    class="w-16 h-16 object-cover rounded-full" alt="placeholder"> {{-- style="width:100px; height:100px;"  --}}
-                            @else
-                                <span>Null</span>
-                            @endif
-                        </div>
+                            class="inline-block w-1/3 md:hidden font-bold">Tipo</span>{{ $bitacora->tipo }}
                     </td>
-
+                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
+                            class="inline-block w-1/3 md:hidden font-bold">DireccionIp</span>{{ $bitacora->direccionIp }}
+                    </td>
+                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
+                            class="inline-block w-1/3 md:hidden font-bold">Navegador</span>{{ $bitacora->navegador }}
+                    </td>
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
                         <div class="flex flex-wrap">
                             <span class="inline-block w-1/3 md:hidden font-bold">Acciones</span>
-                            <a href="{{ route('bitacoras.inicio', $empleado->usuario->id) }}"
-                                class = "bg-white px-2 py-2 rounded-lg" title="Reservar Cita">
-                                <i class="fas fa-file-alt"></i>
+                            <a href="{{ route('detbitacoras.inicio', $bitacora->id) }}"class = "bg-white px-2 py-2 rounded-lg" title="Reservar Cita">
+                                <i class="fas fa-plus"></i>
                             </a>
-                            @can('Editar Empleado')
-                            <a href="{{ route('empleados.editar', $empleado->usuario->id ) }}"
-                                class = "bg-green-400 px-2 py-2 rounded-lg" title="Editar">
-                                <i class="fa-regular fa-pen-to-square"></i>
-                            </a>
-                            @endcan
-                            @can('Eliminar Empleado')
-                            <div>
-                                <form action="{{ route('empleados.eliminar', $empleado->usuario->id ) }}" method="POST"
-                                    onsubmit="return confirm('¿Estas seguro de eliminar?')">
-                                    @csrf
-                                    <button type = "submit"class="bg-red-500 px-2 py-2 rounded-lg" title="Eliminar">
-                                        <i class="fa-solid fa-trash"></i>
-                                    </button>
-                                </form>
-                            </div>
-                            @endcan
                         </div>
                     </td>
                 </tr>
             @endforeach
-
         </tbody>
     </table>
-
     <script>
         @if (Session::has('eliminado'))
             toastr.options = {

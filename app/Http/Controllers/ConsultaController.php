@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bitacora;
 use App\Models\Cita;
 use App\Models\Cliente;
 use App\Models\Consulta;
@@ -47,6 +48,26 @@ class ConsultaController extends Controller
         $consulta->ID_Empleado = $request->ID_Empleado;
         $consulta->ID_Mascota = $request->ID_Mascota;
         $consulta->save();
+
+        //Crear DetalleBitacora
+
+        $bitacora_id = session('bitacora_id');
+
+        if ($bitacora_id) {
+            $bitacora = Bitacora::find($bitacora_id);
+
+            $horaActual = now()->format('H:i:s');
+
+            $bitacora->detalleBitacoras()->create([
+                'accion' => 'Crear Consulta',
+                'metodo' => $request->method(),
+                'hora' => $horaActual,
+                'tabla' => 'consulta',
+                'registroId' => $consulta->id,
+                'ruta'=> request()->fullurl(),
+            ]);
+        }
+
         $cita = Cita::find($request->ID_Cita);
         $cita->update(['activo' => false]);
         return redirect(route('consulta.acciones', $consulta->id))->with('creada', 'Consulta añadida exitosamente');
@@ -87,6 +108,26 @@ class ConsultaController extends Controller
         $consulta->ID_Empleado = $request->ID_Empleado;
         $consulta->ID_Mascota = $request->ID_Mascota;
         $consulta->save();
+
+        //Crear DetalleBitacora
+
+        $bitacora_id = session('bitacora_id');
+
+        if ($bitacora_id) {
+            $bitacora = Bitacora::find($bitacora_id);
+
+            $horaActual = now()->format('H:i:s');
+
+            $bitacora->detalleBitacoras()->create([
+                'accion' => 'Editar Consulta',
+                'metodo' => $request->method(),
+                'hora' => $horaActual,
+                'tabla' => 'consulta',
+                'registroId' => $consulta->id,
+                'ruta'=> request()->fullurl(),
+            ]);
+        }
+
         return redirect(route('consulta.consultas'))->with('actualizado', 'Consulta actualizada exitosamente');
     }
 
@@ -95,6 +136,26 @@ class ConsultaController extends Controller
         $consulta = Consulta::where('id', '=', $id)->first();
         $nombre = $consulta->nombre;
         $consulta->delete();
+
+        //Crear DetalleBitacora
+
+        $bitacora_id = session('bitacora_id');
+
+        if ($bitacora_id) {
+            $bitacora = Bitacora::find($bitacora_id);
+
+            $horaActual = now()->format('H:i:s');
+
+            $bitacora->detalleBitacoras()->create([
+                'accion' => 'Eliminar Consulta',
+                'metodo' => request()->method(),
+                'hora' => $horaActual,
+                'tabla' => 'consulta',
+                'registroId' => $id,
+                'ruta'=> request()->fullurl(),
+            ]);
+        }
+
         return redirect(route('consulta.consultas'))->with('eliminado', 'Consulta ' . $nombre . ' eliminada exitosamente');
     }
 }

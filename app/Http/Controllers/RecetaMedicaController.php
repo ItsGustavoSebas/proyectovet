@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bitacora;
 use App\Models\RecetaMedica;
 use App\Models\DetalleReceta;
 use App\Models\Producto;
@@ -37,6 +38,25 @@ class RecetaMedicaController extends Controller
         $recetamedica->ID_Empleado = $request->empleado_id;
         $recetamedica->save();
 
+        //Crear DetalleBitacora
+
+        $bitacora_id = session('bitacora_id');
+
+        if ($bitacora_id) {
+            $bitacora = Bitacora::find($bitacora_id);
+
+            $horaActual = now()->format('H:i:s');
+
+            $bitacora->detalleBitacoras()->create([
+                'accion' => 'Crear Receta Medica',
+                'metodo' => $request->method(),
+                'hora' => $horaActual,
+                'tabla' => 'receta_medica',
+                'registroId' => $recetamedica->id,
+                'ruta'=> request()->fullurl(),
+            ]);
+        }
+
         foreach ($request->productos as $productoData) {
             $producto_id = $productoData['producto_id'];
             $cantidad = $productoData['cantidad'];
@@ -70,6 +90,26 @@ class RecetaMedicaController extends Controller
         $recetamedica->detalle_receta()>delete();
         $numReceta = $recetamedica->numReceta;
         $recetamedica->delete();
+
+        //Crear DetalleBitacora
+
+        $bitacora_id = session('bitacora_id');
+
+        if ($bitacora_id) {
+            $bitacora = Bitacora::find($bitacora_id);
+
+            $horaActual = now()->format('H:i:s');
+
+            $bitacora->detalleBitacoras()->create([
+                'accion' => 'Eliminar Receta Medica',
+                'metodo' => request()->method(),
+                'hora' => $horaActual,
+                'tabla' => 'receta_medica',
+                'registroId' => $id,
+                'ruta'=> request()->fullurl(),
+            ]);
+        }
+
         return redirect(route('consulta.acciones', $ID_Consulta))->with('eliminado', 'Receta Médica eliminada exitosamente');
     }
 
@@ -85,6 +125,25 @@ class RecetaMedicaController extends Controller
         $recetamedica->ID_Consulta = $request->ID_Consulta;
         $recetamedica->ID_Empleado = $request->ID_Empleado;
         $recetamedica->save();
+
+        //Crear DetalleBitacora
+
+        $bitacora_id = session('bitacora_id');
+
+        if ($bitacora_id) {
+            $bitacora = Bitacora::find($bitacora_id);
+
+            $horaActual = now()->format('H:i:s');
+
+            $bitacora->detalleBitacoras()->create([
+                'accion' => 'Editar Receta Medica',
+                'metodo' => request()->method(),
+                'hora' => $horaActual,
+                'tabla' => 'receta_medica',
+                'registroId' => $recetamedica->id,
+                'ruta'=> request()->fullurl(),
+            ]);
+        }
 
         foreach ($request->productos as $productoData) {
             $producto_id = $productoData['producto_id'];
