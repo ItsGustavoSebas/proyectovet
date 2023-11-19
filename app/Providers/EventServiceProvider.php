@@ -18,6 +18,21 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        'eloquent.created: App\Models\TratamientoDeLaConsulta' => [
+            'App\Observers\TratamientoDeLaConsultaObserver@created',
+        ],
+        'eloquent.deleted: App\Models\TratamientoDeLaConsulta' => [
+            'App\Observers\TratamientoDeLaConsultaObserver@deleted',
+        ],
+        'eloquent.created: App\Models\LoteProd' => [
+            'App\Observers\LoteProdObserver@created',
+        ],
+        'eloquent.updated: App\Models\LoteProd' => [
+            'App\Observers\LoteProdObserver@updated',
+        ],
+        'eloquent.deleted: App\Models\LoteProd' => [
+            'App\Observers\LoteProdObserver@deleted',
+        ],
     ];
 
     /**

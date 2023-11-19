@@ -19,7 +19,6 @@ return new class extends Migration
             $table->char('sexo');
             $table->string('color');
             $table->date('fechaNacimiento');
-            $table->integer('edad');
             $table->boolean('esterilizado');
             $table->integer('ID_Cliente')->foreign('ID_Cliente')->references('id')->on('users');
             $table->integer('ID_Especie')->foreign('ID_Especie')->references('id')->on('especie');

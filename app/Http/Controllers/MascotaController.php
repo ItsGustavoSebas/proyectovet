@@ -40,7 +40,6 @@ class MascotaController extends Controller
             'sexo' => 'required',
             'color' => 'required',
             'fechaNacimiento' => 'required',
-            'edad' => 'required',
             'peso' => 'required',
             'altura' => 'required',
             'observacion' => 'required',
@@ -73,7 +72,6 @@ class MascotaController extends Controller
         $mascota->sexo = $request->sexo;
         $mascota->color = $request->color;
         $mascota->fechaNacimiento = $request->fechaNacimiento;
-        $mascota->edad = $request->edad;
         $mascota->esterilizado = $esterilizado;
         $mascota->ID_Cliente = $request->ID_Cliente;
         $mascota->ID_Especie = $idEspecie;
@@ -100,7 +98,6 @@ class MascotaController extends Controller
             'sexo' => 'required',
             'color' => 'required',
             'fechaNacimiento' => 'required',
-            'edad' => 'required',
             'peso' => 'required',
             'altura' => 'required',
             'observacion' => 'required',
@@ -132,7 +129,6 @@ class MascotaController extends Controller
         $mascota->sexo = $request->sexo;
         $mascota->color = $request->color;
         $mascota->fechaNacimiento = $request->fechaNacimiento;
-        $mascota->edad = $request->edad;
         $mascota->esterilizado = $esterilizado;
         $mascota->ID_Cliente = $request->ID_Cliente;
         $mascota->ID_Especie = $idEspecie;
