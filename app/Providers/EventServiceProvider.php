@@ -2,6 +2,10 @@
 
 namespace App\Providers;
 
+use Illuminate\Auth\Events\Login;
+use App\Listeners\LogSuccessfulLogin;
+use Illuminate\Auth\Events\Logout;
+use App\Listeners\LogSuccessfulLogout;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -32,6 +36,12 @@ class EventServiceProvider extends ServiceProvider
         ],
         'eloquent.deleted: App\Models\LoteProd' => [
             'App\Observers\LoteProdObserver@deleted',
+        ],
+            Login::class => [
+            LogSuccessfulLogin::class,
+        ],
+            Logout::class => [
+            LogSuccessfulLogout::class,
         ],
     ];
 

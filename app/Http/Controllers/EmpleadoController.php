@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bitacora;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Models\User;
@@ -35,7 +36,27 @@ class EmpleadoController extends Controller
         $usuario = User::where('id', '=', $id)->first();
         $nombre = $usuario->nombre;
         $usuario->delete();
-        return redirect(route('usuarios.rinicio'))->with('eliminado', 'Usuario ' . $nombre . 'eliminado exitosamente');
+
+        //Crear DetalleBitacora
+
+        $bitacora_id = session('bitacora_id');
+
+        if ($bitacora_id) {
+            $bitacora = Bitacora::find($bitacora_id);
+
+            $horaActual = now()->format('H:i:s');
+
+            $bitacora->detalleBitacoras()->create([
+                'accion' => 'Eliminar Empleado',
+                'metodo' => request()->method(),
+                'hora' => $horaActual,
+                'tabla' => 'empleados-users',
+                'registroId' => $id,
+                'ruta'=> request()->fullurl(),
+            ]);
+        }
+        
+        return redirect(route('empleados.inicio'))->with('eliminado', 'Usuario ' . $nombre . 'eliminado exitosamente');
     }
 
     public function guardar(REQUEST $request)
@@ -91,6 +112,25 @@ class EmpleadoController extends Controller
         ]);
 
         $user->empleado()->save($empleado);
+
+        //Crear DetalleBitacora
+
+        $bitacora_id = session('bitacora_id');
+
+        if ($bitacora_id) {
+            $bitacora = Bitacora::find($bitacora_id);
+
+            $horaActual = now()->format('H:i:s');
+
+            $bitacora->detalleBitacoras()->create([
+                'accion' => 'Crear Empleado',
+                'metodo' => $request->method(),
+                'hora' => $horaActual,
+                'tabla' => 'empleados-users',
+                'registroId' => $user->id,
+                'ruta'=> request()->fullurl(),
+            ]);
+        }
 
 
         return redirect(route('empleados.inicio'))->with('creado', 'Empleado registrado exitosamente');
@@ -156,6 +196,26 @@ class EmpleadoController extends Controller
         ]);
 
         $empleado->save();
+
+        //Crear DetalleBitacora
+
+        $bitacora_id = session('bitacora_id');
+
+        if ($bitacora_id) {
+            $bitacora = Bitacora::find($bitacora_id);
+
+            $horaActual = now()->format('H:i:s');
+
+            $bitacora->detalleBitacoras()->create([
+                'accion' => 'Editar Empleado',
+                'metodo' => $request->method(),
+                'hora' => $horaActual,
+                'tabla' => 'empleados-users',
+                'registroId' => $usuario->id,
+                'ruta'=> request()->fullurl(),
+            ]);
+        }
+
 
         return redirect()->route('empleados.inicio')->with('actualizado', 'Usuario actualizado exitosamente');
     }

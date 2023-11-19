@@ -1,9 +1,12 @@
 <?php
 
+use App\Http\Controllers\BitacoraController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ConsultaController;
 use App\Http\Controllers\CorreoController;
+use App\Http\Controllers\DetalleBitacoraController;
+use App\Http\Controllers\DetalleRecetaController;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\HistorialController;
 use App\Http\Controllers\LoteController;
@@ -187,4 +190,12 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
     Route::post('/RecetaMedica/eliminar/{id}', [RecetaMedicaController::class, 'eliminar'])->name('RecetaMedica.eliminar');
 
     Route::get('/correo/enviar', [CorreoController::class, 'enviar'])->name('correo.enviar');
+
+    //Bitacora
+    Route::get('/bitacoras/inicio/{id}', [BitacoraController::class, 'inicio'])->name('bitacoras.inicio');
+    Route::get('/bitacoras/rinicio', [BitacoraController::class, 'rinicio'])->name('bitacoras.rinicio');
+    
+    //DetalleBitacora
+    Route::get('/detbitacoras/inicio/{id}', [DetalleBitacoraController::class, 'inicio'])->name('detbitacoras.inicio');
+    
 });

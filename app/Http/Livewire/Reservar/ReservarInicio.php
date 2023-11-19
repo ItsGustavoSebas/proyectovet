@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\Reservar;
 
-
+use App\Models\Bitacora;
 use Livewire\Component;
 use Carbon\Carbon; // Asegúrate de importar la clase Carbon para trabajar con fechas
 use Livewire\WithFileUploads;
@@ -91,7 +91,7 @@ class ReservarInicio extends Component
 
 
        
-      Cita::create([
+      $cita = Cita::create([
        'fecha' => $this->fecha,
        'descripcion' =>$this->descripcion,
        'fechaProgramada' =>$this->fechaProgramada,
@@ -102,7 +102,24 @@ class ReservarInicio extends Component
       ]);
 
 
-      
+      //Crear DetalleBitacora
+
+      $bitacora_id = session('bitacora_id');
+
+      if ($bitacora_id) {
+          $bitacora = Bitacora::find($bitacora_id);
+
+          $horaActual = now()->format('H:i:s');
+
+          $bitacora->detalleBitacoras()->create([
+              'accion' => 'Crear Reserva',
+              'metodo' => request()->method(),
+              'hora' => $horaActual,
+              'tabla' => 'citas',
+              'registroId' => $cita->id,
+              'ruta'=> request()->fullurl(),
+          ]);
+      }
 
   
 
