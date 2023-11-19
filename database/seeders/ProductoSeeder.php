@@ -19,6 +19,7 @@ class ProductoSeeder extends Seeder
             'nombre' => 'Pienso para perros',
             'precioVenta' => 15.99,
             'descripcion' => 'Comida balanceada para perros, marca Hill\'s Science Diet.',
+            'cantidadGeneral' => 0,
             'ID_Categoria' => 1, 
             'ID_Marca' => 1, 
         ]);
@@ -27,6 +28,7 @@ class ProductoSeeder extends Seeder
             'nombre' => 'Comida para gatos',
             'precioVenta' => 15.99,
             'descripcion' => 'Comida balanceada para perros, marca Hill\'s Science Diet.',
+            'cantidadGeneral' => 0,
             'ID_Categoria' => 1, // ID de la categoría de Alimentación
             'ID_Marca' => 2, 
         ]);
@@ -35,6 +37,7 @@ class ProductoSeeder extends Seeder
             'nombre' => 'Shampoo para gatos',
             'precioVenta' => 8.99,
             'descripcion' => 'Shampoo suave para gatos, marca Purina.',
+            'cantidadGeneral' => 0,
             'ID_Categoria' => 3, 
             'ID_Marca' => 3, 
         ]);

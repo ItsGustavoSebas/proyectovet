@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('nombre');
             $table->decimal('precioVenta');
             $table->string('descripcion');
+            $table->integer('cantidadGeneral');
             $table->integer('ID_Categoria')->foreign('ID_Categoria')->references('id')->on('categoria');
             $table->integer('ID_Marca')->foreign('ID_Marca')->references('id')->on('marcas');
             $table->timestamps();

@@ -96,6 +96,8 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
     Route::get('/historial/editar/{id}', [HistorialController::class, 'editar'])->name('historial.editar');
     Route::post('/historial/actualizar/{id}', [HistorialController::class, 'actualizar'])->name('historial.actualizar');
     Route::post('/historial/eliminar/{id}', [HistorialController::class, 'eliminar'])->name('historial.eliminar');
+    Route::get('/historial/crear/{id}', [HistorialController::class, 'crear'])->name('historial.crear');
+    Route::post('/historial/guardar', [HistorialController::class, 'guardar'])->name('historial.guardar');
 
     //TratamientoController
     Route::get('/tratamientos/inicio', [TratamientoController::class, 'inicio'])->name('tratamientos.inicio');
@@ -104,6 +106,9 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
     Route::post('/tratamientos/actualizar/{id}', [TratamientoController::class, 'actualizar'])->name('tratamientos.actualizar');
     Route::post('/tratamientos/eliminar/{id}', [TratamientoController::class, 'eliminar'])->name('tratamientos.eliminar');
     Route::post('/tratamientos/guardar', [TratamientoController::class, 'guardar'])->name('tratamientos.guardar');
+    Route::post('/traconsulta/guardartratamiento', [TratamientoDeLaConsultaController::class, 'añadirTratamiento'])->name('traconsulta.añadirTratamiento');
+    Route::post('/traconsulta/eliminarTratamiento/{id}', [TratamientoDeLaConsultaController::class, 'eliminarTratamiento'])->name('traconsulta.eliminarTratamiento');
+
    
     //RoleController
     Route::get('/roles/inicio', [RoleController::class, 'inicio'])->name('roles.inicio');
@@ -124,9 +129,9 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
     //TratamientoDeLaConsultaController
     Route::get('/traconsulta/crear/{id}', [TratamientoDeLaConsultaController::class, 'crear'])->name('traconsulta.crear');
     Route::post('/traconsulta/guardar/', [TratamientoDeLaConsultaController::class, 'guardar'])->name('traconsulta.guardar');
-    Route::get('/traconsulta/editar/{id}', [TratamientoDeLaConsultaController::class, 'editar'])->name('traconsulta.editar');
+    Route::get('/traconsulta/editar/{id}/{id_Consulta}', [TratamientoDeLaConsultaController::class, 'editar'])->name('traconsulta.editar');
     Route::post('/traconsulta/actualizar/{id}', [TratamientoDeLaConsultaController::class, 'actualizar'])->name('traconsulta.actualizar');
-    Route::post('/traconsulta/eliminar/{id}', [TratamientoDeLaConsultaController::class, 'eliminar'])->name('traconsulta.eliminar');
+    Route::post('/traconsulta/eliminar/{id}/{id_Consulta}', [TratamientoDeLaConsultaController::class, 'eliminar'])->name('traconsulta.eliminar');
 
     //ProveedorController
     Route::get('/proveedor', [ProveedorController::class, 'inicio'])->name('proveedor.inicio');

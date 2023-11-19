@@ -15,25 +15,19 @@ class TratamientoDeLaConsulta extends Model
 
     protected $fillable = [
         'id',
-        'duracion',
-        'FechaInicio',
-        'FechaFin',
-        'SiguienteVisita',
-        'ID_Tratamiento',
+        'precio',
+        'fecha',
+        'ID_TratamientoMascota',
         'ID_Consulta',
-        'ID_Historial',
     ];
-    public function tratamientos() {
-        return $this->belongsTo(Tratamiento::class, 'ID_Tratamiento', 'id');
-    }
 
     public function consultas() {
         return $this->belongsTo(Consulta::class, 'ID_Consulta', 'id');
     }
 
-    public function tratamiento()
+    public function tratamientoMascota()
     {
-        return $this->belongsTo(Tratamiento::class, 'ID_Tratamiento');
+        return $this->belongsTo(TratamientoMascota::class, 'ID_TratamientoMascota');
     }
 
     public function consulta()

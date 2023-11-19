@@ -105,23 +105,23 @@
                             width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"
                             referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
-                    <ul class="flex items-center text-base text-indigo-400 lg:invisible show-on-small-screen">
+                    <ul class="flex items-center text-base text-indigo-800 lg:invisible show-on-small-screen">
                         <li>
                             <a class="lg:p-4 py-3 px-2 block border-b-2 border-transparent hover:border-indigo-400 text-center sm:text-base"
                                 href="https://api.whatsapp.com/send?phone=59172636967&amp;text=">
-                                <span class="text-indigo-400 pr-2"><i class="fab fa-whatsapp"></i></span><br>Whatsapp
+                                <span class="text-indigo-800 pr-2"><i class="fab fa-whatsapp"></i></span><br>Whatsapp
                             </a>
                         </li>
                         <li>
-                            <a class="lg:p-4 py-3 px-2 block border-b-2 border-transparent hover:border-indigo-400 text-center sm:text-base"
+                            <a class="lg:p-4 py-3 px-2 block border-b-2 border-transparent hover:border-indigo-700 text-center sm:text-base"
                                 href="tel:+591-72636967">
-                                <span class="text-indigo-400 pr-2"><i class="fas fa-phone"></i></span><br>Llamar Ahora
+                                <span class="text-indigo-800 pr-2"><i class="fas fa-phone"></i></span><br>Llamar Ahora
                             </a>
                         </li>
                         <li>
                             <a class="lg:p-4 py-3 px-2 block border-b-2 border-transparent hover:border-indigo-400 text-center sm:text-base"
                                 href="https://maps.google.com/maps/dir//Agro+Veterinaria+LA+HACIENDA+Av.+Grigot%C3%A1+222+Santa+Cruz+de+la+Sierra/@-17.7946679,-63.1891255,16z/data=!4m5!4m4!1m0!1m2!1m1!1s0x93f1e9856992bb23:0x410805351b81665c">
-                                <span class="text-indigo-400 pr-2"><i class="fas fa-map-marker-alt"></i></span><br>Como Llegar
+                                <span class="text-indigo-800 pr-2"><i class="fas fa-map-marker-alt"></i></span><br>Como Llegar
                             </a>
                         </li>
                     </ul>

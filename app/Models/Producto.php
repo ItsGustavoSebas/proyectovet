@@ -17,6 +17,7 @@ class Producto extends Model
         'nombre', 
         'precioVenta', 
         'descripcion', 
+        'cantidadGeneral',
         'ID_Categoria', 
         'ID_Marca'
     ];

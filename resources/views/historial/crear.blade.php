@@ -42,17 +42,38 @@
                     @enderror
                 </div>
                 <div class="col-span-1">
-                    <select name="ID_Tratamiento" id="ID_Tratamiento">
-                        <option value="">Selecciona un tratamiento</option>
-                        @foreach ($tratamientos as $tratamiento)
-                            <option value="{{ $tratamiento->id }}">
-                                Diagnóstico: {{ $tratamiento->diagnostico }} - Descripción: {{ $tratamiento->descripcion }} - Precio: Bs.{{ $tratamiento->precio }}
-                            </option>
-                        @endforeach
-                    </select>
+                    <label class="font-bold text-lg" for="">dosis totales</label>
+                    <input id="dosis_totales" name = "dosis_totales" type="text" class="px3 py2 w-full rounded-x1 bg-blue-100" 
+                    placeholder="Ingresa las dosis totales">
+                    @error('dosis_totales')
+                        <strong class = "text-red-500">Debes ingresar las dosis totales</strong>
+                    @enderror
                 </div>
-                <input type="hidden" name="ID_Consulta" id="ID_Consulta" value="{{ $consulta->id }}">
-                <input type="hidden" name="ID_Historial" id="ID_Historial" value="{{ $consulta->mascota->ID_Historial }}">
+                <div class="col-span-1">
+                    <label class="font-bold text-lg" for="">frecuencia</label>
+                    <input id="frecuencia" name = "frecuencia" type="text" class="px3 py2 w-full rounded-x1 bg-blue-100" 
+                    placeholder="Ingresa la frecuencia">
+                    @error('frecuencia')
+                        <strong class = "text-red-500">Debes ingresar la frecuencia</strong>
+                    @enderror
+                </div>
+                <div class="col-span-1">
+                    <label class="font-bold text-lg" for="">Selecciona un tratamiento</label>
+                    <div class="relative inline-block w-64 mt-1">
+                        <select name="ID_Tratamiento" id="SiguienteVisita" class="block appearance-none w-full bg-white border border-gray-300 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                            <option value="">Selecciona un tratamiento</option>
+                            @foreach ($tratamientos as $tratamiento)
+                                <option value="{{ $tratamiento->id }}">
+                                    Diagnóstico: {{ $tratamiento->diagnostico }} - Descripción: {{ $tratamiento->descripcion }} - Precio: Bs.{{ $tratamiento->precio }}
+                                </option>
+                            @endforeach
+                        </select>
+                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M6.293 9.293a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L10 11.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4z"/></svg>
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden" name="ID_Historial" id="ID_Historial" value="{{ $historial->id }}">
                 <div class = "p-5">
                     <button type ="submit" class="bg-blue-600 text-white fond-bold px-6 py-3 rounded-lg">
                         <i class= "fa-solid fa-floppy-disk">Guardar</i>
