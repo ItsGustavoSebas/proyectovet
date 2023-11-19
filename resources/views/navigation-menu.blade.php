@@ -359,7 +359,14 @@
                             </div>
                             <ul class="desplegable ml-4 hidden">
                                 <li>
-                                    <a href="{{ route('reservar.consultar', Auth::id()) }}"
+                                    <a href="{{ route('mascotas.inicio', Auth::id()) }}"
+                                        class=" p-2 hover:bg-gray-700 flex items-center">
+                                        <i class="fas fa-chevron-right mr-2 text-xs"></i>
+                                        Mis Mascotas
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('reservar.consultar_cliente', Auth::id()) }}"
                                         class=" p-2 hover:bg-gray-700 flex items-center">
                                         <i class="fas fa-chevron-right mr-2 text-xs"></i>
                                         Consulta tus Reservas

@@ -65,7 +65,7 @@ class ConsultaController extends Controller
                 'hora' => $horaActual,
                 'tabla' => 'consulta',
                 'registroId' => $consulta->id,
-                'ruta'=> request()->fullurl(),
+                'ruta' => request()->fullurl(),
             ]);
         }
 
@@ -80,7 +80,7 @@ class ConsultaController extends Controller
         $mascota = Mascota::where('id', '=', $consulta->ID_Mascota)->first();
         $tratamientos_consulta = TratamientoDeLaConsulta::where('ID_Consulta', '=', $ID_Consulta)->get();
         $tratamientos = TratamientoMascota::where('ID_Historial', '=', $consulta->mascota->historial->id)->whereColumn('dosis_totales', '>', 'visitas_realizadas')
-        ->get();
+            ->get();
         return view('consulta.acciones', compact('mascota', 'consulta', 'tratamientos', 'tratamientos_consulta'));
     }
 
@@ -127,7 +127,7 @@ class ConsultaController extends Controller
                 'hora' => $horaActual,
                 'tabla' => 'consulta',
                 'registroId' => $consulta->id,
-                'ruta'=> request()->fullurl(),
+                'ruta' => request()->fullurl(),
             ]);
         }
 
@@ -155,7 +155,7 @@ class ConsultaController extends Controller
                 'hora' => $horaActual,
                 'tabla' => 'consulta',
                 'registroId' => $id,
-                'ruta'=> request()->fullurl(),
+                'ruta' => request()->fullurl(),
             ]);
         }
 

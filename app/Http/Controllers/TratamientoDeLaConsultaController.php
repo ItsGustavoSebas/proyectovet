@@ -42,7 +42,7 @@ class TratamientoDeLaConsultaController extends Controller
         $TratamientoMascota->ID_Tratamiento = $request->ID_Tratamiento;
         $TratamientoMascota->ID_Historial = $request->ID_Historial;
         $TratamientoMascota->save();
-      //Crear DetalleBitacora
+        //Crear DetalleBitacora
 
         $bitacora_id = session('bitacora_id');
 
@@ -57,11 +57,10 @@ class TratamientoDeLaConsultaController extends Controller
                 'hora' => $horaActual,
                 'tabla' => 'tratamientos_mascota',
                 'registroId' => $TratamientoMascota->id,
-                'ruta'=> request()->fullurl(),
+                'ruta' => request()->fullurl(),
             ]);
         }
         return redirect(route('consulta.acciones', $request->ID_Consulta))->with('creado', 'Tratamiento añadido exitosamente');
-
     }
 
     public function editar($id, $id_Consulta)
@@ -76,7 +75,7 @@ class TratamientoDeLaConsultaController extends Controller
     {
         $TratamientoMascota = TratamientoMascota::where('id', $id)->first();
         $TratamientoMascota->delete();
-      //Crear DetalleBitacora
+        //Crear DetalleBitacora
 
         $bitacora_id = session('bitacora_id');
 
@@ -91,7 +90,7 @@ class TratamientoDeLaConsultaController extends Controller
                 'hora' => $horaActual,
                 'tabla' => 'tratamientos_mascota',
                 'registroId' => $id,
-                'ruta'=> request()->fullurl(),
+                'ruta' => request()->fullurl(),
             ]);
         }
         return redirect(route('consulta.acciones', $id_Consulta))->with('eliminado', 'Tratamiento eliminado exitosamente');
@@ -120,7 +119,7 @@ class TratamientoDeLaConsultaController extends Controller
         $TratamientoMascota->ID_Tratamiento = $request->ID_Tratamiento;
         $TratamientoMascota->ID_Historial = $request->ID_Historial;
         $TratamientoMascota->save();
-      //Crear DetalleBitacora
+        //Crear DetalleBitacora
 
         $bitacora_id = session('bitacora_id');
 
@@ -135,7 +134,7 @@ class TratamientoDeLaConsultaController extends Controller
                 'hora' => $horaActual,
                 'tabla' => 'tratamientos_mascota',
                 'registroId' => $TratamientoMascota->id,
-                'ruta'=> request()->fullurl(),
+                'ruta' => request()->fullurl(),
             ]);
         }
         return redirect(route('consulta.acciones', $request->ID_Consulta))->with('actualizado', 'Tratamiento actualizado exitosamente');
@@ -149,7 +148,6 @@ class TratamientoDeLaConsultaController extends Controller
             'ID_Tratamiento' => 'required',
             'ID_Consulta' => 'required',
         ]);
-        // Crear una instancia de TratamientoDeLaConsulta con los datos del formulario
         $tratamientoConsulta = new TratamientoDeLaConsulta();
         $tratamientoConsulta->fecha = $request->fecha;
         $tratamientoConsulta->precio = $request->precio;
@@ -166,12 +164,12 @@ class TratamientoDeLaConsultaController extends Controller
             $horaActual = now()->format('H:i:s');
 
             $bitacora->detalleBitacoras()->create([
-                'accion' => 'Editar Tratamiento De Consulta',
+                'accion' => 'Crear Tratamiento De Consulta',
                 'metodo' => $request->method(),
                 'hora' => $horaActual,
                 'tabla' => 'tratamiento_de_la_consulta',
-                'registroId' => $tratamientoDeLaConsulta->id,
-                'ruta'=> request()->fullurl(),
+                'registroId' => $tratamientoConsulta->id,
+                'ruta' => request()->fullurl(),
             ]);
         }
         return redirect()->back()->with('creado', 'Tratamiento añadido a la consulta exitosamente a la consulta');
@@ -181,12 +179,7 @@ class TratamientoDeLaConsultaController extends Controller
     {
         $tratamientoConsulta = TratamientoDeLaConsulta::where('id', $id)->first();
         $tratamientoConsulta->delete();
-      if ($bitacora_id) {
-            $bitacora = Bitacora::find($bitacora_id);
-
-            $horaActual = now()->format('H:i:s');
-
-            //Crear DetalleBitacora
+        //Crear DetalleBitacora
 
         $bitacora_id = session('bitacora_id');
 
@@ -201,11 +194,9 @@ class TratamientoDeLaConsultaController extends Controller
                 'hora' => $horaActual,
                 'tabla' => 'tratamiento_de_la_consulta',
                 'registroId' => $id,
-                'ruta'=> request()->fullurl(),
+                'ruta' => request()->fullurl(),
             ]);
         }
         return redirect()->back()->with('eliminado', 'Tratamiento eliminado de la consulta exitosamente a la consulta');
-
     }
-
 }

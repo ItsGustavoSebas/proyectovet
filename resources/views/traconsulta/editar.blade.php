@@ -85,12 +85,13 @@
                 
                 <input type="hidden" name="ID_Consulta" id="ID_Consulta" value="{{ $consulta->id }}">
                 <input type="hidden" name="ID_Historial" id="ID_Historial" value="{{ $traconsulta->ID_Historial }}">
+                @can('Actualizar Tratamientos_Masc')
                 <div class = "p-5">
                     <button type ="submit" class="bg-blue-600 text-white fond-bold px-6 py-3 rounded-lg">
                         <i class= "fa-solid fa-floppy-disk">Guardar</i>
                     </button>
                 </div>
-
+                @endcan
             </div>
 
         </div>

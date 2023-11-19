@@ -72,7 +72,7 @@
                             </a>
                             @endcan
                             <a href="{{ route('bitacoras.inicio', $cliente->usuario->id) }}"
-                                class = "bg-white px-2 py-2 rounded-lg" title="Reservar Cita">
+                                class = "bg-white px-2 py-2 rounded-lg" title="Bitacora">
                                 <i class="fas fa-file-alt"></i>
                             </a>
                             @can('Editar Cliente')
