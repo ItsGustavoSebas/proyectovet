@@ -8,9 +8,10 @@ use Illuminate\Http\Request;
 
 class TratamientoController extends Controller
 {
-    public function inicio(){
+    public function inicio()
+    {
         $tratamientos = Tratamiento::all();
-        return(view('tratamientos.inicio', compact('tratamientos')));
+        return (view('tratamientos.inicio', compact('tratamientos')));
     }
 
     public function crear()
@@ -46,7 +47,7 @@ class TratamientoController extends Controller
                 'hora' => $horaActual,
                 'tabla' => 'tratamiento',
                 'registroId' => $tratamiento->id,
-                'ruta'=> request()->fullurl(),
+                'ruta' => request()->fullurl(),
             ]);
         }
 
@@ -87,10 +88,10 @@ class TratamientoController extends Controller
                 'hora' => $horaActual,
                 'tabla' => 'tratamiento',
                 'registroId' => $tratamiento->id,
-                'ruta'=> request()->fullurl(),
+                'ruta' => request()->fullurl(),
             ]);
         }
-        
+
         return redirect(route('tratamientos.inicio'))->with('actualizado', 'Tratamiento actualizado exitosamente');
     }
 
@@ -115,10 +116,10 @@ class TratamientoController extends Controller
                 'hora' => $horaActual,
                 'tabla' => 'tratamiento',
                 'registroId' => $id,
-                'ruta'=> request()->fullurl(),
+                'ruta' => request()->fullurl(),
             ]);
         }
-
         return redirect(route('tratamientos.inicio'))->with('eliminado', 'Tratamiento ' . $nombre . ' eliminado exitosamente');
     }
 }
+

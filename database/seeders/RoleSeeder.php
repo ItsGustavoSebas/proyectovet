@@ -99,11 +99,16 @@ class RoleSeeder extends Seeder
 
         //TRATAMIENTO_CONSULTA
 
-        Permission::create(['name' => 'Crear Tratamientos_Cslt'])->syncRoles([$role1, $role2, $role4]);
-        Permission::create(['name' => 'Guardar Tratamientos_Cslt'])->syncRoles([$role1, $role2, $role4]);
-        Permission::create(['name' => 'Editar Tratamientos_Cslt'])->syncRoles([$role1, $role2, $role4]);
-        Permission::create(['name' => 'Actualizar Tratamientos_Cslt'])->syncRoles([$role1, $role2, $role4]);
+        Permission::create(['name' => 'Añadir Tratamientos_Cslt'])->syncRoles([$role1, $role2, $role4]);
         Permission::create(['name' => 'Eliminar Tratamientos_Cslt'])->syncRoles([$role1]);
+
+        //TRATAMIENTO_MASCOTA
+
+        Permission::create(['name' => 'Crear Tratamientos_Masc'])->syncRoles([$role1, $role2, $role4]);
+        Permission::create(['name' => 'Guardar Tratamientos_Masc'])->syncRoles([$role1, $role2, $role4]);
+        Permission::create(['name' => 'Editar Tratamientos_Masc'])->syncRoles([$role1, $role2, $role4]);
+        Permission::create(['name' => 'Actualizar Tratamientos_Masc'])->syncRoles([$role1, $role2, $role4]);
+        Permission::create(['name' => 'Eliminar Tratamientos_Masc'])->syncRoles([$role1]);
 
         //PROVEEDOR
 

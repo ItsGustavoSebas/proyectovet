@@ -38,7 +38,7 @@ class LoteController extends Controller
         $lote->numeroLote = $request->numeroLote;
         $lote->fechaCompra = $request->fechaCompra;
         $lote->fechaVencimiento = $request->fechaVencimiento;
-        $lote->estado=true;
+        $lote->estado = true;
         $lote->ID_Proveedor = $request->proveedor_id;
         $lote->save();
 
@@ -57,7 +57,7 @@ class LoteController extends Controller
                 'hora' => $horaActual,
                 'tabla' => 'lote',
                 'registroId' => $lote->id,
-                'ruta'=> request()->fullurl(),
+                'ruta' => request()->fullurl(),
             ]);
         }
 
@@ -75,6 +75,24 @@ class LoteController extends Controller
             $loteprod->ID_Medida = $medida_id;
             $loteprod->precioCompra = $precioCompra;
             $loteprod->save();
+            //Crear DetalleBitacora
+
+            $bitacora_id = session('bitacora_id');
+
+            if ($bitacora_id) {
+                $bitacora = Bitacora::find($bitacora_id);
+
+                $horaActual = now()->format('H:i:s');
+
+                $bitacora->detalleBitacoras()->create([
+                    'accion' => 'Añadir Producto Del Lote',
+                    'metodo' => request()->method(),
+                    'hora' => $horaActual,
+                    'tabla' => 'loteprod',
+                    'registroId' => $loteprod->id,
+                    'ruta' => request()->fullurl(),
+                ]);
+            }
         }
 
         return redirect(route('lotes.inicio'))->with('creado', 'Lote añadido exitosamente');
@@ -102,7 +120,7 @@ class LoteController extends Controller
         $lote->numeroLote = $request->numeroLote;
         $lote->fechaCompra = $request->fechaCompra;
         $lote->fechaVencimiento = $request->fechaVencimiento;
-        $lote->estado=true;
+        $lote->estado = true;
         $lote->ID_Proveedor = $request->proveedor_id;
         $lote->save();
 
@@ -121,7 +139,7 @@ class LoteController extends Controller
                 'hora' => $horaActual,
                 'tabla' => 'lote',
                 'registroId' => $lote->id,
-                'ruta'=> request()->fullurl(),
+                'ruta' => request()->fullurl(),
             ]);
         }
 
@@ -141,6 +159,24 @@ class LoteController extends Controller
             $loteprod->ID_Medida = $medida_id;
             $loteprod->precioCompra = $precioCompra;
             $loteprod->save();
+            //Crear DetalleBitacora
+
+            $bitacora_id = session('bitacora_id');
+
+            if ($bitacora_id) {
+                $bitacora = Bitacora::find($bitacora_id);
+
+                $horaActual = now()->format('H:i:s');
+
+                $bitacora->detalleBitacoras()->create([
+                    'accion' => 'Añadir Producto Del Lote',
+                    'metodo' => request()->method(),
+                    'hora' => $horaActual,
+                    'tabla' => 'loteprod',
+                    'registroId' => $loteprod->id,
+                    'ruta' => request()->fullurl(),
+                ]);
+            }
         }
 
         return redirect(route('lotes.inicio'))->with('actualizado', 'Lote actualizado exitosamente');
@@ -168,7 +204,7 @@ class LoteController extends Controller
                 'hora' => $horaActual,
                 'tabla' => 'lote',
                 'registroId' => $id,
-                'ruta'=> request()->fullurl(),
+                'ruta' => request()->fullurl(),
             ]);
         }
 
@@ -193,7 +229,7 @@ class LoteController extends Controller
     public function reembolsaractualizar($id)
     {
         $lote = Lote::find($id);
-        $lote->estado=false;
+        $lote->estado = false;
         $lote->save();
         return redirect(route('lotes.inicio'))->with('actualizado', 'Lote mandado al proceso de reembolso exitosamente');
     }
@@ -214,14 +250,14 @@ class LoteController extends Controller
         $request->validate([
             'numeroLote' => 'required',
             'fechaCompra' => 'required',
-            
+
             'productos' => 'required|array',
         ]);
 
         $lote->numeroLote = $request->numeroLote;
         $lote->fechaCompra = $request->fechaCompra;
         $lote->fechaVencimiento = $request->fechaVencimiento;
-        $lote->estado=true;
+        $lote->estado = true;
         $lote->ID_Proveedor = $request->proveedor_id;
         $lote->save();
 
@@ -249,7 +285,7 @@ class LoteController extends Controller
     public function actualizarReembolso($id)
     {
         $lote = Lote::find($id);
-        $lote->estado=true;
+        $lote->estado = true;
         $lote->save();
         return redirect(route('lotes.reembolsarInicio'))->with('actualizado', 'Lote reembolsado exitosamente');
     }
