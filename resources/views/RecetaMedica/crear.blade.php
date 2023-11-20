@@ -8,14 +8,7 @@
     <form action="{{ route('RecetaMedica.guardar') }}" method="POST">
         @csrf
         <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg m-5">
-            <div class="p-5">
-                <label class="font-bold text-lg" for="numReceta">Número de Receta Médica</label>
-                <input id="numReceta" name="numReceta" type="text" class="px-3 py-2 w-full rounded-xl bg-blue-100"
-                    placeholder="Ingresa el número de la Receta">
-                @error('numReceta')
-                    <strong class="text-red-500">Debes ingresar el número de Receta Médica</strong>
-                @enderror
-            </div>
+            
             <div class="grid lg:grid-cols-3 grid-cols-1 gap-4 p-5">
                 <div class="col-span-1">
                     <label class="font-bold text-lg" for="FechaEmision">Fecha de Emisión</label>
@@ -25,19 +18,11 @@
                     @enderror
                 </div>
             </div>
-            <div class="col-span-1">
-                <label class="font-bold text-lg" for="empleado_id">Empleado</label>
-                <select id="empleado_id" name="empleado_id" class="px-3 py-2 w-full rounded-xl bg-blue-100">
-                    <option value="">Selecciona un empleado</option>
-                    @foreach ($empleados as $usuario)
-                        <option value="{{ $usuario->id }}">{{ $usuario->name }}</option>
-                    @endforeach
-                </select>
-            </div>
+            
             <div class="p-5">
-                <label class="font-bold text-lg">Productos en la Receta Médica</label>
+                <label class="font-bold text-lg">Medicamentos en la Receta Médica</label>
                 <div id="productos">
-                    <div class="grid lg:grid-cols-4 grid-cols-1 gap-4 p-2">
+                    <div class="grid lg:grid-cols-3 grid-cols-1 gap-4 p-2">
                         <div class="col-span-1">
                             <label for="producto">Producto</label>
                             <select id="producto" name="productos[0][producto_id]"
@@ -53,25 +38,16 @@
                             <input id="cantidad" name="productos[0][cantidad]" type="number" min="1"
                                 class="px-3 py-2 w-full rounded-xl bg-blue-100" placeholder="Cantidad">
                         </div>
+                        
                         <div class="col-span-1">
-                            <label for="medida">Medida</label>
-                            <select id="medida" name="productos[0][medida_id]"
-                                class="px-3 py-2 w-full rounded-xl bg-blue-100">
-                                <option value="">Selecciona la medida</option>
-                                @foreach ($medidas as $medida)
-                                    <option value="{{ $medida->id }}">{{ $medida->nombre }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="col-span-1">
-                            <label for="precioVenta">Precio de Venta</label>
-                            <input id="precioVenta" name="productos[0][precioVenta]" type="number" min="1"
+                            <label for="precioVenta">Instrucciones</label>
+                            <input id="precioVenta" name="productos[0][precioVenta]" type="text" min="1"
                                 class="px-3 py-2 w-full rounded-xl bg-blue-100" placeholder="Precio de Venta">
                         </div>
                     </div>
                 </div>
                 <button type="button" id="agregarProducto"
-                    class="bg-blue-600 text-white font-bold px-4 py-2 rounded-lg">Agregar Producto</button>
+                    class="bg-blue-600 text-white font-bold px-4 py-2 rounded-lg">Agregar Medicamento</button>
             </div>
             <input type="hidden" name="ID_Consulta" id="ID_Consulta" value="{{ $consultas->id }}">
             <div class="p-5">
