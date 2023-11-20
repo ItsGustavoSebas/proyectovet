@@ -55,7 +55,14 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
     Route::post('/usuarios/eliminar/{id}', [UserController::class, 'eliminar'])->name('usuarios.eliminar');
     Route::get('/usuarios/crear', [UserController::class, 'crear'])->name('usuarios.crear');
     Route::post('/usuarios/guardar', [UserController::class, 'guardar'])->name('usuarios.guardar');
-    Route::get('/productos', [ProductoController::class, 'inicio'])->name('producto.inicio');
+
+    Route::get('/productos/crear', [ProductoController::class, 'crear'])->name('productos.crear');
+    Route::get('/productos/inicio/', [ProductoController::class, 'inicio'])->name('productos.inicio');
+    Route::get('/productos/filtrar/', [ProductoController::class, 'filtrar'])->name('productos.filtrar');
+    Route::post('/productos/guardar', [ProductoController::class, 'guardar'])->name('productos.guardar');
+    Route::get('/productos/editar/{id}', [ProductoController::class, 'editar'])->name('productos.editar');
+    Route::post('/productos/actualizar/{id}', [ProductoController::class, 'actualizar'])->name('productos.actualizar');
+    Route::post('/productos/eliminar/{id}', [ProductoController::class, 'eliminar'])->name('productos.eliminar');
 
     //ClienteController
     Route::get('/usuarios/clientes/inicio', [ClienteController::class, 'inicio'])->name('clientes2.inicio');

@@ -156,6 +156,15 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'Actualizar Marca'])->syncRoles([$role1, $role2]);
         Permission::create(['name' => 'Eliminar Marca'])->syncRoles([$role1]);
 
+        //Productos
+
+        Permission::create(['name' => 'Listar Productos'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'Crear Productos'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'Guardar Productos'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'Editar Productos'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'Actualizar Productos'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'Eliminar Productos'])->syncRoles([$role1]);
+
         //RESERVAS
 
         Permission::create(['name' => 'Listar Reservas'])->syncRoles([$role1, $role2]);
@@ -170,9 +179,6 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'Editar Servicio'])->syncRoles([$role1, $role2]);
         Permission::create(['name' => 'Actualizar Servicio'])->syncRoles([$role1, $role2]);
         Permission::create(['name' => 'Eliminar Servicio'])->syncRoles([$role1]);
-
-        //PRODUCTOS
-        Permission::create(['name' => 'Listar Productos'])->syncRoles([$role1, $role2]);
 
     }
 }
