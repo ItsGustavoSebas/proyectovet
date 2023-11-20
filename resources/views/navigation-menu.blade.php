@@ -226,7 +226,7 @@
                                 @endcan
                                 @can('Listar Productos')
                                 <li>
-                                    <a href="#" class=" p-2 hover:bg-gray-700 flex items-center">
+                                    <a href="{{ route('productos.inicio') }}" class=" p-2 hover:bg-gray-700 flex items-center">
                                         <i class="fas fa-chevron-right mr-2 text-xs"></i>
                                         Gestionar Producto
                                     </a>
@@ -381,36 +381,13 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="opcion-con-desplegable">
-                            <div class="flex items-center justify-between p-2 hover:bg-gray-700">
-                                <div class="flex items-center">
-                                    <i class="fas fa-chart-bar mr-2"></i>
-                                    <span>Productos</span>
-                                </div>
-                                <i class="fas fa-chevron-down text-xs"></i>
-                            </div>
-                            <ul class="desplegable ml-4 hidden">
-                                <li>
-                                    <a href="#" class=" p-2 hover:bg-gray-700 flex items-center">
-                                        <i class="fas fa-chevron-right mr-2 text-xs"></i>
-                                        Comida
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#"
-                                        class=" p-2 hover:bg-gray-700 flex items-center">
-                                        <i class="fas fa-chevron-right mr-2 text-xs"></i>
-                                        Accesorios
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class=" p-2 hover:bg-gray-700 flex items-center">
-                                        <i class="fas fa-chevron-right mr-2 text-xs"></i>
-                                        Medicinas
-                                    </a>
-                                </li>
-                            </ul>
+                        <li>
+                            <a href="{{ route('productos.inicio')}}" class=" p-2 hover:bg-gray-700 flex items-center">
+                                <i class="fas fa-chart-bar mr-2"></i>
+                                Productos
+                            </a>
                         </li>
+                        
                         <div class="w-100 rounded px-3">
                             <h4></h4>
                         </div>
