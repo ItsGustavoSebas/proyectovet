@@ -30,7 +30,7 @@
                             <div class="flex">
                                 <div
                                     class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                                    <i class="fa-regular fa-hourglass  text-gray-400 text-lg"></i>
+                                    <i class="fa-solid fa-tag"></i>
                                 </div>
                                 <input id= "nombre" type="string" name="nombre"
                                     class="w-full -ml-10 pl-10 pr-3 py-2 rounded-2xl border-2 border-gray-200 outline-none focus:border-indigo-500"
@@ -49,7 +49,7 @@
                             <div class="flex">
                                 <div
                                     class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                                    <i class="fa-regular fa-hourglass  text-gray-400 text-lg"></i>
+                                    <i class="fa-solid fa-money-bill"></i>
                                 </div>
                                 <input id= "precioVenta" type="string" name="precioVenta"
                                     class="w-full -ml-10 pl-10 pr-3 py-2 rounded-2xl border-2 border-gray-200 outline-none focus:border-indigo-500"
@@ -68,7 +68,7 @@
                             <div class="flex">
                                 <div
                                     class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                                    <i class="fa-regular fa-hourglass  text-gray-400 text-lg"></i>
+                                    <i class="fa-regular fa-file"></i>
                                 </div>
                                 <input id= "descripcion" type="string" name="descripcion"
                                     class="w-full -ml-10 pl-10 pr-3 py-2 rounded-2xl border-2 border-gray-200 outline-none focus:border-indigo-500"
@@ -80,24 +80,45 @@
                         </div>
                     </div>
                 </div>
-                <label class="font-bold text-lg" for=""> Categoria</label>
-                <div class="relative z-0">
-                    <select name="ID_Categoria" id="ID_Categoria">
-                        <option value="">Selecciona la categorias</option>
-                        @foreach ($categorias as $categoria)
-                            <option value="{{ $categoria->id }}" @if ($producto->ID_Categoria == $categoria->id) selected @endif>{{ $categoria->Nombre }}</option>
-                        @endforeach
-                    </select>
+                <div>
+                    <label class="font-bold text-lg" for=""> Categoria</label>
+                    <div class="flex -mx-3">
+                        <div class="w-full px-3 mb-5">
+                            <div class="flex">
+                                <div
+                                    class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
+                                    <i class="fa-solid fa-filter"></i>
+                                </div>
+                                <select name="ID_Categoria" id="ID_Categoria" class="w-full -ml-10 pl-10 pr-3 py-2 rounded-2xl border-2 border-gray-200 outline-none focus:border-indigo-500">
+                                    <option value="">Selecciona la categoria</option>
+                                    @foreach ($categorias as $categoria)
+                                        <option value="{{ $categoria->id }}" @if ($producto->ID_Categoria == $categoria->id) selected @endif>{{ $categoria->Nombre }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <label class="font-bold text-lg" for=""> Marca</label>
-                <div class="relative z-0">
-                    <select name="ID_Marca" id="ID_Marca">
-                        <option value="">Selecciona la Marca</option>
-                        @foreach ($marcas as $marca)
-                            <option value="{{ $marca->id }}" @if ($producto->ID_Marca == $marca->id) selected @endif>{{ $marca->nombre }}</option>
-                        @endforeach
-                    </select>
+                <div>
+                    <label class="font-bold text-lg" for=""> Marca</label>
+                    <div class="flex -mx-3">
+                        <div class="w-full px-3 mb-5">
+                            <div class="flex">
+                                <div
+                                    class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
+                                    <i class="fa-regular fa-registered"></i>
+                                </div>
+                                <select name="ID_Marca" id="ID_Marca" class="w-full -ml-10 pl-10 pr-3 py-2 rounded-2xl border-2 border-gray-200 outline-none focus:border-indigo-500">
+                                    <option value="">Selecciona la marca</option>
+                                    @foreach ($marcas as $marca)
+                                        <option value="{{ $marca->id }}" @if ($producto->ID_Marca == $marca->id) selected @endif>{{ $marca->nombre }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                @can('Actualizar Productos')
                 <div class="flex -mx-3 pt-9">
                     <div class="w-full px-3 mb-5">
                         <button type ="submit" id="guardar"
@@ -105,6 +126,7 @@
                         </button>
                     </div>
                 </div>
+                @endcan
             </div>
         </div>
         </div>
