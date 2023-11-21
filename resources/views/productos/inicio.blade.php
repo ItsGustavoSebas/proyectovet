@@ -58,22 +58,22 @@
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
                             class="inline-block w-1/3 md:hidden font-bold">ID</span>{{ $producto->id }}</td>
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
-                            class="inline-block w-1/3 md:hidden font-bold">Tiempo</span>{{ $producto->nombre }}
+                            class="inline-block w-1/3 md:hidden font-bold">Nombre</span>{{ $producto->nombre }}
                     </td>
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
-                            class="inline-block w-1/3 md:hidden font-bold">ID_Cita</span>{{ $producto->precioVenta }}
+                            class="inline-block w-1/3 md:hidden font-bold">Precio de Venta</span>{{ $producto->precioVenta }}
                     </td>
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
-                            class="inline-block w-1/3 md:hidden font-bold">Servicio</span>{{ $producto->descripcion }}
+                            class="inline-block w-1/3 md:hidden font-bold">Descripción</span>{{ $producto->descripcion }}
                     </td>
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
-                            class="inline-block w-1/3 md:hidden font-bold">Empleado</span>{{ $producto->cantidadGeneral  }}
+                            class="inline-block w-1/3 md:hidden font-bold">Cantidad Gemeral</span>{{ $producto->cantidadGeneral  }}
                     </td>
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
-                        class="inline-block w-1/3 md:hidden font-bold">Empleado</span>{{ $producto->categoria->Nombre  }}
+                        class="inline-block w-1/3 md:hidden font-bold">Categoria</span>{{ $producto->categoria->Nombre  }}
                 </td>
                 <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
-                    class="inline-block w-1/3 md:hidden font-bold">Empleado</span>{{ $producto->marca->nombre  }}
+                    class="inline-block w-1/3 md:hidden font-bold">Marca</span>{{ $producto->marca->nombre  }}
             </td>
             </td>
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
