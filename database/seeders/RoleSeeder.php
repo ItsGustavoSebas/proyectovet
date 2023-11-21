@@ -180,5 +180,10 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'Actualizar Servicio'])->syncRoles([$role1, $role2]);
         Permission::create(['name' => 'Eliminar Servicio'])->syncRoles([$role1]);
 
+        //BITACORAS
+
+        Permission::create(['name' => 'Listar Bitacoras'])->syncRoles([$role1]);
+
+
     }
 }

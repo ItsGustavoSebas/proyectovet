@@ -71,10 +71,12 @@
                                 <i class="fas fa-plus"></i>
                             </a>
                             @endcan
+                            @can('Listar Bitacoras')
                             <a href="{{ route('bitacoras.inicio', $cliente->usuario->id) }}"
                                 class = "bg-white px-2 py-2 rounded-lg" title="Bitacora">
                                 <i class="fas fa-file-alt"></i>
                             </a>
+                            @endcan
                             @can('Editar Cliente')
                             <a href="{{ route('clientes2.editar', $cliente->usuario->id) }}"
                                 class = "bg-green-400 px-2 py-2 rounded-lg" title="Editar">

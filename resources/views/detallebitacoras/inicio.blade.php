@@ -2,8 +2,10 @@
     <x-slot name="header">
         <div class = "flex flex-wrap justify-between">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('Detalla de la Bitacora ' . $bitacora->id) }}
+                {{ __('Detalle de la Bitacora ' . $bitacora->id) }}
             </h2>
+            <a class = "px-3 py-2 bg-red-800 font-bold text-white rounded-lg"
+                href="{{ route('generarDetalleBitacoraPDF', $bitacora->id) }}">Generar PDF</a>
         </div>
     </x-slot>
 
@@ -35,9 +37,6 @@
                 <th
                     class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
                     Ruta</th>
-                <th
-                    class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
-                    Acciones</th>
             </tr>
         </thead>
         <tbody class="block md:table-row-group">
@@ -65,14 +64,6 @@
                     </td>
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
                             class="inline-block w-1/3 md:hidden font-bold">Ruta</span>{{ $detbitacora->ruta }}
-                    </td>
-                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
-                        <div class="flex flex-wrap">
-                            <span class="inline-block w-1/3 md:hidden font-bold">Acciones</span>
-                            <a href="#" class = "bg-white px-2 py-2 rounded-lg" title="">
-                                <i class="fas fa-plus"></i>
-                            </a>
-                        </div>
                     </td>
                 </tr>
             @endforeach

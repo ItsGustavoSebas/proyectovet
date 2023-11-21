@@ -2,8 +2,10 @@
     <x-slot name="header">
         <div class = "flex flex-wrap justify-between">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('lista de bitacoras') }}
+                {{ __('Lista de Bitacoras') }}
             </h2>
+            <a class = "px-3 py-2 bg-red-800 font-bold text-white rounded-lg"
+                href="{{ route('generarBitacoraPDF') }}">Generar PDF</a>
         </div>
     </x-slot>
 
@@ -71,6 +73,9 @@
                             <span class="inline-block w-1/3 md:hidden font-bold">Acciones</span>
                             <a href="{{ route('detbitacoras.inicio', $bitacora->id) }}"class = "bg-white px-2 py-2 rounded-lg" title="Detalles">
                                 <i class="fas fa-plus"></i>
+                            </a>
+                            <a href="{{ route('generarDetalleBitacoraPDF', $bitacora->id) }}"class = "bg-white px-2 py-2 rounded-lg" title="Detalles">
+                                <i class="fas fa-file-pdf"></i>
                             </a>
                         </div>
                     </td>
