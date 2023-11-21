@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('tratamiento_de_la_consulta', function (Blueprint $table) {
             $table->id();
-            $table->integer('precio');
+            $table->decimal('precio');
             $table->date('fecha');
             $table->unsignedBigInteger('ID_TratamientoMascota');
             $table->unsignedBigInteger('ID_Consulta');

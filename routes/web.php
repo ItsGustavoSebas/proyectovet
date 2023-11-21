@@ -58,7 +58,7 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
 
     Route::get('/productos/crear', [ProductoController::class, 'crear'])->name('productos.crear');
     Route::get('/productos/inicio/', [ProductoController::class, 'inicio'])->name('productos.inicio');
-    Route::get('/productos/filtrar/', [ProductoController::class, 'filtrar'])->name('productos.filtrar');
+    Route::get('/productos/buscar/', [ProductoController::class, 'buscar'])->name('productos.buscar');
     Route::post('/productos/guardar', [ProductoController::class, 'guardar'])->name('productos.guardar');
     Route::get('/productos/editar/{id}', [ProductoController::class, 'editar'])->name('productos.editar');
     Route::post('/productos/actualizar/{id}', [ProductoController::class, 'actualizar'])->name('productos.actualizar');
