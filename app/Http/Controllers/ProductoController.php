@@ -18,27 +18,22 @@ class ProductoController extends Controller
         return (view('productos.inicio', compact('productos', 'categorias', 'marcas')));
     }
 
-    public function filtrar(Request $request)
-{
-    $categoriaId = $request->input('categoria');
-    $marcaId = $request->input('marca');
+    public function buscar(Request $request)
+    {
+        $terminoBusqueda = $request->input('busqueda');
 
-    $productos = Producto::query();
-
-    if ($categoriaId) {
-        $productos->where('ID_Categoria', $categoriaId);
+        $productos = Producto::query()
+            ->where('nombre', 'LIKE', '%' . $terminoBusqueda . '%')
+            ->orWhereHas('categoria', function ($query) use ($terminoBusqueda) {
+                $query->where('nombre', 'LIKE', '%' . $terminoBusqueda . '%');
+            })
+            ->orWhereHas('marca', function ($query) use ($terminoBusqueda) {
+                $query->where('nombre', 'LIKE', '%' . $terminoBusqueda . '%');
+            })
+            ->get();
+            return view('productos.inicio', compact('productos', 'terminoBusqueda'));
+        // Resto del código para cargar la vista con los productos filtrados
     }
-
-    if ($marcaId) {
-        $productos->where('ID_Marca', $marcaId);
-    }
-
-    $productos = $productos->get();
-    $categorias = Categoria::all();
-        $marcas = Marca::all();
-        return (view('productos.inicio', compact('productos', 'categorias', 'marcas')));
-    // Resto del código para cargar la vista con los productos filtrados
-}
 
     public function crear()
     {
@@ -50,10 +45,10 @@ class ProductoController extends Controller
     public function guardar(Request $request)
     {
         $request->validate([
-            'nombre' => 'required', 
-            'precioVenta' => 'required', 
-            'descripcion' => 'required', 
-            'ID_Categoria' => 'required', 
+            'nombre' => 'required',
+            'precioVenta' => 'required',
+            'descripcion' => 'required',
+            'ID_Categoria' => 'required',
             'ID_Marca' => 'required',
         ]);
 
@@ -101,10 +96,10 @@ class ProductoController extends Controller
         $producto = Producto::find($id);
 
         $request->validate([
-            'nombre' => 'required', 
-            'precioVenta' => 'required', 
-            'descripcion' => 'required', 
-            'ID_Categoria' => 'required', 
+            'nombre' => 'required',
+            'precioVenta' => 'required',
+            'descripcion' => 'required',
+            'ID_Categoria' => 'required',
             'ID_Marca' => 'required',
         ]);
         $producto->nombre = $request->nombre;

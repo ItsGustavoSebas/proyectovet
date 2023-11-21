@@ -28,5 +28,12 @@ class ProveedorSeeder extends Seeder
             'telefono' => '78523654',
             'direccion' => '456 Calle Secundaria',
         ]);
+
+        Proveedor::create([
+            'nombre' => 'Proveedor 3',
+            'correo' => 'proveedor3@gmail.com',
+            'telefono' => '65634326',
+            'direccion' => '653 Calle Secundaria',
+        ]);
     }
 }
