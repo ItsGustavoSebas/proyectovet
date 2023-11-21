@@ -2,8 +2,10 @@
     <x-slot name="header">
         <div class = "flex flex-wrap justify-between">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('lista de bitacoras de ' . $usuario->name) }}
+                {{ __('Lista de bitacoras de ' . $usuario->name) }}
             </h2>
+            <a class = "px-3 py-2 bg-red-800 font-bold text-white rounded-lg"
+                href="{{ route('generarBitacoraPDF_usuario', $usuario->id) }}">Generar PDF</a>
         </div>
     </x-slot>
 

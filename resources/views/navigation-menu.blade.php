@@ -56,12 +56,15 @@
                                 <i class="fas fa-chevron-down text-xs"></i>
                             </div>
                             <ul class="desplegable ml-4 hidden">
+                                @can('Listar Roles')
                                 <li>
+                                    
                                     <a href="{{ route('bitacoras.rinicio') }}" class=" p-2 hover:bg-gray-700 flex items-center">
                                         <i class="fas fa-chevron-right mr-2 text-xs"></i>
                                         Visualizar Bitácora
                                     </a>
                                 </li>
+                                @endcan
                                 <li>
                                     <a href="{{ route('register') }}" id="logout-and-register"
                                         class="p-2 hover:bg-gray-700 flex items-center">

@@ -87,10 +87,12 @@
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
                         <div class="flex flex-wrap">
                             <span class="inline-block w-1/3 md:hidden font-bold">Acciones</span>
+                            @can('Listar Bitacoras')
                             <a href="{{ route('bitacoras.inicio', $empleado->usuario->id) }}"
                                 class = "bg-white px-2 py-2 rounded-lg" title="Bitacora">
                                 <i class="fas fa-file-alt"></i>
                             </a>
+                            @endcan
                             @can('Editar Empleado')
                             <a href="{{ route('empleados.editar', $empleado->usuario->id ) }}"
                                 class = "bg-green-400 px-2 py-2 rounded-lg" title="Editar">
