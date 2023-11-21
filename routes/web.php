@@ -88,6 +88,14 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
     Route::post('/mascotas/actualizar/{id}', [MascotaController::class, 'actualizar'])->name('mascotas.actualizar');
     Route::post('/mascotas/eliminar/{id}', [MascotaController::class, 'eliminar'])->name('mascotas.eliminar');
 
+    Route::get('/producto/rinicio', [ProductoController::class, 'rinicio'])->name('producto.rinicio');
+    Route::get('/producto/inicio/{id}', [ProductoController::class, 'inicio'])->name('producto.inicio');
+    Route::get('/producto/{id}/crear', [ProductoController::class, 'crear'])->name('producto.crear');
+    Route::post('/producto/guardar', [ProductoController::class, 'guardar'])->name('producto.guardar');
+    Route::get('/producto/editar/{id}', [ProductoController::class, 'editar'])->name('producto.editar');
+    Route::post('/producto/actualizar/{id}', [ProductoController::class, 'actualizar'])->name('producto.actualizar');
+    Route::post('/producto/eliminar/{id}', [ProductoController::class, 'eliminar'])->name('producto.eliminar');
+
     //HistorialController
     Route::get('/mascotas/historial/{id}', [HistorialController::class, 'inicio'])->name('historial.inicio');
     Route::get('/historial/editar/{id}', [HistorialController::class, 'editar'])->name('historial.editar');

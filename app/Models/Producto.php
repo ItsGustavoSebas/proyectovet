@@ -9,35 +9,25 @@ class Producto extends Model
 {
     use HasFactory;
 
-    protected $table = 'producto';
+    protected $table = 'Producto';
 
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'nombre', 
-        'precioVenta', 
-        'descripcion', 
-        'ID_Categoria', 
-        'ID_Marca'
+        'id',
+        'nombre',
+        'precioVenta',
+        'descripcion',
+        'descripcion',
+        'cantidad',
+        'fechaVencimiento',
+        'ID_Categoria',
+        'ID_Marcas',
     ];
-
-    public function categoria()
-    {
-        return $this->belongsTo(Categoria::class, 'ID_Categoria');
+    public function historial() {
+        return $this->belongsTo(Categoria::class, 'ID_Categoria', 'id');
     }
-
-    public function marca()
-    {
-        return $this->belongsTo(Marca::class, 'ID_Marca');
-    }
-
-    public function loteprod()
-    {
-        return $this->hasMany(LoteProd::class, 'ID_Producto');
-    }
-
-    public function detalle_receta()
-    {
-        return $this->hasMany(Detalle_Receta::class, 'ID_Producto');
+    public function especie() {
+        return $this->belongsTo(Marca::class, 'ID_Marca', 'id');
     }
 }

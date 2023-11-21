@@ -137,6 +137,15 @@
                                     <a href="{{ route('mascotas.rinicio') }}"
                                         class="p-2 hover:bg-gray-700 flex items-center">
                                         <i class="fas fa-chevron-right mr-2 text-xs"></i>
+                                        Gestionar Producto
+                                    </a>
+                                </li>
+                                @endcan
+                                @can('Listar Productos')
+                                <li>
+                                    <a href="{{ route('producto.rinicio') }}"
+                                        class="p-2 hover:bg-gray-700 flex items-center">
+                                        <i class="fas fa-chevron-right mr-2 text-xs"></i>
                                         Generar Historial Médico
                                     </a>
                                 </li>
@@ -226,7 +235,7 @@
                                 @endcan
                                 @can('Listar Productos')
                                 <li>
-                                    <a href="#" class=" p-2 hover:bg-gray-700 flex items-center">
+                                    <a href="{{ route('producto.rinicio') }}" class=" p-2 hover:bg-gray-700 flex items-center">
                                         <i class="fas fa-chevron-right mr-2 text-xs"></i>
                                         Gestionar Producto
                                     </a>

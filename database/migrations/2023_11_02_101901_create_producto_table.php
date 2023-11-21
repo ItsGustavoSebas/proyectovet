@@ -16,10 +16,12 @@ return new class extends Migration
         Schema::create('producto', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->decimal('precioVenta');
+            $table->integer('precioVenta');
             $table->string('descripcion');
+            $table->integer('cantidad');
+            $table->date('fechaVencimiento');
             $table->integer('ID_Categoria')->foreign('ID_Categoria')->references('id')->on('categoria');
-            $table->integer('ID_Marca')->foreign('ID_Marca')->references('id')->on('marcas');
+            $table->integer('ID_Marcas')->foreign('ID_Marcas')->references('id')->on('marcas');
             $table->timestamps();
         });
     }

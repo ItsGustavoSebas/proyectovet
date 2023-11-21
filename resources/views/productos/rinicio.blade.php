@@ -2,12 +2,8 @@
     <x-slot name="header">
         <div class = "flex flex-wrap justify-between">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('lista de Productos de ' . $usuario->name) }}
+                {{ __('lista de Productos') }}
             </h2>
-            @can('Crear Producto')
-            <a class = "px-3 py-2 bg-indigo-600 font-bold text-white rounded-lg"
-                href="{{ route('Productos.crear', $usuario->id) }}">AÑADIR Producto</a>
-            @endcan
         </div>
     </x-slot>
 
@@ -44,7 +40,14 @@
                     Raza</th>
                 <th
                     class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
+                    ID del dueño</th>
+                <th
+                    class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
+                    Nombre del dueño</th>
+                <th
+                    class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
                     Acciones</th>
+                
             </tr>
         </thead>
         <tbody class="block md:table-row-group">
@@ -76,6 +79,10 @@
                     </td>
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
                             class="inline-block w-1/3 md:hidden font-bold">Raza</span>{{ $Producto->raza->nombre }}</td>
+                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
+                            class="inline-block w-1/3 md:hidden font-bold">ID del Dueño</span>{{ $Producto->ID_Cliente }}</td>
+                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
+                            class="inline-block w-1/3 md:hidden font-bold">Nombre del Dueño</span>{{ $Producto->dueño->name }}</td>                    
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
                         <div class="flex flex-wrap">
                             <span class="inline-block w-1/3 md:hidden font-bold">Acciones</span>
