@@ -213,7 +213,7 @@
                             </div>
                             <ul class="desplegable ml-4 hidden">
                                 <li>
-                                    <a href="{{ route('proveedor.reembolsarInicio') }}" class=" p-2 hover:bg-gray-700 flex items-center">
+                                    <a href="{{ route('lotes.reembolsarInicio') }}" class=" p-2 hover:bg-gray-700 flex items-center">
                                         <i class="fas fa-chevron-right mr-2 text-xs"></i>
                                         Gestionar Devolucion al Proveedor
                                     </a>
