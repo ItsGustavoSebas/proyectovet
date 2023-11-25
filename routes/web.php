@@ -3,6 +3,7 @@
 use App\Http\Controllers\BitacoraController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\FacturaController;
 use App\Http\Controllers\ConsultaController;
 use App\Http\Controllers\CorreoController;
 use App\Http\Controllers\DetalleBitacoraController;
@@ -181,6 +182,16 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
     Route::get('/categoria/editar/{id}', [CategoriaController::class, 'editar'])->name('categorias.editar');
     Route::post('/categoria/actualizar/{id}', [CategoriaController::class, 'actualizar'])->name('categorias.actualizar');
     Route::post('/categoria/eliminar/{id}', [CategoriaController::class, 'eliminar'])->name('categorias.eliminar');
+
+    //FacturaController
+    Route::post('/nota_venta/facturas/guardar', [FacturaController::class, 'guardar'])->name('facturas.guardar');
+    Route::get('/nota_venta/facturas/inicio', [FacturaController::class, 'inicio'])->name('facturas.inicio');
+    Route::get('/nota_venta/facturas/editar/{id}', [FacturaController::class, 'editar'])->name('facturas.editar');
+    Route::post('/nota_venta/facturas/actualizar/{id}', [FacturaController::class, 'actualizar'])->name('facturas.actualizar');
+    Route::post('/nota_venta/facturas/eliminar/{id}', [FacturaController::class, 'eliminar'])->name('facturas.eliminar');
+
+
+
 
     //MarcaController
     Route::get('/marcas/inicio', [MarcaController::class, 'inicio'])->name('marcas.inicio');
