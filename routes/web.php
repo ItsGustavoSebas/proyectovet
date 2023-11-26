@@ -26,7 +26,7 @@ use App\Models\TratamientoDeLaConsulta;
 use App\Models\RecetaMedica;
 use App\Models\DetalleReceta;
 use App\Http\Controllers\RecetaMedicaController;
-
+use App\Http\Controllers\ReporteFinancieroController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -116,7 +116,8 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
     Route::post('/tratamientos/guardar', [TratamientoController::class, 'guardar'])->name('tratamientos.guardar');
     Route::post('/traconsulta/guardartratamiento', [TratamientoDeLaConsultaController::class, 'añadirTratamiento'])->name('traconsulta.añadirTratamiento');
     Route::post('/traconsulta/eliminarTratamiento/{id}', [TratamientoDeLaConsultaController::class, 'eliminarTratamiento'])->name('traconsulta.eliminarTratamiento');
-
+    Route::get('/traconsulta/PDF/{id}', [TratamientoDeLaConsultaController::class, 'generarTratamientosConsultaPDF'])->name('generarTratamientosConsultaPDF');
+    
    
     //RoleController
     Route::get('/roles/inicio', [RoleController::class, 'inicio'])->name('roles.inicio');
@@ -191,7 +192,7 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
     Route::post('/nota_venta/facturas/eliminar/{id}', [FacturaController::class, 'eliminar'])->name('facturas.eliminar');
 
 
-
+    Route::get('/reporte/inicio', [ReporteFinancieroController::class, 'inicio'])->name('reporte.inicio');
 
     //MarcaController
     Route::get('/marcas/inicio', [MarcaController::class, 'inicio'])->name('marcas.inicio');
