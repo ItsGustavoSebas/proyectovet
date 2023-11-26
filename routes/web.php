@@ -193,7 +193,13 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
 
 
     Route::get('/reporte/inicio', [ReporteFinancieroController::class, 'inicio'])->name('reporte.inicio');
-
+  //ReciboController
+  Route::post('/nota_venta/recibos/guardar', [ReciboController::class, 'guardar'])->name('Recibos.guardar');
+  Route::get('/nota_venta/Recibos/inicio', [ReciboController::class, 'inicio'])->name('Recibos.inicio');
+  Route::get('/nota_venta/Recibos/editar/{id}', [ReciboController::class, 'editar'])->name('Recibos.editar');
+  Route::post('/nota_venta/Recibos/actualizar/{id}', [ReciboController::class, 'actualizar'])->name('Recibos.actualizar');
+  Route::post('/nota_venta/Recibos/eliminar/{id}', [ReciboController::class, 'eliminar'])->name('Recibos.eliminar');
+  Route::get('/Recibos/PDF/{id}', [ReciboController::class, 'generarReciboPDF'])->name('generarReciboPDF');
     //MarcaController
     Route::get('/marcas/inicio', [MarcaController::class, 'inicio'])->name('marcas.inicio');
     Route::get('/marcas/crear', [MarcaController::class, 'crear'])->name('marcas.crear');

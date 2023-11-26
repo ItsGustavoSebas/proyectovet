@@ -25,8 +25,10 @@ class Nota_Venta extends Model
         return $this->hasOne(Factura::class, 'ID_Nota_Venta');
     }
 
-     // Relación con recibo...
-    
+     // Relación con recibo
+     public function Recibo() {
+        return $this->hasOne(Factura::class, 'ID_Nota_Venta');
+    }
 
     
 }
