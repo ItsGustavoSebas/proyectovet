@@ -19,10 +19,10 @@ return new class extends Migration
             $table->string('duracion');
             $table->date('FechaInicio');
             $table->date('FechaFin');
-            $table->date('SiguienteVisita');
+            $table->date('SiguienteVisita')->nullable();
             $table->integer('visitas_realizadas');
             $table->integer('dosis_totales');
-            $table->integer('frecuencia');
+            $table->integer('frecuencia')->nullable();
             $table->foreign('ID_Tratamiento')->references('id')->on('tratamiento');
             $table->integer('ID_Historial')->foreign('ID_Historial')->references('id')->on('historial');
             $table->timestamps();

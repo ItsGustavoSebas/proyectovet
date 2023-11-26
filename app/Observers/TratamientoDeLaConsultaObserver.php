@@ -16,8 +16,17 @@ class TratamientoDeLaConsultaObserver
         if ($tratamientoMascota) {
             $tratamientoMascota->visitas_realizadas += 1;
             $frecuencia = $tratamientoMascota->frecuencia; 
+            if ($tratamientoMascota->visitas_realizadas == $tratamientoMascota->dosis_totales) {
+                $tratamientoMascota->SiguienteVisita = null;
+            }
+            else{
             $tratamientoMascota->SiguienteVisita = Carbon::now()->addDays($frecuencia);
+            }
             $tratamientoMascota->save();
+        }
+
+        if ($tratamientoMascota->visitas_realizadas == $tratamientoMascota->dosis_totales) {
+            $tratamientoMascota->SiguienteVisita = null;
         }
 
         $Consulta = Consulta::find($tratamientoDeLaConsulta->ID_Consulta);

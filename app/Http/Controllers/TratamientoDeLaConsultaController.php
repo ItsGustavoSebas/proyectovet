@@ -8,6 +8,7 @@ use App\Models\Mascota;
 use App\Models\Tratamiento;
 use App\Models\TratamientoDeLaConsulta;
 use App\Models\TratamientoMascota;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 
 class TratamientoDeLaConsultaController extends Controller
@@ -25,7 +26,6 @@ class TratamientoDeLaConsultaController extends Controller
             'duracion' => 'required',
             'FechaInicio' => 'required',
             'dosis_totales' => 'required',
-            'frecuencia' => 'required',
             'ID_Tratamiento' => 'required',
             'ID_Consulta' => 'required',
             'ID_Historial' => 'required',
@@ -104,7 +104,6 @@ class TratamientoDeLaConsultaController extends Controller
             'ID_Tratamiento' => 'required',
             'visitas_realizadas' => 'required',
             'dosis_totales' => 'required',
-            'frecuencia' => 'required',
             'ID_Consulta' => 'required',
             'ID_Historial' => 'required',
         ]);
@@ -198,5 +197,19 @@ class TratamientoDeLaConsultaController extends Controller
             ]);
         }
         return redirect()->back()->with('eliminado', 'Tratamiento eliminado de la consulta exitosamente a la consulta');
+    }
+
+    public function generarTratamientosConsultaPDF($ID_Consulta){
+        $consulta = Consulta::where('id', '=', $ID_Consulta)->first();
+        $mascota = Mascota::where('id', '=', $consulta->ID_Mascota)->first();
+        $tratamientos_consulta = TratamientoDeLaConsulta::where('ID_Consulta', '=', $ID_Consulta)->get();
+        $data = [
+            'tratamientos_consulta' => $tratamientos_consulta,
+            'mascota' => $mascota,
+        ];
+
+        $pdf = Pdf::loadView('PDF.tratamiento_consulta', $data);
+
+        return $pdf->stream('Tratamientos-mascota.pdf');
     }
 }
