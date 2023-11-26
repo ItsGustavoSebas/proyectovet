@@ -4,8 +4,10 @@
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 {{ __('lista de tratamientos') }}
             </h2>
+            @can('Crear Tratamiento')
             <a class = "px-3 py-2 bg-indigo-600 font-bold text-white rounded-lg"
                 href="{{ route('tratamientos.crear') }}">CREAR TRATAMIENTO</a>
+            @endcan
         </div>
     </x-slot>
 
@@ -45,9 +47,13 @@
                     </td>
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
                         <div class="flex flex-wrap">
+                            <span class="inline-block w-1/3 md:hidden font-bold">Acciones</span>
+                            @can('Editar Tratamiento')
                             <a href="{{ route('tratamientos.editar', $tratamiento->id) }}" class = "bg-green-400 px-2 py-2 rounded-lg" title="Editar">
                                 <i class="fa-regular fa-pen-to-square"></i>
                             </a>
+                            @endcan
+                            @can('Eliminar Tratamiento')
                             <div>
                                 <form action="{{  route('tratamientos.eliminar', $tratamiento->id) }}" method="POST"
                                     onsubmit="return confirm('¿Estas seguro de eliminar?')">
@@ -57,6 +63,7 @@
                                     </button>
                                 </form>
                             </div>
+                            @endcan
                         </div>
                             </td>
                 </tr>

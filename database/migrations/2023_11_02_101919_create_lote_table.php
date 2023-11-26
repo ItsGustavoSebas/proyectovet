@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('numeroLote');
             $table->date('fechaCompra');
             $table->string('fechaVencimiento')->nullable();
+            $table->boolean('estado');
             $table->integer('ID_Proveedor')->foreign('ID_Proveedor')->references('id')->on('proveedor');
             $table->timestamps();
         });

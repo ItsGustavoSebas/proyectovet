@@ -18,6 +18,7 @@ class Lote extends Model
         'numeroLote', 
         'fechaCompra', 
         'fechaVencimiento',
+        'estado',
         'ID_Proveedor'
     ];
 

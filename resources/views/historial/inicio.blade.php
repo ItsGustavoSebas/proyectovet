@@ -4,6 +4,8 @@
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 {{ __('Historial Médico de ' . $mascota->nombre) }}
             </h2>
+            <a class = "px-3 py-2 bg-indigo-600 font-bold text-white rounded-lg"
+                href="{{ route('historial.crear', $historial) }}">AÑADIR TRATAMIENTO</a>
         </div>
     </x-slot>
     <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg m-2">
@@ -46,6 +48,15 @@
                     Siguiente Visita</th>
                 <th
                     class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
+                    visitas realizadas</th>
+                <th
+                    class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
+                    dosis totales</th>
+                <th
+                    class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
+                    frecuencia</th>
+                <th
+                    class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
                     Diagnostico</th>
                 <th
                     class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
@@ -74,6 +85,12 @@
                             class="inline-block w-1/3 md:hidden font-bold">Siguiente
                             Visita</span>{{ $tratamiento->SiguienteVisita }}</td>
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
+                            class="inline-block w-1/3 md:hidden font-bold">visitas realizadas</span>{{ $tratamiento->visitas_realizadas }}</td>
+                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
+                            class="inline-block w-1/3 md:hidden font-bold">dosis totales</span>{{ $tratamiento->dosis_totales }}</td>
+                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
+                            class="inline-block w-1/3 md:hidden font-bold">frecuencia</span>{{ $tratamiento->frecuencia }}</td>        
+                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
                             class="inline-block w-1/3 md:hidden font-bold">Diagnostico</span>{{ $tratamiento->tratamiento->diagnostico }}
                     </td>
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
@@ -84,10 +101,14 @@
                     </td>
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
                         <div class="flex flex-wrap">
+                            <span class="inline-block w-1/3 md:hidden font-bold">Acciones</span>
+                            @can('Editar Historial')
                             <a href="{{ route('historial.editar', $tratamiento->id) }}"
                                 class = "bg-green-400 px-2 py-2 rounded-lg" title="Editar">
                                 <i class="fa-regular fa-pen-to-square"></i>
                             </a>
+                            @endcan
+                            @can('Eliminar Historial')
                             <div>
                                 <form action="{{ route('historial.eliminar', $tratamiento->id) }}" method="POST" 
                                     onsubmit="return confirm('¿Estas seguro de eliminar?')">
@@ -97,6 +118,7 @@
                                     </button>
                                 </form>
                             </div>
+                            @endcan
                     </td>
                 </tr>
             @endforeach

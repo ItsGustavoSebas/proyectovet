@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Crear Tratamiento') }}
+            {{ __('Editar Tratamiento') }}
         </h2>
     </x-slot>
 
@@ -42,6 +42,30 @@
                     @enderror
                 </div>
                 <div class="col-span-1">
+                    <label class="font-bold text-lg" for="">visitas realizadas</label>
+                    <input id="visitas_realizadas" name = "visitas_realizadas" type="text" class="px3 py2 w-full rounded-x1 bg-blue-100" 
+                    placeholder="Ingresa las visitas realizadas" value="{{ $traconsulta->visitas_realizadas }}">
+                    @error('visitas_realizadas')
+                        <strong class = "text-red-500">Debes ingresar las visitas realizadas</strong>
+                    @enderror
+                </div>
+                <div class="col-span-1">
+                    <label class="font-bold text-lg" for="">dosis totales</label>
+                    <input id="dosis_totales" name = "dosis_totales" type="text" class="px3 py2 w-full rounded-x1 bg-blue-100" 
+                    placeholder="Ingresa las dosis totales" value="{{ $traconsulta->dosis_totales }}">
+                    @error('dosis_totales')
+                        <strong class = "text-red-500">Debes ingresar las dosis totales</strong>
+                    @enderror
+                </div>
+                <div class="col-span-1">
+                    <label class="font-bold text-lg" for="">frecuencia</label>
+                    <input id="frecuencia" name = "frecuencia" type="text" class="px3 py2 w-full rounded-x1 bg-blue-100" 
+                    placeholder="Ingresa la frecuencia" value="{{ $traconsulta->frecuencia }}">
+                    @error('frecuencia')
+                        <strong class = "text-red-500">Debes ingresar la frecuencia</strong>
+                    @enderror
+                </div>
+                <div class="col-span-1">
                     <label class="font-bold text-lg" for="">Selecciona un tratamiento</label>
                     <div class="relative inline-block w-64 mt-1">
                         <select name="ID_Tratamiento" id="SiguienteVisita" class="block appearance-none w-full bg-white border border-gray-300 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
@@ -59,14 +83,15 @@
                 </div>
 
                 
-                <input type="hidden" name="ID_Consulta" id="ID_Consulta" value="{{ $traconsulta->ID_Consulta }}">
+                <input type="hidden" name="ID_Consulta" id="ID_Consulta" value="{{ $consulta->id }}">
                 <input type="hidden" name="ID_Historial" id="ID_Historial" value="{{ $traconsulta->ID_Historial }}">
+                @can('Actualizar Tratamientos_Masc')
                 <div class = "p-5">
                     <button type ="submit" class="bg-blue-600 text-white fond-bold px-6 py-3 rounded-lg">
                         <i class= "fa-solid fa-floppy-disk">Guardar</i>
                     </button>
                 </div>
-
+                @endcan
             </div>
 
         </div>

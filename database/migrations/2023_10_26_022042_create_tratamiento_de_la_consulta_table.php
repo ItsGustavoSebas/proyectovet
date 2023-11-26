@@ -15,15 +15,12 @@ return new class extends Migration
     {
         Schema::create('tratamiento_de_la_consulta', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('ID_Tratamiento');
+            $table->decimal('precio');
+            $table->date('fecha');
+            $table->unsignedBigInteger('ID_TratamientoMascota');
             $table->unsignedBigInteger('ID_Consulta');
-            $table->string('duracion');
-            $table->date('FechaInicio');
-            $table->date('FechaFin');
-            $table->date('SiguienteVisita');
-            $table->foreign('ID_Tratamiento')->references('id')->on('tratamiento');
+            $table->foreign('ID_TratamientoMascota')->references('id')->on('tratamientos_mascota');
             $table->foreign('ID_Consulta')->references('id')->on('consulta');
-            $table->integer('ID_Historial')->foreign('ID_Historial')->references('id')->on('historial');
             $table->timestamps();
         });
     }

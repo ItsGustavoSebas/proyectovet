@@ -17,7 +17,7 @@
     </head>
     <form action="{{ route('detalleservicio.actualizar', $detalleservicio->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
-        <div class="bg-gradient-to-r from-cyan-600 to-blue-800 p-8">
+        <div class="bg-gradient-to-r from-indigo-700 to-indigo-950 p-8">
             <!-- Cuadro exterior con fondo azul marino y relleno de 8 unidades -->
             <div class="bg-gray-100 p-4 overflow-hidden shadow-xl sm:rounded-lg m-5 ">
                 <div class= "text-center font-sans text-black font-bold text-3xl antialiased pb-10 mt-10">
@@ -30,7 +30,7 @@
                             <div class="flex">
                                 <div
                                     class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                                    <i class="fa-solid fa-user text-gray-400 text-lg"></i>
+                                    <i class="fa-regular fa-hourglass text-gray-400 text-lg"></i>
                                 </div>
                                 <input id= "Tiempo" type="string" name="Tiempo"
                                     class="w-full -ml-10 pl-10 pr-3 py-2 rounded-2xl border-2 border-gray-200 outline-none focus:border-indigo-500"

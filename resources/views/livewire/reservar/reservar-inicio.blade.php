@@ -50,17 +50,13 @@
 
 
 
-    <div class="imagen-con-fondo">
+  <div class="imagen-con-fondo">
 
-        <div class="relative top-[25px] left-[0%] right-[0%] md:left-[40px] w-full md:w-1/5 h-[420px] bg-[#5E5959]">
-
-
-            <h1 class="text-5xl font-bold text-white mb-1 text-center md:mb-4">
-                Reservar cita
-            </h1>
-
-
-
+    <div class="relative top-[25px] left-[0%] right-[0%] md:left-[40px] w-full md:w-1/5 h-[420px] bg-[#5E5959] ">
+        
+        <h1 class="text-5xl font-bold text-white mb-1 text-center md:mb-4">
+            Reservar cita
+        </h1>
 
             <div class="flex justify-center -mx-3 mt-12">
                 <div class="w-full md:w-5/6 px-3 mb-2">
@@ -187,7 +183,7 @@
 
 
 
-            <h1 class="text-1xl font-bold  text-gray-300 mb-0 text-center md:mt-4">
+            <h1 class="text-2xl font-bold  text-gray-300 mb-0 text-center md:mt-12">
                 "Con paciencia se puede atender a todos"
             </h1>
 
@@ -205,186 +201,185 @@
 
         </div>
     </div>
+ 
 
 
+<div class="contenedor-general">
+
+    <style>
+        .nosotros-titulo {
+            text-align: center;
+            font-size: 3.5em;
+            /* Ajusta el tamaño de fuente según tus necesidades */
+            color: white;
+            /* Cambia el color del texto según tus preferencias */
+
+            background: #171823;
+            /* Color de fondo fijo */
+        }
+
+        .contenedor-general {
+            position: relative;
+        }
+    </style>
+
+    <h1 class="nosotros-titulo">Acerca de nosotros</h1>
+
+    <div class="fondo-color-oscuro">
 
 
-    <div class="contenedor-general">
 
         <style>
-            .nosotros-titulo {
-                text-align: center;
-                font-size: 3.5em;
-                /* Ajusta el tamaño de fuente según tus necesidades */
-                color: white;
-                /* Cambia el color del texto según tus preferencias */
-
-                background: #171823;
-                /* Color de fondo fijo */
-            }
-
-            .contenedor-general {
+            .fondo-color-oscuro {
+                background-color: #171823;
+                height: 40vh;
+                /* Ajusta la altura según tus necesidades */
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
                 position: relative;
+                /* Añade "position: relative" */
+                z-index: 0;
+                /* Asegura que esté debajo de .imagen-con-fondo */
             }
         </style>
 
-        <h1 class="nosotros-titulo">Acerca de nosotros</h1>
-
-        <div class="fondo-color-oscuro">
-
-
-
-            <style>
-                .fondo-color-oscuro {
-                    background-color: #171823;
-                    height: 40vh;
-                    /* Ajusta la altura según tus necesidades */
-                    display: flex;
-                    justify-content: space-around;
-                    align-items: center;
-                    position: relative;
-                    /* Añade "position: relative" */
-                    z-index: 1;
-                    /* Asegura que esté debajo de .imagen-con-fondo */
-                }
-            </style>
 
 
 
 
+        <style>
+            .image-container {
+                perspective: 1000px;
+                width: calc(50% - 20px);
+                /* Ajusta el tamaño de los contenedores */
+                height: 300px;
+                position: relative;
+                cursor: pointer;
+                margin: 0 10px;
+                /* Ajusta el margen horizontal a 10px */
+                text-align: center;
+            }
 
-            <style>
-                .image-container {
-                    perspective: 1000px;
-                    width: calc(50% - 20px);
-                    /* Ajusta el tamaño de los contenedores */
-                    height: 300px;
-                    position: relative;
-                    cursor: pointer;
-                    margin: 0 10px;
-                    /* Ajusta el margen horizontal a 10px */
-                    text-align: center;
-                }
+            .image {
+                width: 100%;
+                height: 100%;
+                transform-style: preserve-3d;
+                transition: transform 0.5s;
+            }
 
-                .image {
-                    width: 100%;
-                    height: 100%;
-                    transform-style: preserve-3d;
-                    transition: transform 0.5s;
-                }
-
-                .back {
-                    width: 100%;
-                    height: 100%;
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    transform: rotateY(180deg);
-                    transform-style: preserve-3d;
-                    transition: transform 0.5s;
-                    background-color: #3b415a;
-                    padding: 0px;
-                    display: none;
-                    border-radius: 30px;
-                    width: max-content;
-                    /* Establece el radio del borde */
-                    justify-content: center;
-                    align-items: center;
-                    text-align: center;
-                    flex-direction: column;
-                    /* Añade esta línea para centrar verticalmente */
-                    overflow-x: auto;
-                    /* Habilita la barra de desplazamiento horizontal */
-                    overflow-wrap: break-word;
-                    /* Rompe el texto en líneas si es demasiado largo */
-                    white-space: normal;
-                    /* Permite el ajuste automático de líneas del texto */
-                    width: 100%;
-                    /* Ancho del contenido del 100% */
+            .back {
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                top: 0;
+                left: 0;
+                transform: rotateY(180deg);
+                transform-style: preserve-3d;
+                transition: transform 0.5s;
+                background-color: #3b415a;
+                padding: 0px;
+                display: none;
+                border-radius: 30px;
+                width: max-content;
+                /* Establece el radio del borde */
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                flex-direction: column;
+                /* Añade esta línea para centrar verticalmente */
+                overflow-x: auto;
+                /* Habilita la barra de desplazamiento horizontal */
+                overflow-wrap: break-word;
+                /* Rompe el texto en líneas si es demasiado largo */
+                white-space: normal;
+                /* Permite el ajuste automático de líneas del texto */
+                width: 100%;
+                /* Ancho del contenido del 100% */
 
 
 
 
 
-                }
+            }
 
-                .back p {
-                    color: white;
-                    font-size: 1.5em;
-                    /* Ajusta el tamaño de fuente según tus necesidades */
-                    position: absolute;
-                    top: 30%;
+            .back p {
+                color: white;
+                font-size: 1.5em;
+                /* Ajusta el tamaño de fuente según tus necesidades */
+                position: absolute;
+                top: 30%;
 
-                }
+            }
 
-                .image-container.active .image {
-                    transform: rotateY(180deg);
-                }
+            .image-container.active .image {
+                transform: rotateY(180deg);
+            }
 
-                .image-container.active .back {
-                    transform: rotateY(0);
-                    display: block;
-                }
-            </style>
+            .image-container.active .back {
+                transform: rotateY(0);
+                display: block;
+            }
+        </style>
 
-            <script>
-                function flipImage(element) {
-                 element.classList.toggle('active');
-                }
-    
-    
-            </script>
+        <script>
+            function flipImage(element) {
+             element.classList.toggle('active');
+            }
 
 
+        </script>
 
-            <div class="image-container w-1/2 md:w-1/1 lg:w-1/5 px-4 mb-5" onclick="flipImage(this)">
-                <div class="image">
-                    <img src="{{ asset('build/imagenes/utilitarios/personal1.jpg') }}" alt="Imagen"
-                        class="rounded-3xl mx-auto w-full md:w-[500px] h-[300px]" style="object-fit: cover;">
-                </div>
-                <div class="back">
-                    <p>Mi nombre es: xxx soy el veterinario principal mi objetivo es brindar el mejor servicio posible
-                        para
-                        nuestras queridas mascotas
-                </div>
+
+
+        <div class="image-container w-1/2 md:w-1/1 lg:w-1/5 px-4 mb-5" onclick="flipImage(this)">
+            <div class="image">
+                <img src="{{ asset('build/imagenes/utilitarios/personal1.jpg') }}" alt="Imagen"
+                    class="rounded-3xl mx-auto w-full md:w-[500px] h-[300px]" style="object-fit: cover;">
             </div>
-
-            <div class="image-container w-1/2 md:w-1/1 lg:w-1/5 px-4 mb-5 " onclick="flipImage(this)">
-                <div class="image">
-                
-                    <img src="{{ asset('build/imagenes/utilitarios/personal2.jpg') }}" alt="Imagen"
-                        class="rounded-3xl mx-auto w-full md:w-[500px] h-[300px]" style="object-fit: cover;">
-
-                </div>
-                <div class="back">
-                    <!-- Contenido adicional o diálogo -->
-                    <p>Mi nombre es: xxx soy la estilista principal mi objetivo es brindar un look increible para las
-                        mascotas destacando sus facciones más hermosas
-
-                </div>
+            <div class="back">
+                <p>Mi nombre es: xxx soy el veterinario principal mi objetivo es brindar el mejor servicio posible
+                    para
+                    nuestras queridas mascotas
             </div>
-
-
-
-            <div class="image-container" onclick="flipImage(this)">
-                <div class="image">
-                    <img src="{{ asset('build/imagenes/utilitarios/personal3.jpg') }}" alt="Imagen"
-                        class="rounded-3xl mx-auto w-full md:w-[500px] h-[300px]" style="object-fit: cover;">
-                </div>
-                <div class="back">
-                    <!-- Contenido adicional o diálogo -->
-                    <p>Mi nombre es: xxx soy el cirujano principal mi objetivo es realizar una cirujia limpia a las
-                        mascotas
-                        tal como nosotros necesitamos a alguien experto, nuestra smascotas necesita a alguien experto.
-                </div>
-            </div>
-
-
-
-
         </div>
 
+        <div class="image-container w-1/2 md:w-1/1 lg:w-1/5 px-4 mb-5 " onclick="flipImage(this)">
+            <div class="image">
+            
+                <img src="{{ asset('build/imagenes/utilitarios/personal2.jpg') }}" alt="Imagen"
+                    class="rounded-3xl mx-auto w-full md:w-[500px] h-[300px]" style="object-fit: cover;">
+
+            </div>
+            <div class="back">
+                <!-- Contenido adicional o diálogo -->
+                <p>Mi nombre es: xxx soy la estilista principal mi objetivo es brindar un look increible para las
+                    mascotas destacando sus facciones más hermosas
+
+            </div>
+        </div>
+
+
+
+        <div class="image-container" onclick="flipImage(this)">
+            <div class="image">
+                <img src="{{ asset('build/imagenes/utilitarios/personal3.jpg') }}" alt="Imagen"
+                    class="rounded-3xl mx-auto w-full md:w-[500px] h-[300px]" style="object-fit: cover;">
+            </div>
+            <div class="back">
+                <!-- Contenido adicional o diálogo -->
+                <p>Mi nombre es: xxx soy el cirujano principal mi objetivo es realizar una cirujia limpia a las
+                    mascotas
+                    tal como nosotros necesitamos a alguien experto, nuestra smascotas necesita a alguien experto.
+            </div>
+        </div>
+
+
+
+
     </div>
+
+</div>
 
 
 
@@ -429,7 +424,7 @@
                         // @this.call('obtenerHorasReservadas', fechaSeleccionada, function(response) {
                           //  console.log(hora);
                         // });
-                        Livewire.emit('obtenerHorasReservadas' , [fechaSeleccionada]);
+                        Livewire.emit('obtenerHorasReservadas' , [fechaSeleccionada], [seleccionActual]);
                       
 
 
@@ -813,15 +808,14 @@
  
      </script>
 
-
-
-
-
-
-
-
-
-
-
-
 </div>
+
+
+
+
+
+
+
+
+
+

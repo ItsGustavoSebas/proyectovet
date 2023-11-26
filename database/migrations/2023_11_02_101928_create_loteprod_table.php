@@ -19,7 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('ID_Lote');
             $table->integer('cantidadComprada');
             $table->integer('cantidadActual');
-            $table->integer('precioCompra');
+            $table->decimal('precioCompra');
             $table->foreign('ID_Producto')->references('id')->on('producto');
             $table->foreign('ID_Lote')->references('id')->on('lote');
             $table->integer('ID_Medida')->foreign('ID_Medida')->references('id')->on('medida');

@@ -11,21 +11,21 @@
             <div class="grid lg:grid-cols-3 grid-cols-1 gap-4 p-5">
                 <div class="col-span-1">
                     <label class="font-bold text-lg" for=""> Nombre</label>
-                    <input id="nombre" name = "nombre" type="text" class="px3 py2 w-full rounded-x1 bg-blue-100" value="{{ $proveedor->nombre }}">
+                    <input id="nombre" name = "nombre" type="text" class="px3 py2 w-full rounded-xl bg-blue-100" value="{{ $proveedor->nombre }}">
                     @error('nombre')
                         <strong class = "text-red-500">Debes ingresar tu nombre</strong>
                     @enderror
                 </div>
                 <div class="col-span-1">
                     <label class="font-bold text-lg" for=""> Correo</label>
-                    <input id="correo" name = "correo" type="text" class="px3 py2 w-full rounded-x1 bg-blue-100" value="{{ $proveedor->correo }}">
+                    <input id="correo" name = "correo" type="text" class="px3 py2 w-full rounded-xl bg-blue-100" value="{{ $proveedor->correo }}">
                     @error('email')
                         <strong class = "text-red-500">Debes ingresar tu email</strong>
                     @enderror
                 </div>
                 <div class="col-span-1">
                     <label class="font-bold text-lg" for=""> Telefono</label>
-                    <input id="telefono" name = "telefono" type="text" class="px3 py2 w-full rounded-x1 bg-blue-100" value="{{ $proveedor->telefono }}" 
+                    <input id="telefono" name = "telefono" type="text" class="px3 py2 w-full rounded-xl bg-blue-100" value="{{ $proveedor->telefono }}" 
                     placeholder="Ingresa tu telefono">
                     @error('telefono')
                         <strong class = "text-red-500">Debes ingresar tu telefono</strong>
@@ -33,7 +33,7 @@
                 </div>
                 <div class="col-span-1">
                     <label class="font-bold text-lg" for=""> Direccion</label>
-                    <input id="direccion" name = "direccion" type="text" class="px3 py2 w-full rounded-x1 bg-blue-100" value="{{ $proveedor->direccion }}" 
+                    <input id="direccion" name = "direccion" type="text" class="px3 py2 w-full rounded-xl bg-blue-100" value="{{ $proveedor->direccion }}" 
                     placeholder="Ingresa tu direccion">
                     @error('direccion')
                         <strong class = "text-red-500">Debes ingresar tu direccion</strong>

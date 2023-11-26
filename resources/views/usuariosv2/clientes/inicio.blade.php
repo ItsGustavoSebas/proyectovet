@@ -4,8 +4,10 @@
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 {{ __('lista de clientes') }}
             </h2>
+            @can('Crear Cliente')
             <a class = "px-3 py-2 bg-indigo-600 font-bold text-white rounded-lg"
                 href="{{ route('clientes2.crear') }}">REGISTRAR CLIENTE</a>
+            @endcan
         </div>
     </x-slot>
 
@@ -56,22 +58,32 @@
                             class="inline-block w-1/3 md:hidden font-bold">C.I</span>{{ $cliente->usuario->ci }}</td>
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
                         <div class="flex flex-wrap">
-
+                            <span class="inline-block w-1/3 md:hidden font-bold">Acciones</span>
+                            @can('Listar Mascotas del Cliente')
                             <a href="{{ route('mascotas.inicio', $cliente->usuario->id) }}"
                                 class = "bg-white px-2 py-2 rounded-lg" title="Mascotas">
                                 <i class="fa-solid fa-paw"></i>
                             </a>
-
+                            @endcan
+                            @can('Crear Reserva')
                             <a href="{{ route('reservar.inicio', $cliente->usuario->id) }}"
                                 class = "bg-white px-2 py-2 rounded-lg" title="Reservar Cita">
                                 <i class="fas fa-plus"></i>
                             </a>
-
+                            @endcan
+                            @can('Listar Bitacoras')
+                            <a href="{{ route('bitacoras.inicio', $cliente->usuario->id) }}"
+                                class = "bg-white px-2 py-2 rounded-lg" title="Bitacora">
+                                <i class="fas fa-file-alt"></i>
+                            </a>
+                            @endcan
+                            @can('Editar Cliente')
                             <a href="{{ route('clientes2.editar', $cliente->usuario->id) }}"
                                 class = "bg-green-400 px-2 py-2 rounded-lg" title="Editar">
                                 <i class="fa-regular fa-pen-to-square"></i>
-                            </a>
-
+                            </a> 
+                            @endcan
+                            @can('Eliminar Cliente')
                             <div>
                                 <form action="{{ route('clientes2.eliminar', $cliente->usuario->id) }}" method="POST"
                                     onsubmit="return confirm('¿Estas seguro de eliminar?')">
@@ -81,6 +93,7 @@
                                     </button>
                                 </form>
                             </div>
+                            @endcan
                         </div>
                     </td>
                 </tr>

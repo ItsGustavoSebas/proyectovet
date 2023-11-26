@@ -33,7 +33,7 @@
     <body class="font-sans antialiased">
         <x-banner />
 
-        <div class="min-h-screen bg-gradient-to-r from-cyan-600 to-blue-800">
+        <div class="min-h-screen bg-gradient-to-r from-indigo-700 to-indigo-950">
             @livewire('navigation-menu')
 
             <!-- Page Heading -->

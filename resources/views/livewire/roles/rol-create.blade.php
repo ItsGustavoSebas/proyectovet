@@ -1,7 +1,7 @@
 <div>
     <form wire:submit.prevent = 'guardar'>
         @csrf
-        <div class="bg-gradient-to-r from-cyan-600 to-blue-800 p-8">
+        <div class="bg-gradient-to-r from-indigo-700 to-indigo-950 p-8">
             <!-- Cuadro exterior con fondo azul marino y relleno de 8 unidades -->
             <div class="bg-gray-100 p-4 overflow-hidden shadow-xl sm:rounded-lg m-5 ">
                 <div class= "text-center font-sans text-black font-bold text-3xl antialiased pb-10 mt-10">

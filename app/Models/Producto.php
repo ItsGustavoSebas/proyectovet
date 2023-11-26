@@ -17,6 +17,7 @@ class Producto extends Model
         'nombre', 
         'precioVenta', 
         'descripcion', 
+        'cantidadGeneral',
         'ID_Categoria', 
         'ID_Marca'
     ];
@@ -34,5 +35,10 @@ class Producto extends Model
     public function loteprod()
     {
         return $this->hasMany(LoteProd::class, 'ID_Producto');
+    }
+
+    public function detalle_receta()
+    {
+        return $this->hasMany(Detalle_Receta::class, 'ID_Producto');
     }
 }

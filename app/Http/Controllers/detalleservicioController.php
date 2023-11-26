@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bitacora;
 use Illuminate\Http\Request;
 use App\Models\Cita;
 use App\Models\User;
@@ -44,6 +45,26 @@ class detalleservicioController extends Controller
         $detalleservicio->ID_Empleado = $request->ID_Empleado;
         $detalleservicio->ID_Servicio = $request->ID_Servicio;
         $detalleservicio->save();
+
+        //Crear DetalleBitacora
+
+        $bitacora_id = session('bitacora_id');
+
+        if ($bitacora_id) {
+            $bitacora = Bitacora::find($bitacora_id);
+
+            $horaActual = now()->format('H:i:s');
+
+            $bitacora->detalleBitacoras()->create([
+                'accion' => 'Crear Detalle Servicio',
+                'metodo' => $request->method(),
+                'hora' => $horaActual,
+                'tabla' => 'detalleservicio',
+                'registroId' => $detalleservicio->id,
+                'ruta'=> request()->fullurl(),
+            ]);
+        }
+
         $cita = Cita::find($request->ID_Cita);
         $cita->update(['activo' => false]);
         return redirect(route('detalleservicio.servicios'))->with('creado', 'Detalle servicio añadido exitosamente');
@@ -73,6 +94,25 @@ class detalleservicioController extends Controller
         $detalleservicio->ID_Servicio = $request->ID_Servicio;
         $detalleservicio->save();
 
+        //Crear DetalleBitacora
+
+        $bitacora_id = session('bitacora_id');
+
+        if ($bitacora_id) {
+            $bitacora = Bitacora::find($bitacora_id);
+
+            $horaActual = now()->format('H:i:s');
+
+            $bitacora->detalleBitacoras()->create([
+                'accion' => 'Editar Detalle Servicio',
+                'metodo' => $request->method(),
+                'hora' => $horaActual,
+                'tabla' => 'detalleservicio',
+                'registroId' => $detalleservicio->id,
+                'ruta'=> request()->fullurl(),
+            ]);
+        }
+
         return redirect(route('detalleservicio.servicios'))->with('actualizado', 'Detalle servicio actualizado exitosamente');
     }
 
@@ -80,6 +120,26 @@ class detalleservicioController extends Controller
     {
         $detalleservicio = detalleservicio::where('id', '=', $id)->first();
         $detalleservicio->delete();
+
+        //Crear DetalleBitacora
+
+        $bitacora_id = session('bitacora_id');
+
+        if ($bitacora_id) {
+            $bitacora = Bitacora::find($bitacora_id);
+
+            $horaActual = now()->format('H:i:s');
+
+            $bitacora->detalleBitacoras()->create([
+                'accion' => 'Eliminar Detalle Servicio',
+                'metodo' => request()->method(),
+                'hora' => $horaActual,
+                'tabla' => 'detalleservicio',
+                'registroId' => $id,
+                'ruta'=> request()->fullurl(),
+            ]);
+        }
+
         return redirect(route('detalleservicio.servicios'))->with('eliminado', 'Detalle servicio eliminado exitosamente');
     }
 
