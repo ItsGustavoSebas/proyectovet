@@ -17,6 +17,10 @@ class Nota_Venta extends Model
     protected $fillable = [
         'montoTotal',
         'fecha',
+        'ID_Cliente',
+        'ID_Empleado',
+        'qr',
+        'ID_Cita',
     ];
     
 

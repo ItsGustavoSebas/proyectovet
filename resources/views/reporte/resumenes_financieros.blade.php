@@ -7,50 +7,46 @@
         </div>
     </x-slot>
 
-    <div class="container mx-auto px-4 sm:px-8">
+    <div class="bg-white" >
+    <div class="container mx-auto px-4 sm:px-8 ">
         <div class="py-8">
-            <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
-                <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
-                    <div style="width: 80%; margin: auto; background-color: white;">
-                        <canvas id="chartVentasPorDia"></canvas>
-                    </div>
-                </div>
+            <div class="grid grid-cols-2 gap-4">
+                <!-- Botón para Ventas en la Semana -->
+                <a href="{{ route('reporte.ventas_semanal') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    Ventas en la Semana
+                </a>
+
+                <!-- Botón para Ventas en el Mes -->
+                <a href="{{ route('reporte.ventas_mes') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    Ventas en el Mes
+                </a>
+
+                <!-- Botón para Ventas en el Año -->
+                <a href="{{ route('reporte.ventas_año') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    Ventas en el Año
+                </a>
+
+                <!-- Botón para Clientes en ventas -->
+                <a href="{{ route('reporte.clientesFrecuentesCompras') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    Clientes Frecuentes en Compras
+                </a>
+
+                <!-- Botón para Clientes Frecuentes -->
+                <a href="#" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    Clientes Frecuentes en Atención Veterinaria
+                </a>
+
+                <!-- Botón para Servicios Populares -->
+                <a href="#" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    Servicios Populares
+                </a>
+
+                <!-- Botón para Productos Más Vendidos -->
+                <a href="#" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    Productos Más Vendidos
+                </a>
             </div>
         </div>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-    <script>
-        var ventasPorDiaData = <?php echo json_encode($ventasPorDia); ?>;
-
-        var labels = ventasPorDiaData.map(data => data.fecha);
-        var data = ventasPorDiaData.map(data => data.total);
-
-        var chartData = {
-            labels: labels,
-            datasets: [{
-                label: 'Ventas por Día',
-                data: data,
-                fill: false,
-                borderColor: 'rgb(75, 192, 192)',
-                tension: 0.1
-            }]
-        };
-
-        var chartOptions = {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        };
-
-        var ctx = document.getElementById('chartVentasPorDia').getContext('2d');
-        var chartVentasPorDia = new Chart(ctx, {
-            type: 'line',
-            data: chartData,
-            options: chartOptions
-        });
-    </script>
+    </div>
 </x-app-layout>

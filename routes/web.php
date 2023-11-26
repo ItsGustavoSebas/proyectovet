@@ -193,6 +193,10 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
 
 
     Route::get('/reporte/inicio', [ReporteFinancieroController::class, 'inicio'])->name('reporte.inicio');
+    Route::get('/reporte/ventas_semanal', [ReporteFinancieroController::class, 'ventas_semanal'])->name('reporte.ventas_semanal');
+    Route::get('/reporte/ventas_mes', [ReporteFinancieroController::class, 'ventas_mes'])->name('reporte.ventas_mes');
+    Route::get('/reporte/ventas_año', [ReporteFinancieroController::class, 'ventas_año'])->name('reporte.ventas_año');
+    Route::get('/reporte/clientesFrecuentesCompras', [ReporteFinancieroController::class, 'clientesFrecuentesCompras'])->name('reporte.clientesFrecuentesCompras');
 
     //MarcaController
     Route::get('/marcas/inicio', [MarcaController::class, 'inicio'])->name('marcas.inicio');
