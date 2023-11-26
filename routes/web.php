@@ -21,12 +21,14 @@ use App\Http\Controllers\TratamientoController;
 use App\Http\Controllers\TratamientoDeLaConsultaController;
 use App\Http\Controllers\detalleservicioController;
 use App\Http\Controllers\MarcaController;
+use App\Http\Controllers\Nota_Venta_Controller;
 use App\Http\Controllers\UserController;
 use App\Models\TratamientoDeLaConsulta;
 use App\Models\RecetaMedica;
 use App\Models\DetalleReceta;
 use App\Http\Controllers\RecetaMedicaController;
 use App\Http\Controllers\ReporteFinancieroController;
+use App\Models\Nota_Venta;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -197,6 +199,7 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
     Route::get('/reporte/ventas_mes', [ReporteFinancieroController::class, 'ventas_mes'])->name('reporte.ventas_mes');
     Route::get('/reporte/ventas_año', [ReporteFinancieroController::class, 'ventas_año'])->name('reporte.ventas_año');
     Route::get('/reporte/clientesFrecuentesCompras', [ReporteFinancieroController::class, 'clientesFrecuentesCompras'])->name('reporte.clientesFrecuentesCompras');
+    Route::get('/reporte/clientesFrecuentesAtencionVeterinaria', [ReporteFinancieroController::class, 'clientesFrecuentesAtencionVeterinaria'])->name('reporte.clientesFrecuentesAtencionVeterinaria');
 
     //MarcaController
     Route::get('/marcas/inicio', [MarcaController::class, 'inicio'])->name('marcas.inicio');
@@ -224,4 +227,9 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
     Route::get('/detbitacoras/inicio/{id}', [DetalleBitacoraController::class, 'inicio'])->name('detbitacoras.inicio');
     Route::get('/detbitacoras/PDF/{id}', [DetalleBitacoraController::class, 'generarDetalleBitacoraPDF'])->name('generarDetalleBitacoraPDF');
     
+    //nota de venta
+    Route::get('/nota_venta/crear', [Nota_Venta_Controller::class, 'crear'])->name('nota_venta.crear');
+    Route::get('/nota_venta/obtener-precio-producto/{id}', [Nota_Venta_Controller::class, 'obtenerPrecioProducto'])->name('nota_venta.obtenerPrecioProducto');
+    Route::post('/nota_venta/guardar', [NotaVentaController::class, 'guardar'])->name('nota_venta.guardar');
+    Route::get('/obtener-citas/{id}', [Nota_Venta_Controller::class, 'obtenerCitasPorCliente'])->name('nota_venta.obtenerCitasPorCliente');
 });

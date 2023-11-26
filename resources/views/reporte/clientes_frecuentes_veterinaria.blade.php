@@ -2,7 +2,7 @@
     <x-slot name="header">
         <div class="flex flex-wrap justify-between">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('Clientes Frecuentes en Compras') }}
+                {{ __('Clientes Frecuentes en Atencion Veterinaria') }}
             </h2>
         </div>
     </x-slot>
@@ -17,7 +17,11 @@
                 <th class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
                     CI</th>
                 <th class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
-                    Compras Realizadas</th>
+                    Total de Citas</th>
+                <th class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
+                    Total de Consultas</th>
+                <th class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
+                    Total de Servicios</th>
             </tr>
         </thead>
         <tbody class="block md:table-row-group">
@@ -29,7 +33,9 @@
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">{{ $cliente->ID_Cliente }}</td>
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">{{ $user->name }}</td>
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">{{ $user->ci }}</td>
-                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">{{ $cliente->total_ventas }}</td>
+                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">{{ $cliente->total_citas }}</td>
+                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">{{ $cliente->total_consultas }}</td>
+                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">{{ $cliente->total_servicios }}</td>
                 </tr>
             @endforeach
         </tbody>

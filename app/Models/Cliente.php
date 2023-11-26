@@ -22,4 +22,9 @@ class Cliente extends Model
     {
         return $this->belongsTo(User::class, 'ID_Usuario');
     }
+
+    public function citas()
+{
+    return $this->hasMany(Cita::class);
+}
 }

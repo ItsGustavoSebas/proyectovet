@@ -32,7 +32,7 @@
                 </a>
 
                 <!-- Botón para Clientes Frecuentes -->
-                <a href="#" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                <a href="{{ route('reporte.clientesFrecuentesAtencionVeterinaria') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                     Clientes Frecuentes en Atención Veterinaria
                 </a>
 

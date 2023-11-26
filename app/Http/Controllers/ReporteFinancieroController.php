@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Nota_Venta;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ReporteFinancieroController extends Controller
 {
@@ -61,6 +62,7 @@ class ReporteFinancieroController extends Controller
     {
         // Obtener clientes frecuentes basados en ventas y detalles de venta
         $clientesFrecuentes = Nota_Venta::select('ID_Cliente')
+            ->selectRaw('COUNT(*) as total_ventas') // Calcular el conteo de ventas
             ->whereIn('id', function ($query) {
                 $query->select('ID_Nota_Venta')
                     ->from('detalle_venta')
@@ -68,8 +70,24 @@ class ReporteFinancieroController extends Controller
             })
             ->groupBy('ID_Cliente')
             ->havingRaw('COUNT(*) >= 1')
-            ->orderByRaw('COUNT(*) DESC') // Ordenar por la cantidad de ventas
+            ->orderByRaw('total_ventas DESC') // Ordenar por la cantidad de ventas
             ->get();
         return view('reporte.clientes_frecuentes_compras', compact('clientesFrecuentes'));
     }
+
+    public function clientesFrecuentesAtencionVeterinaria()
+{
+    $clientesFrecuentes = DB::table('citas')
+        ->select('ID_Cliente')
+        ->selectRaw('COUNT(*) as total_citas')
+        ->selectRaw('SUM(CASE WHEN tipo = "consulta" THEN 1 ELSE 0 END) as total_consultas')
+        ->selectRaw('SUM(CASE WHEN tipo = "servicio" THEN 1 ELSE 0 END) as total_servicios')
+        ->where('activo', false)
+        ->groupBy('ID_Cliente')
+        ->havingRaw('COUNT(*) >= 1')
+        ->orderByRaw('total_citas DESC')
+        ->get();
+
+    return view('reporte.clientes_frecuentes_veterinaria', compact('clientesFrecuentes'));
+}
 }
