@@ -21,12 +21,14 @@ use App\Http\Controllers\TratamientoController;
 use App\Http\Controllers\TratamientoDeLaConsultaController;
 use App\Http\Controllers\detalleservicioController;
 use App\Http\Controllers\MarcaController;
+use App\Http\Controllers\Nota_Venta_Controller;
 use App\Http\Controllers\UserController;
 use App\Models\TratamientoDeLaConsulta;
 use App\Models\RecetaMedica;
 use App\Models\DetalleReceta;
 use App\Http\Controllers\RecetaMedicaController;
 use App\Http\Controllers\ReporteFinancieroController;
+use App\Models\Nota_Venta;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,7 +46,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])->group(function () {
+Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
@@ -117,8 +119,8 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
     Route::post('/traconsulta/guardartratamiento', [TratamientoDeLaConsultaController::class, 'añadirTratamiento'])->name('traconsulta.añadirTratamiento');
     Route::post('/traconsulta/eliminarTratamiento/{id}', [TratamientoDeLaConsultaController::class, 'eliminarTratamiento'])->name('traconsulta.eliminarTratamiento');
     Route::get('/traconsulta/PDF/{id}', [TratamientoDeLaConsultaController::class, 'generarTratamientosConsultaPDF'])->name('generarTratamientosConsultaPDF');
-    
-   
+
+
     //RoleController
     Route::get('/roles/inicio', [RoleController::class, 'inicio'])->name('roles.inicio');
     Route::get('/roles/crear', [RoleController::class, 'crear'])->name('roles.crear');
@@ -193,6 +195,12 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
 
 
     Route::get('/reporte/inicio', [ReporteFinancieroController::class, 'inicio'])->name('reporte.inicio');
+    Route::get('/reporte/ventas_semanal', [ReporteFinancieroController::class, 'ventas_semanal'])->name('reporte.ventas_semanal');
+    Route::get('/reporte/ventas_mes', [ReporteFinancieroController::class, 'ventas_mes'])->name('reporte.ventas_mes');
+    Route::get('/reporte/ventas_año', [ReporteFinancieroController::class, 'ventas_año'])->name('reporte.ventas_año');
+    Route::get('/reporte/clientesFrecuentesCompras', [ReporteFinancieroController::class, 'clientesFrecuentesCompras'])->name('reporte.clientesFrecuentesCompras');
+    Route::get('/reporte/clientesFrecuentesAtencionVeterinaria', [ReporteFinancieroController::class, 'clientesFrecuentesAtencionVeterinaria'])->name('reporte.clientesFrecuentesAtencionVeterinaria');
+
   //ReciboController
   Route::post('/nota_venta/recibos/guardar', [ReciboController::class, 'guardar'])->name('Recibos.guardar');
   Route::get('/nota_venta/Recibos/inicio', [ReciboController::class, 'inicio'])->name('Recibos.inicio');
@@ -207,7 +215,7 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
     Route::get('/marcas/editar/{id}', [MarcaController::class, 'editar'])->name('marcas.editar');
     Route::post('/marcas/actualizar/{id}', [MarcaController::class, 'actualizar'])->name('marcas.actualizar');
     Route::post('/marcas/eliminar/{id}', [MarcaController::class, 'eliminar'])->name('marcas.eliminar');
-    
+
     Route::get('/RecetaMedica/crear/{id}', [RecetaMedicaController::class, 'crear'])->name('RecetaMedica.crear');
     Route::post('/RecetaMedica/guardar/', [RecetaMedicaController::class, 'guardar'])->name('RecetaMedica.guardar');
     Route::get('/RecetaMedica/editar/{id}', [RecetaMedicaController::class, 'editar'])->name('RecetaMedica.editar');
@@ -225,5 +233,12 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
     //DetalleBitacora
     Route::get('/detbitacoras/inicio/{id}', [DetalleBitacoraController::class, 'inicio'])->name('detbitacoras.inicio');
     Route::get('/detbitacoras/PDF/{id}', [DetalleBitacoraController::class, 'generarDetalleBitacoraPDF'])->name('generarDetalleBitacoraPDF');
-    
+
+    //nota de venta
+    Route::get('/nota_venta/crear', [Nota_Venta_Controller::class, 'crear'])->name('nota_venta.crear');
+    Route::get('/nota_venta/obtener-precio-producto/{id}', [Nota_Venta_Controller::class, 'obtenerPrecioProducto'])->name('nota_venta.obtenerPrecioProducto');
+    Route::post('/nota_venta/guardar', [Nota_Venta_Controller::class, 'guardar'])->name('nota_venta.guardar');
+    Route::get('/obtener-citas/{id}', [Nota_Venta_Controller::class, 'obtenerCitasPorCliente'])->name('nota_venta.obtenerCitasPorCliente');
+    Route::get('nota_venta/{id}/acciones',  [Nota_Venta_Controller::class, 'acciones'])->name('nota_venta.acciones');
+    Route::post('nota_venta/{id}/actualizar_pago',  [Nota_Venta_Controller::class, 'actualizar_pago'])->name('nota_venta.actualizarPago');
 });

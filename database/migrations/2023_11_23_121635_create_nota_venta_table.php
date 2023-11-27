@@ -22,10 +22,12 @@ return new class extends Migration
 
             $table->boolean('factura')->default(true);
             $table->boolean('recibo')->default(false);
-            $table->foreign('ID_Cliente')->references('id')->on('cliente')->onDelete('cascade');
-            $table->foreign('ID_Empleado')->references('id')->on('empleado')->onDelete('cascade');
+            $table->integer('ID_Cliente')->foreign('ID_Cliente')->references('id')->on('clientes')->onDelete('cascade');
+            $table->integer('ID_Empleado')->foreign('ID_Empleado')->references('id')->on('empleados')->onDelete('cascade');
             $table->boolean('qr');
-            $table->foreign('ID_Cita')->references('id')->on('citas')->nulleable();
+            $table->unsignedBigInteger('ID_Cita')->nullable(); // Definir el campo ID_Cita como nullable
+
+            $table->foreign('ID_Cita')->references('id')->on('citas'); // Definir la relación con la tabla 'citas'
             $table->timestamps();
             
         });

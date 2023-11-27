@@ -40,4 +40,9 @@ class Cita extends Authenticatable
     {
         return $this->belongsToMany(Servicio::class, 'detalleservicio');
     }
+
+    public function nota_venta()
+    {
+        return $this->hasMany(Nota_Venta::class, 'ID_Cita', 'id');
+    }
 }

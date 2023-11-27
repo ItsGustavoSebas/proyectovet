@@ -21,6 +21,9 @@ class FacturaSeeder extends Seeder
         $nota = Nota_Venta::create([
             'montoTotal' => '200',
             'fecha' => Carbon::now(),
+            'ID_Cliente' => '4',
+            'ID_Empleado' => '2',
+            'qr' => false,
         ]);
 
         $factura = new Factura([
