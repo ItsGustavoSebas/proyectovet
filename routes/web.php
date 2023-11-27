@@ -46,7 +46,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])->group(function () {
+Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
@@ -119,8 +119,8 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
     Route::post('/traconsulta/guardartratamiento', [TratamientoDeLaConsultaController::class, 'añadirTratamiento'])->name('traconsulta.añadirTratamiento');
     Route::post('/traconsulta/eliminarTratamiento/{id}', [TratamientoDeLaConsultaController::class, 'eliminarTratamiento'])->name('traconsulta.eliminarTratamiento');
     Route::get('/traconsulta/PDF/{id}', [TratamientoDeLaConsultaController::class, 'generarTratamientosConsultaPDF'])->name('generarTratamientosConsultaPDF');
-    
-   
+
+
     //RoleController
     Route::get('/roles/inicio', [RoleController::class, 'inicio'])->name('roles.inicio');
     Route::get('/roles/crear', [RoleController::class, 'crear'])->name('roles.crear');
@@ -208,7 +208,7 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
     Route::get('/marcas/editar/{id}', [MarcaController::class, 'editar'])->name('marcas.editar');
     Route::post('/marcas/actualizar/{id}', [MarcaController::class, 'actualizar'])->name('marcas.actualizar');
     Route::post('/marcas/eliminar/{id}', [MarcaController::class, 'eliminar'])->name('marcas.eliminar');
-    
+
     Route::get('/RecetaMedica/crear/{id}', [RecetaMedicaController::class, 'crear'])->name('RecetaMedica.crear');
     Route::post('/RecetaMedica/guardar/', [RecetaMedicaController::class, 'guardar'])->name('RecetaMedica.guardar');
     Route::get('/RecetaMedica/editar/{id}', [RecetaMedicaController::class, 'editar'])->name('RecetaMedica.editar');
@@ -226,10 +226,12 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
     //DetalleBitacora
     Route::get('/detbitacoras/inicio/{id}', [DetalleBitacoraController::class, 'inicio'])->name('detbitacoras.inicio');
     Route::get('/detbitacoras/PDF/{id}', [DetalleBitacoraController::class, 'generarDetalleBitacoraPDF'])->name('generarDetalleBitacoraPDF');
-    
+
     //nota de venta
     Route::get('/nota_venta/crear', [Nota_Venta_Controller::class, 'crear'])->name('nota_venta.crear');
     Route::get('/nota_venta/obtener-precio-producto/{id}', [Nota_Venta_Controller::class, 'obtenerPrecioProducto'])->name('nota_venta.obtenerPrecioProducto');
-    Route::post('/nota_venta/guardar', [NotaVentaController::class, 'guardar'])->name('nota_venta.guardar');
+    Route::post('/nota_venta/guardar', [Nota_Venta_Controller::class, 'guardar'])->name('nota_venta.guardar');
     Route::get('/obtener-citas/{id}', [Nota_Venta_Controller::class, 'obtenerCitasPorCliente'])->name('nota_venta.obtenerCitasPorCliente');
+    Route::get('nota_venta/{id}/acciones',  [Nota_Venta_Controller::class, 'acciones'])->name('nota_venta.acciones');
+    Route::post('nota_venta/{id}/actualizar_pago',  [Nota_Venta_Controller::class, 'actualizar_pago'])->name('nota_venta.actualizarPago');
 });

@@ -24,7 +24,6 @@ class FacturaSeeder extends Seeder
             'ID_Cliente' => '4',
             'ID_Empleado' => '2',
             'qr' => false,
-            'ID_Cita' => '200',
         ]);
 
         $factura = new Factura([
