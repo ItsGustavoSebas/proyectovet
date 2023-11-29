@@ -201,6 +201,8 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::get('/reporte/ventas_año', [ReporteFinancieroController::class, 'ventas_año'])->name('reporte.ventas_año');
     Route::get('/reporte/clientesFrecuentesCompras', [ReporteFinancieroController::class, 'clientesFrecuentesCompras'])->name('reporte.clientesFrecuentesCompras');
     Route::get('/reporte/clientesFrecuentesAtencionVeterinaria', [ReporteFinancieroController::class, 'clientesFrecuentesAtencionVeterinaria'])->name('reporte.clientesFrecuentesAtencionVeterinaria');
+    Route::get('/reporte/serviciosPopulares', [ReporteFinancieroController::class, 'serviciosPopulares'])->name('reporte.serviciosPopulares');
+    Route::get('/reporte/productosMasVendidos', [ReporteFinancieroController::class, 'productosMasVendidos'])->name('reporte.productosMasVendidos');
 
   //ReciboController
   Route::post('/nota_venta/recibos/guardar', [ReciboController::class, 'guardar'])->name('Recibos.guardar');
