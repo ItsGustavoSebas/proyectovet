@@ -37,6 +37,24 @@ class EventServiceProvider extends ServiceProvider
         'eloquent.deleted: App\Models\LoteProd' => [
             'App\Observers\LoteProdObserver@deleted',
         ],
+        'eloquent.created: App\Models\Consulta' => [
+            'App\Observers\ConsultaObserver@created',
+        ],
+        'eloquent.updated: App\Models\Consulta' => [
+            'App\Observers\ConsultaObserver@updated',
+        ],
+        'eloquent.deleted: App\Models\Consulta' => [
+            'App\Observers\ConsultaObserver@deleted',
+        ],
+        'eloquent.created: App\Models\detalleservicio' => [
+            'App\Observers\DetalleServicioObserver@created',
+        ],
+        'eloquent.updated: App\Models\detalleservicio' => [
+            'App\Observers\DetalleServicioObserver@updated',
+        ],
+        'eloquent.deleted: App\Models\detalleservicio' => [
+            'App\Observers\DetalleServicioObserver@deleted',
+        ],
             Login::class => [
             LogSuccessfulLogin::class,
         ],

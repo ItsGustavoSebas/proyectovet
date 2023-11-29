@@ -23,6 +23,9 @@ return new class extends Migration
             $table->timestamps();
             $table->integer('ID_Cliente')->foreign('ID_Cliente')->references('id')->on('users');
             $table->boolean('activo');
+            $table->decimal('montoTotal')->nullable();
+            $table->unsignedBigInteger('ID_Nota_Venta')->nullable();
+            $table->foreign('ID_Nota_Venta')->references('id')->on('nota_venta');
         });
     }
 

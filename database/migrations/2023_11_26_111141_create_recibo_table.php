@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('Recibo', function (Blueprint $table) {
             $table->unsignedBigInteger('ID_Nota_Venta');
-            $table->unsignedBigInteger('nroRecibo')->nullable();
+            $table->bigIncrements('nroRecibo');
             $table->foreign('ID_Nota_Venta')->references('id')->on('nota_venta')->onDelete('cascade');
             $table->timestamps();
         });

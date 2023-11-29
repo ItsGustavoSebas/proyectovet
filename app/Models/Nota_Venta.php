@@ -20,7 +20,7 @@ class Nota_Venta extends Model
         'ID_Cliente',
         'ID_Empleado',
         'qr',
-        'ID_Cita',
+        'ID_Nota_Venta',
     ];
     
 
@@ -34,5 +34,18 @@ class Nota_Venta extends Model
         return $this->hasOne(Factura::class, 'ID_Nota_Venta');
     }
 
-    
+    public function cliente()
+    {
+        return $this->belongsTo(Cliente::class, 'ID_Cliente', 'ID_Usuario');
+    }
+
+    public function detalleVenta()
+    {
+        return $this->hasMany(Detalle_Venta::class, 'ID_Nota_Venta');
+    }
+
+    public function detalleCita()
+    {
+        return $this->hasMany(Cita::class, 'ID_Nota_Venta');
+    }
 }
