@@ -27,6 +27,7 @@ use App\Models\TratamientoDeLaConsulta;
 use App\Models\RecetaMedica;
 use App\Models\DetalleReceta;
 use App\Http\Controllers\RecetaMedicaController;
+use App\Http\Controllers\ReciboController;
 use App\Http\Controllers\ReporteFinancieroController;
 use App\Models\Nota_Venta;
 use Illuminate\Support\Facades\Route;
@@ -235,10 +236,12 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::get('/detbitacoras/PDF/{id}', [DetalleBitacoraController::class, 'generarDetalleBitacoraPDF'])->name('generarDetalleBitacoraPDF');
 
     //nota de venta
+    Route::get('/nota_venta/inicio', [Nota_Venta_Controller::class, 'inicio'])->name('nota_venta.inicio');
     Route::get('/nota_venta/crear', [Nota_Venta_Controller::class, 'crear'])->name('nota_venta.crear');
-    Route::get('/nota_venta/obtener-precio-producto/{id}', [Nota_Venta_Controller::class, 'obtenerPrecioProducto'])->name('nota_venta.obtenerPrecioProducto');
     Route::post('/nota_venta/guardar', [Nota_Venta_Controller::class, 'guardar'])->name('nota_venta.guardar');
     Route::get('/obtener-citas/{id}', [Nota_Venta_Controller::class, 'obtenerCitasPorCliente'])->name('nota_venta.obtenerCitasPorCliente');
-    Route::get('nota_venta/{id}/acciones',  [Nota_Venta_Controller::class, 'acciones'])->name('nota_venta.acciones');
-    Route::post('nota_venta/{id}/actualizar_pago',  [Nota_Venta_Controller::class, 'actualizar_pago'])->name('nota_venta.actualizarPago');
+    Route::post('/nota_venta/eliminar/{id}', [Nota_Venta_Controller::class, 'eliminar'])->name('nota_venta.eliminar');
+    Route::get('/obtener-precio-cita/{citaId}', [Nota_Venta_Controller::class, 'obtenerPrecioCita']);
+    Route::get('/nota-venta/{id}', [Nota_Venta_Controller::class, 'mostrarDetalles'])->name('nota_venta.mostrarDetalles');
+
 });

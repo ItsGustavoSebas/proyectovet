@@ -7,6 +7,7 @@ use App\Models\Recibo;
 use App\Models\Nota_Venta;
 use App\Models\DetalleVenta;
 use App\Models\Cliente;
+use App\Models\Detalle_Venta;
 use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf;
 
@@ -15,7 +16,7 @@ class ReciboController extends Controller
     public function inicio()
     {
         $ReciboNotaV = Recibo::with('nota_venta')->get();
-        return (view('Recibos.inicio', compact('ReciboNotaV')));
+        return (view('Recibo.inicio', compact('ReciboNotaV')));
 
     
     }
@@ -79,7 +80,7 @@ class ReciboController extends Controller
         $NotaVenta = Nota_Venta::where('id', '=', $id)->first();
         $cl = Cliente::where('ID_Usuario', '=', $NotaVenta->ID_Cliente)->first();
         $cliente = User::where('id', '=', $cl->ID_Usuario)->first();
-        $DetallesVenta=DetalleVenta::where('ID_Nota_Venta', '=', $id)->get();
+        $DetallesVenta=Detalle_Venta::where('ID_Nota_Venta', '=', $id)->get();
         $data = [
             'Recibo' => $Recibo,
             'NotaVenta'=>$NotaVenta,

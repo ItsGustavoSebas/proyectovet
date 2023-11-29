@@ -274,7 +274,7 @@
                             </div>
                             <ul class="desplegable ml-4 hidden">
                                 <li>
-                                    <a href="#" class=" p-2 hover:bg-gray-700 flex items-center">
+                                    <a href="{{ route('nota_venta.inicio') }}" class=" p-2 hover:bg-gray-700 flex items-center">
                                         <i class="fas fa-chevron-right mr-2 text-xs"></i>
                                         Gestionar Nota de Venta
                                     </a>
@@ -286,7 +286,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" class=" p-2 hover:bg-gray-700 flex items-center">
+                                    <a href="{{ route('Recibos.inicio') }}" class=" p-2 hover:bg-gray-700 flex items-center">
                                         <i class="fas fa-chevron-right mr-2 text-xs"></i>
                                         Gestionar recibos
                                     </a>
@@ -298,7 +298,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" class=" p-2 hover:bg-gray-700 flex items-center">
+                                    <a href="{{ route('reporte.inicio') }}" class=" p-2 hover:bg-gray-700 flex items-center">
                                         <i class="fas fa-chevron-right mr-2 text-xs"></i>
                                         Gestionar Pago
                                     </a>

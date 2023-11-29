@@ -25,9 +25,6 @@ return new class extends Migration
             $table->integer('ID_Cliente')->foreign('ID_Cliente')->references('id')->on('clientes')->onDelete('cascade');
             $table->integer('ID_Empleado')->foreign('ID_Empleado')->references('id')->on('empleados')->onDelete('cascade');
             $table->boolean('qr');
-            $table->unsignedBigInteger('ID_Cita')->nullable(); // Definir el campo ID_Cita como nullable
-
-            $table->foreign('ID_Cita')->references('id')->on('citas'); // Definir la relación con la tabla 'citas'
             $table->timestamps();
             
         });

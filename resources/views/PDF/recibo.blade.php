@@ -90,7 +90,7 @@
 
         <div class="pull-right receipt-section">
             <span class="text-large receipt-label">Monto Total:</span>
-            <span class="text-large">{{$NotaVenta->MontoTotal}}</span>
+            <span class="text-large">{{$NotaVenta->montoTotal}}</span>
         </div>
 
         <div class="clearfix"></div>
@@ -101,8 +101,12 @@
         </div>
 
         <div class="receipt-section">
-            <span class="receipt-label">Tipo:</span>
-            <span>{{$NotaVenta->tipo}}</span>
+            <span class="receipt-label">Tipo de pago:</span>
+            @if($NotaVenta->qr)
+                <span>QR</span>
+            @else
+                <span>Efectivo</span>
+            @endif
         </div>
 
         <div class="receipt-section">
@@ -120,10 +124,8 @@
             <tbody>
                 @foreach ($DetallesVentas as $DetalleVenta)
                     <tr>
-                        <?php 
-                        $Nombre=$DetalleVenta->producto->nombre>
     
-                        <td>{{ $Nombre }}</td>
+                        <td>{{ $DetalleVenta->producto->nombre }}</td>
                         <td>{{ $DetalleVenta->cantidad }}</td>
                         <td>{{ $DetalleVenta->precio }}</td>
 
