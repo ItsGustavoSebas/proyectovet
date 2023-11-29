@@ -8,71 +8,83 @@
     <title>RECIBO</title>
     <style>
         body {
-            padding: 50px;
-        }
-
-        * {
-            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+            padding: 20px;
         }
 
         .receipt-main {
-            display: inline-block;
-            width: 100%;
-            padding: 15px;
-            font-size: 12px;
-            border: 1px solid #000;
+            width: 80%;
+            margin: 0 auto;
+            border: 2px solid #000;
+            border-radius: 10px;
+            padding: 20px;
+            background-color: #f9f9f9;
         }
 
         .receipt-title {
             text-align: center;
             text-transform: uppercase;
-            font-size: 20px;
-            font-weight: 600;
+            font-size: 24px;
             margin: 0;
         }
 
-        .receipt-label {
-            font-weight: 600;
-        }
-
-        .text-large {
-            font-size: 16px;
-        }
-
         .receipt-section {
+            margin-top: 15px;
+        }
+
+        .receipt-label {
+            font-weight: bold;
+        }
+
+        .receipt-table {
+            width: 100%;
+            border-collapse: collapse;
             margin-top: 10px;
         }
 
-        .receipt-footer {
-            text-align: center;
-            background: #ff0000;
+        .receipt-table th,
+        .receipt-table td {
+            border: 1px solid #000;
+            padding: 8px;
+            text-align: left;
         }
 
-        .receipt-signature {
-            height: 80px;
-            margin: 50px 0;
-            padding: 0 50px;
-            background: #fff;
-
-            .receipt-line {
-                margin-bottom: 10px;
-                border-bottom: 1px solid #000;
-            }
-
-            p {
-                text-align: center;
-                margin: 0;
-            }
+        .receipt-table th {
+            background-color: #f2f2f2;
         }
 
-        /* Agregado para la rejilla */
         .receipt-signatures-container {
             display: flex;
             justify-content: space-between;
+            margin-top: 20px;
         }
 
         .receipt-signature {
-            width: 48%; /* Ajusta según sea necesario */
+            width: 45%;
+            border-top: 1px solid #000;
+            padding-top: 10px;
+        }
+
+        .signature-info p {
+            margin: 5px 0;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        .signature-line {
+            margin-top: 5px;
+            border-top: 1px solid #000;
+        }
+
+        .receipt-signature p {
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .receipt-signature p.receipt-line {
+            border-bottom: 1px solid #000;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
         }
     </style>
 </head>
@@ -83,26 +95,24 @@
 
         <p class="receipt-title">Recibo</p>
 
-        <div class="receipt-section pull-left">
-            <span class="receipt-label text-large">Número de Recibo:</span>
-            <span class="text-large">{{$Recibo->nroRecibo}}</span>
+        <div class="receipt-section">
+            <span class="receipt-label">Número de Recibo:</span>
+            <span>{{ $Recibo->nroRecibo }}</span>
         </div>
 
-        <div class="pull-right receipt-section">
-            <span class="text-large receipt-label">Monto Total:</span>
-            <span class="text-large">{{$NotaVenta->montoTotal}}</span>
+        <div class="receipt-section">
+            <span class="receipt-label">Monto Total:</span>
+            <span>{{ $NotaVenta->montoTotal }}</span>
         </div>
-
-        <div class="clearfix"></div>
 
         <div class="receipt-section">
             <span class="receipt-label">Nombre del Cliente:</span>
-            <span>{{$cliente->name}}</span>
+            <span>{{ $cliente->name }}</span>
         </div>
 
         <div class="receipt-section">
             <span class="receipt-label">Tipo de pago:</span>
-            @if($NotaVenta->qr)
+            @if ($NotaVenta->qr)
                 <span>QR</span>
             @else
                 <span>Efectivo</span>
@@ -110,43 +120,72 @@
         </div>
 
         <div class="receipt-section">
-            <p class="pull-right text-large">{{$NotaVenta->fecha}}</p>
+            <span class="receipt-label">Fecha:</span>
+            <span>{{ $NotaVenta->fecha }}</span>
         </div>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>Productos</th>
-                    <th>Cantidad</th>
-                    <th>Precio</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($DetallesVentas as $DetalleVenta)
-                    <tr>
-    
-                        <td>{{ $DetalleVenta->producto->nombre }}</td>
-                        <td>{{ $DetalleVenta->cantidad }}</td>
-                        <td>{{ $DetalleVenta->precio }}</td>
-
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-        <div class="clearfix"></div>
-
+        @if ($DetallesVentas && count($DetallesVentas) > 0)
+            <div class="receipt-section">
+                <span class="receipt-label">Productos en la Venta</span>
+                <table class="receipt-table">
+                    <thead>
+                        <tr>
+                            <th>Productos</th>
+                            <th>Cantidad</th>
+                            <th>Precio</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($DetallesVentas as $DetalleVenta)
+                            <tr>
+                                <td>{{ $DetalleVenta->producto->nombre }}</td>
+                                <td>{{ $DetalleVenta->cantidad }}</td>
+                                <td>{{ $DetalleVenta->precio }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        @endif
+        @if ($NotaVenta->detalleCita && count($NotaVenta->detalleCita) > 0)
+            <div class="receipt-section">
+                <span class="receipt-label">Citas en la Venta</span>
+                <table class="receipt-table">
+                    <thead>
+                        <tr>
+                            <th>Descripción</th>
+                            <th>Monto Total</th>
+                            <th>Tipo de Cita</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($NotaVenta->detalleCita as $detalle)
+                            <tr>
+                                <td>{{ $detalle->descripcion }}</td>
+                                <td>{{ $detalle->montoTotal }}</td>
+                                <td>{{ $detalle->tipo }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        @endif
         <div class="receipt-signatures-container">
             <div class="receipt-signature">
-                <p class="receipt-line"></p>
-                <p>AGRO - VETERINARIA "LA HACIENDA"</p>
-                <p>Telf.: 3541800   Cel.:72636967</p>
-                <p>Av.Piraí Nro.3160, Zona/Barrio Villa Rosario UV. 53 Maz. 7</p>
-                <p>Santa Cruz - Bolivia</p>
+                <div class="signature-info">
+                    <p>AGRO - VETERINARIA "LA HACIENDA"</p>
+                    <p>Telf.: 3541800 Cel.:72636967</p>
+                    <p>Av.Piraí Nro.3160, Zona/Barrio Villa Rosario UV. 53 Maz. 7</p>
+                    <p>Santa Cruz - Bolivia</p>
+                </div>
+                <div class="signature-line"></div>
             </div>
 
             <div class="receipt-signature">
-                <p class="receipt-line"></p>
-                <p>{{$cliente->name}}</p>
+                <div class="signature-info">
+                    <p>Atendido por:</p>
+                    <p>{{ $empleado->name }}</p>
+                </div>
+                <div class="signature-line"></div>
             </div>
         </div>
     </div>
