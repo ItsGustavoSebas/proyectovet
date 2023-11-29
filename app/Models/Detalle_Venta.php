@@ -23,4 +23,8 @@ class Detalle_Venta extends Model
     public function producto() {
         return $this->belongsTo(Producto::class, 'ID_Producto', 'id');
     }
+
+    public function nota_venta() {
+        return $this->belongsTo(Producto::class, 'ID_Nota_Venta', 'id');
+    }
 }

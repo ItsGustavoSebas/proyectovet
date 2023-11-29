@@ -34,18 +34,27 @@
                                             <div class="flex justify-between">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-blue-400"
                                                     fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        stroke-width="2"
-                                                        d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
+
                                                 </svg>
                                                 <div
                                                     class="bg-green-500 rounded-full h-6 px-2 flex justify-items-center text-white font-semibold text-sm">
-                                                    <span class="flex items-center">30%</span>
+                                                    @if ($porcentajeCambioEntradas > 0)
+                                                        <span
+                                                            class="flex items-center">+{{ number_format($porcentajeCambioEntradas, 2) }}%</span>
+                                                    @elseif($porcentajeCambioEntradas < 0)
+                                                        <span
+                                                            class="flex items-center">{{ number_format($porcentajeCambioEntradas, 2) }}%</span>
+                                                    @else
+                                                        <span
+                                                            class="flex items-center">{{ number_format($porcentajeCambioEntradas, 2) }}%</span>
+                                                    @endif
                                                 </div>
                                             </div>
                                             <div class="ml-2 w-full flex-1">
                                                 <div>
-                                                    <div class="mt-3 text-3xl font-bold leading-8">4.510</div>
+                                                    <div class="mt-3 text-3xl font-bold leading-8">
+                                                        {{ $cantidadEntradasHoy }}</div>
 
                                                     <div class="mt-1 text-base text-gray-600">Los usuarios de hoy</div>
                                                 </div>
@@ -58,20 +67,20 @@
                                             <div class="flex justify-between">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-yellow-400"
                                                     fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        stroke-width="2"
-                                                        d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
                                                 </svg>
                                                 <div
                                                     class="bg-red-500 rounded-full h-6 px-2 flex justify-items-center text-white font-semibold text-sm">
-                                                    <span class="flex items-center">30%</span>
+                                                    <span
+                                                        class="flex items-center">{{ number_format($porcentajeCitasPendientes, 2) }}%</span>
                                                 </div>
                                             </div>
                                             <div class="ml-2 w-full flex-1">
                                                 <div>
-                                                    <div class="mt-3 text-3xl font-bold leading-8">4.510</div>
+                                                    <div class="mt-3 text-3xl font-bold leading-8">
+                                                        {{ $cantidadCitasHoy }}</div>
 
-                                                    <div class="mt-1 text-base text-gray-600">Citas Activas</div>
+                                                    <div class="mt-1 text-base text-gray-600">Citas Pendientes</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -83,20 +92,19 @@
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-pink-600"
                                                     fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path stroke-linecap="round" stroke-linejoin="round"
-                                                        stroke-width="2"
-                                                        d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" />
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        stroke-width="2"
-                                                        d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z" />
+                                                    stroke-width="2"
+                                                    d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                                                 </svg>
                                                 <div
                                                     class="bg-yellow-500 rounded-full h-6 px-2 flex justify-items-center text-white font-semibold text-sm">
-                                                    <span class="flex items-center">30%</span>
+                                                    <span
+                                                        class="flex items-center">{{ number_format($porcentajeCambioVentasDia, 2) }}%</span>
                                                 </div>
                                             </div>
                                             <div class="ml-2 w-full flex-1">
                                                 <div>
-                                                    <div class="mt-3 text-3xl font-bold leading-8">4.510</div>
+                                                    <div class="mt-3 text-3xl font-bold leading-8">
+                                                        {{ $cantidadVentaHoy }}</div>
 
                                                     <div class="mt-1 text-base text-gray-600">Ventas de hoy</div>
                                                 </div>
@@ -115,12 +123,14 @@
                                                 </svg>
                                                 <div
                                                     class="bg-blue-500 rounded-full h-6 px-2 flex justify-items-center text-white font-semibold text-sm">
-                                                    <span class="flex items-center">30%</span>
+                                                    <span
+                                                        class="flex items-center">{{ number_format($porcentajeCambioVentasMes, 2) }}%</span>
                                                 </div>
                                             </div>
                                             <div class="ml-2 w-full flex-1">
                                                 <div>
-                                                    <div class="mt-3 text-3xl font-bold leading-8">4.510</div>
+                                                    <div class="mt-3 text-3xl font-bold leading-8">
+                                                        {{ $cantidadVentasMesActual }}</div>
 
                                                     <div class="mt-1 text-base text-gray-600">Ventas en el mes</div>
                                                 </div>
@@ -134,10 +144,138 @@
                                     <div class="bg-white shadow-lg p-4" id="chartline"></div>
                                     <div class="bg-white shadow-lg" id="chartpie"></div>
                                 </div>
+                        <div class="bg-white">
+                            <div class="container mx-auto px-4 sm:px-8">
+                                <div class="py-8">
+                                    <div class="grid grid-cols-4 gap-4">
+                                        <!-- Botones -->
+                                        <!-- Botón para Ventas en la Semana -->
+                                        <a href="{{ route('reporte.ventas_semanal') }}"
+                                            class="bg-white shadow-md rounded-lg flex items-center p-4 hover:shadow-lg transition duration-300">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-blue-400"
+                                                fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <!-- Icono -->
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                                            </svg>
+                                            <!-- Texto -->
+                                            <div class="ml-4">
+                                                <!-- Nombre del botón -->
+                                                <div class="font-semibold">Ventas en la Semana</div>
+                                            </div>
+                                        </a>
+
+                                        <!-- Botón para Ventas en el Mes -->
+                                        <a href="{{ route('reporte.ventas_mes') }}"
+                                            class="bg-white shadow-md rounded-lg flex items-center p-4 hover:shadow-lg transition duration-300">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-red-400"
+                                                fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <!-- Icono -->
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M5.5 4.5h13v15h-13z" />
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M8 9h4m0 0v6m0-6l4-3m-4 3-4 3" />
+                                            </svg>
+                                            <!-- Texto -->
+                                            <div class="ml-4">
+                                                <!-- Nombre del botón -->
+                                                <div class="font-semibold">Ventas en el Mes</div>
+                                            </div>
+                                        </a>
+
+                                        <!-- Botón para Ventas en el Año -->
+                                        <a href="{{ route('reporte.ventas_año') }}"
+                                            class="bg-white shadow-md rounded-lg flex items-center p-4 hover:shadow-lg transition duration-300">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-green-400"
+                                                fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <!-- Icono -->
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M12 14l9-5-9-5-9 5 9 5z" />
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M12 14l9-5-9-5-9 5 9 5z" />
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M12 14l9-5-9-5-9 5 9 5z" />
+                                            </svg>
+                                            <!-- Texto -->
+                                            <div class="ml-4">
+                                                <!-- Nombre del botón -->
+                                                <div class="font-semibold">Ventas en el Año</div>
+                                            </div>
+                                        </a>
+
+                                        <!-- Botón para Clientes Frecuentes en Compras -->
+                                        <a href="{{ route('reporte.clientesFrecuentesCompras') }}"
+                                            class="bg-white shadow-md rounded-lg flex items-center p-4 hover:shadow-lg transition duration-300">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-yellow-400"
+                                                fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <!-- Icono -->
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                                            </svg>
+                                            <!-- Texto -->
+                                            <div class="ml-4">
+                                                <!-- Nombre del botón -->
+                                                <div class="font-semibold">Clientes Frecuentes en Compras</div>
+                                            </div>
+                                        </a>
+
+                                        <!-- Botón para Clientes Frecuentes en Atención Veterinaria -->
+                                        <a href="{{ route('reporte.clientesFrecuentesAtencionVeterinaria') }}"
+                                            class="bg-white shadow-md rounded-lg flex items-center p-4 hover:shadow-lg transition duration-300">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-purple-400"
+                                                fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <!-- Icono -->
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14" />
+                                            </svg>
+                                            <!-- Texto -->
+                                            <div class="ml-4">
+                                                <!-- Nombre del botón -->
+                                                <div class="font-semibold">Clientes Frecuentes en Atención Veterinaria
+                                                </div>
+                                            </div>
+                                        </a>
+
+                                        <!-- Botón para Servicios Populares -->
+                                        <a href="{{ route('reporte.serviciosPopulares')}}"
+                                            class="bg-white shadow-md rounded-lg flex items-center p-4 hover:shadow-lg transition duration-300">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-indigo-400"
+                                                fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <!-- Icono -->
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14" />
+                                            </svg>
+                                            <!-- Texto -->
+                                            <div class="ml-4">
+                                                <!-- Nombre del botón -->
+                                                <div class="font-semibold">Servicios Populares</div>
+                                            </div>
+                                        </a>
+
+                                        <!-- Botón para Productos Más Vendidos -->
+                                        <a href="{{ route('reporte.productosMasVendidos')}}"
+                                            class="bg-white shadow-md rounded-lg flex items-center p-4 hover:shadow-lg transition duration-300">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-pink-400"
+                                                fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <!-- Icono -->
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M15 14l-6-6 6-6" />
+                                            </svg>
+                                            <!-- Texto -->
+                                            <div class="ml-4">
+                                                <!-- Nombre del botón -->
+                                                <div class="font-semibold">Productos Más Vendidos</div>
+                                            </div>
+                                        </a>
+
+                                        <!-- ... (otros botones) ... -->
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
             </div>
+
             <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
             <script>
                 function data() {
@@ -174,17 +312,23 @@
                 }
             </script>
             <script>
-                var chart = document.querySelector('#chartline')
+                var chart = document.querySelector('#chartline');
+
+                var ventasPorDia = {!! json_encode($ventasPorDia) !!};
+                var citasUltimos11Dias = {!! json_encode($citasUltimos11Dias) !!};
+
                 var options = {
                     series: [{
-                        name: 'TEAM A',
-                        type: 'area',
-                        data: [44, 55, 31, 47, 31, 43, 26, 41, 31, 47, 33]
-                    }, {
-                        name: 'TEAM B',
-                        type: 'line',
-                        data: [55, 69, 45, 61, 43, 54, 37, 52, 44, 61, 43]
-                    }],
+                            name: 'Ventas',
+                            type: 'area',
+                            data: ventasPorDia.map(item => item.total_precio)
+                        },
+                        {
+                            name: 'Citas',
+                            type: 'line',
+                            data: citasUltimos11Dias.map(item => item.total_precio)
+                        }
+                    ],
                     chart: {
                         height: 350,
                         type: 'line',
@@ -192,51 +336,53 @@
                             enabled: false
                         }
                     },
+                    dataLabels: {
+                        enabled: false
+                    },
                     stroke: {
                         curve: 'smooth'
                     },
-                    fill: {
-                        type: 'solid',
-                        opacity: [0.35, 1],
+                    title: {
+                        text: 'Ventas y Citas de los Últimos 11 Días',
+                        align: 'center'
                     },
-                    labels: ['Dec 01', 'Dec 02', 'Dec 03', 'Dec 04', 'Dec 05', 'Dec 06', 'Dec 07', 'Dec 08', 'Dec 09 ',
-                        'Dec 10', 'Dec 11'
-                    ],
-                    markers: {
-                        size: 0
+                    colors: ['#6E707E', '#4CAF50'],
+                    xaxis: {
+                        categories: ventasPorDia.map(item => item.fecha_venta),
                     },
                     yaxis: [{
                             title: {
-                                text: 'Series A',
+                                text: 'Ventas',
                             },
                         },
                         {
                             opposite: true,
                             title: {
-                                text: 'Series B',
+                                text: 'Citas',
                             },
                         },
                     ],
                     tooltip: {
                         shared: true,
                         intersect: false,
-                        y: {
-                            formatter: function(y) {
-                                if (typeof y !== "undefined") {
-                                    return y.toFixed(0) + " points";
-                                }
-                                return y;
-                            }
-                        }
-                    }
+                    },
                 };
+
                 var chart = new ApexCharts(chart, options);
                 chart.render();
             </script>
+
             <script>
-                var chart = document.querySelector('#chartpie')
+                var chartPie = document.querySelector('#chartpie');
+
+                var citasPorTipoHoy = {!! json_encode($citasPorTipoHoy) !!};
+
+                var totalCitasHoy = citasPorTipoHoy.reduce((total, cita) => total + cita.cantidad, 0);
+
+                var porcentajes = citasPorTipoHoy.map(cita => ((cita.cantidad / totalCitasHoy) * 100).toFixed(2));
+
                 var options = {
-                    series: [44, 55, 67, 83],
+                    series: porcentajes,
                     chart: {
                         height: 350,
                         type: 'radialBar',
@@ -252,88 +398,22 @@
                                 },
                                 total: {
                                     show: true,
-                                    label: 'Total',
+                                    label: 'Citas Hoy',
                                     formatter: function(w) {
-                                        // By default this function returns the average of all series. The below is just an example to show the use of custom formatter function
-                                        return 249
+                                        return totalCitasHoy;
                                     }
                                 }
                             }
                         }
                     },
-                    labels: ['Apples', 'Oranges', 'Bananas', 'Berries'],
+                    labels: citasPorTipoHoy.map(cita => cita.tipo),
                 };
-                var chart = new ApexCharts(chart, options);
+
+                var chart = new ApexCharts(chartPie, options);
                 chart.render();
             </script>
+
+
         </body>
     </body>
-    <div class="bg-white">
-        <div class="container mx-auto px-4 sm:px-8 ">
-            <div class="py-8">
-                <div class="grid grid-cols-2 gap-4">
-                    <!-- Botón para Ventas en la Semana -->
-                    <a href="{{ route('reporte.ventas_semanal') }}"
-                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                        Ventas en la Semana
-                    </a>
-
-                    <!-- Botón para Ventas en el Mes -->
-                    <a href="{{ route('reporte.ventas_mes') }}"
-                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                        Ventas en el Mes
-                    </a>
-
-                    <!-- Botón para Ventas en el Año -->
-                    <a href="{{ route('reporte.ventas_año') }}"
-                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                        Ventas en el Año
-                    </a>
-
-                    <!-- Botón para Clientes en ventas -->
-                    <a href="{{ route('reporte.clientesFrecuentesCompras') }}"
-                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                        Clientes Frecuentes en Compras
-                    </a>
-
-                    <!-- Botón para Clientes Frecuentes -->
-                    <a href="{{ route('reporte.clientesFrecuentesAtencionVeterinaria') }}"
-                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                        Clientes Frecuentes en Atención Veterinaria
-                    </a>
-
-                    <!-- Botón para Servicios Populares -->
-                    <a href="#" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                        Servicios Populares
-                    </a>
-
-                    <!-- Botón para Productos Más Vendidos -->
-                    <a href="#" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                        Productos Más Vendidos
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <style>
-        .graphBox {
-            position: relative;
-            width: 100%;
-            padding: 20px;
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            grid-gap: 30px;
-            min-height: 200рх;
-        }
-
-        .graphBox .box {
-            position: relative;
-            background: #fff;
-            padding: 20px;
-            width: 100%;
-            box-shadow: 0 7px 25px rgba(@, e, e, e.e8);
-            border-radius: 20px;
-        }
-    </style>
 </x-app-layout>
