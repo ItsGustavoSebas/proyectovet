@@ -26,7 +26,7 @@ return new class extends Migration
             //$table->string('rol');
             $table->boolean('cliente')->default(true);
             $table->boolean('empleado')->default(false);
-            $table->integer('salario')->nullable();
+            //$table->integer('salario')->nullable();
             $table->timestamps();
         });
     }

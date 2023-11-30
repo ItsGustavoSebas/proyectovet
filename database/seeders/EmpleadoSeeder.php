@@ -28,7 +28,7 @@ class EmpleadoSeeder extends Seeder
             //'rol' => 'empleado',
             'cliente' => false,
             'empleado' => true,
-            'salario' => '2500',
+            //'salario' => '2500',
             //'profile_photo_path' => '/build/imagenes/utilitarios/veterinario2.jpg',
             'password' => bcrypt('12345678')
         ])->assignRole('Administrador');
@@ -49,7 +49,7 @@ class EmpleadoSeeder extends Seeder
             //'rol' => 'empleado',
             'cliente' => false,
             'empleado' => true,
-            'salario' => '500',
+            //'salario' => '500',
             //'profile_photo_path' => '/build/imagenes/utilitarios/veterinario.jpg',
             'password' => bcrypt('12345678')
         ])->assignRole('Empleado');
@@ -70,7 +70,7 @@ class EmpleadoSeeder extends Seeder
             //'rol' => 'empleado',
             'cliente' => false,
             'empleado' => true,
-            'salario' => '3000',
+            //'salario' => '3000',
             //'profile_photo_path' => '/build/imagenes/utilitarios/veterinario1.jpg',
             'password' => bcrypt('12345678')
         ])->assignRole('Empleado');
