@@ -1,75 +1,109 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Crear Receta Médica') }}
+            {{ __('Editar Receta Médica') }}
         </h2>
     </x-slot>
 
-    <form action="{{ route('RecetaMedica.actualizar', $traconsulta->id) }}" method="POST">
+    <form action="{{ route('RecetaMedica.actualizar') }}" method="POST">
         @csrf
         <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg m-5">
+            
             <div class="grid lg:grid-cols-3 grid-cols-1 gap-4 p-5">
                 <div class="col-span-1">
-                    <label class="font-bold text-lg" for=""> Duración</label>
-                    <input id="duracion" name = "duracion" type="text" class="px3 py2 w-full rounded-x1 bg-blue-100" 
-                    placeholder="Ingresa la duración" value="{{ $traconsulta->duracion }}">
-                    @error('duracion')
-                        <strong class = "text-red-500">Debes ingresar la duracion</strong>
+                    <label class="font-bold text-lg" for="FechaEmision">Fecha de Emisión</label>
+                    <input id="FechaEmision" name="FechaEmision" type="date" class="px-3 py-2 w-full rounded-xl bg-blue-100">
+                    @error('FechaEmision')
+                        <strong class="text-red-500">Debes ingresar la fecha de emisión de la Receta</strong>
                     @enderror
                 </div>
-                <div class="col-span-1">
-                    <label class="font-bold text-lg" for=""> fecha de Inicio</label>
-                    <input id="FechaInicio" name = "FechaInicio" type="date" class="px3 py2 w-full rounded-x1 bg-blue-100" 
-                    placeholder="Ingresa tu fechaInicio" value="{{ $traconsulta->FechaInicio }}">
-                    @error('fechaInicio')
-                        <strong class = "text-red-500">Debes ingresar la fecha de Inicio</strong>
-                    @enderror
-                </div>
-                <div class="col-span-1">
-                    <label class="font-bold text-lg" for=""> fecha de Fin</label>
-                    <input id="FechaFin" name = "FechaFin" type="date" class="px3 py2 w-full rounded-x1 bg-blue-100" 
-                    placeholder="Ingresa la fecha de Fin" value="{{ $traconsulta->FechaFin }}">
-                    @error('fechaFin')
-                        <strong class = "text-red-500">Debes ingresar la fecha de Fin</strong>
-                    @enderror
-                </div>
-                <div class="col-span-1">
-                    <label class="font-bold text-lg" for=""> siguiente Visita</label>
-                    <input id="SiguienteVisita" name = "SiguienteVisita" type="date" class="px3 py2 w-full rounded-x1 bg-blue-100" 
-                    placeholder="Ingresa la siguiente Visita" value="{{ $traconsulta->SiguienteVisita }}">
-                    @error('siguienteVisita')
-                        <strong class = "text-red-500">Debes ingresar la siguiente Visita</strong>
-                    @enderror
-                </div>
-                <div class="col-span-1">
-                    <label class="font-bold text-lg" for="">Selecciona un tratamiento</label>
-                    <div class="relative inline-block w-64 mt-1">
-                        <select name="ID_Tratamiento" id="SiguienteVisita" class="block appearance-none w-full bg-white border border-gray-300 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
-                            <option value="">Selecciona un tratamiento</option>
-                            @foreach ($tratamientos as $tratamiento)
-                                <option value="{{ $tratamiento->id }}">
-                                    Diagnóstico: {{ $tratamiento->diagnostico }} - Descripción: {{ $tratamiento->descripcion }} - Precio: Bs.{{ $tratamiento->precio }}
-                                </option>
-                            @endforeach
-                        </select>
-                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M6.293 9.293a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L10 11.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4z"/></svg>
+            </div>
+            
+            <div class="p-5">
+                <label class="font-bold text-lg">Medicamentos en la Receta Médica</label>
+                <div id="productos">
+                    <div class="grid lg:grid-cols-3 grid-cols-1 gap-3 p-2">
+                        <div class="col-span-1">
+                            <label for="producto">Producto</label>
+                            <select id="producto" name="productos[0][producto_id]"
+                                class="px-3 py-2 w-full rounded-xl bg-blue-100">
+                                <option value="">Selecciona un producto</option>
+                                @foreach ($productos as $producto)
+                                    <option value="{{ $producto->id }}">{{ $producto->nombre }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-span-1">
+                            <label for="cantidad">Cantidad</label>
+                            <input id="cantidad" name="productos[0][cantidad]" type="number" min="1"
+                                class="px-3 py-2 w-full rounded-xl bg-blue-100" placeholder="Cantidad">
+                        </div>
+                        
+                        <div class="col-span-1">
+                            <label for="instrucciones">Instrucciones</label>
+                            <input id="instrucciones" name="productos[0][instrucciones]" type="text" min="1"
+                                class="px-3 py-2 w-full rounded-xl bg-blue-100" placeholder="Instrucciones">
                         </div>
                     </div>
                 </div>
-
-                
-                <input type="hidden" name="ID_Consulta" id="ID_Consulta" value="{{ $traconsulta->ID_Consulta }}">
-                <input type="hidden" name="ID_Historial" id="ID_Historial" value="{{ $traconsulta->ID_Historial }}">
-                <div class = "p-5">
-                    <button type ="submit" class="bg-blue-600 text-white fond-bold px-6 py-3 rounded-lg">
-                        <i class= "fa-solid fa-floppy-disk">Guardar</i>
-                    </button>
-                </div>
-
+                <button type="button" id="agregarProducto"
+                    class="bg-blue-600 text-white font-bold px-4 py-2 rounded-lg">Agregar Medicamento</button>
             </div>
-
+            <input type="hidden" name="ID_Consulta" id="ID_Consulta" value="{{ $consultas->id }}">
+           
+            <div class="p-5">
+                <button type="submit" class="bg-blue-600 text-white font-bold px-6 py-3 rounded-lg">
+                    <i class="fa-solid fa-floppy-disk">Guardar</i>
+                </button>
+            </div>
         </div>
     </form>
 
+    <script>
+        let productoIndex = 0;
+
+        document.getElementById('agregarProducto').addEventListener('click', function() {
+            productoIndex++;
+
+            const productosDiv = document.getElementById('productos');
+
+            const productoInput = document.createElement('div');
+            productoInput.classList.add('grid', 'lg:grid-cols-3', 'grid-cols-1', 'gap-3', 'p-2');
+            productoInput.innerHTML = `
+            <div class="col-span-1">
+                            <label for="producto">Producto</label>
+                            <select id="producto" name="productos[0][${productoIndex}]"
+                                class="px-3 py-2 w-full rounded-xl bg-blue-100">
+                                <option value="">Selecciona un producto</option>
+                                @foreach ($productos as $producto)
+                                    <option value="{{ $producto->id }}">{{ $producto->nombre }}</option>
+                                @endforeach
+                            </select>
+            </div>
+                        <div class="col-span-1">
+                            <label for="cantidad">Cantidad</label>
+                            <input id="cantidad" name="productos[0][${productoIndex}]" type="number" min="1"
+                                class="px-3 py-2 w-full rounded-xl bg-blue-100" placeholder="Cantidad">
+                        </div>
+                        
+                        <div class="col-span-1">
+                            <label for="instrucciones">Instrucciones</label>
+                            <input id="instrucciones" name="productos[0][${productoIndex}]" type="text" min="1"
+                                class="px-3 py-2 w-full rounded-xl bg-blue-100" placeholder="Instrucciones">
+                        </div>`;
+
+            productosDiv.appendChild(productoInput);
+        });
+    </script>
+
+    <script>
+        // Obtener la referencia al campo de entrada de fecha
+        var fechaEmisionInput = document.getElementById('FechaEmision');
+
+        // Obtener la fecha actual en formato ISO (YYYY-MM-DD)
+        var fechaActual = new Date().toISOString().split('T')[0];
+
+        // Establecer la fecha actual como el valor predeterminado
+        fechaEmisionInput.value = fechaActual;
+    </script>
 </x-app-layout>

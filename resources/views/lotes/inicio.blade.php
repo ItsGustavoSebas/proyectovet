@@ -62,88 +62,89 @@
 
             @php $prevLoteId = null; @endphp
             @foreach ($lotes as $lote)
-              @if ($lote->estado == 1)
-                @php $loteprodCount = count($lote->loteprod); @endphp
-                <tr class="bg-white border border-grey-500 md:border-none block md:table-row">
-                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"
-                        rowspan="{{ $loteprodCount }}">
-                        <span class="inline-block w-1/3 md:hidden font-bold">LOTE ID</span>{{ $lote->id }}
-                    </td>
-                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"
-                        rowspan="{{ $loteprodCount }}">
-                        
-                        <div class="flex flex-wrap">
-                            <span class="inline-block w-1/3 md:hidden font-bold">Acciones</span>
-                            @can('Editar Lote')
-                            <a href="{{ route('lotes.editar', $lote->id) }}" class="bg-green-400 px-2 py-2 rounded-lg"
-                                title="Editar">
-                                <i class="fa-regular fa-pen-to-square"></i>
-                            </a>
-                            @endcan
-                            @can('Eliminar Lote')
-                            <div>
-                                <form action="{{ route('lotes.eliminar', $lote->id) }}" method="POST"
-                                    onsubmit="return confirm('¿Estás seguro de eliminar?')">
-                                    @csrf
-                                    <button type="submit" class="bg-red-500 px-2 py-2 rounded-lg" title="Eliminar">
-                                        <i class="fa-solid fa-trash"></i>
-                                    </button>
-                                </form>
-                            </div>
-                            @endcan
-                            @can('Rembolsar Lote')
-                            <a href="{{ route('lotes.reembolsar', $lote->id) }}" class="bg-red-400 px-2 py-2 rounded-lg"
-                                title="Reembolsar">
-                                <i class="fa-solid fa-circle-exclamation"></i>
-                            </a>
-                            @endcan
-                        </div>
-                    </td>
-                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"
-                        rowspan="{{ $loteprodCount }}">
-                        <span class="inline-block w-1/3 md:hidden font-bold">Número de
-                            Lote </span>{{ $lote->numeroLote }}
-                    </td>
-                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"
-                        rowspan="{{ $loteprodCount }}">
-                        <span class="inline-block w-1/3 md:hidden font-bold">Fecha de
-                            Compra </span>{{ $lote->fechaCompra }}
-                    </td>
-                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"
-                        rowspan="{{ $loteprodCount }}">
-                        <span class="inline-block w-1/3 md:hidden font-bold">Fecha de
-                            Vencimiento </span>{{ $lote->fechaVencimiento }}
-                    </td>
-                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"
-                        rowspan="{{ $loteprodCount }}">
-                        <span class="inline-block w-1/3 md:hidden font-bold">Proveedor </span>
-                        {{ $lote->proveedor->nombre }}
-                    </td>
+            @if ($lote->estado == 1)
+            @php $loteprodCount = count($lote->loteprod); @endphp
+            <tr class="bg-white border border-grey-500 md:border-none block md:table-row">
+                <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"
+                    rowspan="{{ $loteprodCount }}">
+                    <span class="inline-block w-1/3 md:hidden font-bold">LOTE ID</span>{{ $lote->id }}
+                </td>
+                <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"
+                    rowspan="{{ $loteprodCount }}">
 
-                    @foreach ($lote->loteprod as $index => $loteprod)
-                        @if ($index > 0)
-                <tr class="bg-white border border-grey-500 md:border-none block md:table-row">
-            @endif
-            <td class="p-2 md:border md:border-grey-500 text-left block md:hidden">
-                <span class="inline-block w-1/2 font-bold text-center">Producto {{ $index + 1 }}</span>
-            </td>
-            <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
-                <span class="inline-block w-1/3 md:hidden font-bold">Nombre </span>{{ $loteprod->producto->nombre }}
-            </td>
-            <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
-                <span class="inline-block w-1/3 md:hidden font-bold">Cantidad Comprada
-                </span>{{ $loteprod->cantidadComprada }} {{ $loteprod->medida->sigla }}
-            </td>
-            <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
-                    class="inline-block w-1/3 md:hidden font-bold">Cantidad Actual
-                </span>{{ $loteprod->cantidadActual }}
-                {{ $loteprod->medida->sigla }}
-            </td>
-            <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
-                    class="inline-block w-1/3 md:hidden font-bold">Precio Compra </span>{{ $loteprod->precioCompra }}
-                Bs.
-            </td>
-            @endforeach
+                    <div class="flex flex-wrap">
+                        <span class="inline-block w-1/3 md:hidden font-bold">Acciones</span>
+                        @can('Editar Lote')
+                        <a href="{{ route('lotes.editar', $lote->id) }}" class="bg-green-400 px-2 py-2 rounded-lg"
+                            title="Editar">
+                            <i class="fa-regular fa-pen-to-square"></i>
+                        </a>
+                        @endcan
+                        @can('Eliminar Lote')
+                        <div>
+                            <form action="{{ route('lotes.eliminar', $lote->id) }}" method="POST"
+                                onsubmit="return confirm('¿Estás seguro de eliminar?')">
+                                @csrf
+                                <button type="submit" class="bg-red-500 px-2 py-2 rounded-lg" title="Eliminar">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </form>
+                        </div>
+                        @endcan
+                        @can('Rembolsar Lote')
+                        <a href="{{ route('lotes.reembolsar', $lote->id) }}" class="bg-red-400 px-2 py-2 rounded-lg"
+                            title="Reembolsar">
+                            <i class="fa-solid fa-circle-exclamation"></i>
+                        </a>
+                        @endcan
+                    </div>
+                </td>
+                <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"
+                    rowspan="{{ $loteprodCount }}">
+                    <span class="inline-block w-1/3 md:hidden font-bold">Número de
+                        Lote </span>{{ $lote->numeroLote }}
+                </td>
+                <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"
+                    rowspan="{{ $loteprodCount }}">
+                    <span class="inline-block w-1/3 md:hidden font-bold">Fecha de
+                        Compra </span>{{ $lote->fechaCompra }}
+                </td>
+                <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"
+                    rowspan="{{ $loteprodCount }}">
+                    <span class="inline-block w-1/3 md:hidden font-bold">Fecha de
+                        Vencimiento </span>{{ $lote->fechaVencimiento }}
+                </td>
+                <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"
+                    rowspan="{{ $loteprodCount }}">
+                    <span class="inline-block w-1/3 md:hidden font-bold">Proveedor </span>
+                    {{ $lote->proveedor->nombre }}
+                </td>
+
+                @foreach ($lote->loteprod as $index => $loteprod)
+                @if ($index > 0)
+            <tr class="bg-white border border-grey-500 md:border-none block md:table-row">
+                @endif
+                <td class="p-2 md:border md:border-grey-500 text-left block md:hidden">
+                    <span class="inline-block w-1/2 font-bold text-center">Producto {{ $index + 1 }}</span>
+                </td>
+                <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
+                    <span class="inline-block w-1/3 md:hidden font-bold">Nombre </span>{{ $loteprod->producto->nombre }}
+                </td>
+                <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
+                    <span class="inline-block w-1/3 md:hidden font-bold">Cantidad Comprada
+                    </span>{{ $loteprod->cantidadComprada }} {{ $loteprod->medida->sigla }}
+                </td>
+                <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
+                        class="inline-block w-1/3 md:hidden font-bold">Cantidad Actual
+                    </span>{{ $loteprod->cantidadActual }}
+                    {{ $loteprod->medida->sigla }}
+                </td>
+                <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
+                        class="inline-block w-1/3 md:hidden font-bold">Precio Compra </span>{{ $loteprod->precioCompra
+                    }}
+                    Bs.
+                </td>
+                @endforeach
             </tr>
             @php $prevLoteId = $lote->id; @endphp
             @endif

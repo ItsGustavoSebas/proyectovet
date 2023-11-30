@@ -7,8 +7,7 @@ use App\Models\RecetaMedica;
 use App\Models\DetalleReceta;
 use App\Models\Producto;
 use App\Models\Consulta;
-use App\Models\Medida;
-use App\Models\Empleado;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class RecetaMedicaController extends Controller
@@ -18,24 +17,20 @@ class RecetaMedicaController extends Controller
     {
         $productos = Producto::all();
         $consultas = Consulta::where('id', '=', $id_Consulta)->first();
-        $medidas = Medida::all();
-        $empleados = Empleado::all();
-        return view('RecetaMedica.crear', compact('productos', 'consultas', 'medidas', 'empleados'));
+        $idEmpleado = auth()->id();
+        return view('RecetaMedica.crear', compact('productos', 'consultas', 'idEmpleado'));
     }
 
     public function guardar(REQUEST $request)
     {
         $request->validate([
-            'numReceta' => 'required',
-            'FechaEmision' => 'required',
             'ID_Consulta' => 'required',
-            'ID_Empleado' => 'required',
+            'productos' => 'required|array',
         ]);
         $recetamedica = new RecetaMedica();
-        $recetamedica->numReceta = $request->numReceta;
         $recetamedica->FechaEmision = $request->FechaEmision;
         $recetamedica->ID_Consulta = $request->ID_Consulta;
-        $recetamedica->ID_Empleado = $request->empleado_id;
+        $recetamedica->ID_Empleado = auth()->id();
         $recetamedica->save();
 
         //Crear DetalleBitacora
@@ -60,16 +55,31 @@ class RecetaMedicaController extends Controller
         foreach ($request->productos as $productoData) {
             $producto_id = $productoData['producto_id'];
             $cantidad = $productoData['cantidad'];
-            $medida_id = $productoData['medida_id'];
-            $precioVenta = $productoData['precioVenta'];
+            $instrucciones = $productoData['instrucciones'];
 
             $detalleReceta = new DetalleReceta();
             $detalleReceta->ID_RecetaMedica = $recetamedica->id;
             $detalleReceta->ID_Producto = $producto_id;
             $detalleReceta->cantidad = $cantidad;
-            $detalleReceta->ID_Medida = $medida_id;
-            $detalleReceta->precioVenta = $precioVenta;
+            $detalleReceta->instrucciones = $instrucciones;
             $detalleReceta->save();
+
+            $bitacora_id = session('bitacora_id');
+
+            if ($bitacora_id) {
+                $bitacora = Bitacora::find($bitacora_id);
+
+                $horaActual = now()->format('H:i:s');
+
+                $bitacora->detalleBitacoras()->create([
+                    'accion' => 'Añadir Producto Del Receta Medica',
+                    'metodo' => request()->method(),
+                    'hora' => $horaActual,
+                    'tabla' => 'detalle_receta',
+                    'registroId' => $detalleReceta->id,
+                    'ruta' => request()->fullurl(),
+                ]);
+            }
         }
 
         return redirect(route('consulta.acciones', $recetamedica->ID_Consulta))->with('creado', 'Receta Médica añadido exitosamente');
@@ -116,14 +126,13 @@ class RecetaMedicaController extends Controller
     public function actualizar(REQUEST $request, $id)
     {
         $request->validate([
-            'numReceta' => 'required',
             'FechaEmision' => 'required',
             'ID_Consulta' => 'required',
         ]);
-        $recetamedica->numReceta = $request->numReceta;
+        $recetamedica = RecetaMedica::find($id);
         $recetamedica->FechaEmision = $request->FechaEmision;
         $recetamedica->ID_Consulta = $request->ID_Consulta;
-        $recetamedica->ID_Empleado = $request->ID_Empleado;
+        $recetamedica->ID_Empleado = auth()->id();
         $recetamedica->save();
 
         //Crear DetalleBitacora
@@ -136,8 +145,8 @@ class RecetaMedicaController extends Controller
             $horaActual = now()->format('H:i:s');
 
             $bitacora->detalleBitacoras()->create([
-                'accion' => 'Editar Receta Medica',
-                'metodo' => request()->method(),
+                'accion' => 'Crear Receta Medica',
+                'metodo' => $request->method(),
                 'hora' => $horaActual,
                 'tabla' => 'receta_medica',
                 'registroId' => $recetamedica->id,
@@ -148,17 +157,15 @@ class RecetaMedicaController extends Controller
         foreach ($request->productos as $productoData) {
             $producto_id = $productoData['producto_id'];
             $cantidad = $productoData['cantidad'];
-            $medida_id = $productoData['medida_id'];
-            $precioVenta = $productoData['precioVenta'];
+            $instrucciones = $productoData['instrucciones'];
 
             $detalleReceta = new DetalleReceta();
             $detalleReceta->ID_RecetaMedica = $recetamedica->id;
             $detalleReceta->ID_Producto = $producto_id;
             $detalleReceta->cantidad = $cantidad;
-            $detalleReceta->ID_Medida = $medida_id;
-            $detalleReceta->precioVenta = $precioVenta;
+            $detalleReceta->instrucciones = $instrucciones;
             $detalleReceta->save();
         }
-        return redirect(route('consulta.acciones', $recetamedica->ID_Consulta))->with('actualizado', 'Receta Médica  actualizada correctamente');
+        return redirect(route('consulta.acciones', $request->ID_Consulta))->with('actualizado', 'Receta Médica  actualizada correctamente');
     }
 }

@@ -13,7 +13,7 @@ class RecetaMedica extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'numReceta',
+        'id',
         'FechaEmision', 
         'ID_Consulta',
         'ID_Empleado'
@@ -21,7 +21,7 @@ class RecetaMedica extends Model
 
     public function detalle_receta()
     {
-        return $this->hasMany(Detalle_receta::class, 'ID_RecetaMedica');
+        return $this->hasMany(DetalleReceta::class, 'ID_RecetaMedica');
     }
 
     public function consulta()
