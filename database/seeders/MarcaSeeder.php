@@ -16,23 +16,36 @@ class MarcaSeeder extends Seeder
     public function run()
     {
         //
+        
         Marca::create([
             'nombre' => 'Primogato'
         ]);
         Marca::create([
-            'nombre' => 'Átila'
+            'nombre' => 'HealthyPet'
         ]);
         Marca::create([
-            'nombre' => '9Lives'
+            'nombre' => 'VetMed'
         ]);
         Marca::create([
-            'nombre' => 'Apolo'
+            'nombre' => 'PawClean'
         ]);
         Marca::create([
-            'nombre' => 'SuperCat'
+            'nombre' => 'PetPlay'
         ]);
         Marca::create([
-            'nombre' => 'Primocao'
+            'nombre' => 'ComfyPaws'
+        ]);
+        Marca::create([
+            'nombre' => 'WhiskerWellness'
+        ]);
+        Marca::create([
+            'nombre' => 'HealPaws'
+        ]);
+        Marca::create([
+            'nombre' => 'FurryFun'
+        ]);
+        Marca::create([
+            'nombre' => 'CozyCritter'
         ]);
         Marca::create([
             'nombre' => 'Eco cane'
@@ -44,25 +57,16 @@ class MarcaSeeder extends Seeder
             'nombre' => 'Podium'
         ]);
         Marca::create([
-            'nombre' => 'Whiskas'
-        ]);
-        Marca::create([
-            'nombre' => 'Mican'
-        ]);
-        Marca::create([
-            'nombre' => 'Eukanuba'
-        ]);
-        Marca::create([
             'nombre' => 'Royal Canin'
+        ]);
+        Marca::create([
+            'nombre' => 'Hill\'s Science Diet.'
         ]);
         Marca::create([
             'nombre' => 'Cute Cat'
         ]);
         Marca::create([
             'nombre' => 'Bento Pet'
-        ]);
-        Marca::create([
-            'nombre' => 'Canada Litter'
         ]);
         Marca::create([
             'nombre' => 'Acana'
@@ -81,6 +85,21 @@ class MarcaSeeder extends Seeder
         ]);
         Marca::create([
             'nombre' => 'Traveness'
-        ]);       
+        ]);     
+        Marca::create([
+            'nombre' => 'PawCare Inflam-Relief'
+        ]);
+        Marca::create([
+            'nombre' => 'GuardPet ParasiteShield'
+        ]);
+        Marca::create([
+            'nombre' => 'ComfortVet PainEze'
+        ]);
+        Marca::create([
+            'nombre' => 'VitaPaws HealthBoost'
+        ]);
+        Marca::create([
+            'nombre' => 'FeatherClear RespiraCare'
+        ]);
     }
 }

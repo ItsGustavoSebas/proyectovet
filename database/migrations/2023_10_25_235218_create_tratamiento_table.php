@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('diagnostico');
             $table->string('descripcion');
-            $table->integer('precio');
+            $table->decimal('precio');
             $table->timestamps();
         });
     }

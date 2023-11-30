@@ -4,29 +4,13 @@
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 {{ __('Productos') }}
             </h2>
-            <form action="{{ route('productos.filtrar') }}" method="GET">
-                <div class="flex flex-wrap justify-between mt-4">
-                    <div class="flex items-center ml-2"> <!-- Añade un margen inferior para separar los elementos -->
-                        <label for="categoria">Categoría:</label>
-                        <select name="categoria" id="categoria" class="ml-2 p-1 border rounded-md w-52">
-                            <option value="">Seleccione una categoría</option>
-                            <!-- Opciones de categorías -->
-                            @foreach ($categorias as $categoria)
-                                <option value="{{ $categoria->id }}">{{ $categoria->Nombre }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="flex items-center ml-2"> <!-- Añade un margen inferior para separar los elementos -->
-                        <label for="marca">Marca:</label>
-                        <select name="marca" id="marca" class="ml-2 p-1 border rounded-md w-48">
-                            <option value="">Seleccione una marca  </option>
-                            <!-- Opciones de marcas -->
-                            @foreach ($marcas as $marca)
-                                <option value="{{ $marca->id }}">{{ $marca->nombre }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <button type="submit" class="px-3 py-1 bg-blue-500 text-white rounded-lg ml-4">Filtrar</button>
+            <form action="{{ route('productos.buscar') }}" method="GET">
+                <div class="flex items-center justify-between mt-4">
+                    <label for="busqueda">Buscar:</label>
+                    <input type="text" name="busqueda" id="busqueda" class="ml-2 p-1 border rounded-md"
+                        placeholder="Buscar" value="{{ isset($terminoBusqueda) ? $terminoBusqueda : '' }}">
+                        
+                    <button type="submit" class="px-3 py-1 bg-blue-500 text-white rounded-lg ml-4">Buscar</button>
                 </div>
             </form>
             
@@ -74,22 +58,22 @@
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
                             class="inline-block w-1/3 md:hidden font-bold">ID</span>{{ $producto->id }}</td>
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
-                            class="inline-block w-1/3 md:hidden font-bold">Tiempo</span>{{ $producto->nombre }}
+                            class="inline-block w-1/3 md:hidden font-bold">Nombre</span>{{ $producto->nombre }}
                     </td>
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
-                            class="inline-block w-1/3 md:hidden font-bold">ID_Cita</span>{{ $producto->precioVenta }}
+                            class="inline-block w-1/3 md:hidden font-bold">Precio de Venta</span>{{ $producto->precioVenta }}
                     </td>
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
-                            class="inline-block w-1/3 md:hidden font-bold">Servicio</span>{{ $producto->descripcion }}
+                            class="inline-block w-1/3 md:hidden font-bold">Descripción</span>{{ $producto->descripcion }}
                     </td>
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
-                            class="inline-block w-1/3 md:hidden font-bold">Empleado</span>{{ $producto->cantidadGeneral  }}
+                            class="inline-block w-1/3 md:hidden font-bold">Cantidad Gemeral</span>{{ $producto->cantidadGeneral  }}
                     </td>
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
-                        class="inline-block w-1/3 md:hidden font-bold">Empleado</span>{{ $producto->categoria->Nombre  }}
+                        class="inline-block w-1/3 md:hidden font-bold">Categoria</span>{{ $producto->categoria->Nombre  }}
                 </td>
                 <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
-                    class="inline-block w-1/3 md:hidden font-bold">Empleado</span>{{ $producto->marca->nombre  }}
+                    class="inline-block w-1/3 md:hidden font-bold">Marca</span>{{ $producto->marca->nombre  }}
             </td>
             </td>
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">

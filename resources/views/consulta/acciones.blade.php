@@ -156,6 +156,8 @@
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight px-3 py-2">
                     {{ __('Tratamientos de la consulta') }}
                 </h2>
+                <a class = "px-3 py-2 bg-red-800 font-bold text-white rounded-lg"
+                href="{{ route('generarTratamientosConsultaPDF', $consulta->id) }}">Generar PDF</a>
             </div>
 
             <thead class="block md:table-header-group">
@@ -177,31 +179,31 @@
             </thead>
             <tbody class="block md:table-row-group">
                 @foreach ($tratamientos_consulta as $tratamiento_consulta)
-                <tr class="bg-white border border-grey-500 md:border-none block md:table-row">
-                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
-                            class="inline-block w-1/3 md:hidden font-bold">Duración</span>{{
-                        $tratamiento_consulta->precio }}
-                    </td>
-                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
-                            class="inline-block w-1/3 md:hidden font-bold">Fecha de
-                            Inicio</span>{{ $tratamiento_consulta->fecha }}</td>
-                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
-                            class="inline-block w-1/3 md:hidden font-bold">Fecha de
-                            Fin</span>{{ $tratamiento_consulta->tratamientoMascota->tratamiento->descripcion }}</td>
-                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
-                        <div>
-                            @can('Eliminar Tratamientos_Cslt')
-                            <form action="{{ route('traconsulta.eliminarTratamiento', $tratamiento_consulta->id) }}"
-                                method="POST" onsubmit="return confirm('¿Estas seguro de eliminar?')">
-                                @csrf
-                                <button type="submit" class="bg-red-500 px-2 py-2 rounded-lg" title="Eliminar">
-                                    <i class="fa-solid fa-trash"></i>
-                                </button>
-                            </form>
-                            @endcan
-                        </div>
-                    </td>
-                </tr>
+                    <tr class="bg-white border border-grey-500 md:border-none block md:table-row">
+                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
+                                class="inline-block w-1/3 md:hidden font-bold">Duración</span>{{ $tratamiento_consulta->precio }}
+                        </td>
+                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
+                                class="inline-block w-1/3 md:hidden font-bold">Fecha de
+                                Inicio</span>{{ $tratamiento_consulta->fecha }}</td>
+                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
+                                class="inline-block w-1/3 md:hidden font-bold">Fecha de
+                                Fin</span>{{ $tratamiento_consulta->tratamientoMascota->tratamiento->descripcion }}</td>
+                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
+                                <div>
+                                    @can('Eliminar Tratamientos_Cslt')
+                                    <form
+                                        action="{{ route('traconsulta.eliminarTratamiento', $tratamiento_consulta->id) }}"
+                                        method="POST" onsubmit="return confirm('¿Estas seguro de eliminar?')">
+                                        @csrf
+                                        <button type = "submit"class="bg-red-500 px-2 py-2 rounded-lg" title="Eliminar">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </button>
+                                    </form>
+                                    @endcan
+                                </div>
+                        </td>
+                    </tr>
                 @endforeach
             </tbody>
         </table>

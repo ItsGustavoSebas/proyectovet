@@ -56,12 +56,15 @@
                                 <i class="fas fa-chevron-down text-xs"></i>
                             </div>
                             <ul class="desplegable ml-4 hidden">
+                                @can('Listar Roles')
                                 <li>
+                                    
                                     <a href="{{ route('bitacoras.rinicio') }}" class=" p-2 hover:bg-gray-700 flex items-center">
                                         <i class="fas fa-chevron-right mr-2 text-xs"></i>
                                         Visualizar Bitácora
                                     </a>
                                 </li>
+                                @endcan
                                 <li>
                                     <a href="{{ route('register') }}" id="logout-and-register"
                                         class="p-2 hover:bg-gray-700 flex items-center">
@@ -210,7 +213,7 @@
                             </div>
                             <ul class="desplegable ml-4 hidden">
                                 <li>
-                                    <a href="#" class=" p-2 hover:bg-gray-700 flex items-center">
+                                    <a href="{{ route('lotes.reembolsarInicio') }}" class=" p-2 hover:bg-gray-700 flex items-center">
                                         <i class="fas fa-chevron-right mr-2 text-xs"></i>
                                         Gestionar Devolucion al Proveedor
                                     </a>
@@ -271,21 +274,21 @@
                             </div>
                             <ul class="desplegable ml-4 hidden">
                                 <li>
-                                    <a href="#" class=" p-2 hover:bg-gray-700 flex items-center">
+                                    <a href="{{ route('nota_venta.inicio') }}" class=" p-2 hover:bg-gray-700 flex items-center">
                                         <i class="fas fa-chevron-right mr-2 text-xs"></i>
                                         Gestionar Nota de Venta
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" class=" p-2 hover:bg-gray-700 flex items-center">
+                                    <a href="{{ route('facturas.inicio') }}" class=" p-2 hover:bg-gray-700 flex items-center">
                                         <i class="fas fa-chevron-right mr-2 text-xs"></i>
-                                        Realizar Recibo
+                                        Gestionar facturas
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" class=" p-2 hover:bg-gray-700 flex items-center">
+                                    <a href="{{ route('Recibos.inicio') }}" class=" p-2 hover:bg-gray-700 flex items-center">
                                         <i class="fas fa-chevron-right mr-2 text-xs"></i>
-                                        Realizar Factura
+                                        Gestionar recibos
                                     </a>
                                 </li>
                                 <li>
@@ -295,9 +298,9 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" class=" p-2 hover:bg-gray-700 flex items-center">
+                                    <a href="{{ route('reporte.inicio') }}" class=" p-2 hover:bg-gray-700 flex items-center">
                                         <i class="fas fa-chevron-right mr-2 text-xs"></i>
-                                        Gestionar Pago
+                                        Gestionar Reportes Financieros
                                     </a>
                                 </li>
                             </ul>

@@ -180,5 +180,16 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'Actualizar Servicio'])->syncRoles([$role1, $role2]);
         Permission::create(['name' => 'Eliminar Servicio'])->syncRoles([$role1]);
 
+        //BITACORAS
+
+        Permission::create(['name' => 'Listar Bitacoras'])->syncRoles([$role1]);
+
+        Permission::create(['name' => 'Visualizar Nota de Venta'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'Crear Nota de Venta'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'Guardar Nota de venta'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'Detalles de Nota de Venta'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'Reporte de Venta'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'Eliminar Nota de Venta'])->syncRoles([$role1, $role2]);
+
     }
 }

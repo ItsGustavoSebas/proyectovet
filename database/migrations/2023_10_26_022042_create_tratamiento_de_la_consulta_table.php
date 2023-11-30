@@ -15,12 +15,12 @@ return new class extends Migration
     {
         Schema::create('tratamiento_de_la_consulta', function (Blueprint $table) {
             $table->id();
-            $table->integer('precio');
+            $table->decimal('precio');
             $table->date('fecha');
             $table->unsignedBigInteger('ID_TratamientoMascota');
             $table->unsignedBigInteger('ID_Consulta');
             $table->foreign('ID_TratamientoMascota')->references('id')->on('tratamientos_mascota');
-            $table->foreign('ID_Consulta')->references('id')->on('consulta');
+            $table->foreign('ID_Consulta')->references('id')->on('consulta')->onDelete('cascade');
             $table->timestamps();
         });
     }
