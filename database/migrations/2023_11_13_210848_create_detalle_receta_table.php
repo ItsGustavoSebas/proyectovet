@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('ID_RecetaMedica');
             $table->unsignedBigInteger('ID_Producto');
             $table->integer('Cantidad');
-            $table->integer('precioVenta');
+            $table->string('instrucciones');
             $table->foreign('ID_Producto')->references('id')->on('producto');
             $table->foreign('ID_RecetaMedica')->references('id')->on('receta_medica');
             $table->timestamps();

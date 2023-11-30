@@ -17,7 +17,6 @@ class DetalleReceta extends Model
         'ID_RecetaMedica', 
         'ID_Producto', 
         'Cantidad',
-        'precioVenta',
     ];
 
     public function producto()
@@ -25,7 +24,7 @@ class DetalleReceta extends Model
         return $this->belongsTo(Producto::class, 'ID_Producto');
     }
 
-    public function recetamedica()
+    public function receta_medica()
     {
         return $this->belongsTo(RecetaMedica::class, 'ID_RecetaMedica');
     }

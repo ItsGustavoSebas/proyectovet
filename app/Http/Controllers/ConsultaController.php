@@ -9,6 +9,8 @@ use App\Models\Consulta;
 use App\Models\Mascota;
 use App\Models\TratamientoDeLaConsulta;
 use App\Models\TratamientoMascota;
+use App\Models\RecetaMedica;
+use App\Models\DetalleReceta;
 use Illuminate\Http\Request;
 
 class ConsultaController extends Controller
@@ -81,7 +83,9 @@ class ConsultaController extends Controller
         $tratamientos_consulta = TratamientoDeLaConsulta::where('ID_Consulta', '=', $ID_Consulta)->get();
         $tratamientos = TratamientoMascota::where('ID_Historial', '=', $consulta->mascota->historial->id)->whereColumn('dosis_totales', '>', 'visitas_realizadas')
             ->get();
-        return view('consulta.acciones', compact('mascota', 'consulta', 'tratamientos', 'tratamientos_consulta'));
+        $recetas_medica = RecetaMedica::where('ID_Consulta', '=', $ID_Consulta)->get();
+        
+        return view('consulta.acciones', compact('mascota', 'consulta', 'tratamientos', 'tratamientos_consulta', 'recetas_medica'));
     }
 
     public function editar($id)
