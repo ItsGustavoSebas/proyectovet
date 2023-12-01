@@ -908,8 +908,8 @@
   'session' => 
   array (
     'driver' => 'database',
-    'lifetime' => '1',
-    'expire_on_close' => true,
+    'lifetime' => '120',
+    'expire_on_close' => false,
     'encrypt' => false,
     'files' => 'C:\\xampp\\htdocs\\proyectovet\\storage\\framework/sessions',
     'connection' => NULL,

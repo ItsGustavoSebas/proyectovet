@@ -16,9 +16,12 @@ return new class extends Migration
         Schema::create('receta_medica', function (Blueprint $table) {
             $table->id();
             $table->date('FechaEmision');
-            $table->integer('ID_Consulta')->foreign('ID_Consulta')->references('id')->on('consulta');
-            $table->integer('ID_Empleado')->foreign('ID_Empleado')->references('id')->on('users');
+            $table->unsignedBigInteger('ID_Consulta');
+            $table->unsignedBigInteger('ID_Empleado')->nullable();
+            $table->foreign('ID_Consulta')->references('id')->on('consulta')->onDelete('cascade');
+            $table->foreign('ID_Empleado')->references('id')->on('users');
             $table->timestamps();
+
         });
     }
 
