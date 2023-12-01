@@ -51,7 +51,6 @@ class RecetaMedicaController extends Controller
                 'ruta'=> request()->fullurl(),
             ]);
         }
-
         foreach ($request->productos as $productoData) {
             $producto_id = $productoData['producto_id'];
             $cantidad = $productoData['cantidad'];
@@ -94,11 +93,11 @@ class RecetaMedicaController extends Controller
 
     public function eliminar($id)
     {
-        $recetamedica = RecetaMedica::all();
-        $detalleReceta = DetalleReceta::where('id', $id)->first();       
-        $ID_Consulta = $recetamedica->ID_Consulta;
-        $recetamedica->detalle_receta()>delete();
-        $numReceta = $recetamedica->numReceta;
+        $recetamedica = RecetaMedica::where('id','=', $id)->first(); 
+        // $detalleReceta = DetalleReceta::where('id', $id)->first();       
+            $ID_Consulta = $recetamedica->ID_Consulta;
+        // $recetamedica->detalle_receta()->delete();
+        // $numReceta = $recetamedica->numReceta;
         $recetamedica->delete();
 
         //Crear DetalleBitacora

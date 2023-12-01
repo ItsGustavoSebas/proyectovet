@@ -34,8 +34,8 @@
                         {{ __('Tratamientos de la mascota') }}
                     </h2>
                     @can('Crear Tratamientos_Masc')
-                    <a class="px-3 py-2 bg-indigo-600 font-bold text-white rounded-lg"
-                        href="{{ route('traconsulta.crear', $consulta->id) }}">AÑADIR TRATAMIENTO</a>
+                        <a class="px-3 py-2 bg-indigo-600 font-bold text-white rounded-lg"
+                            href="{{ route('traconsulta.crear', $consulta->id) }}">AÑADIR TRATAMIENTO</a>
                     @endcan
                 </div>
                 <thead class="block md:table-header-group">
@@ -78,72 +78,68 @@
                 </thead>
                 <tbody class="block md:table-row-group">
                     @foreach ($tratamientos as $tratamiento)
-                    <tr class="bg-white border border-grey-500 md:border-none block md:table-row">
-                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
-                                class="inline-block w-1/3 md:hidden font-bold">Duración</span>{{ $tratamiento->duracion
-                            }}
-                        </td>
-                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
-                                class="inline-block w-1/3 md:hidden font-bold">Fecha de
-                                Inicio</span>{{ $tratamiento->FechaInicio }}</td>
-                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
-                                class="inline-block w-1/3 md:hidden font-bold">Fecha de
-                                Fin</span>{{ $tratamiento->FechaFin }}</td>
-                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
-                                class="inline-block w-1/3 md:hidden font-bold">Siguiente
-                                Visita</span>{{ $tratamiento->SiguienteVisita }}</td>
-                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
-                                class="inline-block w-1/3 md:hidden font-bold">visitas
-                                realizadas</span>{{ $tratamiento->visitas_realizadas }}</td>
-                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
-                                class="inline-block w-1/3 md:hidden font-bold">dosis
-                                totales</span>{{ $tratamiento->dosis_totales }}</td>
-                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
-                                class="inline-block w-1/3 md:hidden font-bold">frecuencia</span>{{
-                            $tratamiento->frecuencia }}
-                        </td>
-                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
-                                class="inline-block w-1/3 md:hidden font-bold">Diagnostico</span>{{
-                            $tratamiento->tratamiento->diagnostico }}
-                        </td>
-                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
-                                class="inline-block w-1/3 md:hidden font-bold">Descripción</span>{{
-                            $tratamiento->tratamiento->descripcion }}
-                        </td>
-                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
-                                class="inline-block w-1/3 md:hidden font-bold">Precio</span>{{
-                            $tratamiento->tratamiento->precio }}
-                        </td>
-                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
-                            <div class="flex flex-wrap">
-                                <span class="inline-block w-1/3 md:hidden font-bold">Acciones</span>
-                                @can('Añadir Tratamientos_Cslt')
-                                <button
-                                    onclick="mostrarVentanaEmergente('{{ $tratamiento->id }}', '{{ $consulta->id }}', '{{ $tratamiento->tratamiento->precio }}')"
-                                    class="bg-green-400 px-2 py-2 rounded-lg mr-2" title="Añadir">
-                                    <i class="fa-solid fa-check"></i>
-                                </button>
-                                @endcan
-                                @can('Editar Tratamientos_Masc')
-                                <a href=" {{ route('traconsulta.editar', ['id' => $tratamiento->id, 'id_Consulta' => $consulta->id]) }}"
-                                    class="bg-green-400 px-2 py-2 rounded-lg" title="Editar">
-                                    <i class="fa-regular fa-pen-to-square"></i>
-                                </a>
-                                @endcan
-                                @can('Eliminar Tratamientos_Masc')
-                                <div>
-                                    <form
-                                        action="{{ route('traconsulta.eliminar', ['id' => $tratamiento->id, 'id_Consulta' => $consulta->id]) }}"
-                                        method="POST" onsubmit="return confirm('¿Estas seguro de eliminar?')">
-                                        @csrf
-                                        <button type="submit" class="bg-red-500 px-2 py-2 rounded-lg" title="Eliminar">
-                                            <i class="fa-solid fa-trash"></i>
+                        <tr class="bg-white border border-grey-500 md:border-none block md:table-row">
+                            <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
+                                    class="inline-block w-1/3 md:hidden font-bold">Duración</span>{{ $tratamiento->duracion }}
+                            </td>
+                            <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
+                                    class="inline-block w-1/3 md:hidden font-bold">Fecha de
+                                    Inicio</span>{{ $tratamiento->FechaInicio }}</td>
+                            <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
+                                    class="inline-block w-1/3 md:hidden font-bold">Fecha de
+                                    Fin</span>{{ $tratamiento->FechaFin }}</td>
+                            <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
+                                    class="inline-block w-1/3 md:hidden font-bold">Siguiente
+                                    Visita</span>{{ $tratamiento->SiguienteVisita }}</td>
+                            <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
+                                    class="inline-block w-1/3 md:hidden font-bold">visitas
+                                    realizadas</span>{{ $tratamiento->visitas_realizadas }}</td>
+                            <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
+                                    class="inline-block w-1/3 md:hidden font-bold">dosis
+                                    totales</span>{{ $tratamiento->dosis_totales }}</td>
+                            <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
+                                    class="inline-block w-1/3 md:hidden font-bold">frecuencia</span>{{ $tratamiento->frecuencia }}
+                            </td>
+                            <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
+                                    class="inline-block w-1/3 md:hidden font-bold">Diagnostico</span>{{ $tratamiento->tratamiento->diagnostico }}
+                            </td>
+                            <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
+                                    class="inline-block w-1/3 md:hidden font-bold">Descripción</span>{{ $tratamiento->tratamiento->descripcion }}
+                            </td>
+                            <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
+                                    class="inline-block w-1/3 md:hidden font-bold">Precio</span>{{ $tratamiento->tratamiento->precio }}
+                            </td>
+                            <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
+                                <div class="flex flex-wrap">
+                                    <span class="inline-block w-1/3 md:hidden font-bold">Acciones</span>
+                                    @can('Añadir Tratamientos_Cslt')
+                                        <button
+                                            onclick="mostrarVentanaEmergente('{{ $tratamiento->id }}', '{{ $consulta->id }}', '{{ $tratamiento->tratamiento->precio }}')"
+                                            class="bg-green-400 px-2 py-2 rounded-lg mr-2" title="Añadir">
+                                            <i class="fa-solid fa-check"></i>
                                         </button>
-                                    </form>
-                                </div>
-                                @endcan
-                        </td>
-                    </tr>
+                                    @endcan
+                                    @can('Editar Tratamientos_Masc')
+                                        <a href=" {{ route('traconsulta.editar', ['id' => $tratamiento->id, 'id_Consulta' => $consulta->id]) }}"
+                                            class="bg-green-400 px-2 py-2 rounded-lg" title="Editar">
+                                            <i class="fa-regular fa-pen-to-square"></i>
+                                        </a>
+                                    @endcan
+                                    @can('Eliminar Tratamientos_Masc')
+                                        <div>
+                                            <form
+                                                action="{{ route('traconsulta.eliminar', ['id' => $tratamiento->id, 'id_Consulta' => $consulta->id]) }}"
+                                                method="POST" onsubmit="return confirm('¿Estas seguro de eliminar?')">
+                                                @csrf
+                                                <button type="submit" class="bg-red-500 px-2 py-2 rounded-lg"
+                                                    title="Eliminar">
+                                                    <i class="fa-solid fa-trash"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    @endcan
+                            </td>
+                        </tr>
                     @endforeach
                 </tbody>
 
@@ -157,7 +153,7 @@
                     {{ __('Tratamientos de la consulta') }}
                 </h2>
                 <a class = "px-3 py-2 bg-red-800 font-bold text-white rounded-lg"
-                href="{{ route('generarTratamientosConsultaPDF', $consulta->id) }}">Generar PDF</a>
+                    href="{{ route('generarTratamientosConsultaPDF', $consulta->id) }}">Generar PDF</a>
             </div>
 
             <thead class="block md:table-header-group">
@@ -188,10 +184,11 @@
                                 Inicio</span>{{ $tratamiento_consulta->fecha }}</td>
                         <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
                                 class="inline-block w-1/3 md:hidden font-bold">Fecha de
-                                Fin</span>{{ $tratamiento_consulta->tratamientoMascota->tratamiento->descripcion }}</td>
+                                Fin</span>{{ $tratamiento_consulta->tratamientoMascota->tratamiento->descripcion }}
+                        </td>
                         <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
-                                <div>
-                                    @can('Eliminar Tratamientos_Cslt')
+                            <div>
+                                @can('Eliminar Tratamientos_Cslt')
                                     <form
                                         action="{{ route('traconsulta.eliminarTratamiento', $tratamiento_consulta->id) }}"
                                         method="POST" onsubmit="return confirm('¿Estas seguro de eliminar?')">
@@ -200,8 +197,8 @@
                                             <i class="fa-solid fa-trash"></i>
                                         </button>
                                     </form>
-                                    @endcan
-                                </div>
+                                @endcan
+                            </div>
                         </td>
                     </tr>
                 @endforeach
@@ -214,11 +211,28 @@
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight px-3 py-2">
                     {{ __('Receta de la consulta') }}
                 </h2>
-                @if(count($recetas_medica) == 0)
+                @if (count($recetas_medica) == 0)
                     <a class="px-3 py-2 bg-indigo-600 font-bold text-white rounded-lg"
                         href="{{ route('RecetaMedica.crear', $consulta->id) }}">AÑADIR RECETA MEDICA</a>
                 @else
-                    
+                    <div class="flex">
+                        @foreach ($recetas_medica as $receta_medica)
+                            @can('Editar  Receta Medica')
+                            <a href="{{ route('RecetaMedica.editar', $receta_medica->id) }}" class="bg-green-400 px-2 py-2 rounded-lg flex items-center" title="Editar">
+                                <i class="fa-regular fa-pen-to-square text-white"></i>
+                            </a>
+                            @endcan
+                            @can('Eliminar Receta Medica')
+                            <form action="{{ route('RecetaMedica.eliminar', $receta_medica->id) }}" method="POST" onsubmit="return confirm('¿Estas seguro de eliminar?')"
+                                class="ml-2">
+                                @csrf
+                                <button type="submit" class="bg-red-500 px-2 py-2 rounded-lg" title="Eliminar">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </form>
+                            @endcan
+                            @endforeach
+                    </div>
                 @endif
             </div>
             <thead class="block md:table-header-group">
@@ -247,15 +261,15 @@
                     @php $recetaprodCount = count($receta_medica->detalle_receta); @endphp
                     <tr class="bg-white border border-grey-500 md:border-none block md:table-row">
                         @foreach ($receta_medica->detalle_receta as $index => $detalle_receta)
-                        @if ($index > 0)
+                            @if ($index > 0)
                     <tr class="bg-white border border-grey-500 md:border-none block md:table-row">
 
                         <td class="p-2 md:border md:border-grey-500 text-left block md:hidden">
                             <span class="inline-block w-1/2 font-bold text-center">Producto {{ $index + 1 }}</span>
                         </td>
                         <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
-                            <span class="inline-block w-1/3 md:hidden font-bold">Nombre </span>{{
-                            $detalle_receta->producto->nombre }}
+                            <span class="inline-block w-1/3 md:hidden font-bold">Nombre
+                            </span>{{ $detalle_receta->producto->nombre }}
                         </td>
                         <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
                             <span class="inline-block w-1/3 md:hidden font-bold">Cantidad
@@ -265,9 +279,9 @@
                                 class="inline-block w-1/3 md:hidden font-bold">Instruccion
                             </span>{{ $detalle_receta->instrucciones }}
                         </td>
-                        @endif
-                        @endforeach
-                    </tr>
+                @endif
+                @endforeach
+                </tr>
                 @endforeach
             </tbody>
         </table>
@@ -324,7 +338,6 @@
                 tabla.style.display = 'none';
             }
         }
-        
     </script>
     <script>
         @if (Session::has('eliminado'))

@@ -41,7 +41,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::qb4D5t69b67f56nu',
+            '_route' => 'generated::pvGlZeD0YBuuDXNV',
           ),
           1 => NULL,
           2 => 
@@ -151,7 +151,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::2ydVk8rENHUUNnxn',
+            '_route' => 'generated::mVFmSb3sLr6Nok6l',
           ),
           1 => NULL,
           2 => 
@@ -208,7 +208,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::SjsChbKIJWD1NL8Y',
+            '_route' => 'generated::xRsp9ardXnA2CkeI',
           ),
           1 => NULL,
           2 => 
@@ -281,7 +281,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::dNOjcBZrF5vx3aKb',
+            '_route' => 'generated::BxArZdErds9to55J',
           ),
           1 => NULL,
           2 => 
@@ -411,7 +411,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::Xzjro7GriLSTc7Mb',
+            '_route' => 'generated::IWdj4AtXPQ2xN1gK',
           ),
           1 => NULL,
           2 => 
@@ -489,7 +489,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::eunaYWTIQYsiejPv',
+            '_route' => 'generated::zzXQFPAwhEvOHvog',
           ),
           1 => NULL,
           2 => 
@@ -509,7 +509,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::8E1Ns4fnbnT40ReG',
+            '_route' => 'generated::VnVzATgB5wNg163o',
           ),
           1 => NULL,
           2 => 
@@ -587,7 +587,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::oiaDDblExeK3QiYZ',
+            '_route' => 'generated::m1QZgXvJsdHSptNd',
           ),
           1 => NULL,
           2 => 
@@ -607,27 +607,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::PpWiKeTtaFqqXLEg',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-      ),
-      '/recibo' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'generated::odwLzMU0uHqn0xz5',
+            '_route' => 'generated::RlSw19tnvQ7saJhk',
           ),
           1 => NULL,
           2 => 
@@ -1466,6 +1446,205 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
+      '/reporte/inicio' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'reporte.inicio',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/reporte/ventas_semanal' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'reporte.ventas_semanal',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/reporte/ventas_mes' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'reporte.ventas_mes',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/reporte/ventas_año' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'reporte.ventas_año',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/reporte/clientesFrecuentesCompras' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'reporte.clientesFrecuentesCompras',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/reporte/clientesFrecuentesAtencionVeterinaria' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'reporte.clientesFrecuentesAtencionVeterinaria',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/reporte/serviciosPopulares' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'reporte.serviciosPopulares',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/reporte/productosMasVendidos' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'reporte.productosMasVendidos',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/nota_venta/recibos/guardar' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'Recibos.guardar',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'POST' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/nota_venta/Recibos/inicio' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'Recibos.inicio',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
       '/marcas/inicio' => 
       array (
         0 => 
@@ -1604,10 +1783,69 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
+      '/nota_venta/inicio' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'nota_venta.inicio',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/nota_venta/crear' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'nota_venta.crear',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/nota_venta/guardar' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'nota_venta.guardar',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'POST' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
     ),
     2 => 
     array (
-      0 => '{^(?|/reset\\-password/([^/]++)(*:32)|/livewire/message/([^/]++)(*:65)|/([^/]++)/livewire/message/([^/]++)(*:107)|/l(?|ivewire/preview\\-file/([^/]++)(*:150)|otes/(?|reembolsar(?|/([^/]++)(*:188)|Aceptado/([^/]++)(*:213)|actualizar(?|/([^/]++)(*:243)|1/([^/]++)(*:261)))|e(?|ditar/([^/]++)(*:289)|liminar(?|/([^/]++)(*:316)|ProdR/([^/]++)(*:338)))|actualizar(?|/([^/]++)(*:370)|Reembolso/([^/]++)(*:396))))|/usuarios/(?|e(?|ditar/([^/]++)(*:438)|liminar/([^/]++)(*:462)|mpleados/(?|e(?|ditar/([^/]++)(*:500)|liminar/([^/]++)(*:524))|actualizar/([^/]++)(*:552)))|actualizar/([^/]++)(*:581)|clientes/(?|e(?|ditar/([^/]++)(*:619)|liminar/([^/]++)(*:643))|actualizar/([^/]++)(*:671)))|/pro(?|ductos/(?|e(?|ditar/([^/]++)(*:716)|liminar/([^/]++)(*:740))|actualizar/([^/]++)(*:768))|veedor/(?|e(?|ditar/([^/]++)(*:805)|liminar/([^/]++)(*:829))|actualizar/([^/]++)(*:857)))|/r(?|eservar/(?|([^/]++)(*:891)|consulta/([^/]++)(*:916)|eliminar/([^/]++)(*:941))|oles/(?|e(?|ditar/([^/]++)(*:976)|liminar/([^/]++)(*:1000))|actualizar/([^/]++)(*:1029)))|/ma(?|scotas/(?|inicio/([^/]++)(*:1071)|([^/]++)/crear(*:1094)|e(?|ditar/([^/]++)(*:1121)|liminar/([^/]++)(*:1146))|actualizar/([^/]++)(*:1175)|historial/([^/]++)(*:1202))|rcas/(?|e(?|ditar/([^/]++)(*:1238)|liminar/([^/]++)(*:1263))|actualizar/([^/]++)(*:1292)))|/historial/(?|e(?|ditar/([^/]++)(*:1335)|liminar/([^/]++)(*:1360))|actualizar/([^/]++)(*:1389)|crear/([^/]++)(*:1412))|/tra(?|tamientos/(?|e(?|ditar/([^/]++)(*:1460)|liminar/([^/]++)(*:1485))|actualizar/([^/]++)(*:1514))|consulta/(?|e(?|liminar(?|Tratamiento/([^/]++)(*:1570)|/([^/]++)/([^/]++)(*:1597))|ditar/([^/]++)/([^/]++)(*:1630))|crear/([^/]++)(*:1654)|actualizar/([^/]++)(*:1682)))|/c(?|onsulta/(?|inicio/([^/]++)(*:1724)|ac(?|ciones/([^/]++)(*:1753)|tualizar/([^/]++)(*:1779))|e(?|ditar/([^/]++)(*:1807)|liminar/([^/]++)(*:1832)))|ategoria/(?|e(?|ditar/([^/]++)(*:1873)|liminar/([^/]++)(*:1898))|actualizar/([^/]++)(*:1927)))|/d(?|servicios/(?|inicio/([^/]++)(*:1971)|ac(?|ciones/([^/]++)(*:2000)|tualizar/([^/]++)(*:2026))|e(?|ditar/([^/]++)(*:2054)|liminar/([^/]++)(*:2079)))|etbitacoras/(?|inicio/([^/]++)(*:2120)|PDF/([^/]++)(*:2141)))|/nota_venta/facturas/(?|e(?|ditar/([^/]++)(*:2194)|liminar/([^/]++)(*:2219))|actualizar/([^/]++)(*:2248))|/RecetaMedica/(?|crear/([^/]++)(*:2289)|e(?|ditar/([^/]++)(*:2316)|liminar/([^/]++)(*:2341))|actualizar/([^/]++)(*:2370))|/bitacoras/(?|inicio/([^/]++)(*:2409)|PDF/([^/]++)(*:2430)))/?$}sDu',
+      0 => '{^(?|/reset\\-password/([^/]++)(*:32)|/livewire/message/([^/]++)(*:65)|/([^/]++)/livewire/message/([^/]++)(*:107)|/l(?|ivewire/preview\\-file/([^/]++)(*:150)|otes/(?|reembolsar(?|/([^/]++)(*:188)|Aceptado/([^/]++)(*:213)|actualizar(?|/([^/]++)(*:243)|1/([^/]++)(*:261)))|e(?|ditar/([^/]++)(*:289)|liminar(?|/([^/]++)(*:316)|ProdR/([^/]++)(*:338)))|actualizar(?|/([^/]++)(*:370)|Reembolso/([^/]++)(*:396))))|/usuarios/(?|e(?|ditar/([^/]++)(*:438)|liminar/([^/]++)(*:462)|mpleados/(?|e(?|ditar/([^/]++)(*:500)|liminar/([^/]++)(*:524))|actualizar/([^/]++)(*:552)))|actualizar/([^/]++)(*:581)|clientes/(?|e(?|ditar/([^/]++)(*:619)|liminar/([^/]++)(*:643))|actualizar/([^/]++)(*:671)))|/pro(?|ductos/(?|e(?|ditar/([^/]++)(*:716)|liminar/([^/]++)(*:740))|actualizar/([^/]++)(*:768))|veedor/(?|e(?|ditar/([^/]++)(*:805)|liminar/([^/]++)(*:829))|actualizar/([^/]++)(*:857)))|/r(?|eservar/(?|([^/]++)(*:891)|consulta/([^/]++)(*:916)|eliminar/([^/]++)(*:941))|oles/(?|e(?|ditar/([^/]++)(*:976)|liminar/([^/]++)(*:1000))|actualizar/([^/]++)(*:1029)))|/ma(?|scotas/(?|inicio/([^/]++)(*:1071)|([^/]++)/crear(*:1094)|e(?|ditar/([^/]++)(*:1121)|liminar/([^/]++)(*:1146))|actualizar/([^/]++)(*:1175)|historial/([^/]++)(*:1202))|rcas/(?|e(?|ditar/([^/]++)(*:1238)|liminar/([^/]++)(*:1263))|actualizar/([^/]++)(*:1292)))|/historial/(?|e(?|ditar/([^/]++)(*:1335)|liminar/([^/]++)(*:1360))|actualizar/([^/]++)(*:1389)|crear/([^/]++)(*:1412))|/tra(?|tamientos/(?|e(?|ditar/([^/]++)(*:1460)|liminar/([^/]++)(*:1485))|actualizar/([^/]++)(*:1514))|consulta/(?|e(?|liminar(?|Tratamiento/([^/]++)(*:1570)|/([^/]++)/([^/]++)(*:1597))|ditar/([^/]++)/([^/]++)(*:1630))|PDF/([^/]++)(*:1652)|crear/([^/]++)(*:1675)|actualizar/([^/]++)(*:1703)))|/c(?|onsulta/(?|inicio/([^/]++)(*:1745)|ac(?|ciones/([^/]++)(*:1774)|tualizar/([^/]++)(*:1800))|e(?|ditar/([^/]++)(*:1828)|liminar/([^/]++)(*:1853)))|ategoria/(?|e(?|ditar/([^/]++)(*:1894)|liminar/([^/]++)(*:1919))|actualizar/([^/]++)(*:1948)))|/d(?|servicios/(?|inicio/([^/]++)(*:1992)|ac(?|ciones/([^/]++)(*:2021)|tualizar/([^/]++)(*:2047))|e(?|ditar/([^/]++)(*:2075)|liminar/([^/]++)(*:2100)))|etbitacoras/(?|inicio/([^/]++)(*:2141)|PDF/([^/]++)(*:2162)))|/nota(?|_venta/(?|facturas/(?|e(?|ditar/([^/]++)(*:2221)|liminar/([^/]++)(*:2246))|actualizar/([^/]++)(*:2275))|Recibos/(?|e(?|ditar/([^/]++)(*:2314)|liminar/([^/]++)(*:2339))|actualizar/([^/]++)(*:2368))|eliminar/([^/]++)(*:2395))|\\-venta/([^/]++)(*:2421))|/Rec(?|ibos/PDF/([^/]++)(*:2455)|etaMedica/(?|crear/([^/]++)(*:2491)|e(?|ditar/([^/]++)(*:2518)|liminar/([^/]++)(*:2543))|actualizar/([^/]++)(*:2572)))|/bitacoras/(?|inicio/([^/]++)(*:2612)|PDF/([^/]++)(*:2633))|/obtener\\-(?|citas/([^/]++)(*:2670)|precio\\-cita/([^/]++)(*:2700)))/?$}sDu',
     ),
     3 => 
     array (
@@ -2802,7 +3040,30 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1654 => 
+      1652 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'generarTratamientosConsultaPDF',
+          ),
+          1 => 
+          array (
+            0 => 'id',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      1675 => 
       array (
         0 => 
         array (
@@ -2825,7 +3086,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1682 => 
+      1703 => 
       array (
         0 => 
         array (
@@ -2847,7 +3108,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1724 => 
+      1745 => 
       array (
         0 => 
         array (
@@ -2870,7 +3131,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1753 => 
+      1774 => 
       array (
         0 => 
         array (
@@ -2893,7 +3154,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1779 => 
+      1800 => 
       array (
         0 => 
         array (
@@ -2915,7 +3176,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1807 => 
+      1828 => 
       array (
         0 => 
         array (
@@ -2938,7 +3199,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1832 => 
+      1853 => 
       array (
         0 => 
         array (
@@ -2960,7 +3221,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1873 => 
+      1894 => 
       array (
         0 => 
         array (
@@ -2983,7 +3244,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1898 => 
+      1919 => 
       array (
         0 => 
         array (
@@ -3005,7 +3266,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1927 => 
+      1948 => 
       array (
         0 => 
         array (
@@ -3027,7 +3288,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1971 => 
+      1992 => 
       array (
         0 => 
         array (
@@ -3050,7 +3311,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2000 => 
+      2021 => 
       array (
         0 => 
         array (
@@ -3073,7 +3334,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2026 => 
+      2047 => 
       array (
         0 => 
         array (
@@ -3095,7 +3356,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2054 => 
+      2075 => 
       array (
         0 => 
         array (
@@ -3118,7 +3379,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2079 => 
+      2100 => 
       array (
         0 => 
         array (
@@ -3140,7 +3401,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2120 => 
+      2141 => 
       array (
         0 => 
         array (
@@ -3163,7 +3424,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2141 => 
+      2162 => 
       array (
         0 => 
         array (
@@ -3186,7 +3447,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2194 => 
+      2221 => 
       array (
         0 => 
         array (
@@ -3209,7 +3470,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2219 => 
+      2246 => 
       array (
         0 => 
         array (
@@ -3231,7 +3492,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2248 => 
+      2275 => 
       array (
         0 => 
         array (
@@ -3253,7 +3514,142 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2289 => 
+      2314 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'Recibos.editar',
+          ),
+          1 => 
+          array (
+            0 => 'id',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      2339 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'Recibos.eliminar',
+          ),
+          1 => 
+          array (
+            0 => 'id',
+          ),
+          2 => 
+          array (
+            'POST' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      2368 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'Recibos.actualizar',
+          ),
+          1 => 
+          array (
+            0 => 'id',
+          ),
+          2 => 
+          array (
+            'POST' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      2395 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'nota_venta.eliminar',
+          ),
+          1 => 
+          array (
+            0 => 'id',
+          ),
+          2 => 
+          array (
+            'POST' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      2421 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'nota_venta.mostrarDetalles',
+          ),
+          1 => 
+          array (
+            0 => 'id',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      2455 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'generarReciboPDF',
+          ),
+          1 => 
+          array (
+            0 => 'id',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      2491 => 
       array (
         0 => 
         array (
@@ -3276,7 +3672,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2316 => 
+      2518 => 
       array (
         0 => 
         array (
@@ -3299,7 +3695,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2341 => 
+      2543 => 
       array (
         0 => 
         array (
@@ -3321,7 +3717,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2370 => 
+      2572 => 
       array (
         0 => 
         array (
@@ -3343,7 +3739,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2409 => 
+      2612 => 
       array (
         0 => 
         array (
@@ -3366,7 +3762,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      2430 => 
+      2633 => 
       array (
         0 => 
         array (
@@ -3377,6 +3773,52 @@ app('router')->setCompiledRoutes(
           1 => 
           array (
             0 => 'id',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      2670 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'nota_venta.obtenerCitasPorCliente',
+          ),
+          1 => 
+          array (
+            0 => 'id',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      2700 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'generated::awBDz56eF4ozL5ze',
+          ),
+          1 => 
+          array (
+            0 => 'citaId',
           ),
           2 => 
           array (
@@ -3443,7 +3885,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::qb4D5t69b67f56nu' => 
+    'generated::pvGlZeD0YBuuDXNV' => 
     array (
       'methods' => 
       array (
@@ -3466,7 +3908,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::qb4D5t69b67f56nu',
+        'as' => 'generated::pvGlZeD0YBuuDXNV',
       ),
       'fallback' => false,
       'defaults' => 
@@ -3712,7 +4154,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::2ydVk8rENHUUNnxn' => 
+    'generated::mVFmSb3sLr6Nok6l' => 
     array (
       'methods' => 
       array (
@@ -3734,7 +4176,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::2ydVk8rENHUUNnxn',
+        'as' => 'generated::mVFmSb3sLr6Nok6l',
       ),
       'fallback' => false,
       'defaults' => 
@@ -3826,7 +4268,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::SjsChbKIJWD1NL8Y' => 
+    'generated::xRsp9ardXnA2CkeI' => 
     array (
       'methods' => 
       array (
@@ -3849,7 +4291,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::SjsChbKIJWD1NL8Y',
+        'as' => 'generated::xRsp9ardXnA2CkeI',
       ),
       'fallback' => false,
       'defaults' => 
@@ -3981,7 +4423,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::dNOjcBZrF5vx3aKb' => 
+    'generated::BxArZdErds9to55J' => 
     array (
       'methods' => 
       array (
@@ -4004,7 +4446,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::dNOjcBZrF5vx3aKb',
+        'as' => 'generated::BxArZdErds9to55J',
       ),
       'fallback' => false,
       'defaults' => 
@@ -4257,7 +4699,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::Xzjro7GriLSTc7Mb' => 
+    'generated::IWdj4AtXPQ2xN1gK' => 
     array (
       'methods' => 
       array (
@@ -4280,7 +4722,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::Xzjro7GriLSTc7Mb',
+        'as' => 'generated::IWdj4AtXPQ2xN1gK',
       ),
       'fallback' => false,
       'defaults' => 
@@ -4498,7 +4940,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::eunaYWTIQYsiejPv' => 
+    'generated::zzXQFPAwhEvOHvog' => 
     array (
       'methods' => 
       array (
@@ -4510,7 +4952,7 @@ app('router')->setCompiledRoutes(
       array (
         'uses' => 'Livewire\\Controllers\\LivewireJavaScriptAssets@source',
         'controller' => 'Livewire\\Controllers\\LivewireJavaScriptAssets@source',
-        'as' => 'generated::eunaYWTIQYsiejPv',
+        'as' => 'generated::zzXQFPAwhEvOHvog',
       ),
       'fallback' => false,
       'defaults' => 
@@ -4526,7 +4968,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::8E1Ns4fnbnT40ReG' => 
+    'generated::VnVzATgB5wNg163o' => 
     array (
       'methods' => 
       array (
@@ -4538,7 +4980,7 @@ app('router')->setCompiledRoutes(
       array (
         'uses' => 'Livewire\\Controllers\\LivewireJavaScriptAssets@maps',
         'controller' => 'Livewire\\Controllers\\LivewireJavaScriptAssets@maps',
-        'as' => 'generated::8E1Ns4fnbnT40ReG',
+        'as' => 'generated::VnVzATgB5wNg163o',
       ),
       'fallback' => false,
       'defaults' => 
@@ -4663,7 +5105,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::oiaDDblExeK3QiYZ' => 
+    'generated::m1QZgXvJsdHSptNd' => 
     array (
       'methods' => 
       array (
@@ -4686,7 +5128,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::oiaDDblExeK3QiYZ',
+        'as' => 'generated::m1QZgXvJsdHSptNd',
       ),
       'fallback' => false,
       'defaults' => 
@@ -4702,7 +5144,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::PpWiKeTtaFqqXLEg' => 
+    'generated::RlSw19tnvQ7saJhk' => 
     array (
       'methods' => 
       array (
@@ -4724,45 +5166,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::PpWiKeTtaFqqXLEg',
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'generated::odwLzMU0uHqn0xz5' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'recibo',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'web',
-        ),
-        'uses' => 'O:47:"Laravel\\SerializableClosure\\SerializableClosure":1:{s:12:"serializable";O:46:"Laravel\\SerializableClosure\\Serializers\\Signed":2:{s:12:"serializable";s:267:"O:46:"Laravel\\SerializableClosure\\Serializers\\Native":5:{s:3:"use";a:0:{}s:8:"function";s:49:"function () {
-    return \\view(\'PDF.recibo\');
-}";s:5:"scope";s:37:"Illuminate\\Routing\\RouteFileRegistrar";s:4:"this";N;s:4:"self";s:32:"00000000000007400000000000000000";}";s:4:"hash";s:44:"zUFSG8aeCC/k3KOlbT3OC2bvDYotZRw3D1fI6SRPf/A=";}}',
-        'namespace' => NULL,
-        'prefix' => '',
-        'where' => 
-        array (
-        ),
-        'as' => 'generated::odwLzMU0uHqn0xz5',
+        'as' => 'generated::RlSw19tnvQ7saJhk',
       ),
       'fallback' => false,
       'defaults' => 
@@ -4797,7 +5201,7 @@ app('router')->setCompiledRoutes(
         ),
         'uses' => 'O:47:"Laravel\\SerializableClosure\\SerializableClosure":1:{s:12:"serializable";O:46:"Laravel\\SerializableClosure\\Serializers\\Signed":2:{s:12:"serializable";s:274:"O:46:"Laravel\\SerializableClosure\\Serializers\\Native":5:{s:3:"use";a:0:{}s:8:"function";s:56:"function () {
         return \\view(\'dashboard\');
-    }";s:5:"scope";s:37:"Illuminate\\Routing\\RouteFileRegistrar";s:4:"this";N;s:4:"self";s:32:"00000000000007440000000000000000";}";s:4:"hash";s:44:"G35K1oRbk6S7bPTY5NnRxUCa+slUWgP4+gBZbWJUWWI=";}}',
+    }";s:5:"scope";s:37:"Illuminate\\Routing\\RouteFileRegistrar";s:4:"this";N;s:4:"self";s:32:"00000000000007420000000000000000";}";s:4:"hash";s:44:"b30ZazX1wX+0mG5XWpvysZWyS7BL88W52EgHTnKdrLA=";}}',
         'namespace' => NULL,
         'prefix' => '',
         'where' => 
@@ -6820,6 +7224,46 @@ app('router')->setCompiledRoutes(
         array (
         ),
         'as' => 'traconsulta.eliminarTratamiento',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'generarTratamientosConsultaPDF' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'traconsulta/PDF/{id}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth:sanctum',
+          2 => 'Laravel\\Jetstream\\Http\\Middleware\\AuthenticateSession',
+          3 => 'verified',
+        ),
+        'uses' => 'App\\Http\\Controllers\\TratamientoDeLaConsultaController@generarTratamientosConsultaPDF',
+        'controller' => 'App\\Http\\Controllers\\TratamientoDeLaConsultaController@generarTratamientosConsultaPDF',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'generarTratamientosConsultaPDF',
       ),
       'fallback' => false,
       'defaults' => 
@@ -8968,6 +9412,563 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
+    'reporte.inicio' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'reporte/inicio',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth:sanctum',
+          2 => 'Laravel\\Jetstream\\Http\\Middleware\\AuthenticateSession',
+          3 => 'verified',
+        ),
+        'uses' => 'App\\Http\\Controllers\\ReporteFinancieroController@inicio',
+        'controller' => 'App\\Http\\Controllers\\ReporteFinancieroController@inicio',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'reporte.inicio',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'reporte.ventas_semanal' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'reporte/ventas_semanal',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth:sanctum',
+          2 => 'Laravel\\Jetstream\\Http\\Middleware\\AuthenticateSession',
+          3 => 'verified',
+        ),
+        'uses' => 'App\\Http\\Controllers\\ReporteFinancieroController@ventas_semanal',
+        'controller' => 'App\\Http\\Controllers\\ReporteFinancieroController@ventas_semanal',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'reporte.ventas_semanal',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'reporte.ventas_mes' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'reporte/ventas_mes',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth:sanctum',
+          2 => 'Laravel\\Jetstream\\Http\\Middleware\\AuthenticateSession',
+          3 => 'verified',
+        ),
+        'uses' => 'App\\Http\\Controllers\\ReporteFinancieroController@ventas_mes',
+        'controller' => 'App\\Http\\Controllers\\ReporteFinancieroController@ventas_mes',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'reporte.ventas_mes',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'reporte.ventas_año' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'reporte/ventas_año',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth:sanctum',
+          2 => 'Laravel\\Jetstream\\Http\\Middleware\\AuthenticateSession',
+          3 => 'verified',
+        ),
+        'uses' => 'App\\Http\\Controllers\\ReporteFinancieroController@ventas_año',
+        'controller' => 'App\\Http\\Controllers\\ReporteFinancieroController@ventas_año',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'reporte.ventas_año',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'reporte.clientesFrecuentesCompras' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'reporte/clientesFrecuentesCompras',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth:sanctum',
+          2 => 'Laravel\\Jetstream\\Http\\Middleware\\AuthenticateSession',
+          3 => 'verified',
+        ),
+        'uses' => 'App\\Http\\Controllers\\ReporteFinancieroController@clientesFrecuentesCompras',
+        'controller' => 'App\\Http\\Controllers\\ReporteFinancieroController@clientesFrecuentesCompras',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'reporte.clientesFrecuentesCompras',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'reporte.clientesFrecuentesAtencionVeterinaria' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'reporte/clientesFrecuentesAtencionVeterinaria',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth:sanctum',
+          2 => 'Laravel\\Jetstream\\Http\\Middleware\\AuthenticateSession',
+          3 => 'verified',
+        ),
+        'uses' => 'App\\Http\\Controllers\\ReporteFinancieroController@clientesFrecuentesAtencionVeterinaria',
+        'controller' => 'App\\Http\\Controllers\\ReporteFinancieroController@clientesFrecuentesAtencionVeterinaria',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'reporte.clientesFrecuentesAtencionVeterinaria',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'reporte.serviciosPopulares' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'reporte/serviciosPopulares',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth:sanctum',
+          2 => 'Laravel\\Jetstream\\Http\\Middleware\\AuthenticateSession',
+          3 => 'verified',
+        ),
+        'uses' => 'App\\Http\\Controllers\\ReporteFinancieroController@serviciosPopulares',
+        'controller' => 'App\\Http\\Controllers\\ReporteFinancieroController@serviciosPopulares',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'reporte.serviciosPopulares',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'reporte.productosMasVendidos' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'reporte/productosMasVendidos',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth:sanctum',
+          2 => 'Laravel\\Jetstream\\Http\\Middleware\\AuthenticateSession',
+          3 => 'verified',
+        ),
+        'uses' => 'App\\Http\\Controllers\\ReporteFinancieroController@productosMasVendidos',
+        'controller' => 'App\\Http\\Controllers\\ReporteFinancieroController@productosMasVendidos',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'reporte.productosMasVendidos',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'Recibos.guardar' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'POST',
+      ),
+      'uri' => 'nota_venta/recibos/guardar',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth:sanctum',
+          2 => 'Laravel\\Jetstream\\Http\\Middleware\\AuthenticateSession',
+          3 => 'verified',
+        ),
+        'uses' => 'App\\Http\\Controllers\\ReciboController@guardar',
+        'controller' => 'App\\Http\\Controllers\\ReciboController@guardar',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'Recibos.guardar',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'Recibos.inicio' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'nota_venta/Recibos/inicio',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth:sanctum',
+          2 => 'Laravel\\Jetstream\\Http\\Middleware\\AuthenticateSession',
+          3 => 'verified',
+        ),
+        'uses' => 'App\\Http\\Controllers\\ReciboController@inicio',
+        'controller' => 'App\\Http\\Controllers\\ReciboController@inicio',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'Recibos.inicio',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'Recibos.editar' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'nota_venta/Recibos/editar/{id}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth:sanctum',
+          2 => 'Laravel\\Jetstream\\Http\\Middleware\\AuthenticateSession',
+          3 => 'verified',
+        ),
+        'uses' => 'App\\Http\\Controllers\\ReciboController@editar',
+        'controller' => 'App\\Http\\Controllers\\ReciboController@editar',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'Recibos.editar',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'Recibos.actualizar' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'POST',
+      ),
+      'uri' => 'nota_venta/Recibos/actualizar/{id}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth:sanctum',
+          2 => 'Laravel\\Jetstream\\Http\\Middleware\\AuthenticateSession',
+          3 => 'verified',
+        ),
+        'uses' => 'App\\Http\\Controllers\\ReciboController@actualizar',
+        'controller' => 'App\\Http\\Controllers\\ReciboController@actualizar',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'Recibos.actualizar',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'Recibos.eliminar' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'POST',
+      ),
+      'uri' => 'nota_venta/Recibos/eliminar/{id}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth:sanctum',
+          2 => 'Laravel\\Jetstream\\Http\\Middleware\\AuthenticateSession',
+          3 => 'verified',
+        ),
+        'uses' => 'App\\Http\\Controllers\\ReciboController@eliminar',
+        'controller' => 'App\\Http\\Controllers\\ReciboController@eliminar',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'Recibos.eliminar',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'generarReciboPDF' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'Recibos/PDF/{id}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth:sanctum',
+          2 => 'Laravel\\Jetstream\\Http\\Middleware\\AuthenticateSession',
+          3 => 'verified',
+        ),
+        'uses' => 'App\\Http\\Controllers\\ReciboController@generarReciboPDF',
+        'controller' => 'App\\Http\\Controllers\\ReciboController@generarReciboPDF',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'generarReciboPDF',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
     'marcas.inicio' => 
     array (
       'methods' => 
@@ -9667,6 +10668,284 @@ app('router')->setCompiledRoutes(
         array (
         ),
         'as' => 'generarDetalleBitacoraPDF',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'nota_venta.inicio' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'nota_venta/inicio',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth:sanctum',
+          2 => 'Laravel\\Jetstream\\Http\\Middleware\\AuthenticateSession',
+          3 => 'verified',
+        ),
+        'uses' => 'App\\Http\\Controllers\\Nota_Venta_Controller@inicio',
+        'controller' => 'App\\Http\\Controllers\\Nota_Venta_Controller@inicio',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'nota_venta.inicio',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'nota_venta.crear' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'nota_venta/crear',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth:sanctum',
+          2 => 'Laravel\\Jetstream\\Http\\Middleware\\AuthenticateSession',
+          3 => 'verified',
+        ),
+        'uses' => 'App\\Http\\Controllers\\Nota_Venta_Controller@crear',
+        'controller' => 'App\\Http\\Controllers\\Nota_Venta_Controller@crear',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'nota_venta.crear',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'nota_venta.guardar' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'POST',
+      ),
+      'uri' => 'nota_venta/guardar',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth:sanctum',
+          2 => 'Laravel\\Jetstream\\Http\\Middleware\\AuthenticateSession',
+          3 => 'verified',
+        ),
+        'uses' => 'App\\Http\\Controllers\\Nota_Venta_Controller@guardar',
+        'controller' => 'App\\Http\\Controllers\\Nota_Venta_Controller@guardar',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'nota_venta.guardar',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'nota_venta.obtenerCitasPorCliente' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'obtener-citas/{id}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth:sanctum',
+          2 => 'Laravel\\Jetstream\\Http\\Middleware\\AuthenticateSession',
+          3 => 'verified',
+        ),
+        'uses' => 'App\\Http\\Controllers\\Nota_Venta_Controller@obtenerCitasPorCliente',
+        'controller' => 'App\\Http\\Controllers\\Nota_Venta_Controller@obtenerCitasPorCliente',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'nota_venta.obtenerCitasPorCliente',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'nota_venta.eliminar' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'POST',
+      ),
+      'uri' => 'nota_venta/eliminar/{id}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth:sanctum',
+          2 => 'Laravel\\Jetstream\\Http\\Middleware\\AuthenticateSession',
+          3 => 'verified',
+        ),
+        'uses' => 'App\\Http\\Controllers\\Nota_Venta_Controller@eliminar',
+        'controller' => 'App\\Http\\Controllers\\Nota_Venta_Controller@eliminar',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'nota_venta.eliminar',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'generated::awBDz56eF4ozL5ze' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'obtener-precio-cita/{citaId}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth:sanctum',
+          2 => 'Laravel\\Jetstream\\Http\\Middleware\\AuthenticateSession',
+          3 => 'verified',
+        ),
+        'uses' => 'App\\Http\\Controllers\\Nota_Venta_Controller@obtenerPrecioCita',
+        'controller' => 'App\\Http\\Controllers\\Nota_Venta_Controller@obtenerPrecioCita',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'generated::awBDz56eF4ozL5ze',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'nota_venta.mostrarDetalles' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'nota-venta/{id}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth:sanctum',
+          2 => 'Laravel\\Jetstream\\Http\\Middleware\\AuthenticateSession',
+          3 => 'verified',
+        ),
+        'uses' => 'App\\Http\\Controllers\\Nota_Venta_Controller@mostrarDetalles',
+        'controller' => 'App\\Http\\Controllers\\Nota_Venta_Controller@mostrarDetalles',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'nota_venta.mostrarDetalles',
       ),
       'fallback' => false,
       'defaults' => 

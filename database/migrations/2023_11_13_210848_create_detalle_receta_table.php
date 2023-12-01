@@ -16,11 +16,11 @@ return new class extends Migration
         Schema::create('detalle_receta', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('ID_RecetaMedica');
-            $table->unsignedBigInteger('ID_Producto');
+            $table->unsignedBigInteger('ID_Producto')->nullable();
             $table->integer('Cantidad');
             $table->string('instrucciones');
             $table->foreign('ID_Producto')->references('id')->on('producto');
-            $table->foreign('ID_RecetaMedica')->references('id')->on('receta_medica');
+            $table->foreign('ID_RecetaMedica')->references('id')->on('receta_medica')->onDelete('cascade');
             $table->timestamps();
         });
     }

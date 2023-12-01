@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
 
-    <form action="{{ route('RecetaMedica.actualizar') }}" method="POST">
+    <form action="{{ route('RecetaMedica.actualizar'), }}" method="POST">
         @csrf
         <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg m-5">
             

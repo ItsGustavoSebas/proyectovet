@@ -60,6 +60,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::get('/usuarios/crear', [UserController::class, 'crear'])->name('usuarios.crear');
     Route::post('/usuarios/guardar', [UserController::class, 'guardar'])->name('usuarios.guardar');
 
+    //Productos
     Route::get('/productos/crear', [ProductoController::class, 'crear'])->name('productos.crear');
     Route::get('/productos/inicio/', [ProductoController::class, 'inicio'])->name('productos.inicio');
     Route::get('/productos/buscar/', [ProductoController::class, 'buscar'])->name('productos.buscar');
@@ -204,13 +205,14 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::get('/reporte/serviciosPopulares', [ReporteFinancieroController::class, 'serviciosPopulares'])->name('reporte.serviciosPopulares');
     Route::get('/reporte/productosMasVendidos', [ReporteFinancieroController::class, 'productosMasVendidos'])->name('reporte.productosMasVendidos');
 
-  //ReciboController
-  Route::post('/nota_venta/recibos/guardar', [ReciboController::class, 'guardar'])->name('Recibos.guardar');
-  Route::get('/nota_venta/Recibos/inicio', [ReciboController::class, 'inicio'])->name('Recibos.inicio');
-  Route::get('/nota_venta/Recibos/editar/{id}', [ReciboController::class, 'editar'])->name('Recibos.editar');
-  Route::post('/nota_venta/Recibos/actualizar/{id}', [ReciboController::class, 'actualizar'])->name('Recibos.actualizar');
-  Route::post('/nota_venta/Recibos/eliminar/{id}', [ReciboController::class, 'eliminar'])->name('Recibos.eliminar');
-  Route::get('/Recibos/PDF/{id}', [ReciboController::class, 'generarReciboPDF'])->name('generarReciboPDF');
+    //ReciboController
+    Route::post('/nota_venta/recibos/guardar', [ReciboController::class, 'guardar'])->name('Recibos.guardar');
+    Route::get('/nota_venta/Recibos/inicio', [ReciboController::class, 'inicio'])->name('Recibos.inicio');
+    Route::get('/nota_venta/Recibos/editar/{id}', [ReciboController::class, 'editar'])->name('Recibos.editar');
+    Route::post('/nota_venta/Recibos/actualizar/{id}', [ReciboController::class, 'actualizar'])->name('Recibos.actualizar');
+    Route::post('/nota_venta/Recibos/eliminar/{id}', [ReciboController::class, 'eliminar'])->name('Recibos.eliminar');
+    Route::get('/Recibos/PDF/{id}', [ReciboController::class, 'generarReciboPDF'])->name('generarReciboPDF');
+    
     //MarcaController
     Route::get('/marcas/inicio', [MarcaController::class, 'inicio'])->name('marcas.inicio');
     Route::get('/marcas/crear', [MarcaController::class, 'crear'])->name('marcas.crear');
@@ -219,6 +221,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::post('/marcas/actualizar/{id}', [MarcaController::class, 'actualizar'])->name('marcas.actualizar');
     Route::post('/marcas/eliminar/{id}', [MarcaController::class, 'eliminar'])->name('marcas.eliminar');
 
+    //Recetea Medica
     Route::get('/RecetaMedica/crear/{id}', [RecetaMedicaController::class, 'crear'])->name('RecetaMedica.crear');
     Route::post('/RecetaMedica/guardar/', [RecetaMedicaController::class, 'guardar'])->name('RecetaMedica.guardar');
     Route::get('/RecetaMedica/editar/{id}', [RecetaMedicaController::class, 'editar'])->name('RecetaMedica.editar');
@@ -245,5 +248,4 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::post('/nota_venta/eliminar/{id}', [Nota_Venta_Controller::class, 'eliminar'])->name('nota_venta.eliminar');
     Route::get('/obtener-precio-cita/{citaId}', [Nota_Venta_Controller::class, 'obtenerPrecioCita']);
     Route::get('/nota-venta/{id}', [Nota_Venta_Controller::class, 'mostrarDetalles'])->name('nota_venta.mostrarDetalles');
-
 });
