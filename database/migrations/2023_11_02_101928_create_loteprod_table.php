@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('loteprod', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id_loteprod');
             $table->unsignedBigInteger('ID_Producto');
             $table->unsignedBigInteger('ID_Lote');
             $table->unsignedBigInteger('ID_Medida')->nullable();

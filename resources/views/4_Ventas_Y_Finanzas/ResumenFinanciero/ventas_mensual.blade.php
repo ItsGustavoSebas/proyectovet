@@ -26,7 +26,7 @@
         var chartData = {
             labels: labels,
             datasets: [{
-                label: 'Ventas por Semana',
+                label: 'Ventas',
                 data: data,
                 fill: false,
                 borderColor: 'rgb(75, 192, 192)',

@@ -75,24 +75,6 @@ class LoteController extends Controller
             $loteprod->ID_Medida = $medida_id;
             $loteprod->precioCompra = $precioCompra;
             $loteprod->save();
-            //Crear DetalleBitacora
-
-            $bitacora_id = session('bitacora_id');
-
-            if ($bitacora_id) {
-                $bitacora = Bitacora::find($bitacora_id);
-
-                $horaActual = now()->format('H:i:s');
-
-                $bitacora->detalleBitacoras()->create([
-                    'accion' => 'Añadir Producto Del Lote',
-                    'metodo' => request()->method(),
-                    'hora' => $horaActual,
-                    'tabla' => 'loteprod',
-                    'registroId' => $loteprod->id,
-                    'ruta' => request()->fullurl(),
-                ]);
-            }
         }
 
         return redirect(route('lotes.inicio'))->with('creado', 'Lote añadido exitosamente');
@@ -159,24 +141,6 @@ class LoteController extends Controller
             $loteprod->ID_Medida = $medida_id;
             $loteprod->precioCompra = $precioCompra;
             $loteprod->save();
-            //Crear DetalleBitacora
-
-            $bitacora_id = session('bitacora_id');
-
-            if ($bitacora_id) {
-                $bitacora = Bitacora::find($bitacora_id);
-
-                $horaActual = now()->format('H:i:s');
-
-                $bitacora->detalleBitacoras()->create([
-                    'accion' => 'Añadir Producto Del Lote',
-                    'metodo' => request()->method(),
-                    'hora' => $horaActual,
-                    'tabla' => 'loteprod',
-                    'registroId' => $loteprod->id,
-                    'ruta' => request()->fullurl(),
-                ]);
-            }
         }
 
         return redirect(route('lotes.inicio'))->with('actualizado', 'Lote actualizado exitosamente');

@@ -300,7 +300,7 @@
                                 <li>
                                     <a href="{{ route('reporte.inicio') }}" class=" p-2 hover:bg-gray-700 flex items-center">
                                         <i class="fas fa-chevron-right mr-2 text-xs"></i>
-                                        Gestionar Reportes Financieros
+                                        Gestionar Resumen Financiero
                                     </a>
                                 </li>
                             </ul>

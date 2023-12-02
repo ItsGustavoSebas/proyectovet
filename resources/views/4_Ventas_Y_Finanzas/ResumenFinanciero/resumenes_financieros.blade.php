@@ -25,7 +25,7 @@
                         <div class="grid grid-cols-12 gap-6">
                             <div class="col-span-12 lg:col-span-12">
                                 <div class="flex items-center h-10 intro-y py-7">
-                                    <h2 class="mr-5 text-lg font-medium truncate">Reportes Financieros</h2>
+                                    <h2 class="mr-5 text-lg font-medium truncate">Resumen Financiero</h2>
                                 </div>
                                 <div class="grid grid-cols-12 gap-6 mt-5">
                                     <a class="transform  hover:scale-105 transition duration-300 shadow-xl rounded-lg col-span-12 sm:col-span-6 xl:col-span-3 intro-y bg-white"

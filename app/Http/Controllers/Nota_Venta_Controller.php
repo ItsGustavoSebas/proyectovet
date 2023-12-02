@@ -7,6 +7,7 @@ use App\Models\Cita;
 use App\Models\Cliente;
 use App\Models\Detalle_Venta;
 use App\Models\Factura;
+use App\Models\LoteProd;
 use App\Models\Nota_Venta;
 use App\Models\Producto;
 use App\Models\Recibo;
@@ -59,6 +60,7 @@ class Nota_Venta_Controller extends Controller
 
     public function guardar(Request $request)
     {
+        dd($request);
         $request->validate([
             'cliente' => 'required',
         ]);
@@ -71,7 +73,7 @@ class Nota_Venta_Controller extends Controller
         $notaVenta->ID_Empleado = Auth::id();
         if ($request->has('qr')) {
             $notaVenta->qr = true;
-        }else{
+        } else {
             $notaVenta->qr = false;
         }
         $notaVenta->save();
@@ -81,7 +83,7 @@ class Nota_Venta_Controller extends Controller
             $recibo = new Recibo();
             $recibo->ID_Nota_Venta = $notaVenta->id;
             $recibo->save();
-        } else if($request->has('factura')){
+        } else if ($request->has('factura')) {
             $notaVenta->factura = true;
             $notaVenta->recibo = false;
             $factura = new Factura();
@@ -95,7 +97,6 @@ class Nota_Venta_Controller extends Controller
                 $producto_id = $productoData['producto_id'];
                 $cantidad = $productoData['cantidad'];
                 $precio = $productoData['precio'];
-
                 $detalleVenta = new Detalle_Venta();
                 $detalleVenta->ID_Producto = $producto_id;
                 $detalleVenta->ID_Nota_Venta = $notaVenta->id;
@@ -104,6 +105,20 @@ class Nota_Venta_Controller extends Controller
                 $detalleVenta->save();
                 // Puedes realizar otras operaciones necesarias para cada producto de la venta
             }
+        }
+        $datosOcultos = $request->input('datosOcultos');
+
+        // Decodificar el JSON para obtener un array asociativo de PHP
+        $datosArray = json_decode($datosOcultos, true);
+
+        // Utilizar un foreach para recorrer los datos
+        foreach ($datosArray as $dato) {
+            $idLoteProd = $dato['idLoteProd'];
+            $cantidadExtraida = $dato['cantidadExtraida'];
+            $loteprod = LoteProd::where('id_loteprod', '=', $idLoteProd)->first();
+            $cantidadActual = $loteprod->cantidadActual;
+            $loteprod->cantidadActual = $cantidadActual - $cantidadExtraida;
+            $loteprod->save();
         }
         foreach ($request->citas as $citaData) {
             if (!empty($citaData['cita_id'])) {
@@ -129,18 +144,18 @@ class Nota_Venta_Controller extends Controller
                 'hora' => $horaActual,
                 'tabla' => 'nota_venta',
                 'registroId' => $notaVenta->id,
-                'ruta'=> request()->fullurl(),
+                'ruta' => request()->fullurl(),
             ]);
         }
         if ($request->has('recibo')) {
             return redirect()->route('generarReciboPDF', ['id' => $notaVenta->id]);
-        } else if($request->has('factura')){
+        } else if ($request->has('factura')) {
             return redirect()->route('generarFactura', ['id' => $notaVenta->id]);
         }
         // Redirige a donde sea necesario después de guardar la Nota de Venta
         return redirect(route('nota_venta.acciones', $notaVenta->id))->with('creado', 'Nota de Venta añadida exitosamente');
     }
-    
+
 
     public function eliminar($id)
     {
@@ -181,7 +196,6 @@ class Nota_Venta_Controller extends Controller
 
             // Devolver el precio como respuesta en formato JSON
             return response()->json(['precio' => $precio]);
-
         } catch (\Exception $e) {
             // Manejar cualquier error que pueda surgir
             return response()->json(['error' => 'Hubo un error al obtener el precio de la cita'], 500);

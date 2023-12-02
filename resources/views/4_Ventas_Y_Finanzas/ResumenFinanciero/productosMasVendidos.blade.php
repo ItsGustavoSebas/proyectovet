@@ -27,13 +27,24 @@
         var labels = productosMasVendidosData.map(data => data.nombre);
         var data = productosMasVendidosData.map(data => data.total_vendido);
 
+        // Generar colores aleatorios para las barras
+        var dynamicColors = () => {
+            var r = Math.floor(Math.random() * 255);
+            var g = Math.floor(Math.random() * 255);
+            var b = Math.floor(Math.random() * 255);
+            return `rgba(${r}, ${g}, ${b}, 0.5)`;
+        };
+
+        var backgroundColors = data.map(() => dynamicColors());
+
         var chartData = {
             labels: labels,
             datasets: [{
-                label: 'Productos más vendidos',
+                label: 'Productos vendidos',
                 data: data,
-                backgroundColor: 'rgba(54, 162, 235, 0.5)',
-                borderColor: 'rgba(54, 162, 235, 1)',
+                backgroundColor: backgroundColors, // Colores dinámicos para cada barra
+                borderColor: backgroundColors.map(color => color.replace('0.5',
+                '1')), // Bordes con opacidad completa
                 borderWidth: 1
             }]
         };
