@@ -19,8 +19,10 @@ return new class extends Migration
             $table->decimal('precioVenta');
             $table->string('descripcion');
             $table->integer('cantidadGeneral');
-            $table->integer('ID_Categoria')->foreign('ID_Categoria')->references('id')->on('categoria');
-            $table->integer('ID_Marca')->foreign('ID_Marca')->references('id')->on('marcas');
+            $table->unsignedBigInteger('ID_Categoria')->nullable();
+            $table->unsignedBigInteger('ID_Marca')->nullable(); 
+            $table->foreign('ID_Categoria')->references('id')->on('categoria')->onDelete('set null');
+            $table->foreign('ID_Marca')->references('id')->on('marcas')->onDelete('set null');
             $table->timestamps();
         });
     }

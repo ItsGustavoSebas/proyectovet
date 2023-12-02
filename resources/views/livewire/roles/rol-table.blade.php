@@ -67,10 +67,9 @@
                             @endcan
                             @can('Eliminar Rol')
                             <div>
-                                <form action="{{ route('roles.eliminar', $rol->id) }}" method="POST"
-                                    onsubmit="return confirm('¿Estas seguro de eliminar?')">
+                                <form id="formEliminar_{{ $rol->id }}" action="{{ route('roles.eliminar', $rol->id) }}" method="POST">
                                     @csrf
-                                    <button type = "submit"class="bg-red-500 px-2 py-2 rounded-lg" title="Eliminar">
+                                    <button type="button" class="bg-red-500 px-2 py-2 rounded-lg" title="Eliminar" onclick="confirmarEliminacion('{{ $rol->id }}')">
                                         <i class="fa-solid fa-trash"></i>
                                     </button>
                                 </form>

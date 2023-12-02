@@ -5,8 +5,8 @@
                 {{ __('Lista de Empleados') }}
             </h2>
             @can('Crear Empleado')
-            <a class = "px-3 py-2 bg-indigo-600 font-bold text-white rounded-lg"
-                href="{{ route('empleados.crear') }}">REGISTRAR EMPLEADO</a>
+                <a class = "px-3 py-2 bg-indigo-600 font-bold text-white rounded-lg"
+                    href="{{ route('empleados.crear') }}">REGISTRAR EMPLEADO</a>
             @endcan
         </div>
     </x-slot>
@@ -71,10 +71,9 @@
                             class="inline-block w-1/3 md:hidden font-bold">Salario</span>{{ $empleado->salario }}</td>
 
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
-                        
+
                         <div class="flex">
-                            <span
-                            class="inline-block w-1/3 md:hidden font-bold">Foto</span>
+                            <span class="inline-block w-1/3 md:hidden font-bold">Foto</span>
                             @if ($empleado->ruta_imagen_e)
                                 <img id="imagen" src="{{ asset($empleado->ruta_imagen_e) }}"
                                     class="w-16 h-16 object-cover rounded-full" alt="placeholder"> {{-- style="width:100px; height:100px;"  --}}
@@ -88,27 +87,28 @@
                         <div class="flex flex-wrap">
                             <span class="inline-block w-1/3 md:hidden font-bold">Acciones</span>
                             @can('Listar Bitacoras')
-                            <a href="{{ route('bitacoras.inicio', $empleado->usuario->id) }}"
-                                class = "bg-white px-2 py-2 rounded-lg" title="Bitacora">
-                                <i class="fas fa-file-alt"></i>
-                            </a>
+                                <a href="{{ route('bitacoras.inicio', $empleado->usuario->id) }}"
+                                    class = "bg-white px-2 py-2 rounded-lg" title="Bitacora">
+                                    <i class="fas fa-file-alt"></i>
+                                </a>
                             @endcan
                             @can('Editar Empleado')
-                            <a href="{{ route('empleados.editar', $empleado->usuario->id ) }}"
-                                class = "bg-green-400 px-2 py-2 rounded-lg" title="Editar">
-                                <i class="fa-regular fa-pen-to-square"></i>
-                            </a>
+                                <a href="{{ route('empleados.editar', $empleado->usuario->id) }}"
+                                    class = "bg-green-400 px-2 py-2 rounded-lg" title="Editar">
+                                    <i class="fa-regular fa-pen-to-square"></i>
+                                </a>
                             @endcan
                             @can('Eliminar Empleado')
-                            <div>
-                                <form action="{{ route('empleados.eliminar', $empleado->usuario->id ) }}" method="POST"
-                                    onsubmit="return confirm('¿Estas seguro de eliminar?')">
-                                    @csrf
-                                    <button type = "submit"class="bg-red-500 px-2 py-2 rounded-lg" title="Eliminar">
-                                        <i class="fa-solid fa-trash"></i>
-                                    </button>
-                                </form>
-                            </div>
+                                <div> 
+                                    <form id="formEliminar_{{ $empleado->usuario->id }}"
+                                        action="{{ route('empleados.eliminar', $empleado->usuario->id) }}" method="POST">
+                                        @csrf
+                                        <button type="button" class="bg-red-500 px-2 py-2 rounded-lg" title="Eliminar"
+                                            onclick="confirmarEliminacion('{{ $empleado->usuario->id }}')">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </button>
+                                    </form>
+                                </div>
                             @endcan
                         </div>
                     </td>

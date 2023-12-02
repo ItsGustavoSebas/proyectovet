@@ -107,10 +107,11 @@
                             @endcan
                             @can('Eliminar Mascota')
                             <div>
-                                <form action="{{ route('mascotas.eliminar', $mascota->id) }}" method="POST"
-                                    onsubmit="return confirm('¿Estas seguro de eliminar?')">
+                                <form id="formEliminar_{{ $mascota->id }}"
+                                    action="{{ route('mascotas.eliminar', $mascota->id) }}" method="POST">
                                     @csrf
-                                    <button type = "submit"class="bg-red-500 px-2 py-2 rounded-lg" title="Eliminar">
+                                    <button type="button" class="bg-red-500 px-2 py-2 rounded-lg" title="Eliminar"
+                                        onclick="confirmarEliminacion('{{ $mascota->id }}')">
                                         <i class="fa-solid fa-trash"></i>
                                     </button>
                                 </form>

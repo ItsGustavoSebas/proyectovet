@@ -55,10 +55,11 @@
                             @endcan
                             @can('Eliminar Categoria')
                             <div>
-                                <form action="{{  route('facturas.eliminar', $factura->nota_venta->id) }}" method="POST"
-                                    onsubmit="return confirm('¿Estas seguro que deseas eliminar esta factura?')">
+                                <form id="formEliminar_{{ $factura->nota_venta->id }}"
+                                    action="{{  route('facturas.eliminar', $factura->nota_venta->id) }}" method="POST">
                                     @csrf
-                                    <button type = "submit"class="bg-red-500 px-2 py-2 rounded-lg" title="Eliminar">
+                                    <button type="button" class="bg-red-500 px-2 py-2 rounded-lg" title="Eliminar"
+                                        onclick="confirmarEliminacion('{{ $factura->nota_venta->id }}')">
                                         <i class="fa-solid fa-trash"></i>
                                     </button>
                                 </form>

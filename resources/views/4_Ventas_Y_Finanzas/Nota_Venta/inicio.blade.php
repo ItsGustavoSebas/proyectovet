@@ -84,10 +84,11 @@
                             @endcan
                             @can('Eliminar Nota de Venta')
                                 <div>
-                                    <form action="{{ route('nota_venta.eliminar', $nota_venta->id) }}" method="POST"
-                                        onsubmit="return confirm('¿Estas seguro de eliminar?')">
+                                    <form id="formEliminar_{{ $nota_venta->id }}"
+                                        action="{{ route('nota_venta.eliminar', $nota_venta->id) }}" method="POST">
                                         @csrf
-                                        <button type = "submit"class="bg-red-500 px-2 py-2 rounded-lg" title="Eliminar">
+                                        <button type="button" class="bg-red-500 px-2 py-2 rounded-lg" title="Eliminar"
+                                            onclick="confirmarEliminacion('{{ $nota_venta->id }}')">
                                             <i class="fa-solid fa-trash"></i>
                                         </button>
                                     </form>
