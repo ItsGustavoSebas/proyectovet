@@ -13,13 +13,13 @@ class BitacoraController extends Controller
     {
         $usuario = User::where('id', '=', $id)->first();
         $bitacoras = Bitacora::where('ID_Usuario', '=', $id)->get();
-        return view('bitacoras.inicio', compact('bitacoras', 'usuario'));
+        return view('1_Usuarios_Y_Autentificacion.bitacoras.inicio', compact('bitacoras', 'usuario'));
     }
 
     public function rinicio()
     {
         $bitacoras = Bitacora::all();
-        return view('bitacoras.rinicio', compact('bitacoras'));
+        return view('1_Usuarios_Y_Autentificacion.bitacoras.rinicio', compact('bitacoras'));
     }
 
     public function generarBitacoraPDF(){

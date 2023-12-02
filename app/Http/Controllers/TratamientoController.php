@@ -11,12 +11,12 @@ class TratamientoController extends Controller
     public function inicio()
     {
         $tratamientos = Tratamiento::all();
-        return (view('tratamientos.inicio', compact('tratamientos')));
+        return (view('2_Mascotas_Y_Atencion_Veterinaria.tratamientos.inicio', compact('tratamientos')));
     }
 
     public function crear()
     {
-        return view('tratamientos.crear');
+        return view('2_Mascotas_Y_Atencion_Veterinaria.tratamientos.crear');
     }
 
     public function guardar(REQUEST $request)
@@ -57,7 +57,7 @@ class TratamientoController extends Controller
     public function editar($id)
     {
         $tratamiento = Tratamiento::where('id', '=', $id)->first();
-        return view('tratamientos.editar', compact('tratamiento'));
+        return view('2_Mascotas_Y_Atencion_Veterinaria.tratamientos.editar', compact('tratamiento'));
     }
 
     public function actualizar(REQUEST $request, $id)

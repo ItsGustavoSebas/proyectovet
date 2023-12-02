@@ -10,15 +10,15 @@ class RoleController extends Controller
 {
     //
     public function inicio(){
-        return (view('roles.inicio')) ;
+        return (view('1_Usuarios_Y_Autentificacion.roles.inicio')) ;
     }
 
     public function crear(){
-        return (view('roles.crear')) ;
+        return (view('1_Usuarios_Y_Autentificacion.roles.crear')) ;
     }
 
     public function editar($id){
-        return view('roles.editar', compact('id'));
+        return view('1_Usuarios_Y_Autentificacion.roles.editar', compact('id'));
     }
 
     public function actualizar(Request $request, $id){

@@ -17,7 +17,7 @@ class TratamientoDeLaConsultaController extends Controller
     {
         $tratamientos = Tratamiento::all();
         $consulta = Consulta::where('id', '=', $id_Consulta)->first();
-        return view('traconsulta.crear', compact('consulta', 'tratamientos'));
+        return view('2_Mascotas_Y_Atencion_Veterinaria.traconsulta.crear', compact('consulta', 'tratamientos'));
     }
 
     public function guardar(REQUEST $request)
@@ -68,7 +68,7 @@ class TratamientoDeLaConsultaController extends Controller
         $traconsulta = TratamientoMascota::where('id', $id)->first();
         $tratamientos = Tratamiento::all();
         $consulta = Consulta::where('id', '=', $id_Consulta)->first();
-        return view('traconsulta.editar', compact('traconsulta', 'tratamientos', 'consulta'));
+        return view('2_Mascotas_Y_Atencion_Veterinaria.traconsulta.editar', compact('traconsulta', 'tratamientos', 'consulta'));
     }
 
     public function eliminar($id, $id_Consulta)

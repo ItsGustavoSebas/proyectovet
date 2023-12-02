@@ -17,7 +17,7 @@ class ReciboController extends Controller
     public function inicio()
     {
         $ReciboNotaV = Recibo::with('nota_venta')->get();
-        return (view('Recibo.inicio', compact('ReciboNotaV')));
+        return (view('4_Ventas_Y_Finanzas.Recibo.inicio', compact('ReciboNotaV')));
 
     
     }
@@ -26,7 +26,7 @@ class ReciboController extends Controller
     {
         $nota = Nota_Venta::where('id', '=', $id)->first();
         $Recibo = Recibo::where('ID_Nota_Venta', '=', $id)->with('nota_venta')->first();
-        return view('Recibos.editar', compact('Recibo','nota'));
+        return view('4_Ventas_Y_Finanzas.Recibo.editar', compact('Recibo','nota'));
     }
 
 

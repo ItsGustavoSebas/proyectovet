@@ -12,16 +12,16 @@ class CategoriaController extends Controller
     public function inicio()
     {
         $categorias = Categoria::all();
-        return (view('categorias.inicio', compact('categorias')));
+        return (view('3_Inventario_Y_Productos.categorias.inicio', compact('categorias')));
     }
     public function crear()
     {
-        return view('categorias.crear');
+        return view('3_Inventario_Y_Productos.categorias.crear');
     }
     public function editar($id)
     {
         $categoria = Categoria::where('id', '=', $id)->first();
-        return view('categorias.editar', compact('categoria'));
+        return view('3_Inventario_Y_Productos.categorias.editar', compact('categoria'));
     }
     public function guardar(REQUEST $request)
     {

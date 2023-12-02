@@ -18,7 +18,7 @@ class RecetaMedicaController extends Controller
         $productos = Producto::all();
         $consultas = Consulta::where('id', '=', $id_Consulta)->first();
         $idEmpleado = auth()->id();
-        return view('RecetaMedica.crear', compact('productos', 'consultas', 'idEmpleado'));
+        return view('2_Mascotas_Y_Atencion_Veterinaria.RecetaMedica.crear', compact('productos', 'consultas', 'idEmpleado'));
     }
 
     public function guardar(REQUEST $request)
@@ -88,7 +88,7 @@ class RecetaMedicaController extends Controller
     {
         $detalleReceta = DetalleReceta::where('id', $id)->first();
         $recetamedica = RecetaMedica::all();
-        return view('RecetaMedica.editar', compact('detalleReceta', 'recetamedica'));
+        return view('2_Mascotas_Y_Atencion_Veterinaria.RecetaMedica.editar', compact('detalleReceta', 'recetamedica'));
     }
 
     public function eliminar($id)

@@ -11,12 +11,12 @@ class ProveedorController extends Controller
     public function inicio()
     {
         $proveedores = Proveedor::all();
-        return (view('proveedor.inicio', compact('proveedores')));
+        return (view('3_Inventario_Y_Productos.proveedor.inicio', compact('proveedores')));
     }
 
     public function crear()
     {
-        return view('proveedor.crear');
+        return view('3_Inventario_Y_Productos.proveedor.crear');
     }
 
     public function guardar(REQUEST $request)
@@ -58,7 +58,7 @@ class ProveedorController extends Controller
     public function editar($id)
     {
         $proveedor = Proveedor::where('id', '=', $id)->first();
-        return view('proveedor.editar', compact('proveedor'));
+        return view('3_Inventario_Y_Productos.proveedor.editar', compact('proveedor'));
     }
 
     public function actualizar(REQUEST $request, $id)

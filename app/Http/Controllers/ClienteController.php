@@ -13,18 +13,18 @@ class ClienteController extends Controller
     public function inicio()
     {
         $clientesUsuarios = Cliente::with('usuario')->get();
-        return (view('usuariosv2.clientes.inicio', compact('clientesUsuarios')));
+        return (view('1_Usuarios_Y_Autentificacion.usuarios.clientes.inicio', compact('clientesUsuarios')));
     }
 
     public function crear()
     {
-        return view('usuariosv2.clientes.crear');
+        return view('1_Usuarios_Y_Autentificacion.usuarios.clientes.crear');
     }
 
     public function editar($id)
     {
         $cliente = Cliente::where('ID_Usuario', '=', $id)->with('usuario')->first();
-        return view('usuariosv2.clientes.editar', compact('cliente'));
+        return view('1_Usuarios_Y_Autentificacion.usuarios.clientes.editar', compact('cliente'));
     }
 
     public function eliminar($id)
