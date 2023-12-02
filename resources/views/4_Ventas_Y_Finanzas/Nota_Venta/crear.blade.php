@@ -51,12 +51,26 @@
                     <div class="grid lg:grid-cols-4 grid-cols-1 gap-4 p-2">
                         <div class="col-span-1">
                             <label for="producto0">Producto</label>
-                            <select id="producto0" name="productos[0][producto_id]"
-                                class="producto-select px-3 py-2 w-full rounded-xl bg-blue-100">
-                                <option value="">Selecciona un producto</option>
+                            <!-- Campo de entrada para búsqueda -->
+                            <input list="productosList" id="productoInput0"
+                                class="producto-input px-3 py-2 w-full rounded-xl bg-blue-100"
+                                placeholder="Selecciona o busca un producto">
+                            <!-- Datalist con opciones de búsqueda -->
+                            <datalist id="productosList">
                                 @foreach ($productos as $producto)
-                                    <option value="{{ $producto->id }}" data-precio="{{ $producto->precioVenta }}">
-                                        {{ $producto->nombre }}</option>
+                                    <option value="{{ $producto->nombre }}" data-producto-id="{{ $producto->id }}"
+                                        data-precio="{{ $producto->precioVenta }}"
+                                        data-lote="{{ $producto->loteprod }}">
+                                @endforeach
+                            </datalist>
+                            <!-- Select oculto para almacenar la selección -->
+                            <select id="producto0" name="productos[0][producto_id]"
+                                class="producto-select px-3 py-2 w-full rounded-xl bg-blue-100" style="display: none;">
+                                @foreach ($productos as $producto)
+                                    <option value="{{ $producto->id }}" data-precio="{{ $producto->precioVenta }}"
+                                        data-lote="{{ $producto->loteprod }}">
+                                        {{ $producto->nombre }}
+                                    </option>
                                 @endforeach
                             </select>
                         </div>
@@ -70,6 +84,11 @@
                             <input id="precio0" name="productos[0][precio]" type="number" min="0.01"
                                 step="0.01" class="precio-input px-3 py-2 w-full rounded-xl bg-blue-100"
                                 placeholder="Precio">
+                        </div>
+                        <div class="col-span-1">
+                            <label for="lote0">Lote</label>
+                            <input id="lote0" name="productos[0][lote]" type="text"
+                                class="lote-input px-3 py-2 w-full rounded-xl bg-blue-100" placeholder="Lote">
                         </div>
                     </div>
                 </div>
@@ -94,8 +113,10 @@
                         <div class="col-span-1">
                             <label for="precioCita0">Precio</label>
                             <input id="precioCita0" name="citas[0][precio]" type="number" readonly
-                                class="precio-cita-input px-3 py-2 w-full rounded-xl bg-blue-100" placeholder="Precio">
+                                class="precio-cita-input px-3 py-2 w-full rounded-xl bg-blue-100"
+                                placeholder="Precio">
                         </div>
+
                     </div>
 
                 </div>
@@ -125,16 +146,31 @@
             const productoInput = document.createElement('div');
             productoInput.classList.add('grid', 'lg:grid-cols-4', 'grid-cols-1', 'gap-4', 'p-2');
             productoInput.innerHTML = `
-        <div class="col-span-1">
-            <label for="producto${productoIndex}">Producto</label>
-            <select id="producto${productoIndex}" name="productos[${productoIndex}][producto_id]"
-                class="producto-select px-3 py-2 w-full rounded-xl bg-blue-100">
-                <option value="">Selecciona un producto</option>
-                @foreach ($productos as $producto)
-                    <option value="{{ $producto->id }}" data-precio="{{ $producto->precioVenta }}">{{ $producto->nombre }}</option>
-                @endforeach
-            </select>
-        </div>
+            <div class="col-span-1">
+                            <label for="producto${productoIndex}">Producto</label>
+                            <!-- Campo de entrada para búsqueda -->
+                            <input list="productosList" id="productoInput${productoIndex}"
+                                class="producto-input px-3 py-2 w-full rounded-xl bg-blue-100"
+                                placeholder="Selecciona o busca un producto">
+                            <!-- Datalist con opciones de búsqueda -->
+                            <datalist id="productosList">
+                                @foreach ($productos as $producto)
+                                    <option value="{{ $producto->nombre }}" data-producto-id="{{ $producto->id }}"
+                                        data-precio="{{ $producto->precioVenta }}"
+                                        data-lote="{{ $producto->loteprod }}">
+                                @endforeach
+                            </datalist>
+                            <!-- Select oculto para almacenar la selección -->
+                            <select id="producto${productoIndex}" name="productos[${productoIndex}][producto_id]"
+                                class="producto-select px-3 py-2 w-full rounded-xl bg-blue-100" style="display: none;">
+                                @foreach ($productos as $producto)
+                                    <option value="{{ $producto->id }}" data-precio="{{ $producto->precioVenta }}"
+                                        data-lote="{{ $producto->loteprod }}">
+                                        {{ $producto->nombre }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
         <div class="col-span-1">
             <label for="cantidad${productoIndex}">Cantidad</label>
             <input id="cantidad${productoIndex}" name="productos[${productoIndex}][cantidad]" type="number" min="1"
@@ -145,6 +181,12 @@
             <input id="precio${productoIndex}" name="productos[${productoIndex}][precio]" type="number" min="0.01" step="0.01"
                 class="precio-input px-3 py-2 w-full rounded-xl bg-blue-100" placeholder="Precio">
         </div>
+        <div class="col-span-1">
+            <label for="lote${productoIndex}">Lote</label>
+            <input id="lote${productoIndex}" name="productos[${productoIndex}][lote]" type="text"
+                class="lote-input px-3 py-2 w-full rounded-xl bg-blue-100"
+                placeholder="Lote">
+        </div>
     `;
 
             productosDiv.appendChild(productoInput);
@@ -152,22 +194,33 @@
             const cantidadInput = document.getElementById(`cantidad${productoIndex}`);
             const productoSelect = document.getElementById(`producto${productoIndex}`);
             const precioInput = document.getElementById(`precio${productoIndex}`);
+            const loteInput = document.getElementById(`lote${productoIndex}`);
+            const productoInputs = document.getElementById(`productoInput${productoIndex}`);
 
+            productoInputs.addEventListener('input', function() {
+                const input = this;
+                const options = document.querySelectorAll('#productosList option');
+                options.forEach(function(option) {
+                    if (option.value === input.value) {
+                        const productoId = option.getAttribute('data-producto-id');
+                        const precio = option.getAttribute('data-precio');
+                        const lote = option.getAttribute('data-lote');
+
+                        productoSelect.value = productoId;
+                        productoSelect.setAttribute('data-precio', precio);
+                        productoSelect.setAttribute('data-lote', lote);
+                        calcularPrecio(cantidadInput, productoSelect, precioInput);
+                        manejarLotes(cantidadInput, productoSelect, precioInput, loteInput);
+                    }
+                });
+            });
             cantidadInput.addEventListener('input', function() {
                 calcularPrecio(cantidadInput, productoSelect, precioInput);
+                manejarLotes(cantidadInput, productoSelect, precioInput, loteInput);
             });
 
-            productoSelect.addEventListener('change', function() {
-                calcularPrecio(cantidadInput, productoSelect, precioInput);
-            });
-
-            // Ejecutar el cálculo para el nuevo producto agregado
             calcularPrecio(cantidadInput, productoSelect, precioInput);
-
-
-            cantidadInput.addEventListener('input', () => {
-                actualizarPrecioProducto(cantidadInput, productoSelect, precioInput);
-            });
+            manejarLotes(cantidadInput, productoSelect, precioInput, loteInput);
 
         });
 
@@ -175,13 +228,29 @@
         const cantidadInput0 = document.getElementById('cantidad0');
         const productoSelect0 = document.getElementById('producto0');
         const precioInput0 = document.getElementById('precio0');
+        const loteInput0 = document.getElementById(`lote0`);
+        const productoInput0 = document.getElementById('productoInput0');
 
+        productoInput0.addEventListener('input', function() {
+            const input = this;
+            const options = document.querySelectorAll('#productosList option');
+            options.forEach(function(option) {
+                if (option.value === input.value) {
+                    const productoId = option.getAttribute('data-producto-id');
+                    const precio = option.getAttribute('data-precio');
+                    const lote = option.getAttribute('data-lote');
+
+                    productoSelect0.value = productoId;
+                    productoSelect0.setAttribute('data-precio', precio);
+                    productoSelect0.setAttribute('data-lote', lote);
+                    calcularPrecio(cantidadInput0, productoSelect0, precioInput0);
+                    manejarLotes(cantidadInput0, productoSelect0, precioInput0, loteInput0);
+                }
+            });
+        });
         cantidadInput0.addEventListener('input', function() {
             calcularPrecio(cantidadInput0, productoSelect0, precioInput0);
-        });
-
-        productoSelect0.addEventListener('change', function() {
-            calcularPrecio(cantidadInput0, productoSelect0, precioInput0);
+            manejarLotes(cantidadInput0, productoSelect0, precioInput0, loteInput0);
         });
 
         // Función para calcular el precio
@@ -192,6 +261,31 @@
                 const total = parseFloat(precioProducto) * parseFloat(cantidad);
                 precioInput.value = total.toFixed(2);
                 actualizarMontoTotal();
+            }
+        }
+
+        // Función para manejar los lotes de productos
+        function manejarLotes(cantidadInput, productoSelect, precioInput, loteInput) {
+            const lotes = productoSelect.options[productoSelect.selectedIndex].getAttribute('data-lote');
+            if (lotes) {
+                const lotesArray = JSON.parse(lotes);
+                const cantidad = cantidadInput.value;
+                let lotesInput = [];
+                let cant = 0;
+                lotesArray.forEach((lote) => {
+                    if (cantidad > cant) {
+                        lotesInput.push(lote.numeroLote);
+                        cant = cant + lote.cantidadActual
+                    }
+                });
+                if (cant < cantidad) {
+                    loteInput.value = 'no existe el stock suficiente';
+                } else if (lotesInput.length > 0) {
+                    const lotesString = lotesInput.join(', ');
+                    loteInput.value = lotesString;
+                } else {
+                    loteInput.value = 'no existe el stock suficiente';
+                }
             }
         }
     </script>
@@ -299,7 +393,7 @@
                             precioCitaInput.value = data
                                 .precio; // Reemplaza 'precio' con el atributo correspondiente de la cita
                             actualizarMontoTotal
-                        (); // Actualizar el monto total al cambiar el precio de la cita
+                                (); // Actualizar el monto total al cambiar el precio de la cita
                         })
                         .catch(error => {
                             console.error('Hubo un error al obtener el precio de la cita:', error);
@@ -435,6 +529,5 @@
             });
         });
     </script>
-
 
 </x-app-layout>
