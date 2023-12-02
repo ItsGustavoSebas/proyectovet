@@ -17,12 +17,13 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('ID_Producto');
             $table->unsignedBigInteger('ID_Lote');
+            $table->unsignedBigInteger('ID_Medida')->nullable();
             $table->integer('cantidadComprada');
             $table->integer('cantidadActual');
             $table->decimal('precioCompra');
-            $table->foreign('ID_Producto')->references('id')->on('producto');
-            $table->foreign('ID_Lote')->references('id')->on('lote');
-            $table->integer('ID_Medida')->foreign('ID_Medida')->references('id')->on('medida');
+            $table->foreign('ID_Producto')->references('id')->on('producto')->onDelete('cascade');
+            $table->foreign('ID_Lote')->references('id')->on('lote')->onDelete('cascade');
+            $table->foreign('ID_Medida')->references('id')->on('medida')->onDelete('set null');
             $table->timestamps();
         });
     }

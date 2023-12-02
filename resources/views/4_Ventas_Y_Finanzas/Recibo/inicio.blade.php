@@ -50,10 +50,11 @@
                             @endcan
                             @can('Eliminar Recibo')
                             <div>
-                                <form action="{{  route('Recibos.eliminar', $Recibo->nota_venta->id) }}" method="POST"
-                                    onsubmit="return confirm('¿Estas seguro que deseas eliminar este Recibo?')">
+                                <form id="formEliminar_{{ $Recibo->nota_venta->id }}"
+                                    action="{{  route('Recibos.eliminar', $Recibo->nota_venta->id) }}" method="POST">
                                     @csrf
-                                    <button type = "submit"class="bg-red-500 px-2 py-2 rounded-lg" title="Eliminar">
+                                    <button type="button" class="bg-red-500 px-2 py-2 rounded-lg" title="Eliminar"
+                                        onclick="confirmarEliminacion('{{ $Recibo->nota_venta->id }}')">
                                         <i class="fa-solid fa-trash"></i>
                                     </button>
                                 </form>

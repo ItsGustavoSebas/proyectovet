@@ -70,10 +70,10 @@
                             class="inline-block w-1/3 md:hidden font-bold">Cantidad Gemeral</span>{{ $producto->cantidadGeneral  }}
                     </td>
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
-                        class="inline-block w-1/3 md:hidden font-bold">Categoria</span>{{ $producto->categoria->Nombre  }}
+                        class="inline-block w-1/3 md:hidden font-bold">Categoria</span>{{ optional($producto->categoria)->Nombre ?? 'N/A'  }}
                 </td>
                 <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
-                    class="inline-block w-1/3 md:hidden font-bold">Marca</span>{{ $producto->marca->nombre  }}
+                    class="inline-block w-1/3 md:hidden font-bold">Marca</span>{{ optional($producto->marca)->nombre ?? 'N/A'  }}
             </td>
             </td>
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
@@ -87,10 +87,11 @@
                             @endcan
                             @can('Eliminar Productos')
                             <div>
-                                <form action="{{ route('productos.eliminar', $producto->id) }}" method="POST"
-                                    onsubmit="return confirm('¿Estas seguro de eliminar?')">
+                                <form id="formEliminar_{{ $producto->id }}"
+                                    action="{{ route('productos.eliminar', $producto->id) }}" method="POST">
                                     @csrf
-                                    <button type = "submit"class="bg-red-500 px-2 py-2 rounded-lg" title="Eliminar">
+                                    <button type="button" class="bg-red-500 px-2 py-2 rounded-lg" title="Eliminar"
+                                        onclick="confirmarEliminacion('{{ $producto->id }}')">
                                         <i class="fa-solid fa-trash"></i>
                                     </button>
                                 </form>
