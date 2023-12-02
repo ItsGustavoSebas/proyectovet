@@ -76,10 +76,11 @@
                                 &nbsp;
 
                                 <div>
-                                    <form action="{{ route('lotes.eliminarProdR', $lote->id) }}" method="POST"
-                                        onsubmit="return confirm('¿Estás seguro de eliminar?')">
+                                    <form id="formEliminar_{{ $lote->id }}"
+                                        action="{{ route('lotes.eliminarProdR', $lote->id) }}" method="POST">
                                         @csrf
-                                        <button type="submit" class="bg-red-500 px-2 py-2 rounded-lg" title="Eliminar">
+                                        <button type="button" class="bg-red-500 px-2 py-2 rounded-lg" title="Eliminar"
+                                            onclick="confirmarEliminacion('{{ $lote->id }}')">
                                             <i class="fa-solid fa-trash"></i>
                                         </button>
                                     </form>
