@@ -16,13 +16,13 @@ class MascotaController extends Controller
     {
         $usuario = User::where('id', '=', $id)->first();
         $mascotas = Mascota::where('ID_Cliente', '=', $id)->get();
-        return view('mascotas.inicio', compact('mascotas', 'usuario'));
+        return view('2_Mascotas_Y_Atencion_Veterinaria.mascotas.inicio', compact('mascotas', 'usuario'));
     }
 
     public function rinicio()
     {
         $mascotas = Mascota::all();
-        return view('mascotas.rinicio', compact('mascotas'));
+        return view('2_Mascotas_Y_Atencion_Veterinaria.mascotas.rinicio', compact('mascotas'));
     }
 
     public function crear($id)
@@ -30,7 +30,7 @@ class MascotaController extends Controller
         $usuario = $id;
         $especies = Especie::all();
         $razas = Raza::all();
-        return view('mascotas.crear', compact('usuario', 'especies', 'razas'));
+        return view('2_Mascotas_Y_Atencion_Veterinaria.mascotas.crear', compact('usuario', 'especies', 'razas'));
     }
 
 
@@ -166,7 +166,7 @@ class MascotaController extends Controller
         $mascota = Mascota::where('id', '=', $id)->first();
         $especies = Especie::all();
         $razas = Raza::all();
-        return view('mascotas.editar', compact('mascota', 'especies', 'razas'));
+        return view('2_Mascotas_Y_Atencion_Veterinaria.mascotas.editar', compact('mascota', 'especies', 'razas'));
     }
 
     public function actualizar(REQUEST $request, $id)

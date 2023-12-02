@@ -13,7 +13,7 @@ class DetalleBitacoraController extends Controller
     {
         $bitacora = Bitacora::where('id', '=', $id)->first();
         $detbitacoras = DetalleBitacora::where('ID_Bitacora', '=', $id)->get();
-        return view('detallebitacoras.inicio', compact('detbitacoras', 'bitacora'));
+        return view('1_Usuarios_Y_Autentificacion.bitacoras.detallebitacoras.inicio', compact('detbitacoras', 'bitacora'));
     }
 
     public function generarDetalleBitacoraPDF($id){

@@ -20,7 +20,7 @@ class detalleservicioController extends Controller
         $servicios = Servicio::all();
         $idEmpleado = auth()->id();
 
-        return view('detalleservicio.inicio', compact('cita', 'servicios', 'idEmpleado'));
+        return view('2_Mascotas_Y_Atencion_Veterinaria.servicios.detalleservicio.inicio', compact('cita', 'servicios', 'idEmpleado'));
 
     }
 
@@ -28,7 +28,7 @@ class detalleservicioController extends Controller
     public function servicios()
     {
         $servicios = detalleservicio::all();
-        return view('detalleservicio.servicios', compact('servicios'));
+        return view('2_Mascotas_Y_Atencion_Veterinaria.servicios.detalleservicio.servicios', compact('servicios'));
     }
 
     public function guardar(REQUEST $request)
@@ -76,7 +76,7 @@ class detalleservicioController extends Controller
         $servicios = Servicio::all();
         $detalleservicio = detalleservicio::where('id', '=', $id)->first();
     
-        return view('detalleservicio.editar', compact('detalleservicio','servicios'));
+        return view('2_Mascotas_Y_Atencion_Veterinaria.servicios.detalleservicio.editar', compact('detalleservicio','servicios'));
     }
 
     public function actualizar(REQUEST $request, $id)

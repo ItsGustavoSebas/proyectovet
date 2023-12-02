@@ -9,12 +9,12 @@ use Illuminate\Http\Request;
 class MarcaController extends Controller
 {
     public function inicio(){
-        return (view('marcas.inicio')) ;
+        return (view('3_Inventario_Y_Productos.marcas.inicio')) ;
     }
 
     public function crear()
     {
-        return view('marcas.crear');
+        return view('3_Inventario_Y_Productos.marcas.crear');
     }
 
     public function guardar(REQUEST $request)
@@ -51,7 +51,7 @@ class MarcaController extends Controller
     public function editar($id)
     {
         $marca = Marca::where('id', '=', $id)->first();
-        return view('marcas.editar', compact('marca'));
+        return view('3_Inventario_Y_Productos.marcas.editar', compact('marca'));
     }
 
     public function actualizar(REQUEST $request, $id)

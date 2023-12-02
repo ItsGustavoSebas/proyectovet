@@ -21,14 +21,14 @@ class ConsultaController extends Controller
         $ID_Cliente = $cita->ID_Cliente;
         $mascotas = Mascota::where('ID_Cliente', '=', $ID_Cliente)->get();
         $idEmpleado = auth()->id();
-        return view('consulta.inicio', compact('cita', 'mascotas', 'idEmpleado'));
+        return view('2_Mascotas_Y_Atencion_Veterinaria.consulta.inicio', compact('cita', 'mascotas', 'idEmpleado'));
     }
 
     public function consultas()
     {
         $ID_Empleado = auth()->id();
         $consultas = Consulta::where('ID_Empleado', '=', $ID_Empleado)->get();
-        return view('consulta.consultas', compact('consultas'));
+        return view('2_Mascotas_Y_Atencion_Veterinaria.consulta.consultas', compact('consultas'));
     }
 
     public function guardar(REQUEST $request)
@@ -85,14 +85,14 @@ class ConsultaController extends Controller
             ->get();
         $recetas_medica = RecetaMedica::where('ID_Consulta', '=', $ID_Consulta)->get();
         
-        return view('consulta.acciones', compact('mascota', 'consulta', 'tratamientos', 'tratamientos_consulta', 'recetas_medica'));
+        return view('2_Mascotas_Y_Atencion_Veterinaria.consulta.acciones', compact('mascota', 'consulta', 'tratamientos', 'tratamientos_consulta', 'recetas_medica'));
     }
 
     public function editar($id)
     {
         $consulta = Consulta::where('id', '=', $id)->first();
         $mascotas = Mascota::where('ID_Cliente', '=', $consulta->cita->ID_Cliente)->get();
-        return view('consulta.editar', compact('consulta', 'mascotas'));
+        return view('2_Mascotas_Y_Atencion_Veterinaria.consulta.editar', compact('consulta', 'mascotas'));
     }
 
     public function actualizar(REQUEST $request, $id)

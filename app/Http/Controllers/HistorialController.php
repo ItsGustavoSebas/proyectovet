@@ -17,14 +17,14 @@ class HistorialController extends Controller
         $mascota = Mascota::where('id', '=', $id)->first();
         $historial = Historial::where('id', '=', $mascota->ID_Historial)->first();
         $tratamientos = TratamientoMascota::where('ID_Historial', '=', $mascota->ID_Historial)->get();
-        return view('historial.inicio', compact('historial', 'tratamientos', 'mascota'));
+        return view('2_Mascotas_Y_Atencion_Veterinaria.historial.inicio', compact('historial', 'tratamientos', 'mascota'));
     }
 
     public function crear($id_Historial)
     {
         $tratamientos = Tratamiento::all();
         $historial = Historial::where('id', '=', $id_Historial)->first();
-        return view('historial.crear', compact('historial', 'tratamientos'));
+        return view('2_Mascotas_Y_Atencion_Veterinaria.historial.crear', compact('historial', 'tratamientos'));
     }
 
     public function guardar(REQUEST $request)
@@ -74,7 +74,7 @@ class HistorialController extends Controller
     {
         $traconsulta = TratamientoMascota::where('id', $id)->first();
         $tratamientos = Tratamiento::all();
-        return view('historial.editar', compact('traconsulta', 'tratamientos'));
+        return view('2_Mascotas_Y_Atencion_Veterinaria.historial.editar', compact('traconsulta', 'tratamientos'));
     }
 
     public function eliminar($id)

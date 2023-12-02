@@ -15,7 +15,7 @@ class ProductoController extends Controller
         $productos = Producto::all();
         $categorias = Categoria::all();
         $marcas = Marca::all();
-        return (view('productos.inicio', compact('productos', 'categorias', 'marcas')));
+        return (view('3_Inventario_Y_Productos.productos.inicio', compact('productos', 'categorias', 'marcas')));
     }
 
     public function buscar(Request $request)
@@ -31,7 +31,7 @@ class ProductoController extends Controller
                 $query->where('nombre', 'LIKE', '%' . $terminoBusqueda . '%');
             })
             ->get();
-            return view('productos.inicio', compact('productos', 'terminoBusqueda'));
+            return view('3_Inventario_Y_Productos.productos.inicio', compact('productos', 'terminoBusqueda'));
         // Resto del código para cargar la vista con los productos filtrados
     }
 
@@ -39,7 +39,7 @@ class ProductoController extends Controller
     {
         $categorias = Categoria::all();
         $marcas = Marca::all();
-        return view('productos.crear', compact('marcas', 'categorias'));
+        return view('3_Inventario_Y_Productos.productos.crear', compact('marcas', 'categorias'));
     }
 
     public function guardar(Request $request)
@@ -88,7 +88,7 @@ class ProductoController extends Controller
         $producto = Producto::find($id);
         $categorias = Categoria::all();
         $marcas = Marca::all();
-        return view('productos.editar', compact('producto', 'categorias', 'marcas'));
+        return view('3_Inventario_Y_Productos.productos.editar', compact('producto', 'categorias', 'marcas'));
     }
 
     public function actualizar(Request $request, $id)

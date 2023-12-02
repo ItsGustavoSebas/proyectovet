@@ -15,7 +15,7 @@ class LoteController extends Controller
     public function inicio()
     {
         $lotes = Lote::all();
-        return (view('lotes.inicio', compact('lotes')));
+        return (view('3_Inventario_Y_Productos.lotes.inicio', compact('lotes')));
     }
 
     public function crear()
@@ -23,7 +23,7 @@ class LoteController extends Controller
         $productos = Producto::all();
         $medidas = Medida::all();
         $proveedores = Proveedor::all();
-        return view('lotes.crear', compact('productos', 'medidas', 'proveedores'));
+        return view('3_Inventario_Y_Productos.lotes.crear', compact('productos', 'medidas', 'proveedores'));
     }
 
     public function guardar(Request $request)
@@ -104,7 +104,7 @@ class LoteController extends Controller
         $productos = Producto::all();
         $medidas = Medida::all();
         $proveedores = Proveedor::all();
-        return view('lotes.editar', compact('lote', 'productos', 'medidas', 'proveedores'));
+        return view('3_Inventario_Y_Productos.lotes.editar', compact('lote', 'productos', 'medidas', 'proveedores'));
     }
 
     public function actualizar(Request $request, $id)
@@ -214,7 +214,7 @@ class LoteController extends Controller
     public function reembolsarInicio()
     {
         $lotes = Lote::all();
-        return (view('lotes.reembolsarInicio', compact('lotes')));
+        return (view('3_Inventario_Y_Productos.lotes.reembolsarInicio', compact('lotes')));
     }
 
     public function reembolsar($id)
@@ -223,7 +223,7 @@ class LoteController extends Controller
         $productos = Producto::all();
         $medidas = Medida::all();
         $proveedores = Proveedor::all();
-        return view('lotes.reembolsar', compact('lote', 'productos', 'medidas', 'proveedores'));
+        return view('3_Inventario_Y_Productos.lotes.reembolsar', compact('lote', 'productos', 'medidas', 'proveedores'));
     }
 
     public function reembolsaractualizar($id)
@@ -240,7 +240,7 @@ class LoteController extends Controller
         $productos = Producto::all();
         $medidas = Medida::all();
         $proveedores = Proveedor::all();
-        return view('lotes.reembolsarAceptado', compact('lote', 'productos', 'medidas', 'proveedores'));
+        return view('3_Inventario_Y_Productos.lotes.reembolsarAceptado', compact('lote', 'productos', 'medidas', 'proveedores'));
     }
 
     public function reembolsaractualizar1(Request $request, $id)

@@ -18,7 +18,7 @@ class FacturaController extends Controller
     public function inicio()
     {
         $facturaNotaV = Factura::with('nota_venta')->get();
-        return (view('facturas.inicio', compact('facturaNotaV')));
+        return (view('4_Ventas_Y_Finanzas.facturas.inicio', compact('facturaNotaV')));
 
     
     }
@@ -27,7 +27,7 @@ class FacturaController extends Controller
     {
         $nota = Nota_Venta::where('id', '=', $id)->first();
         $factura = Factura::where('ID_Nota_Venta', '=', $id)->with('nota_venta')->first();
-        return view('facturas.editar', compact('factura','nota'));
+        return view('4_Ventas_Y_Finanzas.facturas.editar', compact('factura','nota'));
     }
 
 
@@ -119,7 +119,7 @@ class FacturaController extends Controller
         $empleado = User::where('id', '=', $em->ID_Usuario)->first();
         
 
-        return view('facturas.sendEmail', compact('factura','nota', 'cliente', 'DetallesVenta','empleado'));
+        return view('4_Ventas_Y_Finanzas.facturas.sendEmail', compact('factura','nota', 'cliente', 'DetallesVenta','empleado'));
 
 
 

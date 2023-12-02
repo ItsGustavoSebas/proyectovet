@@ -16,19 +16,19 @@ class EmpleadoController extends Controller
     public function inicio()
     {
         $empleadosUsuarios = Empleado::with('usuario')->get();
-        return (view('usuariosv2.empleados.inicio', compact('empleadosUsuarios')));
+        return (view('1_Usuarios_Y_Autentificacion.usuarios.empleados.inicio', compact('empleadosUsuarios')));
     }
 
     public function crear()
     {
-        return view('usuariosv2.empleados.crear');
+        return view('1_Usuarios_Y_Autentificacion.usuarios.empleados.crear');
     }
 
     public function editar($id)
     {
         $user = User::where('id', '=', $id)->first();
         $empleado = Empleado::where('ID_Usuario', '=', $id)->with('usuario')->first();
-        return view('usuariosv2.empleados.editar', compact('empleado','user'));
+        return view('1_Usuarios_Y_Autentificacion.usuarios.empleados.editar', compact('empleado','user'));
     }
 
     public function eliminar($id)

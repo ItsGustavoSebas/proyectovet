@@ -19,7 +19,7 @@ class Nota_Venta_Controller extends Controller
     public function inicio()
     {
         $nota_ventas = Nota_Venta::all();
-        return (view('nota_venta.inicio', compact('nota_ventas')));
+        return (view('4_Ventas_Y_Finanzas.nota_venta.inicio', compact('nota_ventas')));
     }
 
     public function crear()
@@ -27,7 +27,7 @@ class Nota_Venta_Controller extends Controller
         $productos = Producto::all();
         $clientes = Cliente::all();
         $qrUrl = ''; // URL del QR, deberá ser generada
-        return view('nota_venta.crear', compact('productos', 'clientes', 'qrUrl'));
+        return view('4_Ventas_Y_Finanzas.nota_venta.crear', compact('productos', 'clientes', 'qrUrl'));
     }
 
     public function obtenerCitasPorCliente($clienteId)
@@ -192,7 +192,7 @@ class Nota_Venta_Controller extends Controller
     {
         $notaVenta = Nota_Venta::findOrFail($id); // Obtener la nota de venta por su ID
 
-        return view('Nota_Venta.detalles', ['nota_venta' => $notaVenta]);
+        return view('4_Ventas_Y_Finanzas.Nota_Venta.detalles', ['nota_venta' => $notaVenta]);
         // Reemplaza 'ruta_de_tu_vista_detalles' con la ruta real de tu vista para los detalles
     }
 }
