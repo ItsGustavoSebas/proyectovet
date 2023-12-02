@@ -13,7 +13,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class ReporteFinancieroController extends Controller
+class ResumenFinancieroController extends Controller
 {
     public function inicio()
     {
@@ -81,7 +81,7 @@ class ReporteFinancieroController extends Controller
             ->get();
 
         return view(
-            'reporte.resumenes_financieros',
+            '4_Ventas_Y_Finanzas.ResumenFinanciero.resumenes_financieros',
             compact(
                 'cantidadEntradasHoy',
                 'cantidadCitasHoy',
@@ -111,7 +111,7 @@ class ReporteFinancieroController extends Controller
             ->groupBy('fecha')
             ->orderBy('fecha')
             ->get();
-        return view('reporte.ventas_semanal', compact('ventasPorDia'));
+        return view('4_Ventas_Y_Finanzas.ResumenFinanciero.ventas_semanal', compact('ventasPorDia'));
     }
 
     public function ventas_año()
@@ -124,7 +124,7 @@ class ReporteFinancieroController extends Controller
             ->orderByRaw('MONTH(fecha)')
             ->get();
 
-        return view('reporte.ventas_año', compact('ventasPorMes'));
+        return view('4_Ventas_Y_Finanzas.ResumenFinanciero.ventas_año', compact('ventasPorMes'));
     }
 
     public function ventas_mes()
@@ -139,7 +139,7 @@ class ReporteFinancieroController extends Controller
             ->orderBy('week')
             ->get();
 
-        return view('reporte.ventas_mensual', compact('ventasPorSemana'));
+        return view('4_Ventas_Y_Finanzas.ResumenFinanciero.ventas_mensual', compact('ventasPorSemana'));
     }
 
     public function clientesFrecuentesCompras()
@@ -156,7 +156,7 @@ class ReporteFinancieroController extends Controller
             ->havingRaw('COUNT(*) >= 1')
             ->orderByRaw('total_ventas DESC') // Ordenar por la cantidad de ventas
             ->get();
-        return view('reporte.clientes_frecuentes_compras', compact('clientesFrecuentes'));
+        return view('4_Ventas_Y_Finanzas.ResumenFinanciero.clientes_frecuentes_compras', compact('clientesFrecuentes'));
     }
 
     public function clientesFrecuentesAtencionVeterinaria()
@@ -172,7 +172,7 @@ class ReporteFinancieroController extends Controller
             ->orderByRaw('total_citas DESC')
             ->get();
 
-        return view('reporte.clientes_frecuentes_veterinaria', compact('clientesFrecuentes'));
+        return view('4_Ventas_Y_Finanzas.ResumenFinanciero.clientes_frecuentes_veterinaria', compact('clientesFrecuentes'));
     }
 
     public function serviciosPopulares()
@@ -182,7 +182,7 @@ class ReporteFinancieroController extends Controller
             ->leftJoin('servicios', 'detalleservicio.ID_Servicio', '=', 'servicios.id')
             ->groupBy('detalleservicio.ID_Servicio', 'servicios.nombre')
             ->get();
-        return view('reporte.serviciosPopulares', compact('cantidadServicios', 'cantidadConsultas'));
+        return view('4_Ventas_Y_Finanzas.ResumenFinanciero.serviciosPopulares', compact('cantidadServicios', 'cantidadConsultas'));
     }
 
     public function productosMasVendidos()
@@ -191,7 +191,8 @@ class ReporteFinancieroController extends Controller
             ->join('detalle_venta', 'producto.id', '=', 'detalle_venta.ID_Producto')
             ->groupBy('producto.id', 'producto.nombre')
             ->orderByDesc('total_vendido')
+            ->take(20)
             ->get();
-        return view('reporte.productosMasVendidos', compact('productosMasVendidos'));
+        return view('4_Ventas_Y_Finanzas.ResumenFinanciero.productosMasVendidos', compact('productosMasVendidos'));
     }
 }

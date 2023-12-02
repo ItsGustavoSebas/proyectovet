@@ -85,6 +85,7 @@
                                 step="0.01" class="precio-input px-3 py-2 w-full rounded-xl bg-blue-100"
                                 placeholder="Precio">
                         </div>
+                        <input type="hidden" id="datosOcultos" name="datosOcultos">
                         <div class="col-span-1">
                             <label for="lote0">Lote</label>
                             <input id="lote0" name="productos[0][lote]" type="text"
@@ -271,11 +272,23 @@
                 const lotesArray = JSON.parse(lotes);
                 const cantidad = cantidadInput.value;
                 let lotesInput = [];
+                let datosParaEnviar = [];
                 let cant = 0;
                 lotesArray.forEach((lote) => {
                     if (cantidad > cant) {
-                        lotesInput.push(lote.numeroLote);
-                        cant = cant + lote.cantidadActual
+                        if (cantidad - cant <= lote.cantidadActual) {
+                            lotesInput.push(lote.numeroLote + ' - ' + (cantidad -
+                            cant)); 
+                            datosParaEnviar.push({ idLoteProd: lote.id_loteprod, cantidadExtraida: (cantidad - cant)});
+                            cant += (cantidad -
+                            cant);
+                        } else {
+                            lotesInput.push(lote.numeroLote + ' - ' + lote
+                            .cantidadActual); 
+                            datosParaEnviar.push({ idLoteProd: lote.id_loteprod, cantidadExtraida: lote.cantidadActual});
+                            cant += lote
+                            .cantidadActual;
+                        }
                     }
                 });
                 if (cant < cantidad) {
@@ -283,6 +296,7 @@
                 } else if (lotesInput.length > 0) {
                     const lotesString = lotesInput.join(', ');
                     loteInput.value = lotesString;
+                    document.getElementById('datosOcultos').value = JSON.stringify(datosParaEnviar);
                 } else {
                     loteInput.value = 'no existe el stock suficiente';
                 }

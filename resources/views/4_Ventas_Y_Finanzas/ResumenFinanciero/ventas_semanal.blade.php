@@ -30,7 +30,7 @@
         var chartData = {
             labels: labels,
             datasets: [{
-                label: 'Ventas por Día',
+                label: 'Ventas',
                 data: data,
                 fill: false,
                 borderColor: 'rgb(75, 192, 192)',
