@@ -17,7 +17,7 @@
             <p><strong>QR:</strong> {{ $nota_venta->qr ? 'Sí' : 'No' }}</p>
 
             <hr>
-
+         
             <p class="font-bold text-lg">Productos en la Nota de Venta</p>
             @foreach ($nota_venta->detalleVenta as $detalle)
                 <p><strong>Producto:</strong> {{ $detalle->producto->nombre }}</p>

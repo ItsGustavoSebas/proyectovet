@@ -194,7 +194,12 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::get('/nota_venta/facturas/editar/{id}', [FacturaController::class, 'editar'])->name('facturas.editar');
     Route::post('/nota_venta/facturas/actualizar/{id}', [FacturaController::class, 'actualizar'])->name('facturas.actualizar');
     Route::post('/nota_venta/facturas/eliminar/{id}', [FacturaController::class, 'eliminar'])->name('facturas.eliminar');
+    Route::get('/nota_venta/facturas/PDF/{id}', [FacturaController::class, 'generarFacturaPDF'])->name('facturas.generarFacturaPDF');
+    Route::get('/nota_venta/facturas/sendEmail/{id}', [FacturaController::class, 'sendEmailInicio'])->name('facturas.sendEmail');
+    
 
+
+ 
 
     Route::get('/reporte/inicio', [ReporteFinancieroController::class, 'inicio'])->name('reporte.inicio');
     Route::get('/reporte/ventas_semanal', [ReporteFinancieroController::class, 'ventas_semanal'])->name('reporte.ventas_semanal');
