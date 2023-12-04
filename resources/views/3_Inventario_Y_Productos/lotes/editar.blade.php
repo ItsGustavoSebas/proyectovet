@@ -44,19 +44,23 @@
                         @endforeach
                     </select>
                 </div>
+                @error('proveedor_id')
+                    <strong class="text-red-500">Debes ingresar el proveedor</strong>
+                @enderror
             </div>
             <div class="p-5">
                 <label class="font-bold text-lg">Productos en el lote</label>
                 <div id="productos">
                     @foreach ($lote->loteprod as $index => $loteprod)
-                        <div class="grid lg:grid-cols-4 grid-cols-1 gap-4 p-2">
+                        <div class="grid lg:grid-cols-5 grid-cols-1 gap-4 p-2">
                             <div class="col-span-1">
                                 <label for="producto">Producto</label>
                                 <select id="producto" name="productos[{{ $index }}][producto_id]"
                                     class="px-3 py-2 w-full rounded-xl bg-blue-100">
                                     <option value="">Selecciona un producto</option>
                                     @foreach ($productos as $producto)
-                                        <option value="{{ $producto->id }}" @if ($producto->id == $loteprod->producto->id) selected @endif>
+                                        <option value="{{ $producto->id }}"
+                                            @if ($producto->id == $loteprod->producto->id) selected @endif>
                                             {{ $producto->nombre }}
                                         </option>
                                     @endforeach
@@ -64,8 +68,15 @@
                             </div>
                             <div class="col-span-1">
                                 <label for="cantidad">Cantidad</label>
-                                <input id="cantidad" name="productos[{{ $index }}][cantidad]" type="number" min="1"
-                                    class="px-3 py-2 w-full rounded-xl bg-blue-100" value="{{ $loteprod->cantidadComprada }}" placeholder="Cantidad">
+                                <input id="cantidad" name="productos[{{ $index }}][cantidad]" type="number"
+                                    min="1" class="px-3 py-2 w-full rounded-xl bg-blue-100"
+                                    value="{{ $loteprod->cantidadComprada }}" placeholder="Cantidad">
+                            </div>
+                            <div class="col-span-1">
+                                <label for="cantidadA">Cantidad Actual</label>
+                                <input id="cantidadA" name="productos[{{ $index }}][cantidadA]" type="number"
+                                    min="1" class="px-3 py-2 w-full rounded-xl bg-blue-100"
+                                    value="{{ $loteprod->cantidadActual }}" placeholder="cantidad Actual">
                             </div>
                             <div class="col-span-1">
                                 <label for="medida">Medida</label>
@@ -73,7 +84,8 @@
                                     class="px-3 py-2 w-full rounded-xl bg-blue-100">
                                     <option value="">Selecciona una medida</option>
                                     @foreach ($medidas as $medida)
-                                        <option value="{{ $medida->id }}" @if ($medida->id == $loteprod->medida->id) selected @endif>
+                                        <option value="{{ $medida->id }}"
+                                            @if ($medida->id == $loteprod->medida->id) selected @endif>
                                             {{ $medida->nombre }}
                                         </option>
                                     @endforeach
@@ -81,13 +93,24 @@
                             </div>
                             <div class="col-span-1">
                                 <label for="precioCompra">Precio de Compra</label>
-                                <input id="precioCompra" name="productos[{{ $index }}][precioCompra]" type="number" min="1"
-                                    class="px-3 py-2 w-full rounded-xl bg-blue-100" value="{{ $loteprod->precioCompra }}" placeholder="Precio de Compra">
+                                <input id="precioCompra" name="productos[{{ $index }}][precioCompra]"
+                                    type="number" min="0.01" step="0.01" class="px-3 py-2 w-full rounded-xl bg-blue-100"
+                                    value="{{ $loteprod->precioCompra }}" placeholder="Precio de Compra">
                             </div>
                         </div>
                     @endforeach
                 </div>
-                <button type="button" id="agregarProducto" class="bg-blue-600 text-white font-bold px-4 py-2 rounded-lg">Agregar Producto</button>
+                @if (
+                    $errors->has('productos.*.producto_id') ||
+                        $errors->has('productos.*.cantidad') ||
+                        $errors->has('productos.*.cantidadA') ||
+                        $errors->has('productos.*.medida_id') ||
+                        $errors->has('productos.*.precioCompra'))
+                    <strong class="text-red-500">Campos de productos incompletos</strong>
+                @endif
+                <br>
+                <button type="button" id="agregarProducto"
+                    class="bg-blue-600 text-white font-bold px-4 py-2 rounded-lg">Agregar Producto</button>
             </div>
             <div class="p-5">
                 <button type="submit" class="bg-blue-600 text-white font-bold px-6 py-3 rounded-lg">
@@ -100,13 +123,13 @@
     <script>
         let productoIndex = {{ count($lote->loteprod) - 1 }};
 
-        document.getElementById('agregarProducto').addEventListener('click', function () {
+        document.getElementById('agregarProducto').addEventListener('click', function() {
             productoIndex++;
 
             const productosDiv = document.getElementById('productos');
 
             const productoInput = document.createElement('div');
-            productoInput.classList.add('grid', 'lg:grid-cols-4', 'grid-cols-1', 'gap-4', 'p-2');
+            productoInput.classList.add('grid', 'lg:grid-cols-5', 'grid-cols-1', 'gap-4', 'p-2');
             productoInput.innerHTML = `
                 <div class="col-span-1">
                     <label for="producto">Producto</label>
@@ -124,6 +147,11 @@
                         class="px-3 py-2 w-full rounded-xl bg-blue-100" placeholder="Cantidad">
                 </div>
                 <div class="col-span-1">
+                    <label for="cantidadA">Cantidad Actual</label>
+                    <input id="cantidadA" name="productos[${productoIndex}][cantidadA]" type="number" min="1"
+                        class="px-3 py-2 w-full rounded-xl bg-blue-100" placeholder="Cantidad Actual">
+                </div>
+                <div class="col-span-1">
                     <label for="medida">Medida</label>
                     <select id="medida" name="productos[${productoIndex}][medida_id]"
                         class="px-3 py-2 w-full rounded-xl bg-blue-100">
@@ -135,7 +163,7 @@
                 </div>
                 <div class="col-span-1">
                     <label for="precioCompra">Precio de Compra</label>
-                    <input id="precioCompra" name="productos[${productoIndex}][precioCompra]" type="number" min="1"
+                    <input id="precioCompra" name="productos[${productoIndex}][precioCompra]" type="number" min="0.01" step="0.01"
                         class="px-3 py-2 w-full rounded-xl bg-blue-100" placeholder="Precio de Compra">
                 </div>
             `;

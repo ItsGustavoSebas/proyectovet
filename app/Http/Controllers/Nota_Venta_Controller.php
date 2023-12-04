@@ -27,31 +27,24 @@ class Nota_Venta_Controller extends Controller
     {
         $productos = Producto::all();
         $clientes = Cliente::all();
-        $qrUrl = ''; // URL del QR, deberá ser generada
+        $qrUrl = '/build/imagenes/utilitarios/qr.jpeg';
         return view('4_Ventas_Y_Finanzas.nota_venta.crear', compact('productos', 'clientes', 'qrUrl'));
     }
 
     public function obtenerCitasPorCliente($clienteId)
     {
-        // Buscar al cliente por su ID
         $cliente = Cliente::find($clienteId);
-
         if (!$cliente) {
             return response()->json(['message' => 'Cliente no encontrado'], 404);
         }
-
-        // Obtener todas las citas asociadas a ese cliente
         $citas = Cita::where('ID_Cliente', $clienteId)
             ->where('activo', false)
             ->where('ID_Nota_Venta', null)
-            ->get(); // Suponiendo que tienes una relación definida en el modelo Cliente
-
-        // Preparar los datos de las citas para enviar como respuesta
+            ->get();
         $citasData = $citas->map(function ($cita) {
             return [
                 'id' => $cita->id,
-                'descripcion' => $cita->descripcion, // Reemplaza 'fecha' con el atributo correspondiente de la cita
-                // Otros atributos que desees enviar
+                'descripcion' => $cita->descripcion,
             ];
         });
 
@@ -60,16 +53,21 @@ class Nota_Venta_Controller extends Controller
 
     public function guardar(Request $request)
     {
-        dd($request);
         $request->validate([
             'cliente' => 'required',
+            'factura' => 'required_without:recibo',
+            'recibo' => 'required_without:factura',
+            'monto_total' => 'required|numeric|not_in:0',
+        ], [
+            'cliente.required' => 'El campo cliente es obligatorio.',
+            'factura.required_without' => 'Por favor ingresa si es recibo o factura.',
+            'recibo.required_without' => 'Por favor ingresa si es recibo o factura.',
+            'monto_total.not_in' => 'Por favor selecciona al menos una cita o un producto.',
         ]);
-
         $notaVenta = new Nota_Venta();
         $notaVenta->montoTotal = $request->monto_total;
         $notaVenta->fecha = Carbon::now();
         $notaVenta->ID_Cliente = $request->cliente;
-
         $notaVenta->ID_Empleado = Auth::id();
         if ($request->has('qr')) {
             $notaVenta->qr = true;
@@ -103,22 +101,25 @@ class Nota_Venta_Controller extends Controller
                 $detalleVenta->cantidad = $cantidad;
                 $detalleVenta->precio = $precio;
                 $detalleVenta->save();
-                // Puedes realizar otras operaciones necesarias para cada producto de la venta
             }
         }
         $datosOcultos = $request->input('datosOcultos');
 
-        // Decodificar el JSON para obtener un array asociativo de PHP
-        $datosArray = json_decode($datosOcultos, true);
-
-        // Utilizar un foreach para recorrer los datos
-        foreach ($datosArray as $dato) {
-            $idLoteProd = $dato['idLoteProd'];
-            $cantidadExtraida = $dato['cantidadExtraida'];
-            $loteprod = LoteProd::where('id_loteprod', '=', $idLoteProd)->first();
-            $cantidadActual = $loteprod->cantidadActual;
-            $loteprod->cantidadActual = $cantidadActual - $cantidadExtraida;
-            $loteprod->save();
+        if ($datosOcultos !== null) {
+            $datosArray = json_decode($datosOcultos, true);
+            if (!empty($datosArray)) {
+                foreach ($datosArray as $dato) {
+                    $idLoteProd = $dato['idLoteProd'];
+                    $cantidadExtraida = $dato['cantidadExtraida'];
+                    $loteprod = LoteProd::where('id_loteprod', '=', $idLoteProd)->first();
+                    if ($loteprod) {
+                        $cantidadActual = $loteprod->cantidadActual;
+                        $nuevaCantidad = $cantidadActual - $cantidadExtraida;
+                        $loteprod->cantidadActual = max($nuevaCantidad, 0);
+                        $loteprod->save();
+                    }
+                }
+            }
         }
         foreach ($request->citas as $citaData) {
             if (!empty($citaData['cita_id'])) {
@@ -126,10 +127,8 @@ class Nota_Venta_Controller extends Controller
                 $cita = Cita::find($cita_id);
                 $cita->ID_Nota_Venta = $notaVenta->id;
                 $cita->save();
-                // Puedes realizar otras operaciones necesarias para cada producto de la venta
             }
         }
-        //Crear DetalleBitacora
 
         $bitacora_id = session('bitacora_id');
 
@@ -150,10 +149,8 @@ class Nota_Venta_Controller extends Controller
         if ($request->has('recibo')) {
             return redirect()->route('generarReciboPDF', ['id' => $notaVenta->id]);
         } else if ($request->has('factura')) {
-            return redirect()->route('generarFactura', ['id' => $notaVenta->id]);
+            return redirect()->route('facturas.generarFacturaPDF', ['id' => $notaVenta->id]);
         }
-        // Redirige a donde sea necesario después de guardar la Nota de Venta
-        return redirect(route('nota_venta.acciones', $notaVenta->id))->with('creado', 'Nota de Venta añadida exitosamente');
     }
 
 
@@ -188,25 +185,18 @@ class Nota_Venta_Controller extends Controller
     public function obtenerPrecioCita($citaId)
     {
         try {
-            // Buscar la cita por su ID
             $cita = Cita::findOrFail($citaId);
-
-            // Obtener el precio de la cita (supongamos que el precio está en un atributo 'precio' en la tabla 'citas')
             $precio = $cita->montoTotal;
-
-            // Devolver el precio como respuesta en formato JSON
             return response()->json(['precio' => $precio]);
         } catch (\Exception $e) {
-            // Manejar cualquier error que pueda surgir
             return response()->json(['error' => 'Hubo un error al obtener el precio de la cita'], 500);
         }
     }
 
     public function mostrarDetalles($id)
     {
-        $notaVenta = Nota_Venta::findOrFail($id); // Obtener la nota de venta por su ID
+        $notaVenta = Nota_Venta::findOrFail($id);
 
         return view('4_Ventas_Y_Finanzas.Nota_Venta.detalles', ['nota_venta' => $notaVenta]);
-        // Reemplaza 'ruta_de_tu_vista_detalles' con la ruta real de tu vista para los detalles
     }
 }

@@ -4,7 +4,7 @@
             {{ __('Crear Nota de Venta') }}
         </h2>
         <div id="montoTotalNotaVenta"
-            class="fixed top-0 right-0 m-4 bg-white p-4 rounded-lg shadow-md text-3xl font-bold">
+            class="fixed top-50 right-0 m-4 bg-white p-4 rounded-lg shadow-md text-3xl font-bold">
             Monto Total: $0.00
         </div>
     </x-slot>
@@ -21,10 +21,14 @@
                         <option value="{{ $cliente->ID_Usuario }}">{{ $cliente->usuario->name }}</option>
                     @endforeach
                 </select>
+                @error('cliente')
+                    <strong class="text-red-500">{{ $message }}</strong>
+                @enderror
                 <div class="mb-4">
                     <input type="checkbox" id="facturaCheckbox" name="factura" class="mr-2" value="true">
                     <label for="facturaCheckbox" class="font-bold">Factura</label>
                 </div>
+
                 <!-- Campo para NIT, se muestra solo si se selecciona Factura -->
                 <div id="nitField" style="display: none;">
                     <label for="nit" class="block font-bold">NIT</label>
@@ -34,6 +38,9 @@
                 <div class="mb-4">
                     <input type="checkbox" id="reciboCheckbox" name="recibo" class="mr-2" value="true">
                     <label for="reciboCheckbox" class="font-bold">Recibo</label>
+                    @error('recibo')
+                        <br><strong class="text-red-500">{{ $message }}</strong>
+                    @enderror
                 </div>
                 <div class="mb-4">
                     <input type="checkbox" id="qrCheckbox" name="qr" class="mr-2" value="true">
@@ -41,8 +48,7 @@
                 </div>
                 <div id="qrFields" style="display: none;">
                     <div class="mb-4">
-                        <!-- Aquí mostrarás el QR -->
-                        <!-- <img src="{{ $qrUrl }}" alt="QR para realizar el pago"> -->
+                        <img src="{{ $qrUrl }}" alt="QR para realizar el pago" width="250">
                         <p>QR para realizar el pago aquí</p>
                     </div>
                 </div>
@@ -57,6 +63,7 @@
                                 placeholder="Selecciona o busca un producto">
                             <!-- Datalist con opciones de búsqueda -->
                             <datalist id="productosList">
+                                <option value="">Selecciona un producto</option>
                                 @foreach ($productos as $producto)
                                     <option value="{{ $producto->nombre }}" data-producto-id="{{ $producto->id }}"
                                         data-precio="{{ $producto->precioVenta }}"
@@ -66,6 +73,8 @@
                             <!-- Select oculto para almacenar la selección -->
                             <select id="producto0" name="productos[0][producto_id]"
                                 class="producto-select px-3 py-2 w-full rounded-xl bg-blue-100" style="display: none;">
+                                <option value="">Selecciona un producto</option>
+                                <!-- Quitamos el atributo 'selected' -->
                                 @foreach ($productos as $producto)
                                     <option value="{{ $producto->id }}" data-precio="{{ $producto->precioVenta }}"
                                         data-lote="{{ $producto->loteprod }}">
@@ -73,6 +82,7 @@
                                     </option>
                                 @endforeach
                             </select>
+
                         </div>
                         <div class="col-span-1">
                             <label for="cantidad0">Cantidad</label>
@@ -99,18 +109,14 @@
                 </div>
                 <label class="font-bold text-lg">Citas en la Nota de Venta</label>
                 <div id="citas">
-                    <!-- Sección de citas -->
                     <div class="grid lg:grid-cols-4 grid-cols-1 gap-4 p-2">
-                        <!-- Este es un ejemplo para la primera cita -->
                         <div class="col-span-1">
                             <label for="cita0">Cita</label>
                             <select id="cita0" name="citas[0][cita_id]"
                                 class="cita-select px-3 py-2 w-full rounded-xl bg-blue-100">
                                 <option value="">Selecciona una cita</option>
-                                <!-- Aquí debes cargar dinámicamente las citas con sus precios -->
                             </select>
                         </div>
-                        <!-- Input para el precio -->
                         <div class="col-span-1">
                             <label for="precioCita0">Precio</label>
                             <input id="precioCita0" name="citas[0][precio]" type="number" readonly
@@ -127,7 +133,10 @@
                         Agregar Cita
                     </button>
                 </div>
-                <div>
+                @error('monto_total')
+                        <strong class="text-red-500">{{ $message }}</strong>
+                    @enderror
+                <div>          
                     <button type="submit" class="bg-blue-600 text-white font-bold px-6 py-3 rounded-lg">
                         Guardar
                     </button>
@@ -225,7 +234,6 @@
 
         });
 
-        // Manejar el cálculo para el primer producto (producto0)
         const cantidadInput0 = document.getElementById('cantidad0');
         const productoSelect0 = document.getElementById('producto0');
         const precioInput0 = document.getElementById('precio0');
@@ -254,7 +262,6 @@
             manejarLotes(cantidadInput0, productoSelect0, precioInput0, loteInput0);
         });
 
-        // Función para calcular el precio
         function calcularPrecio(cantidadInput, productoSelect, precioInput) {
             const precioProducto = productoSelect.options[productoSelect.selectedIndex].getAttribute('data-precio');
             const cantidad = cantidadInput.value;
@@ -265,7 +272,6 @@
             }
         }
 
-        // Función para manejar los lotes de productos
         function manejarLotes(cantidadInput, productoSelect, precioInput, loteInput) {
             const lotes = productoSelect.options[productoSelect.selectedIndex].getAttribute('data-lote');
             if (lotes) {
@@ -278,16 +284,22 @@
                     if (cantidad > cant) {
                         if (cantidad - cant <= lote.cantidadActual) {
                             lotesInput.push(lote.numeroLote + ' - ' + (cantidad -
-                            cant)); 
-                            datosParaEnviar.push({ idLoteProd: lote.id_loteprod, cantidadExtraida: (cantidad - cant)});
+                                cant));
+                            datosParaEnviar.push({
+                                idLoteProd: lote.id_loteprod,
+                                cantidadExtraida: (cantidad - cant)
+                            });
                             cant += (cantidad -
-                            cant);
+                                cant);
                         } else {
                             lotesInput.push(lote.numeroLote + ' - ' + lote
-                            .cantidadActual); 
-                            datosParaEnviar.push({ idLoteProd: lote.id_loteprod, cantidadExtraida: lote.cantidadActual});
+                                .cantidadActual);
+                            datosParaEnviar.push({
+                                idLoteProd: lote.id_loteprod,
+                                cantidadExtraida: lote.cantidadActual
+                            });
                             cant += lote
-                            .cantidadActual;
+                                .cantidadActual;
                         }
                     }
                 });
@@ -304,12 +316,10 @@
         }
     </script>
     <script>
-        // Obtener referencias a los elementos necesarios
         const clienteSelect = document.getElementById('cliente');
         const citaSelect = document.getElementById('cita0');
         const precioCitaInput = document.getElementById('precioCita0');
 
-        // Event listener para cambios en el cliente seleccionado
         clienteSelect.addEventListener('change', function() {
             const clienteId = clienteSelect.value;
 
@@ -323,7 +333,7 @@
                             const option = document.createElement('option');
                             option.value = cita.id;
                             option.textContent = cita
-                                .descripcion; // Reemplaza con el atributo correspondiente de la cita
+                                .descripcion;
                             citaSelect.appendChild(option);
                         });
                     })
@@ -365,11 +375,8 @@
 
             const citaSelect = document.getElementById(`cita${citaIndex}`);
             const precioCitaInput = document.getElementById(`precioCita${citaIndex}`);
-
-            // Obtener referencia al cliente select
             const clienteSelect = document.getElementById('cliente');
 
-            // Event listener para cambios en el cliente seleccionado
             clienteSelect.addEventListener('change', function() {
                 const clienteId = clienteSelect.value;
 
@@ -395,29 +402,25 @@
                 }
             });
 
-            // Event listener para cambios en la cita seleccionada
             citaSelect.addEventListener('change', function() {
                 const citaId = citaSelect.value;
 
                 if (citaId) {
-                    // Realizar una solicitud AJAX para obtener el precio de la cita seleccionada
                     fetch(`/obtener-precio-cita/${citaId}`)
                         .then(response => response.json())
                         .then(data => {
                             precioCitaInput.value = data
-                                .precio; // Reemplaza 'precio' con el atributo correspondiente de la cita
+                                .precio;
                             actualizarMontoTotal
-                                (); // Actualizar el monto total al cambiar el precio de la cita
+                                ();
                         })
                         .catch(error => {
                             console.error('Hubo un error al obtener el precio de la cita:', error);
                         });
                 } else {
-                    precioCitaInput.value = ''; // Limpiar el precio si no se selecciona ninguna cita
+                    precioCitaInput.value = '';
                 }
             });
-
-            // Disparar el evento de cambio de cliente para cargar las citas si el cliente ya está seleccionado
             if (clienteSelect.value) {
                 clienteSelect.dispatchEvent(new Event('change'));
             }
@@ -431,7 +434,7 @@
         facturaCheckbox.addEventListener('change', function() {
             if (facturaCheckbox.checked) {
                 nitField.style.display = 'block';
-                reciboCheckbox.checked = false; // Desmarcar Recibo si Factura está seleccionado
+                reciboCheckbox.checked = false;
             } else {
                 nitField.style.display = 'none';
             }
@@ -439,7 +442,7 @@
 
         reciboCheckbox.addEventListener('change', function() {
             if (reciboCheckbox.checked) {
-                facturaCheckbox.checked = false; // Desmarcar Factura si Recibo está seleccionado
+                facturaCheckbox.checked = false;
                 nitField.style.display = 'none';
             }
         });
@@ -456,10 +459,8 @@
             }
         });
     </script>
-    <!-- Resto del código HTML -->
 
     <script>
-        // Función para calcular el monto total sumando los valores de precio
         function calcularMontoTotal() {
             const preciosProductos = document.querySelectorAll('.precio-input');
             const preciosCitas = document.querySelectorAll('.precio-cita-input');
@@ -483,7 +484,6 @@
             return total.toFixed(2);
         }
 
-        // Función para actualizar el monto total
         function actualizarMontoTotal() {
             const montoTotal = calcularMontoTotal();
             const montoTotalElement = document.getElementById('montoTotalNotaVenta');
@@ -494,47 +494,40 @@
             }
         }
 
-        // Llamar a la función para calcular y actualizar el monto total al cargar la página
         actualizarMontoTotal();
 
-        // Función para actualizar el precio de cita seleccionada
         function actualizarPrecioCita(citaSelect, precioCitaInput) {
             const citaId = citaSelect.value;
 
             if (citaId) {
-                // Realizar una solicitud AJAX para obtener el precio de la cita seleccionada
                 fetch(`/obtener-precio-cita/${citaId}`)
                     .then(response => response.json())
                     .then(data => {
                         precioCitaInput.value = data.precio;
-                        actualizarMontoTotal(); // Actualizar el monto total al cambiar el precio de la cita
+                        actualizarMontoTotal();
                     })
                     .catch(error => {
                         console.error('Hubo un error al obtener el precio de la cita:', error);
                     });
             } else {
                 precioCitaInput.value = '';
-                actualizarMontoTotal(); // Actualizar el monto total al quitar la selección de la cita
+                actualizarMontoTotal();
             }
         }
 
-        // Agregar eventos change para los campos de precio de producto
         const precioInputs = document.querySelectorAll('.precio-input');
         precioInputs.forEach(input => {
             input.addEventListener('change', actualizarMontoTotal);
         });
 
-        // Agregar eventos change para los campos de precio de cita
         const precioCitaInputs = document.querySelectorAll('.precio-cita-input');
         precioCitaInputs.forEach(input => {
             input.addEventListener('change', actualizarMontoTotal);
         });
 
-        // Obtener todas las citas-select y precio-cita-input para agregar eventos change
         const citasSelect = document.querySelectorAll('.cita-select');
         const preciosCitasInput = document.querySelectorAll('.precio-cita-input');
 
-        // Agregar eventos change a todos los elementos select de citas
         citasSelect.forEach((citaSelect, index) => {
             const precioCitaInput = preciosCitasInput[index];
 

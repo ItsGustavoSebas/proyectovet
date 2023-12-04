@@ -71,7 +71,7 @@
                             @endcan
                             @can('Reporte de Venta')
                                 @if ($nota_venta->factura)
-                                    <a href="{{ route('generarReciboPDF', $nota_venta->id) }}"
+                                    <a href="{{ route('facturas.generarFacturaPDF', $nota_venta->id) }}"
                                         class = "bg-blue-400 px-2 py-2 rounded-lg" title="Generar Factura">
                                         <i class="fas fa-file-alt"></i>
                                     </a>

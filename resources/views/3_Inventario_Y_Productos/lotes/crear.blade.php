@@ -42,6 +42,9 @@
                         @endforeach
                     </select>
                 </div>
+                @error('proveedor_id')
+                    <strong class="text-red-500">Debes ingresar el proveedor</strong>
+                @enderror
             </div>
             <div class="p-5">
                 <label class="font-bold text-lg">Productos en el lote</label>
@@ -74,11 +77,19 @@
                         </div>
                         <div class="col-span-1">
                             <label for="precioCompra">Precio de Compra</label>
-                            <input id="precioCompra" name="productos[0][precioCompra]" type="number" min="1"
+                            <input id="precioCompra" name="productos[0][precioCompra]" type="number" min="0.01" step="0.01"
                                 class="px-3 py-2 w-full rounded-xl bg-blue-100" placeholder="Precio de Compra">
                         </div>
                     </div>
                 </div>
+                @if (
+                    $errors->has('productos.*.producto_id') ||
+                        $errors->has('productos.*.cantidad') ||
+                        $errors->has('productos.*.medida_id') ||
+                        $errors->has('productos.*.precioCompra'))
+                    <strong class="text-red-500">Campos de productos incompletos</strong>
+                @endif
+                <br>
                 <button type="button" id="agregarProducto"
                     class="bg-blue-600 text-white font-bold px-4 py-2 rounded-lg">Agregar Producto</button>
             </div>
@@ -128,7 +139,7 @@
                 </div>
                 <div class="col-span-1">
                             <label for="precioCompra">Precio de Compra</label>
-                            <input id="precioCompra" name="productos[${productoIndex}][precioCompra]" type="number" min="1" class="px-3 py-2 w-full rounded-xl bg-blue-100" placeholder="Precio de Compra">
+                            <input id="precioCompra" name="productos[${productoIndex}][precioCompra]" type="number" min="0.01" step="0.01" class="px-3 py-2 w-full rounded-xl bg-blue-100" placeholder="Precio de Compra">
                         </div>
             `;
 
