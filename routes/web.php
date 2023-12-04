@@ -31,6 +31,8 @@ use App\Http\Controllers\ReciboController;
 use App\Http\Controllers\ReporteFinancieroController;
 use App\Http\Controllers\ResumenFinancieroController;
 use App\Models\Nota_Venta;
+use App\Models\Nota_Compra;
+use App\Http\Controllers\Nota_CompraController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -233,6 +235,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::get('/RecetaMedica/editar/{id}', [RecetaMedicaController::class, 'editar'])->name('RecetaMedica.editar');
     Route::post('/RecetaMedica/actualizar/{id}', [RecetaMedicaController::class, 'actualizar'])->name('RecetaMedica.actualizar');
     Route::post('/RecetaMedica/eliminar/{id}', [RecetaMedicaController::class, 'eliminar'])->name('RecetaMedica.eliminar');
+    Route::get('/RecetaMedica/PDF/{id}', [RecetaMedicaController::class, 'generarRecetaMedicaPDF'])->name('generarRecetaMedicaPDF');
 
     Route::get('/correo/enviar', [CorreoController::class, 'enviar'])->name('correo.enviar');
 
@@ -254,4 +257,18 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::post('/nota_venta/eliminar/{id}', [Nota_Venta_Controller::class, 'eliminar'])->name('nota_venta.eliminar');
     Route::get('/obtener-precio-cita/{citaId}', [Nota_Venta_Controller::class, 'obtenerPrecioCita']);
     Route::get('/nota-venta/{id}', [Nota_Venta_Controller::class, 'mostrarDetalles'])->name('nota_venta.mostrarDetalles');
+
+
+    //nota de compra
+    Route::get('/nota_compra/inicio', [Nota_CompraController::class, 'inicio'])->name('nota_compra.inicio');
+    Route::get('/nota_compra/crear', [Nota_CompraController::class, 'crear'])->name('nota_compra.crear');
+    Route::post('/nota_compra/guardar', [Nota_CompraController::class, 'guardar'])->name('nota_compra.guardar');
+    Route::post('/nota_compra/eliminar/{id}', [Nota_CompraController::class, 'eliminar'])->name('nota_compra.eliminar');
+    Route::get('/nota-compra/{id}', [Nota_CompraController::class, 'mostrarDetalles'])->name('nota_compra.mostrarDetalles');
+    Route::get('/obtener-lotes-proveedor/{proveedorId}', [Nota_CompraController::class, 'obtenerLotesPorProveedor']);
+    Route::get('/obtener-precio-Lote/{loteprodId}', [Nota_CompraController::class, 'obtenerPrecioCompra']);
+    Route::get('/nota_compra/PDF/{id}', [Nota_CompraController::class, 'generarCompraPDF'])->name('generarCompraPDF');
+
+
+
 });

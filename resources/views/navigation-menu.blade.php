@@ -169,7 +169,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" class=" p-2 hover:bg-gray-700 flex items-center">
+                                    <a href="consulta.consultas" class=" p-2 hover:bg-gray-700 flex items-center">
                                         <i class="fas fa-chevron-right mr-2 text-xs"></i>
                                         Gestionar Receta Medica
                                     </a>
@@ -292,7 +292,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" class=" p-2 hover:bg-gray-700 flex items-center">
+                                    <a href="{{ route('nota_compra.inicio') }}" class=" p-2 hover:bg-gray-700 flex items-center">
                                         <i class="fas fa-chevron-right mr-2 text-xs"></i>
                                         Gestionar Nota de Compra
                                     </a>

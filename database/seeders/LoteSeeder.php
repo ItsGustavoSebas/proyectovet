@@ -21,6 +21,7 @@ class LoteSeeder extends Seeder
             'fechaVencimiento' => '2024-05-10',
             'estado' => true,
             'ID_Proveedor' => 1,
+            'ID_NotaCompra' => null,
         ]);
         
         Lote::create([
@@ -29,6 +30,7 @@ class LoteSeeder extends Seeder
             'fechaVencimiento' => '2024-06-15',
             'estado' => true,
             'ID_Proveedor' => 2,
+            'ID_NotaCompra' => null,
         ]);
         
         Lote::create([
@@ -37,6 +39,7 @@ class LoteSeeder extends Seeder
             'fechaVencimiento' => '2024-07-20',
             'estado' => true,
             'ID_Proveedor' => 3,
+            'ID_NotaCompra' => null,
         ]);
 
         Lote::create([
@@ -45,6 +48,7 @@ class LoteSeeder extends Seeder
             'fechaVencimiento' => '2024-08-25',
             'estado' => true,
             'ID_Proveedor' => 1,
+            'ID_NotaCompra' => null,
         ]);
 
         Lote::create([
@@ -53,6 +57,7 @@ class LoteSeeder extends Seeder
             'fechaVencimiento' => '2024-09-30',
             'estado' => true,
             'ID_Proveedor' => 2,
+            'ID_NotaCompra' => null,
         ]);
 
         Lote::create([
@@ -61,6 +66,7 @@ class LoteSeeder extends Seeder
             'fechaVencimiento' => '2024-10-05',
             'estado' => true,
             'ID_Proveedor' => 3,
+            'ID_NotaCompra' => null,
         ]);
 
         Lote::create([
@@ -69,6 +75,7 @@ class LoteSeeder extends Seeder
             'fechaVencimiento' => '2024-11-10',
             'estado' => true,
             'ID_Proveedor' => 1,
+            'ID_NotaCompra' => null,
         ]);
 
         Lote::create([
@@ -77,6 +84,7 @@ class LoteSeeder extends Seeder
             'fechaVencimiento' => '2024-03-10',
             'estado' => true,
             'ID_Proveedor' => 1,
+            'ID_NotaCompra' => null,
         ]);
     }
 }

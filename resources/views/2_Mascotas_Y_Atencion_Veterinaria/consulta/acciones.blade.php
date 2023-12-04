@@ -152,7 +152,7 @@
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight px-3 py-2">
                     {{ __('Tratamientos de la consulta') }}
                 </h2>
-                <a class = "px-3 py-2 bg-red-800 font-bold text-white rounded-lg"
+                <a class = "px-3 py-2 bg-red-800 font-bold text-white rounded-lg "
                     href="{{ route('generarTratamientosConsultaPDF', $consulta->id) }}">Generar PDF</a>
             </div>
 
@@ -211,29 +211,38 @@
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight px-3 py-2">
                     {{ __('Receta de la consulta') }}
                 </h2>
-                @if (count($recetas_medica) == 0)
-                    <a class="px-3 py-2 bg-indigo-600 font-bold text-white rounded-lg"
-                        href="{{ route('RecetaMedica.crear', $consulta->id) }}">AÑADIR RECETA MEDICA</a>
-                @else
-                    <div class="flex">
-                        @foreach ($recetas_medica as $receta_medica)
-                            @can('Editar  Receta Medica')
-                            <a href="{{ route('RecetaMedica.editar', $receta_medica->id) }}" class="bg-green-400 px-2 py-2 rounded-lg flex items-center" title="Editar">
-                                <i class="fa-regular fa-pen-to-square text-white"></i>
-                            </a>
-                            @endcan
-                            @can('Eliminar Receta Medica')
-                            <form action="{{ route('RecetaMedica.eliminar', $receta_medica->id) }}" method="POST" onsubmit="return confirm('¿Estas seguro de eliminar?')"
-                                class="ml-2">
-                                @csrf
-                                <button type="submit" class="bg-red-500 px-2 py-2 rounded-lg" title="Eliminar">
-                                    <i class="fa-solid fa-trash"></i>
-                                </button>
-                            </form>
-                            @endcan
+                <div class="flex items-center">
+                    <!-- Botón Generar PDF -->
+                    <a class="px-3 py-4 bg-red-800 font-bold text-white rounded-lg mr-2"
+                       href="{{ route('generarRecetaMedicaPDF', $consulta->id) }}">Generar PDF</a>
+                
+                    @if (count($recetas_medica) == 0)
+                        <!-- Botón Añadir Receta Médica -->
+                        <a class="px-3 py-4 bg-indigo-600 font-bold text-white rounded-lg text-center"
+                           href="{{ route('RecetaMedica.crear', $consulta->id) }}">AÑADIR RECETA MEDICA</a>
+                    @else
+                        <!-- Botones Editar y Eliminar Receta Médica -->
+                        <div class="flex">
+                            @foreach ($recetas_medica as $receta_medica)
+                                @can('Editar  Receta Medica')
+                                    <a href="{{ route('RecetaMedica.editar', $receta_medica->id) }}" class="bg-green-400 px-2 py-2 rounded-lg flex items-center mr-2" title="Editar">
+                                        <i class="fa-regular fa-pen-to-square text-white"></i>
+                                    </a>
+                                @endcan
+                
+                                @can('Eliminar Receta Medica')
+                                    <form action="{{ route('RecetaMedica.eliminar', $receta_medica->id) }}" method="POST" onsubmit="return confirm('¿Estás seguro de eliminar?')"
+                                        class="ml-2">
+                                        @csrf
+                                        <button type="submit" class="bg-red-500 px-2 py-2 rounded-lg" title="Eliminar">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </button>
+                                    </form>
+                                @endcan
                             @endforeach
-                    </div>
-                @endif
+                        </div>
+                    @endif
+                </div>
             </div>
             <thead class="block md:table-header-group">
                 <tr
@@ -261,7 +270,7 @@
                     @php $recetaprodCount = count($receta_medica->detalle_receta); @endphp
                     <tr class="bg-white border border-grey-500 md:border-none block md:table-row">
                         @foreach ($receta_medica->detalle_receta as $index => $detalle_receta)
-                            @if ($index > 0)
+                            @if ($index >= 0)
                     <tr class="bg-white border border-grey-500 md:border-none block md:table-row">
 
                         <td class="p-2 md:border md:border-grey-500 text-left block md:hidden">
