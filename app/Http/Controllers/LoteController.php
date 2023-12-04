@@ -31,7 +31,10 @@ class LoteController extends Controller
         $request->validate([
             'numeroLote' => 'required',
             'fechaCompra' => 'required',
-            'productos' => 'required|array',
+            'productos.*.producto_id' => 'required',
+            'productos.*.cantidad' => 'required',
+            'productos.*.medida_id' => 'required',
+            'productos.*.precioCompra' => 'required',
         ]);
 
         $lote = new Lote();
@@ -96,7 +99,11 @@ class LoteController extends Controller
         $request->validate([
             'numeroLote' => 'required',
             'fechaCompra' => 'required',
-            'productos' => 'required|array',
+            'productos.*.producto_id' => 'required',
+            'productos.*.cantidad' => 'required',
+            'productos.*.cantidadA' => 'required',
+            'productos.*.medida_id' => 'required',
+            'productos.*.precioCompra' => 'required',
         ]);
 
         $lote->numeroLote = $request->numeroLote;
@@ -130,6 +137,7 @@ class LoteController extends Controller
         foreach ($request->productos as $productoData) {
             $producto_id = $productoData['producto_id'];
             $cantidad = $productoData['cantidad'];
+            $cantidadA = $productoData['cantidadA'];
             $medida_id = $productoData['medida_id'];
             $precioCompra = $productoData['precioCompra'];
 
@@ -137,7 +145,7 @@ class LoteController extends Controller
             $loteprod->ID_Lote = $lote->id;
             $loteprod->ID_Producto = $producto_id;
             $loteprod->cantidadComprada = $cantidad;
-            $loteprod->cantidadActual = $cantidad;
+            $loteprod->cantidadActual = $cantidadA;
             $loteprod->ID_Medida = $medida_id;
             $loteprod->precioCompra = $precioCompra;
             $loteprod->save();
