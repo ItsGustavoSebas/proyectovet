@@ -19,7 +19,8 @@ class Lote extends Model
         'fechaCompra', 
         'fechaVencimiento',
         'estado',
-        'ID_Proveedor'
+        'ID_Proveedor',
+        'ID_NotaCompra'
     ];
 
     public function loteprod()
@@ -35,5 +36,10 @@ class Lote extends Model
     public function proveedor()
     {
         return $this->belongsTo(Proveedor::class, 'ID_Proveedor');
+    }
+
+    public function nota_compra()
+    {
+        return $this->belongsTo(Nota_Compra::class, 'ID_NotaCompra');
     }
 }

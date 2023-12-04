@@ -7,6 +7,9 @@ use App\Models\RecetaMedica;
 use App\Models\DetalleReceta;
 use App\Models\Producto;
 use App\Models\Consulta;
+use App\Models\Mascota;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -167,4 +170,23 @@ class RecetaMedicaController extends Controller
         }
         return redirect(route('consulta.acciones', $request->ID_Consulta))->with('actualizado', 'Receta Médica  actualizada correctamente');
     }
+
+    public function generarRecetaMedicaPDF($ID_Consulta){
+        $consulta = Consulta::where('id', '=', $ID_Consulta)->first();
+        $mascota = Mascota::where('id', '=', $consulta->ID_Mascota)->first();
+        $recetas_medica = RecetaMedica::where('ID_Consulta', '=', $ID_Consulta)->get();
+        $data = [
+            'recetas_medica' => $recetas_medica,
+            'mascota' => $mascota,
+        ];
+
+        $pdf = Pdf::loadView('PDF.receta', $data);
+
+        return $pdf->stream('Receta-mascota.pdf');
+    }
+
+
+
 }
+
+

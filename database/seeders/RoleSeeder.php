@@ -198,5 +198,14 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'Eliminar Receta Medica'])->syncRoles([$role1, $role2]);
         Permission::create(['name' => 'Editar  Receta Medica'])->syncRoles([$role1, $role2]);
 
+        //NOTA DE COMPRA
+
+        Permission::create(['name' => 'Visualizar Nota de Compra'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'Crear Nota de Compra'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'Guardar Nota de Compra'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'Detalles de Nota de Compra'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'Reporte de Compra'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'Eliminar Nota de Compra'])->syncRoles([$role1, $role2]);
+
     }
 }

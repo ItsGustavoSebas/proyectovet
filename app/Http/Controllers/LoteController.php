@@ -40,6 +40,7 @@ class LoteController extends Controller
         $lote->fechaVencimiento = $request->fechaVencimiento;
         $lote->estado = true;
         $lote->ID_Proveedor = $request->proveedor_id;
+        $lote->ID_NotaCompra = null;
         $lote->save();
 
         //Crear DetalleBitacora
