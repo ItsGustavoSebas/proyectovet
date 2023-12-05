@@ -11,7 +11,7 @@ class LoteProd extends Model
 
     protected $table = 'loteprod';
 
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'id_loteprod';
 
     protected $fillable = [
         'ID_Producto', 

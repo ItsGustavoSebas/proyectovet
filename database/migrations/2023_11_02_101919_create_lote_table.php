@@ -19,7 +19,7 @@ return new class extends Migration
             $table->date('fechaCompra');
             $table->string('fechaVencimiento')->nullable();
             $table->boolean('estado');
-            $table->integer('ID_Proveedor')->foreign('ID_Proveedor')->references('id')->on('proveedor');
+            $table->integer('ID_Proveedor')->foreign('ID_Proveedor')->references('id')->on('proveedor')->onDelete('set null')->nullable();
             $table->integer('ID_NotaCompra')->foreign('ID_NotaCompra')->references('id')->on('nota_compra')->onDelete('set null')->nullable();
             $table->timestamps();
         });

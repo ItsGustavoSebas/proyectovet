@@ -74,7 +74,7 @@
                             <a href="{{ route('detbitacoras.inicio', $bitacora->id) }}"class = "bg-white px-2 py-2 rounded-lg" title="Detalles">
                                 <i class="fas fa-plus"></i>
                             </a>
-                            <a href="{{ route('generarDetalleBitacoraPDF', $bitacora->id) }}"class = "bg-white px-2 py-2 rounded-lg" title="Detalles">
+                            <a href="{{ route('generarDetalleBitacoraPDF', $bitacora->id) }}"class = "bg-white px-2 py-2 rounded-lg" title="PDF">
                                 <i class="fas fa-file-pdf"></i>
                             </a>
                         </div>
