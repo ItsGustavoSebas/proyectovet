@@ -6,6 +6,7 @@
         let seleccionActual = null; // Valor predeterminado, puede ser 'consulta' o 'servicio'.
         let seleccionConfir = null;
  
+<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@3.13.2/dist/alpine.min.js" defer></script>
 
     </script>
 
