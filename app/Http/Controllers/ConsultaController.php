@@ -84,7 +84,7 @@ class ConsultaController extends Controller
         $tratamientos = TratamientoMascota::where('ID_Historial', '=', $consulta->mascota->historial->id)->whereColumn('dosis_totales', '>', 'visitas_realizadas')
             ->get();
 
-        $recetas_medica = RecetaMedica::where('ID_Consulta', '=', $ID_Consulta)->first();
+        $receta_medica = RecetaMedica::where('ID_Consulta', '=', $ID_Consulta)->first();
         
         return view('2_Mascotas_Y_Atencion_Veterinaria.consulta.acciones', compact('mascota', 'consulta', 'tratamientos', 'tratamientos_consulta', 'receta_medica'));
     }
