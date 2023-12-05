@@ -17,6 +17,7 @@ class DetalleReceta extends Model
         'ID_RecetaMedica', 
         'ID_Producto', 
         'Cantidad',
+        'instrucciones',
     ];
 
     public function producto()
