@@ -89,9 +89,9 @@ class RecetaMedicaController extends Controller
 
     public function editar($id)
     {
-        $detalleReceta = DetalleReceta::where('id', $id)->first();
-        $recetamedica = RecetaMedica::all();
-        return view('2_Mascotas_Y_Atencion_Veterinaria.RecetaMedica.editar', compact('detalleReceta', 'recetamedica'));
+        $productos = Producto::all();
+        $receta_medica = RecetaMedica::where('id', $id)->first();
+        return view('2_Mascotas_Y_Atencion_Veterinaria.RecetaMedica.editar', compact('receta_medica', 'productos'));
     }
 
     public function eliminar($id)
@@ -129,12 +129,9 @@ class RecetaMedicaController extends Controller
     {
         $request->validate([
             'FechaEmision' => 'required',
-            'ID_Consulta' => 'required',
         ]);
         $recetamedica = RecetaMedica::find($id);
         $recetamedica->FechaEmision = $request->FechaEmision;
-        $recetamedica->ID_Consulta = $request->ID_Consulta;
-        $recetamedica->ID_Empleado = auth()->id();
         $recetamedica->save();
 
         //Crear DetalleBitacora
@@ -156,6 +153,8 @@ class RecetaMedicaController extends Controller
             ]);
         }
 
+        DetalleReceta::where('ID_RecetaMedica', $recetamedica->id)->delete();
+
         foreach ($request->productos as $productoData) {
             $producto_id = $productoData['producto_id'];
             $cantidad = $productoData['cantidad'];
@@ -168,7 +167,7 @@ class RecetaMedicaController extends Controller
             $detalleReceta->instrucciones = $instrucciones;
             $detalleReceta->save();
         }
-        return redirect(route('consulta.acciones', $request->ID_Consulta))->with('actualizado', 'Receta Médica  actualizada correctamente');
+        return redirect(route('consulta.acciones', $recetamedica->ID_Consulta))->with('actualizado', 'Receta Médica  actualizada correctamente');
     }
 
     public function generarRecetaMedicaPDF($ID_Consulta){
