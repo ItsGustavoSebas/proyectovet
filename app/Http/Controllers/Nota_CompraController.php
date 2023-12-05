@@ -61,7 +61,7 @@ class Nota_CompraController extends Controller
             ]);
         }
 
-        return redirect(route('Nota_Compra.inicio'))->with('eliminado', 'Nota de compra eliminada exitosamente');
+        return redirect(route('nota_compra.inicio'))->with('eliminado', 'Nota de compra eliminada exitosamente');
     }
 
     public function guardar(Request $request)
@@ -95,7 +95,7 @@ class Nota_CompraController extends Controller
             ]);
         }
 
-        return redirect(route('Nota_Compra.inicio'))->with('creado', 'Nota de Compra añadida exitosamente');
+        return redirect(route('nota_compra.inicio'))->with('creado', 'Nota de Compra añadida exitosamente');
     }
 
 
