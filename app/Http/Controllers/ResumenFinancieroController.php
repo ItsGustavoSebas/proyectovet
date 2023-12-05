@@ -68,12 +68,12 @@ class ResumenFinancieroController extends Controller
             ->groupBy('fecha_venta')
             ->orderBy('fecha_venta')
             ->get();
-            $citasUltimos11Dias = Cita::selectRaw('DATE("fechaProgramada") as fecha_cita, SUM("montoTotal") as total_precio')
+        $citasUltimos11Dias = Cita::selectRaw('DATE("fechaProgramada") as fecha_cita, SUM("montoTotal") as total_precio')
             ->where('activo', false)
             ->whereBetween('fechaProgramada', [$inicioOnceDias, $finHoy])
             ->groupBy('fecha_cita')
             ->orderBy('fecha_cita')
-            ->get();        
+            ->get();
         $citasPorTipoHoy = Cita::selectRaw('tipo, COUNT(*) as cantidad')
             ->whereDate('fechaProgramada', $fechaHoy)
             ->where('activo', true)
@@ -130,7 +130,7 @@ class ResumenFinancieroController extends Controller
     public function ventas_mes()
     {
         // Obtener ventas por semana para el mes actual
-        $ventasPorSemana = Nota_Venta::selectRaw('YEAR("fecha") as year, MONTH("fecha") as month, WEEK("fecha") as week, SUM("montoTotal") as total')
+        $ventasPorSemana = Nota_Venta::selectRaw('EXTRACT(YEAR FROM "fecha") as year, EXTRACT(MONTH FROM "fecha") as month, DATE_PART(\'week\', "fecha") as week, SUM("montoTotal") as total')
             ->whereYear('fecha', Carbon::now()->year)
             ->whereMonth('fecha', Carbon::now()->month)
             ->groupBy('year', 'month', 'week')
@@ -138,6 +138,8 @@ class ResumenFinancieroController extends Controller
             ->orderBy('month')
             ->orderBy('week')
             ->get();
+
+
 
         return view('4_Ventas_Y_Finanzas.ResumenFinanciero.ventas_mensual', compact('ventasPorSemana'));
     }
