@@ -33,7 +33,7 @@ class Nota_Venta_Controller extends Controller
  
         session(['notasVPDF' => $nota_ventas]);
 
-        return view('4_Ventas_Y_Finanzas.nota_venta.inicio', compact('nota_ventas', 'mesSeleccionado','meses'));
+        return view('4_Ventas_Y_Finanzas.Nota_Venta.inicio', compact('nota_ventas', 'mesSeleccionado','meses'));
     }
 
     public function obtenerNombreMes()
