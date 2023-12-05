@@ -68,12 +68,12 @@ class ResumenFinancieroController extends Controller
             ->groupBy('fecha_venta')
             ->orderBy('fecha_venta')
             ->get();
-        $citasUltimos11Dias = Cita::selectRaw('DATE(fechaProgramada) as fecha_cita, SUM(montoTotal) as total_precio')
+            $citasUltimos11Dias = Cita::selectRaw('DATE("fechaProgramada") as fecha_cita, SUM("montoTotal") as total_precio')
             ->where('activo', false)
             ->whereBetween('fechaProgramada', [$inicioOnceDias, $finHoy])
             ->groupBy('fecha_cita')
             ->orderBy('fecha_cita')
-            ->get();
+            ->get();        
         $citasPorTipoHoy = Cita::selectRaw('tipo, COUNT(*) as cantidad')
             ->whereDate('fechaProgramada', $fechaHoy)
             ->where('activo', true)
