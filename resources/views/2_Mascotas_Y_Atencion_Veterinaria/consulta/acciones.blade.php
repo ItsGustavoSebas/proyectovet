@@ -216,14 +216,13 @@
                     <a class="px-3 py-4 bg-red-800 font-bold text-white rounded-lg mr-2"
                        href="{{ route('generarRecetaMedicaPDF', $consulta->id) }}">Generar PDF</a>
                 
-                    @if (count($recetas_medica) == 0)
+                    @if (!$receta_medica)
                         <!-- Botón Añadir Receta Médica -->
                         <a class="px-3 py-4 bg-indigo-600 font-bold text-white rounded-lg text-center"
                            href="{{ route('RecetaMedica.crear', $consulta->id) }}">AÑADIR RECETA MEDICA</a>
                     @else
                         <!-- Botones Editar y Eliminar Receta Médica -->
                         <div class="flex">
-                            @foreach ($recetas_medica as $receta_medica)
                                 @can('Editar  Receta Medica')
                                     <a href="{{ route('RecetaMedica.editar', $receta_medica->id) }}" class="bg-green-400 px-2 py-2 rounded-lg flex items-center mr-2" title="Editar">
                                         <i class="fa-regular fa-pen-to-square text-white"></i>
@@ -239,7 +238,6 @@
                                         </button>
                                     </form>
                                 @endcan
-                            @endforeach
                         </div>
                     @endif
                 </div>
@@ -264,9 +262,9 @@
                         Instrucción</th>
                 </tr>
             </thead>
+            @if ($receta_medica)
             <tbody class="block md:table-row-group">
                 @php $prevRecetaId = null; @endphp
-                @foreach ($recetas_medica as $receta_medica)
                     @php $recetaprodCount = count($receta_medica->detalle_receta); @endphp
                     <tr class="bg-white border border-grey-500 md:border-none block md:table-row">
                         @foreach ($receta_medica->detalle_receta as $index => $detalle_receta)
@@ -291,8 +289,8 @@
                 @endif
                 @endforeach
                 </tr>
-                @endforeach
             </tbody>
+            @endif
         </table>
     </div>
 
