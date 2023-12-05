@@ -106,7 +106,7 @@ class ResumenFinancieroController extends Controller
         $finSemana = $hoy->copy()->endOfWeek(); // fin de la semana actual
 
         // Consulta para obtener las ventas por día de la semana actual
-        $ventasPorDia = Nota_Venta::selectRaw('DATE(fecha) as fecha, SUM(montoTotal) as total')
+        $ventasPorDia = Nota_Venta::selectRaw('DATE("fecha") as fecha, SUM("montoTotal") as total')
             ->whereBetween('fecha', [$inicioSemana, $finSemana])
             ->groupBy('fecha')
             ->orderBy('fecha')
@@ -117,7 +117,7 @@ class ResumenFinancieroController extends Controller
     public function ventas_año()
     {
         // Obtener ventas por mes para el año actual
-        $ventasPorMes = Nota_Venta::selectRaw('YEAR(fecha) as year, MONTHNAME(fecha) as month, SUM(montoTotal) as total')
+        $ventasPorMes = Nota_Venta::selectRaw('YEAR("fecha") as year, MONTHNAME("fecha") as month, SUM("montoTotal") as total')
             ->whereYear('fecha', Carbon::now()->year)
             ->groupBy('year', 'month')
             ->orderBy('year')
@@ -130,7 +130,7 @@ class ResumenFinancieroController extends Controller
     public function ventas_mes()
     {
         // Obtener ventas por semana para el mes actual
-        $ventasPorSemana = Nota_Venta::selectRaw('YEAR(fecha) as year, MONTH(fecha) as month, WEEK(fecha) as week, SUM(montoTotal) as total')
+        $ventasPorSemana = Nota_Venta::selectRaw('YEAR("fecha") as year, MONTH("fecha") as month, WEEK("fecha") as week, SUM("montoTotal") as total')
             ->whereYear('fecha', Carbon::now()->year)
             ->whereMonth('fecha', Carbon::now()->month)
             ->groupBy('year', 'month', 'week')
@@ -164,12 +164,12 @@ class ResumenFinancieroController extends Controller
         $clientesFrecuentes = DB::table('citas')
             ->select('ID_Cliente')
             ->selectRaw('COUNT(*) as total_citas')
-            ->selectRaw('SUM(CASE WHEN tipo = "consulta" THEN 1 ELSE 0 END) as total_consultas')
-            ->selectRaw('SUM(CASE WHEN tipo = "servicio" THEN 1 ELSE 0 END) as total_servicios')
-            ->where('activo', false)
+            ->selectRaw('SUM(CASE WHEN tipo = \'consulta\' THEN 1 ELSE 0 END) as total_consultas')
+            ->selectRaw('SUM(CASE WHEN tipo = \'servicio\' THEN 1 ELSE 0 END) as total_servicios')
+            ->where('activo', 0)
             ->groupBy('ID_Cliente')
             ->havingRaw('COUNT(*) >= 1')
-            ->orderByRaw('total_citas DESC')
+            ->orderByDesc('total_citas')
             ->get();
 
         return view('4_Ventas_Y_Finanzas.ResumenFinanciero.clientes_frecuentes_veterinaria', compact('clientesFrecuentes'));
