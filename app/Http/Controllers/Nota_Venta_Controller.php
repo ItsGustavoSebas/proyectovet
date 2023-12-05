@@ -73,7 +73,7 @@ class Nota_Venta_Controller extends Controller
         $nota_ventas = Nota_Venta::all();
         $meses = $this->obtenerNombreMes();
         session(['notasVPDF' => $nota_ventas]);
-        return (view('4_Ventas_Y_Finanzas.nota_venta.inicio', compact('nota_ventas','meses')));
+        return (view('4_Ventas_Y_Finanzas.Nota_Venta.inicio', compact('nota_ventas','meses')));
     }
 
     public function crear()
@@ -81,7 +81,7 @@ class Nota_Venta_Controller extends Controller
         $productos = Producto::all();
         $clientes = Cliente::all();
         $qrUrl = '/build/imagenes/utilitarios/qr.jpeg';
-        return view('4_Ventas_Y_Finanzas.nota_venta.crear', compact('productos', 'clientes', 'qrUrl'));
+        return view('4_Ventas_Y_Finanzas.Nota_Venta.crear', compact('productos', 'clientes', 'qrUrl'));
     }
 
     public function obtenerCitasPorCliente($clienteId)
@@ -232,7 +232,7 @@ class Nota_Venta_Controller extends Controller
             ]);
         }
 
-        return redirect(route('nota_venta.inicio'))->with('eliminado', 'Nota de venta eliminada exitosamente');
+        return redirect(route('Nota_Venta.inicio'))->with('eliminado', 'Nota de venta eliminada exitosamente');
     }
 
     public function obtenerPrecioCita($citaId)
