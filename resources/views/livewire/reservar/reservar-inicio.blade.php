@@ -9,7 +9,6 @@
 
     </script>
  <div x-data="{}">
-<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@3.13.2/dist/alpine.min.js" defer></script>
     <div class="fixed flex h-full w-full" style="background-color: #171823;"></div>
     <script src="https://kit.fontawesome.com/e44f857295.js" crossorigin="anonymous"></script>
     <!-- Enlaces a los estilos de Flatpickr -->
