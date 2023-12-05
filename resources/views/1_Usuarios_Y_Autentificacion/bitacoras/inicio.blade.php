@@ -71,8 +71,11 @@
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
                         <div class="flex flex-wrap">
                             <span class="inline-block w-1/3 md:hidden font-bold">Acciones</span>
-                            <a href="{{ route('detbitacoras.inicio', $bitacora->id) }}" class = "bg-white px-2 py-2 rounded-lg" title="Detallar">
+                            <a href="{{ route('detbitacoras.inicio', $bitacora->id) }}" class = "bg-white px-2 py-2 rounded-lg" title="Detalles">
                                 <i class="fas fa-plus"></i>
+                            </a>
+                            <a href="{{ route('generarDetalleBitacoraPDF', $bitacora->id) }}"class = "bg-white px-2 py-2 rounded-lg" title="PDF">
+                                <i class="fas fa-file-pdf"></i>
                             </a>
                         </div>
                     </td>

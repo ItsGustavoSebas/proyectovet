@@ -56,6 +56,7 @@ class CreateNewUser implements CreatesNewUsers
 
             $cliente = new Cliente();
             $user->cliente()->save($cliente);
+            $user->assignRole('Cliente');
 
             return $user;
         } catch (ValidationException $e) {

@@ -174,6 +174,14 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::post('/lotes/eliminarProdR/{id}', [LoteController::class, 'eliminarProdR'])->name('lotes.eliminarProdR');
     Route::post('/lotes/guardar', [LoteController::class, 'guardar'])->name('lotes.guardar');
 
+    //Reporte Lote
+    Route::get('/lotes/ReporteMC', [LoteController::class, 'reporteMFechaCompra'])->name('lotes.reporteMFechaCompra');
+    Route::get('/lotes/ReporteSC', [LoteController::class, 'reporteMFechaCompra'])->name('lotes.reporteSFechaCompra');
+    Route::get('/lotes/ReporteMV', [LoteController::class, 'reporteMFechaVencimiento'])->name('lotes.reporteMFechaVencimiento');
+    Route::get('/lotes/ReporteSV', [LoteController::class, 'reporteMFechaVencimiento'])->name('lotes.reporteSFechaVencimiento');
+    Route::get('/lotes/ReporteMes', [LoteController::class, 'filtrarLotesPorMes'])->name('lotes.filtrarLotesPorMes');
+    Route::get('/Lote/PDF', [LoteController::class, 'generarReporte'])->name('generarReporte');
+
     //detalleservicioController
     Route::get('/dservicios/inicio/{id}', [detalleservicioController::class, 'inicio'])->name('detalleservicio.inicio');
     Route::get('/dservicios/servicios/', [detalleservicioController::class, 'servicios'])->name('detalleservicio.servicios');

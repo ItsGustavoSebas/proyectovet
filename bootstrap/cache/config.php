@@ -10,7 +10,7 @@
     'locale' => 'en',
     'fallback_locale' => 'en',
     'faker_locale' => 'en_US',
-    'key' => 'base64:jNUh1Ztvo25kIIlQliqw763+dOaBjHwd+P81rENKn0k=',
+    'key' => 'base64:bMMe1AWg37HjELZCITb7y+hls8WkAMh1TAH1qUUlCSg=',
     'cipher' => 'AES-256-CBC',
     'maintenance' => 
     array (
@@ -709,11 +709,11 @@
       'smtp' => 
       array (
         'transport' => 'smtp',
-        'host' => 'smtp.elasticemail.com',
-        'port' => '2525',
-        'encryption' => 'tls',
-        'username' => 'fcossio0x41@gmail.com',
-        'password' => '49AD7970E74F66FBAA749E96C8EE9B55A1D8',
+        'host' => 'mailpit',
+        'port' => '1025',
+        'encryption' => NULL,
+        'username' => NULL,
+        'password' => NULL,
         'timeout' => NULL,
         'local_domain' => NULL,
       ),
@@ -755,8 +755,8 @@
     ),
     'from' => 
     array (
-      'address' => 'fcossio0x41@gmail.com',
-      'name' => 'La Hacienda',
+      'address' => 'hello@example.com',
+      'name' => 'Laravel',
     ),
     'markdown' => 
     array (

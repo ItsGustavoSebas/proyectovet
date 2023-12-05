@@ -8,14 +8,124 @@ use App\Models\LoteProd;
 use App\Models\Medida;
 use App\Models\Producto;
 use App\Models\Proveedor;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class LoteController extends Controller
 {
+    public $lotesPDF;
+
     public function inicio()
     {
         $lotes = Lote::all();
-        return (view('3_Inventario_Y_Productos.lotes.inicio', compact('lotes')));
+        session(['lotesPDF' => $lotes]);
+        //dd('Lotes asignados en inicio:', $this->lotesPDF);
+        $meses = $this->obtenerNombreMes();
+        return (view('3_Inventario_Y_Productos.lotes.inicio', compact('lotes', 'meses')));
+    }
+
+    public function filtrarLotesPorMes(Request $request)
+    {
+        $meses = $this->obtenerNombreMes();
+
+        // Obtén el mes seleccionado del formulario
+        $mesSeleccionado = $request->input('mes');
+        $filtroSeleccionado = $request->input('filtro');
+
+        // Si no se seleccionó un mes, establece el mes actual como predeterminado
+        $mesSeleccionado = $mesSeleccionado ?? Carbon::now()->month;
+
+        //dd($mesSeleccionado);
+
+        // Obtén los lotes del mes seleccionado según la fecha de compra
+        $lotes = Lote::whereMonth($filtroSeleccionado, $mesSeleccionado)->get();
+        session(['lotesPDF' => $lotes]);
+        // Pasa los lotes y el mes seleccionado a la vista
+        return view('3_Inventario_Y_Productos.lotes.inicio', compact('lotes', 'mesSeleccionado','meses'));
+    }
+
+    public function obtenerNombreMes()
+    {
+        $meses = [
+            1 => 'Enero',
+            2 => 'Febrero',
+            3 => 'Marzo',
+            4 => 'Abril',
+            5 => 'Mayo',
+            6 => 'Junio',
+            7 => 'Julio',
+            8 => 'Agosto',
+            9 => 'Septiembre',
+            10 => 'Octubre',
+            11 => 'Noviembre',
+            12 => 'Diciembre',
+        ];
+
+        return $meses;
+    }
+
+    public function reporteMFechaCompra()
+    {
+        // Obtén el mes actual
+        $mesActual = Carbon::now()->month;
+        $meses = $this->obtenerNombreMes();
+
+        // Obtén los lotes del mes actual según la fecha de compra
+        $lotes = Lote::whereMonth('fechaCompra', $mesActual)->get();
+        session(['lotesPDF' => $lotes]);
+        return (view('3_Inventario_Y_Productos.lotes.inicio', compact('lotes','meses')));
+    }
+
+    public function reporteSFechaCompra()
+    {
+        // Obtén la fecha de inicio y fin de la semana actual
+        $fechaInicioSemana = Carbon::now()->startOfWeek();
+        $fechaFinSemana = Carbon::now()->endOfWeek();
+        $meses = $this->obtenerNombreMes();
+
+        // Obtén los lotes de la semana actual según la fecha de compra
+        $lotes = Lote::whereBetween('fechaCompra', [$fechaInicioSemana, $fechaFinSemana])->get();
+        session(['lotesPDF' => $lotes]);
+        return (view('3_Inventario_Y_Productos.lotes.inicio', compact('lotes','meses')));
+    }
+
+    public function reporteMFechaVencimiento()
+    {
+        // Obtén el mes actual
+        $mesActual = Carbon::now()->month;
+        $meses = $this->obtenerNombreMes();
+
+        // Obtén los lotes del mes actual según la fecha de Vencimiento
+        $lotes = Lote::whereMonth('fechaVencimiento', $mesActual)->get();
+        session(['lotesPDF' => $lotes]);
+        return (view('3_Inventario_Y_Productos.lotes.inicio', compact('lotes','meses')));
+    }
+
+    public function reporteSFechaVencimiento()
+    {
+        // Obtén la fecha de inicio y fin de la semana actual
+        $fechaInicioSemana = Carbon::now()->startOfWeek();
+        $fechaFinSemana = Carbon::now()->endOfWeek();
+        $meses = $this->obtenerNombreMes();
+
+        // Obtén los lotes de la semana actual según la fecha de Vencimiento
+        $lotes = Lote::whereBetween('fechaVencimiento', [$fechaInicioSemana, $fechaFinSemana])->get();
+        session(['lotesPDF' => $lotes]);
+        return (view('3_Inventario_Y_Productos.lotes.inicio', compact('lotes','meses')));
+    }
+    
+    public function generarReporte(){
+        //dd('Lotes en generarReporte:', $this->lotesPDF);
+        $lotes = session('lotesPDF', collect());
+        $data = [
+            'lotes' => $lotes,
+        ];
+
+        $pdf = Pdf::loadView('PDF.lote', $data);
+
+
+        return $pdf->stream('Reporte_Lote.pdf');
     }
 
     public function crear()
