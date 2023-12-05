@@ -20,7 +20,7 @@ class Nota_CompraController extends Controller
     {
         $nota_compras = Nota_Compra::all();
         $lotes = Lote::all();
-        return (view('4_Ventas_Y_Finanzas.nota_compra.inicio', compact('nota_compras', 'lotes')));
+        return (view('4_Ventas_Y_Finanzas.Nota_Compra.inicio', compact('nota_compras', 'lotes')));
     }
 
     public function crear()
@@ -28,7 +28,7 @@ class Nota_CompraController extends Controller
         $productos = Producto::all();
         $proveedores = Proveedor::all();
         $lotes = Lote::all();
-        return view('4_Ventas_Y_Finanzas.nota_compra.crear', compact('productos', 'proveedores', 'lotes'));
+        return view('4_Ventas_Y_Finanzas.Nota_Compra.crear', compact('productos', 'proveedores', 'lotes'));
     }
 
     public function eliminar($id)
@@ -61,7 +61,7 @@ class Nota_CompraController extends Controller
             ]);
         }
 
-        return redirect(route('nota_compra.inicio'))->with('eliminado', 'Nota de compra eliminada exitosamente');
+        return redirect(route('Nota_Compra.inicio'))->with('eliminado', 'Nota de compra eliminada exitosamente');
     }
 
     public function guardar(Request $request)
@@ -95,7 +95,7 @@ class Nota_CompraController extends Controller
             ]);
         }
 
-        return redirect(route('nota_compra.inicio'))->with('creado', 'Nota de Compra añadida exitosamente');
+        return redirect(route('Nota_Compra.inicio'))->with('creado', 'Nota de Compra añadida exitosamente');
     }
 
 
