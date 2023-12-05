@@ -34,7 +34,7 @@ class Producto extends Model
 
     public function loteprod()
     {
-        return $this->hasMany(LoteProd::class, 'ID_Producto')->join('lote', 'lote.ID', '=', 'loteprod.ID_Lote')
+        return $this->hasMany(LoteProd::class, 'ID_Producto')->join('lote', 'lote.id', '=', 'loteprod.ID_Lote')
             ->orderBy('lote.fechaVencimiento', 'asc');
     }
 
