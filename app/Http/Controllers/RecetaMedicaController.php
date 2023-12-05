@@ -62,7 +62,7 @@ class RecetaMedicaController extends Controller
             $detalleReceta = new DetalleReceta();
             $detalleReceta->ID_RecetaMedica = $recetamedica->id;
             $detalleReceta->ID_Producto = $producto_id;
-            $detalleReceta->cantidad = $cantidad;
+            $detalleReceta->Cantidad = $cantidad;
             $detalleReceta->instrucciones = $instrucciones;
             $detalleReceta->save();
 
@@ -164,7 +164,7 @@ class RecetaMedicaController extends Controller
             $detalleReceta = new DetalleReceta();
             $detalleReceta->ID_RecetaMedica = $recetamedica->id;
             $detalleReceta->ID_Producto = $producto_id;
-            $detalleReceta->cantidad = $cantidad;
+            $detalleReceta->Cantidad = $cantidad;
             $detalleReceta->instrucciones = $instrucciones;
             $detalleReceta->save();
         }
