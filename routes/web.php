@@ -265,6 +265,9 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::post('/nota_venta/eliminar/{id}', [Nota_Venta_Controller::class, 'eliminar'])->name('nota_venta.eliminar');
     Route::get('/obtener-precio-cita/{citaId}', [Nota_Venta_Controller::class, 'obtenerPrecioCita']);
     Route::get('/nota-venta/{id}', [Nota_Venta_Controller::class, 'mostrarDetalles'])->name('nota_venta.mostrarDetalles');
+    //Reporte Nota de Venta
+    Route::get('/nota_venta/ReporteMes', [Nota_Venta_Controller::class, 'filtrarNotasPorMes'])->name('nota_venta.filtrarNotasPorMes');
+    Route::get('/nota_venta/PDF', [Nota_Venta_Controller::class, 'generarReporte'])->name('nota_venta.generarReporte');
 
 
     //nota de compra
