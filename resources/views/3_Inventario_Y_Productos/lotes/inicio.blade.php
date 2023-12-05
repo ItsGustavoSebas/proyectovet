@@ -19,10 +19,6 @@
                     <a class="px-3 py-2 bg-red-600 font-bold text-white rounded-lg"
                         href="{{ route('generarReporte') }}">GENERAR REPORTE</a>
                 @endcan
-                @can('Crear Lote')
-                    <a class="px-3 py-2 bg-indigo-600 font-bold text-white rounded-lg"
-                        href="{{ route('lotes.reporteSFechaCompra') }}">REPORTE SEMANAL</a>
-                @endcan
             </div>
         </div>
     </x-slot>

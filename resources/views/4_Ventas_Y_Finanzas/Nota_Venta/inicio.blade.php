@@ -4,13 +4,41 @@
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 {{ __('Lista De Ventas') }}
             </h2>
-            @can('Crear Nota de Venta')
-                <a class="px-3 py-2 bg-indigo-600 font-bold text-white rounded-lg"
-                    href="{{ route('nota_venta.crear') }}">NUEVA VENTA</a>
-            @endcan
-
+            <div>
+                @can('Crear Nota de Venta')
+                    <a class="px-3 py-2 bg-indigo-600 font-bold text-white rounded-lg"
+                        href="{{ route('nota_venta.crear') }}">NUEVA VENTA</a>
+                @endcan
+                @can('Crear Nota de Venta')
+                    <a class="px-3 py-2 bg-indigo-600 font-bold text-white rounded-lg"
+                        href="{{ route('nota_venta.inicio') }}">INICIO</a>
+                @endcan
+                @can('Crear Nota de Venta')
+                    <a class="px-3 py-2 bg-red-600 font-bold text-white rounded-lg"
+                        href="{{ route('nota_venta.generarReporte') }}">GENERAR
+                        REPORTE</a>
+                @endcan
+            </div>
         </div>
     </x-slot>
+
+    <div class="bg-white">
+        <div>
+            <h2 class="text-2xl font-semibold leading-tight">NOTAS DE VENTA</h2>
+        </div>
+        <div class="my-2 flex sm:flex-row flex-col">
+            <form method="GET" action="{{ route('nota_venta.filtrarNotasPorMes') }}">
+                @csrf
+                <label for="mes">Selecciona un mes:</label>
+                <select name="mes" id="mes">
+                    @foreach ($meses as $numeroMes => $nombreMes)
+                        <option value="{{ $numeroMes }}">{{ $nombreMes }}</option>
+                    @endforeach
+                </select>
+                <button type="submit" class="px-3 py-1 bg-blue-500 text-white rounded-lg ml-4">Filtrar</button>
+            </form>
+        </div>
+    </div>
 
     <table class="min-w-full border-collapse block md:table">
         <thead class="block md:table-header-group">

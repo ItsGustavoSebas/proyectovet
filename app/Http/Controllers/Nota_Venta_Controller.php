@@ -11,16 +11,69 @@ use App\Models\LoteProd;
 use App\Models\Nota_Venta;
 use App\Models\Producto;
 use App\Models\Recibo;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class Nota_Venta_Controller extends Controller
 {
+    public $notasVPDF;
+
+    public function filtrarNotasPorMes(Request $request)
+    {
+        $meses = $this->obtenerNombreMes();
+
+
+        $mesSeleccionado = $request->input('mes');
+
+        $mesSeleccionado = $mesSeleccionado ?? Carbon::now()->month;
+
+        $nota_ventas = Nota_Venta::whereMonth('fecha', $mesSeleccionado)->get();
+ 
+        session(['notasVPDF' => $nota_ventas]);
+
+        return view('4_Ventas_Y_Finanzas.nota_venta.inicio', compact('nota_ventas', 'mesSeleccionado','meses'));
+    }
+
+    public function obtenerNombreMes()
+    {
+        $meses = [
+            1 => 'Enero',
+            2 => 'Febrero',
+            3 => 'Marzo',
+            4 => 'Abril',
+            5 => 'Mayo',
+            6 => 'Junio',
+            7 => 'Julio',
+            8 => 'Agosto',
+            9 => 'Septiembre',
+            10 => 'Octubre',
+            11 => 'Noviembre',
+            12 => 'Diciembre',
+        ];
+
+        return $meses;
+    }
+
+    public function generarReporte(){
+        $nota_ventas = session('notasVPDF', collect());
+        $data = [
+            'nota_ventas' => $nota_ventas,
+        ];
+
+        $pdf = Pdf::loadView('PDF.notaVenta', $data);
+
+
+        return $pdf->stream('Nota_De_Venta.pdf');
+    }
+    
     public function inicio()
     {
         $nota_ventas = Nota_Venta::all();
-        return (view('4_Ventas_Y_Finanzas.nota_venta.inicio', compact('nota_ventas')));
+        $meses = $this->obtenerNombreMes();
+        session(['notasVPDF' => $nota_ventas]);
+        return (view('4_Ventas_Y_Finanzas.nota_venta.inicio', compact('nota_ventas','meses')));
     }
 
     public function crear()
