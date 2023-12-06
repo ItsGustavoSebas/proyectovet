@@ -359,9 +359,9 @@
 
     var citasPorTipoHoy = {!! json_encode($citasPorTipoHoy) !!};
 
-    var totalCitasHoy = citasPorTipoHoy.reduce((total, cita) => total + cita.cantidad, 0);
+    var totalCitasHoy = citasPorTipoHoy.reduce((total, cita) => total + [cita.cantidad], 0);
 
-    var porcentajes = citasPorTipoHoy.map(cita => ((cita.cantidad / totalCitasHoy) * 100).toFixed(2));
+    var porcentajes = citasPorTipoHoy.map(cita => (([cita.cantidad] / totalCitasHoy) * 100).toFixed(2));
 
     var options = {
         series: porcentajes,
@@ -388,7 +388,7 @@
                 }
             }
         },
-        labels: citasPorTipoHoy.map(cita => cita.tipo), // Corregido aquí
+        labels: citasPorTipoHoy.map(cita => [cita.tipo]), // Corregido aquí
     };
 
     var chart = new ApexCharts(chartPie, options);

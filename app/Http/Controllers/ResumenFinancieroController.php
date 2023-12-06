@@ -79,7 +79,6 @@ class ResumenFinancieroController extends Controller
             ->where('activo', true)
             ->groupBy('tipo')
             ->get();
-        dd($citasPorTipoHoy);
         return view(
             '4_Ventas_Y_Finanzas.ResumenFinanciero.resumenes_financieros',
             compact(
