@@ -99,9 +99,9 @@ class ResumenFinancieroController extends Controller
 
     public function ventas_semanal()
     {
-        $hoy = Carbon::now()->startOfDay(); 
+        $hoy = Carbon::now()->startOfDay();
         $inicioSemana = $hoy->copy()->startOfWeek();
-        $finSemana = $hoy->copy()->endOfWeek(); 
+        $finSemana = $hoy->copy()->endOfWeek();
         $ventasPorDia = Nota_Venta::selectRaw('DATE("fecha") as fecha, SUM("montoTotal") as total')
             ->whereBetween('fecha', [$inicioSemana, $finSemana])
             ->groupBy('fecha')
@@ -114,12 +114,10 @@ class ResumenFinancieroController extends Controller
     {
         $ventasPorMes = Nota_Venta::selectRaw('EXTRACT(YEAR FROM "fecha") as year, EXTRACT(MONTH FROM "fecha") as month, SUM("montoTotal") as total')
             ->whereRaw('EXTRACT(YEAR FROM "fecha") = ?', [Carbon::now()->year])
-            ->groupByRaw('EXTRACT(YEAR FROM "fecha")', 'EXTRACT(MONTH FROM "fecha")')
+            ->groupByRaw('EXTRACT(YEAR FROM "fecha"), EXTRACT(MONTH FROM "fecha")')
             ->orderByRaw('EXTRACT(YEAR FROM "fecha")')
             ->orderByRaw('EXTRACT(MONTH FROM "fecha")')
             ->get();
-
-
         return view('4_Ventas_Y_Finanzas.ResumenFinanciero.ventas_año', compact('ventasPorMes'));
     }
 
