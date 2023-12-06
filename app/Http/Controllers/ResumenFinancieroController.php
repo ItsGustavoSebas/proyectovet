@@ -79,7 +79,7 @@ class ResumenFinancieroController extends Controller
             ->where('activo', true)
             ->groupBy('tipo')
             ->get();
-
+        dd($citasPorTipoHoy);
         return view(
             '4_Ventas_Y_Finanzas.ResumenFinanciero.resumenes_financieros',
             compact(
@@ -100,12 +100,9 @@ class ResumenFinancieroController extends Controller
 
     public function ventas_semanal()
     {
-        // Obtener la fecha actual y la fecha hace una semana
-        $hoy = Carbon::now()->startOfDay(); // Obtiene el inicio del día actual
-        $inicioSemana = $hoy->copy()->startOfWeek(); // inicio de la semana actual
-        $finSemana = $hoy->copy()->endOfWeek(); // fin de la semana actual
-
-        // Consulta para obtener las ventas por día de la semana actual
+        $hoy = Carbon::now()->startOfDay(); 
+        $inicioSemana = $hoy->copy()->startOfWeek();
+        $finSemana = $hoy->copy()->endOfWeek(); 
         $ventasPorDia = Nota_Venta::selectRaw('DATE("fecha") as fecha, SUM("montoTotal") as total')
             ->whereBetween('fecha', [$inicioSemana, $finSemana])
             ->groupBy('fecha')
@@ -116,13 +113,13 @@ class ResumenFinancieroController extends Controller
 
     public function ventas_año()
     {
-        // Obtener ventas por mes para el año actual
-        $ventasPorMes = Nota_Venta::selectRaw('YEAR("fecha") as year, MONTH("fecha") as month, SUM("montoTotal") as total')
-            ->whereYear('fecha', Carbon::now()->year)
-            ->groupBy('year', 'month')
-            ->orderBy('year')
-            ->orderByRaw('MONTH("fecha")')
+        $ventasPorMes = Nota_Venta::selectRaw('EXTRACT(YEAR FROM "fecha") as year, EXTRACT(MONTH FROM "fecha") as month, SUM("montoTotal") as total')
+            ->whereRaw('EXTRACT(YEAR FROM "fecha") = ?', [Carbon::now()->year])
+            ->groupByRaw('EXTRACT(YEAR FROM "fecha")', 'EXTRACT(MONTH FROM "fecha")')
+            ->orderByRaw('EXTRACT(YEAR FROM "fecha")')
+            ->orderByRaw('EXTRACT(MONTH FROM "fecha")')
             ->get();
+
 
         return view('4_Ventas_Y_Finanzas.ResumenFinanciero.ventas_año', compact('ventasPorMes'));
     }
@@ -131,7 +128,7 @@ class ResumenFinancieroController extends Controller
     {
         // Obtener ventas por semana para el mes actual
         $ventasPorSemana = Nota_Venta::selectRaw('EXTRACT(YEAR FROM "fecha") as year, EXTRACT(MONTH FROM "fecha") as month, DATE_PART(\'week\', "fecha") as week, SUM("montoTotal") as total')
-        ->whereYear('fecha', Carbon::now()->year)
+            ->whereYear('fecha', Carbon::now()->year)
             ->whereMonth('fecha', Carbon::now()->month)
             ->groupBy('year', 'month', 'week')
             ->orderBy('year')
