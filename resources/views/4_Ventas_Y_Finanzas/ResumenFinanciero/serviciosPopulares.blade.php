@@ -87,7 +87,7 @@
                         }
                     }
                 },
-                labels: [...cantidadServicios.map(servicio => servicio.nombre), 'Consultas'],
+                labels: [...cantidadServicios.map(servicio => [servicio.nombre]), 'Consultas'],
             };
 
             var chart = new ApexCharts(chartPie, options);
