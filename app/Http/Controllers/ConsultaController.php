@@ -27,7 +27,7 @@ class ConsultaController extends Controller
     public function consultas()
     {
         $ID_Empleado = auth()->id();
-        $consultas = Consulta::where('ID_Empleado', '=', $ID_Empleado)->get();
+        $consultas = Consulta::where('ID_Empleado', '=', $ID_Empleado)->orderBy('fecha', 'desc')->get();
         return view('2_Mascotas_Y_Atencion_Veterinaria.consulta.consultas', compact('consultas'));
     }
 

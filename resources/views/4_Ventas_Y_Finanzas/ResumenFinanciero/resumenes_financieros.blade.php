@@ -23,7 +23,7 @@
                             </div>
                             <div class="grid grid-cols-12 gap-6 mt-5">
                                 <a class="transform  hover:scale-105 transition duration-300 shadow-xl rounded-lg col-span-12 sm:col-span-6 xl:col-span-3 intro-y bg-white"
-                                    href="#">
+                                    href="{{ route('bitacoras.rinicio') }}">
                                     <div class="p-5">
                                         <div class="flex justify-between">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-blue-400"
@@ -57,7 +57,7 @@
                                     </div>
                                 </a>
                                 <a class="transform  hover:scale-105 transition duration-300 shadow-xl rounded-lg col-span-12 sm:col-span-6 xl:col-span-3 intro-y bg-white"
-                                    href="#">
+                                    href="{{ route('reservar.consultar')}}">
                                     <div class="p-5">
                                         <div class="flex justify-between">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-yellow-400"
@@ -82,7 +82,7 @@
                                     </div>
                                 </a>
                                 <a class="transform  hover:scale-105 transition duration-300 shadow-xl rounded-lg col-span-12 sm:col-span-6 xl:col-span-3 intro-y bg-white"
-                                    href="#">
+                                    href="{{ route('nota_venta.inicio') }}">
                                     <div class="p-5">
                                         <div class="flex justify-between">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-pink-600"
@@ -107,7 +107,7 @@
                                     </div>
                                 </a>
                                 <a class="transform  hover:scale-105 transition duration-300 shadow-xl rounded-lg col-span-12 sm:col-span-6 xl:col-span-3 intro-y bg-white"
-                                    href="#">
+                                    href="{{ route('nota_venta.inicio') }}">
                                     <div class="p-5">
                                         <div class="flex justify-between">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-green-400"
@@ -141,7 +141,7 @@
                             <div class="bg-white">
                                 <div class="container mx-auto px-4 sm:px-8">
                                     <div class="py-8">
-                                        <div class="grid grid-cols-4 gap-4">
+                                        <div class="grid md:grid-cols-4 gap-4">
                                             <!-- Botones -->
                                             <!-- Botón para Ventas en la Semana -->
                                             <a href="{{ route('reporte.ventas_semanal') }}"

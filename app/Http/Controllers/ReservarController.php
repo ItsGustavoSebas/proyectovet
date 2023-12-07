@@ -48,7 +48,7 @@ class ReservarController extends Controller
     {
         $tipo = $request->input('tipo'); 
         $citas = Cita::where('tipo', '=', $tipo)
-        ->where('activo', true)->get();
+        ->where('activo', true)->orderBy('fechaProgramada')->orderBy('hora')->get();
         return view('2_Mascotas_Y_Atencion_Veterinaria.reservar.consultar', compact('citas', 'tipo'));
     }
 
