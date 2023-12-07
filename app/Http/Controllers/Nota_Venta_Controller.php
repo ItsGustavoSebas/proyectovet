@@ -70,7 +70,7 @@ class Nota_Venta_Controller extends Controller
     
     public function inicio()
     {
-        $nota_ventas = Nota_Venta::all();
+        $nota_ventas = Nota_Venta::orderBy('fecha', 'desc')->get();
         $meses = $this->obtenerNombreMes();
         session(['notasVPDF' => $nota_ventas]);
         return (view('4_Ventas_Y_Finanzas.Nota_Venta.inicio', compact('nota_ventas','meses')));
