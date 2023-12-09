@@ -104,37 +104,40 @@
             <span class="receipt-label">Monto Total:</span>
             <span>{{ $NotaCompra->montoTotal }}</span>
         </div>
-
-        <div class="receipt-section">
-            <span class="receipt-label">Número de Lote:</span>
-            <span>{{ $lote->numeroLote }}</span>
-        </div>
-        
-        <div class="receipt-section">
-            <span class="receipt-label">Fecha:</span>
-            <span>{{ $lote->fechaCompra }}</span>
-        </div>
-        <div class="receipt-section">
-            <span class="receipt-label">Productos en la Compra</span>
-            <table class="receipt-table">
-                <thead>
-                    <tr>
-                        <th>Productos</th>
-                        <th>Cantidad</th>
-                        <th>Precio</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($lotesprod as $loteprod)
+        <div class="signature-line"></div>
+        @foreach ($lotes as $lote)
+            
+            <div class="receipt-section">
+                <span class="receipt-label">Número de Lote:</span>
+                <span>{{ $lote->numeroLote }}</span>
+            </div>
+            
+            <div class="receipt-section">
+                <span class="receipt-label">Fecha:</span>
+                <span>{{ $lote->fechaCompra }}</span>
+            </div>
+            <div class="receipt-section">
+                <span class="receipt-label">Productos en la Compra</span>
+                <table class="receipt-table">
+                    <thead>
                         <tr>
-                            <td>{{ $loteprod->producto->nombre }}</td>
-                            <td>{{ $loteprod->cantidadComprada }}</td>
-                            <td>{{ $loteprod->precioCompra }}</td>
+                            <th>Productos</th>
+                            <th>Cantidad</th>
+                            <th>Precio</th>
                         </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
+                    </thead>
+                    <tbody>
+                        @foreach ($lotesprod[$lote->id] as $loteprod)
+                            <tr>
+                                <td>{{ $loteprod->producto->nombre }}</td>
+                                <td>{{ $loteprod->cantidadComprada }}</td>
+                                <td>{{ $loteprod->precioCompra }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        @endforeach
         <div class="receipt-signatures-container">
             <div class="receipt-signature">
                 <div class="signature-info">
