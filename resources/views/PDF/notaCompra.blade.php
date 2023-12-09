@@ -109,7 +109,7 @@
             <span class="receipt-label">Número de Lote:</span>
             <span>{{ $lote->numeroLote }}</span>
         </div>
-
+        
         <div class="receipt-section">
             <span class="receipt-label">Fecha:</span>
             <span>{{ $lote->fechaCompra }}</span>
@@ -135,7 +135,6 @@
                 </tbody>
             </table>
         </div>
-
         <div class="receipt-signatures-container">
             <div class="receipt-signature">
                 <div class="signature-info">

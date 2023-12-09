@@ -277,7 +277,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::post('/nota_compra/eliminar/{id}', [Nota_CompraController::class, 'eliminar'])->name('nota_compra.eliminar');
     Route::get('/nota-compra/{id}', [Nota_CompraController::class, 'mostrarDetalles'])->name('nota_compra.mostrarDetalles');
     Route::get('/obtener-lotes-proveedor/{proveedorId}', [Nota_CompraController::class, 'obtenerLotesPorProveedor']);
-    Route::get('/obtener-precio-Lote/{loteprodId}', [Nota_CompraController::class, 'obtenerPrecioCompra']);
+    Route::get('/obtener-precio-Lote/{loteId}', [Nota_CompraController::class, 'obtenerPrecioCompra']);
     Route::get('/nota_compra/PDF/{id}', [Nota_CompraController::class, 'generarCompraPDF'])->name('generarCompraPDF');
 
 
