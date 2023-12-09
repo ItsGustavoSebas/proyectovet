@@ -36,8 +36,12 @@ class Nota_CompraController extends Controller
         $notaCompra = Nota_Compra::find($id);
 
         if ($notaCompra) {
-            // Eliminar lotes asociados
-            $notaCompra->lotes()->delete();
+            // Obtener los IDs de lotes asociados
+            $lotesIds = $notaCompra->lotes->pluck('id')->toArray();
+
+            // Actualizar los lotes asociados cambiando el atributo a null
+            Lote::whereIn('id', $lotesIds)->update(['ID_NotaCompra' => null]);
+
             // Eliminar la nota de compra
             $notaCompra->delete();
         }
@@ -68,17 +72,25 @@ class Nota_CompraController extends Controller
     {
         $request->validate([
             'monto_total' => 'required',
+            'lotes' => 'required|array',
         ]);
 
+        // Crear la nota de compra
         $notaCompra = new Nota_Compra();
         $notaCompra->montoTotal = $request->monto_total;
         $notaCompra->save();
 
-        $lote = Lote::find($request->lotes);
-        $lote->ID_NotaCompra = $notaCompra->id;
-        $lote->save();
+        // Actualizar los lotes seleccionados
+        Lote::whereIn('id', $request->lotes)->update(['ID_NotaCompra' => $notaCompra->id]);
 
         // Crear DetalleBitacora
+        $this->crearBitacora('Crear Nota de Compra', $request->method(), $notaCompra->id);
+
+        return redirect(route('nota_compra.inicio'))->with('creado', 'Nota de Compra añadida exitosamente');
+    }
+
+    private function crearBitacora($accion, $metodo, $registroId)
+    {
         $bitacora_id = session('bitacora_id');
 
         if ($bitacora_id) {
@@ -86,57 +98,52 @@ class Nota_CompraController extends Controller
             $horaActual = now()->format('H:i:s');
 
             $bitacora->detalleBitacoras()->create([
-                'accion' => 'Crear Nota de Compra',
-                'metodo' => $request->method(),
+                'accion' => $accion,
+                'metodo' => $metodo,
                 'hora' => $horaActual,
                 'tabla' => 'nota_compra',
-                'registroId' => $notaCompra->id,
+                'registroId' => $registroId,
                 'ruta' => request()->fullurl(),
             ]);
         }
-
-        return redirect(route('nota_compra.inicio'))->with('creado', 'Nota de Compra añadida exitosamente');
-    }
-
-
-    public function mostrarDetalles($id)
-    {
-        $notaCompra = Nota_Compra::findOrFail($id); // Obtener la nota de compra por su ID
-        $lote = Lote::where('ID_NotaCompra', $id)->firstOrFail();
-    
-        // Obtén los productos asociados al lote
-        $lotesprod = LoteProd::where('ID_Lote', $lote->id)->get();
-
-        return view('4_Ventas_Y_Finanzas.Nota_Compra.detalles', ['nota_compra' => $notaCompra]);
     }
 
     public function obtenerLotesPorProveedor($proveedorId)
     {
-        $lotes = Lote::where('ID_Proveedor', $proveedorId)->get();
+        $lotes = Lote::where('ID_Proveedor', $proveedorId)
+                    ->whereNull('ID_NotaCompra')
+                    ->get();
 
         return response()->json($lotes);
     }
 
-    public function obtenerPrecioCompra($loteprod)
+    public function obtenerPrecioCompra($loteId)
     {
-        $preciosCompra = LoteProd::where('ID_Lote', $loteprod)->pluck('precioCompra');
-        return response()->json($preciosCompra);
+        try {
+            $totalPrecioCompra = LoteProd::where('ID_Lote', $loteId)->sum('precioCompra');
+            return response()->json($totalPrecioCompra);
+        } catch (\Exception $e) {
+            // Manejar cualquier excepción aquí
+            return response()->json(['error' => 'Error al obtener el precio de compra'], 500);
+        }
     }
+
+
 
     public function generarCompraPDF($id) {
         // Obtén la información de la compra
         $NotaCompra = Nota_Compra::findOrFail($id);
     
         // Encuentra el lote asociado a la compra
-        $lote = Lote::where('ID_NotaCompra', $id)->firstOrFail();
+        $lotes = Lote::where('ID_NotaCompra', $id)->firstOrFail();
     
         // Obtén los productos asociados al lote
-        $lotesprod = LoteProd::where('ID_Lote', $lote->id)->get();
+        $lotesprod = LoteProd::where('ID_Lote', $lotes->id)->get();
     
         // Pasar datos a la vista
         $data = [
             'NotaCompra' => $NotaCompra,
-            'lote' => $lote,
+            'lote' => $lotes,
             'lotesprod' => $lotesprod,
         ];
     

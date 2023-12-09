@@ -14,29 +14,25 @@
         <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg m-5">
             <div class="p-5">
                 <label class="font-bold text-lg">Proveedor del Lote</label>
-                <div class="grid lg:grid-cols-3 grid-cols-1 gap-3 p-5" >
+                <div class="grid lg:grid-cols-3 grid-cols-1 gap-3 p-5">
                     <div class="col-span-1">
                         <label for="proveedor">Proveedor</label>
-                            <select id="proveedor" name="proveedores"
-                                class="px-3 py-2 w-full rounded-xl bg-blue-100">
-                                <option value="">Selecciona el Proveedor</option>
-                                @foreach ($proveedores as $proveedor)
-                                    <option value="{{ $proveedor->id }}">{{ $proveedor->nombre }}</option>
-                                @endforeach
-                            </select>
-                    </div>
-                    <div class="col-span-1">
-                        <label for="lotes">Lote</label>
-                        <select id="lotes" name="lotes" class="px-3 py-2 w-full rounded-xl bg-blue-100">
-                            <option value="">Selecciona el Lote</option>
+                        <select id="proveedor" name="proveedores" class="px-3 py-2 w-full rounded-xl bg-blue-100">
+                            <option value="" data-lotes="[]">Selecciona el Proveedor</option>
+                            @foreach ($proveedores as $proveedor)
+                                <option value="{{ $proveedor->id }}" data-lotes="{{ json_encode($proveedor->lotes) }}">
+                                    {{ $proveedor->nombre }}
+                                </option>
+                            @endforeach
                         </select>
-                        <input type="hidden" id="fechaLote" name="fechaLote" value="">
                     </div>
-                    <div class="col-span-1">
-                        <label for="fecha">Fecha</label>
-                        <input id="fecha" name="Fecha" type="date"
-                        class="px-3 py-2 w-full rounded-xl bg-blue-100" readonly>
+                </div>
+                <div class="col-span-1">
+                    <label class="font-bold text-lg" for="lotes">Lotes</label>
+                    <div id="lotesContainer" class="grid grid-cols-1 gap-2">
+                        <!-- Lotes se mostrarán aquí dinámicamente -->
                     </div>
+                    <input type="hidden" id="fechaLote" name="fechaLote" value="">
                 </div>
                 <input type="hidden" name="monto_total" id="monto_total_input">
                 <div>
@@ -47,79 +43,102 @@
             </div>
         </div>
     </form>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            // Obtiene referencias a los elementos del formulario
             const proveedorSelect = document.getElementById('proveedor');
-            const loteSelect = document.getElementById('lotes');
-            const fechaInput = document.getElementById('fecha');
+            const lotesContainer = document.getElementById('lotesContainer');
             const fechaLoteInput = document.getElementById('fechaLote');
+            const montoTotalNotaCompra = document.getElementById('montoTotalNotaCompra');
+            const montoTotalInput = document.getElementById('monto_total_input');
     
-            // Evento onchange para el campo de selección del proveedor
             proveedorSelect.addEventListener('change', function () {
                 const proveedorId = proveedorSelect.value;
-
+    
                 axios.get(`/obtener-lotes-proveedor/${proveedorId}`)
                     .then(response => {
-                        loteSelect.innerHTML = '<option value="">Selecciona el Lote</option>';
+                        lotesContainer.innerHTML = '';
+    
                         response.data.forEach(lote => {
-                            // Solo agregar los lotes que tienen ID_NotaCompra en null
                             if (lote.ID_NotaCompra === null) {
-                                const option = document.createElement('option');
-                                option.value = lote.id;
-                                option.textContent = lote.numeroLote;
-                                option.setAttribute('data-fecha', lote.fechaCompra);
-                                loteSelect.appendChild(option);
+                                const label = document.createElement('label');
+                                label.textContent = lote.numeroLote;
+    
+                                const checkbox = document.createElement('input');
+                                checkbox.type = 'checkbox';
+                                checkbox.name = 'lotes[]';
+                                checkbox.value = lote.id;
+                                checkbox.setAttribute('data-fecha', lote.fechaCompra);
+    
+                                // Aquí llamamos a la función para obtener el precio de compra
+                                obtenerPrecioCompra(lote.id, checkbox);
+    
+                                label.appendChild(checkbox);
+                                lotesContainer.appendChild(label);
                             }
                         });
+    
+                        // Mostrar el checkbox "Seleccionar Todos" solo si hay lotes disponibles
+                        if (response.data.length > 0) {
+                            const labelTodos = document.createElement('label');
+                            labelTodos.textContent = 'Seleccionar Todos';
+    
+                            const checkboxTodos = document.createElement('input');
+                            checkboxTodos.type = 'checkbox';
+                            checkboxTodos.id = 'seleccionarTodosCheckbox';
+                            checkboxTodos.addEventListener('change', function () {
+                                setTimeout(function () {
+                                    const checkboxes = lotesContainer.querySelectorAll('input[type="checkbox"]');
+                                    checkboxes.forEach(checkbox => {
+                                        checkbox.checked = checkboxTodos.checked;
+                                    });
+    
+                                    actualizarMontoTotal();
+                                }, 0);
+                            });
+    
+                            labelTodos.appendChild(checkboxTodos);
+                            lotesContainer.prepend(labelTodos);
+                        }
                     })
                     .catch(error => {
                         console.error('Error al obtener los lotes', error);
                     });
             });
     
-            // Evento onchange para el campo de selección del lote
-            loteSelect.addEventListener('change', async function () {
-                const selectedOption = loteSelect.options[loteSelect.selectedIndex];
-                fechaInput.value = selectedOption.getAttribute('data-fecha');
-                fechaLoteInput.value = selectedOption.getAttribute('data-fecha');
-    
-                // Actualizar el valor del campo oculto "lotes"
-                document.getElementById('lotes').value = loteSelect.value;
-    
-                // Calcula el monto total basado en los precios de compra de loteprod
-                await calcularMontoTotal();
+            lotesContainer.addEventListener('change', function () {
+                actualizarMontoTotal();
             });
     
-            // Función para calcular el monto total
-            async function calcularMontoTotal() {
-                const loteprod = document.getElementById('lotes').value;
-                const preciosCompra = await obtenerPreciosCompra(loteprod);
+            function actualizarMontoTotal() {
+                const selectedCheckboxes = lotesContainer.querySelectorAll('input[type="checkbox"]:checked');
+                let montoTotal = 0;
     
-                const montoTotal = preciosCompra.reduce((total, precio) => total + parseFloat(precio), 0);
+                selectedCheckboxes.forEach(checkbox => {
+                    const precioCompra = parseFloat(checkbox.getAttribute('data-precio-compra')) || 0;
+                    montoTotal += precioCompra;
+                    fechaLoteInput.value += checkbox.getAttribute('data-fecha') + ',';
+                });
     
-                // Cambiar el contenido del div directamente
-                const montoTotalNotaCompra = document.getElementById('montoTotalNotaCompra');
+                if (fechaLoteInput.value.endsWith(',')) {
+                    fechaLoteInput.value = fechaLoteInput.value.slice(0, -1);
+                }
+    
                 montoTotalNotaCompra.textContent = `Monto Total: $${montoTotal.toFixed(2)}`;
-    
-                // Actualizar el valor del campo oculto "monto_total_input"
-                document.getElementById('monto_total_input').value = montoTotal.toFixed(2);
-                console.log('Nuevo valor de monto_total:', document.getElementById('monto_total_input').value);
+                montoTotalInput.value = montoTotal.toFixed(2);
             }
     
-            // Función para obtener los precios de compra de loteprod
-            async function obtenerPreciosCompra(loteprod) {
+            async function obtenerPrecioCompra(loteId, checkbox) {
                 try {
-                    const response = await axios.get(`/obtener-precio-Lote/${loteprod}`);
-                    return response.data;
+                    const response = await axios.get(`/obtener-precio-Lote/${loteId}`);
+                    const precioCompra = response.data;
+    
+                    checkbox.setAttribute('data-precio-compra', precioCompra);
                 } catch (error) {
-                    console.error('Error al obtener los precios de compra', error);
-                    return [];
+                    console.error('Error al obtener el precio de compra', error);
                 }
             }
         });
     </script>
     
-
 </x-app-layout>
