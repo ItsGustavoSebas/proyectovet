@@ -87,14 +87,15 @@
                             checkboxTodos.type = 'checkbox';
                             checkboxTodos.id = 'seleccionarTodosCheckbox';
                             checkboxTodos.addEventListener('change', function () {
-                                setTimeout(function () {
-                                    const checkboxes = lotesContainer.querySelectorAll('input[type="checkbox"]');
-                                    checkboxes.forEach(checkbox => {
-                                        checkbox.checked = checkboxTodos.checked;
-                                    });
+                                const checkboxes = lotesContainer.querySelectorAll('input[type="checkbox"]');
+                                checkboxes.forEach(checkbox => {
+                                    checkbox.checked = checkboxTodos.checked;
+                                });
     
+                                // Use Promise.resolve() to execute the callback after the rendering
+                                Promise.resolve().then(() => {
                                     actualizarMontoTotal();
-                                }, 0);
+                                });
                             });
     
                             labelTodos.appendChild(checkboxTodos);
@@ -134,6 +135,9 @@
                     const precioCompra = response.data;
     
                     checkbox.setAttribute('data-precio-compra', precioCompra);
+    
+                    // Actualiza el monto total aquí también
+                    actualizarMontoTotal();
                 } catch (error) {
                     console.error('Error al obtener el precio de compra', error);
                 }

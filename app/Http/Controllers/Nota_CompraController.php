@@ -134,16 +134,22 @@ class Nota_CompraController extends Controller
         // Obtén la información de la compra
         $NotaCompra = Nota_Compra::findOrFail($id);
     
-        // Encuentra el lote asociado a la compra
-        $lotes = Lote::where('ID_NotaCompra', $id)->firstOrFail();
+        // Encuentra los lotes asociados a la compra
+        $lotes = Lote::where('ID_NotaCompra', $id)->get();
     
-        // Obtén los productos asociados al lote
-        $lotesprod = LoteProd::where('ID_Lote', $lotes->id)->get();
+        // Inicializa un arreglo para almacenar los productos de los lotes
+        $lotesprod = [];
+    
+        // Itera sobre los lotes para obtener los productos asociados a cada uno
+        foreach ($lotes as $lote) {
+            $productosDelLote = LoteProd::where('ID_Lote', $lote->id)->get();
+            $lotesprod[$lote->id] = $productosDelLote;
+        }
     
         // Pasar datos a la vista
         $data = [
             'NotaCompra' => $NotaCompra,
-            'lote' => $lotes,
+            'lotes' => $lotes,
             'lotesprod' => $lotesprod,
         ];
     
