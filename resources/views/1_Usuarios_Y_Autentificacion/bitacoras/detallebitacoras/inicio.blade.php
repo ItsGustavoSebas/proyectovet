@@ -8,6 +8,7 @@
                 href="{{ route('generarDetalleBitacoraPDF', $bitacora->id) }}">Generar PDF</a>
         </div>
     </x-slot>
+    <title>Detalles_Bitacoras</title>
 
     <table class="min-w-full border-collapse block md:table">
         <thead class="block md:table-header-group">

@@ -1,4 +1,7 @@
 <x-app-layout>
+
+    <title>Acciones</title>
+
     <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg m-2">
         <div class="grid lg:grid-cols-3 grid-cols-1 gap-4 p-2">
             <div class="relative z-0">

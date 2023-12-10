@@ -5,6 +5,8 @@
         </h2>
     </x-slot>
 
+    <title>Editar_Tratamiento</title>
+
     <form action="{{ route('traconsulta.actualizar', $traconsulta->id) }}" method="POST">
         @csrf
         <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg m-5">

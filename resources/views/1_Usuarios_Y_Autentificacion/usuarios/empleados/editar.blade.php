@@ -13,7 +13,7 @@
         <style>
             @import url('https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.min.css');
         </style>
-        <title>RegistrarEmpleado</title>
+        <title>Editar_Empleado</title>
     </head>
     {!! Form::model($user, ['route' => ['empleados.actualizar', $user->id], 'method' => 'POST','enctype' => 'multipart/form-data' , 'autocomplete' => 'off']) !!}
         @csrf

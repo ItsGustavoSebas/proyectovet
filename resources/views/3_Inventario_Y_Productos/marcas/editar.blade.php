@@ -6,6 +6,8 @@
         </h2>
     </x-slot>
 
+    <title>Editar_Marca</title>
+
     <form action="{{ route('marcas.actualizar', $marca->id) }}" method="POST">
         @csrf
         <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg m-5">

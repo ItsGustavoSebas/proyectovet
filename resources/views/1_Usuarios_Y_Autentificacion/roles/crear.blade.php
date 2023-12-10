@@ -1,5 +1,7 @@
 <x-app-layout>
 
+    <title>Crear_Rol</title>
+
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">

@@ -5,6 +5,8 @@
         </h2>
     </x-slot>
 
+    <title>Crear_Categoria</title>
+
     <form action="{{ route('categorias.guardar') }}" method="POST">
         @csrf
         <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg m-5">

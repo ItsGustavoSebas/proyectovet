@@ -5,6 +5,8 @@
         </h2>
     </x-slot>
 
+    <title>Editar_Categoria</title>
+
     <form action="{{ route('categorias.actualizar', $categoria->id) }}" method="POST">
         @csrf
         <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg m-5">

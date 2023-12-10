@@ -5,6 +5,8 @@
         </h2>
     </x-slot>
 
+    <title>Crear_Proveedor</title>
+
     <form action="{{ route('proveedor.guardar') }}" method="POST">
         @csrf
         <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg m-5">

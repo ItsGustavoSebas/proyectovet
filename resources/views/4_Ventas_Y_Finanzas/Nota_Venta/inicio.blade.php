@@ -22,6 +22,8 @@
         </div>
     </x-slot>
 
+    <title>Nota_De_Venta</title>
+
     <div class="bg-white">
         <div>
             <h2 class="text-2xl font-semibold leading-tight">NOTAS DE VENTA</h2>

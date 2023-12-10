@@ -9,6 +9,8 @@
         </div>
     </x-slot>
 
+    <title>Nota_De_Compra</title>
+
     <form action="{{ route('nota_compra.guardar') }}" method="POST">
         @csrf
         <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg m-5">

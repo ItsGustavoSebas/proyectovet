@@ -10,6 +10,9 @@
             @endcan
         </div>
     </x-slot>
+
+    <title>Marcas</title>
+
     <div class="p-5">
         @livewire('marcas.marca-table')
     </div>

@@ -22,6 +22,9 @@
             </div>
         </div>
     </x-slot>
+
+    <title>Lotes</title>
+
     <div class="bg-white">
         <div>
             <h2 class="text-2xl font-semibold leading-tight">LOTES</h2>
