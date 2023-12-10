@@ -5,6 +5,8 @@
         </h2>
     </x-slot>
 
+    <title>Crear_Lote</title>
+
     <form action="{{ route('lotes.guardar') }}" method="POST">
         @csrf
         <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg m-5">

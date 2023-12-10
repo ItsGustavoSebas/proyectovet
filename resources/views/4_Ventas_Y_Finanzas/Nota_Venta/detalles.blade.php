@@ -5,6 +5,8 @@
         </h2>
     </x-slot>
 
+    <title>Nota_De_Venta</title>
+
     <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg m-5">
         <div class="p-5">
             <!-- Mostrar detalles de la nota de venta -->

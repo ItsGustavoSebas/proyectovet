@@ -10,6 +10,7 @@
             @endcan
         </div>
     </x-slot>
+    <title>Roles</title>
     <div class="p-5">
         @livewire('roles.rol-table')
     </div>

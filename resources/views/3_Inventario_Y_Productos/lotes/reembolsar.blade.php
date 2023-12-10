@@ -5,6 +5,8 @@
         </h2>
     </x-slot>
 
+    <title>Reembolso</title>
+
     <form action="{{ route('lotes.reembolsaractualizar', $lote->id) }}" method="POST">
         @csrf
         <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg m-5">

@@ -1,5 +1,6 @@
 <x-app-layout>
 
+    <title>Editar_Factura</title>
  
     <div class="bg-gradient-to-r from-indigo-700 to-indigo-950 p-8">
         <!-- Cuadro exterior con fondo azul marino y relleno de 8 unidades -->

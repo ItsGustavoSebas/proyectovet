@@ -13,7 +13,7 @@
         <style>
             @import url('https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.min.css');
         </style>
-        <title>Editar Consulta</title>
+        <title>Editar_Consulta</title>
     </head>
     <form action="{{ route('consulta.actualizar', $consulta->id) }}" method="POST" enctype="multipart/form-data">
         @csrf

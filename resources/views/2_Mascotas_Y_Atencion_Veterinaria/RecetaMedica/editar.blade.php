@@ -5,6 +5,8 @@
         </h2>
     </x-slot>
 
+    <title>Editar_Receta</title>
+
     <form action="{{ route('RecetaMedica.actualizar', $receta_medica->id)}}" method="POST">
         @csrf
         <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg m-5">

@@ -13,7 +13,7 @@
         <style>
             @import url('https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.min.css');
         </style>
-        <title>RegistrarEmpleado</title>
+        <title>Editar_Cliente</title>
     </head>
     <form action="{{ route('clientes2.actualizar', $cliente->ID_Usuario) }}" method="POST" enctype="multipart/form-data">
         @csrf

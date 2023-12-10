@@ -6,6 +6,8 @@
         </h2>
     </x-slot>
 
+    <title>Registrar_Mascota</title>
+
     <form action="{{ route('mascotas.guardar') }}" method="POST">
         @csrf
         <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg m-5">

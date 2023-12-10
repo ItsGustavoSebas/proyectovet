@@ -6,6 +6,9 @@
             </h2>
         </div>
     </x-slot>
+
+    <title>Consultar</title>
+
     <table class="min-w-full border-collapse block md:table">
         <thead class="block md:table-header-group">
             <tr
